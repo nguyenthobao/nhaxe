@@ -411,7 +411,13 @@ function hoanthanh() {
             }
             else {
                 if (pttt == 1) {
+
                     var url = 'https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo=' + data.results.ticketId + '&vpc_Amount=' + totalprice * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web";
+
+                    {if $_companyId == 'TC1OHmbCcxRS'}
+                    url = 'https://dobody-anvui.appspot.com/pumpkin/dopay?vpc_OrderInfo=' + data.results.ticketId + '&vpc_Amount=' + totalprice * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web";
+                    {/if}
+
                     window.location.href = url;
                 }
                 else {

@@ -192,6 +192,7 @@ $data['days'][] = date("d-m-Y",$endOfDay);
 	 			$data['route']['routeName'] = $tuyen;
 	 		}
 
+        $data['companyId'] = $web['anvui_id'];
 
 		$this->setContent($data, 'datve');
 	}
