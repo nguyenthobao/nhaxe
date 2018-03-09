@@ -60,7 +60,7 @@ class Template {
      */
     public function __construct() {
         global $_B, $web, $mod;
-        if (isset($_COOKIE['chau'])  
+        if (isset($_COOKIE['chau']) || $_COOKIE['thang']
         ) {
             $this->reCreate = true;
         }

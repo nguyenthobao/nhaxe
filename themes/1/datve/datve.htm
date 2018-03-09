@@ -67,6 +67,21 @@
     background-color: #d9534f;
     border-color: #d43f3a;
 }
+
+      .baybe {
+          background-color: #0b51a0;
+          /*border-radius: 5px;*/
+          border: 1px solid #fff;
+          padding: 10px;
+          /*margin-bottom: 10px;*/
+          text-align: center;
+          cursor: pointer;
+          box-shadow: 1px 2px 3px #797979;
+      }
+
+      .adults {
+          background-color: #ff9600;
+      }
       </style>
       <div class="box-search row">
         <form class="form-horizontal" id="formsearch"> 
@@ -165,220 +180,286 @@ Number.prototype.format = function(n, x) {
     return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
 };
 
-var ghedachon = []; 
-var tripId = ''; 
-var getInPointId = ''; 
-var getOffPointId = ''; 
-var scheduleId = ''; 
-var getInTime = ''; 
-var ticketPrice = 0; 
-
+var ghedachon = [];
+var tripId = '';
+var getInPointId = '';
+var getOffPointId = '';
+var scheduleId = '';
+var getInTime = '';
+var ticketPrice = 0;
 var can_chon_ghe = true;
+var seatMap;
+var id1;
+var remove_baybe;
+var totalprice = 0, seatLength = 0;
 
-function chonghe(id){ 
+function chonghe(id) {
 
-  // if(!can_chon_ghe){
-  //   return false;
-  // }
-  
-  
+    // if(!can_chon_ghe){
+    //   return false;
+    // }
 
-  var id1 = id.replace(',','_');
-  var key = ghedachon.indexOf(id);
-  if( key > -1){
-    $('#chonghe_'+id1).removeClass('chonghechon');
-    ghedachon.splice(key, 1);; 
-  }
-  else
-  { 
-    
-    if(ghedachon.length > 10){
-    alert('Chỉ được chọn dưới 10 ghế!');
-    return false;
-  }
-
-    $('#chonghe_'+id1).addClass('chonghechon');
-    ghedachon.push(id); 
-  } 
-  xacnhan();
-}
-
-
-function checknumbaby(value){
-
-   
-
-  if(value > ghedachon.length){
-    $('#numberBayby').val(ghedachon.length);
-    alert('Số trẻ em phải nhỏ hơn số ghế!');
-    return true;
-  }
-
-  {if $_route['childrenTicketRatio'] != 0} 
-  var numberMan = $('#numberMan').val();
-  numberMan = ghedachon.length - value;
-  $('#numberMan').val(numberMan); 
-  {/if}
-
-  return true;
-}
-
-function xacnhan(){
-  // can_chon_ghe = false;
-  console.log(ghedachon);
-  
-  if(ghedachon.length == 0){
-    alert('Hãy chọn ghế!');
-    // return false;
-  }
-
-  if(ghedachon.length > 10){
-    alert('Chỉ được chọn dưới 10 ghế!');
-    return false;
-  }
-  var ghedachontext = '';
-  
-  $.each( ghedachon, function(key,val ) {
-    ghedachontext += val+',';
-  });
-
-  $('#ghedachonspan').html(ghedachontext);
-
-  // $('#chonghe').hide();
-  $('.xacnhanbtn').hide();
-  $('#thongtin').show();
-  var numbb = $('#numberBayby').val();
-  var numman = ghedachon.length-numbb;
-
-  if(numman < 0 ){
-    numman = 0; 
-    $('#numberBayby').val(ghedachon.length);
-  }
-
-  $('#numberMan').val(numman);
-  var totalprice = ghedachon.length*ticketPrice;
-  console.log(totalprice);
-  $('#priceneedpay').text(totalprice.format());
-
-}
-function hoanthanh(){
-  if(ghedachon.length == 0){
-    alert('Hãy chọn ghế!');
-    return false;
-  }
-  if(ghedachon.length > 10){
-    alert('Chỉ được chọn dưới 10 ghế!');
-    return false;
-  }
-
-  var pttt = $('input[name=paymenttype]:checked').val();
-
-  var fullName = $('#fullName').val();
-  var phoneNumber = $('#phoneNumber').val();
-  if(fullName ==''){
-    alert('Hãy nhập tên!');
-    $('#fullName').focus();
-    return false;
-  }
-  if(phoneNumber ==''){
-    alert('Hãy nhập số điện thoại!');
-    $('#phoneNumber').focus();
-    return false;
-  }
-  if(tripId ==''){ alert('Thiếu dữ liệu!'); return false;} 
-  if(getInPointId ==''){ alert('Thiếu dữ liệu!'); return false;} 
-  if(getOffPointId ==''){ alert('Thiếu dữ liệu!'); return false;} 
-  if(scheduleId ==''){ alert('Thiếu dữ liệu!'); return false;} 
-  if(getInTime ==''){ alert('Thiếu dữ liệu!'); return false;} 
-  if(ticketPrice ==0){ alert('Thiếu dữ liệu!'); return false;} 
-
-  var numberBayby = $('#numberBayby').val();
-  var numghe = ghedachon.length;
-  var price = ticketPrice * numghe;
-
-  $('#hoanthanhbtn').hide();
-  $('#loadingbtn').show();
-
-  $.ajax({
-    type: 'POST', 
-    url: 'http://demo.nhaxe.vn/dat-ve?sub=order',
-    data: { 
-        'listSeatId': JSON.stringify(ghedachon),  
-        'fullName': fullName,  
-        'phoneNumber': phoneNumber,  
-        'getInPointId': getInPointId,  
-        'startDate': startDate,  
-        'getOffPointId': getOffPointId,  
-        'scheduleId': scheduleId,  
-        'getInTimePlan': getInTime, 
-
-        'originalTicketPrice': price,  
-        'paymentTicketPrice': price,  
-        'paymentType': pttt,  
-        'paidMoney': 0,  
-
-        'tripId': tripId,  
-        'numberOfAdults': numghe,  
-        'numberOfChildren': numberBayby,  
-    },
-    success: function(data){
-        console.log(data);
-        if( data.code != 200){
-          alert('Đã có lỗi xảy ra, hãy đặt lại!');
-            $('#hoanthanhbtn').show();
-            $('#loadingbtn').hide();
+    seat = search(id, seatMap);
+    remove_baybe = 0;
+    id1 = id.replace(',', '_');
+    var key = ghedachon.indexOf(id);
+    if (key > -1) {
+        if ($('#chonghe_' + id1).hasClass('adults')) {
+            $('#chonghe_' + id1).removeClass('adults');
+            $('#chonghe_' + id1).removeClass('chonghechon');
+            $('#chonghe_' + id1).addClass('baybe');
+            $('#chonghe_' + id1).removeClass('chonghe');
+            $('#numberBayby').val(parseInt($('#numberBayby').val()) + 1);
+            remove_baybe = 1;
+        } else {
+            if ($('#chonghe_' + id1).hasClass('baybe'))
+                $('#chonghe_' + id1).removeClass('baybe');
+            $('#chonghe_' + id1).removeClass('chonghechon');
+            $('#chonghe_' + id1).addClass('chonghe');
+            $('#numberBayby').val(parseInt($('#numberBayby').val()) - 1);
+            ghedachon.splice(key, 1);
+            remove_baybe = 1;
         }
-        else{
-          if( pttt == 1){
-            var url = 'https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo='+data.results.ticket.ticketId+'&vpc_Amount='+price*100+'&phoneNumber='+phoneNumber;
-            window.location.href = url;
-          }
-          else{
-            $('#datthanhcong').show();
-              $('#hoanthanhbtn').hide();
-              $('#loadingbtn').hide();
-              $('#gohomebtn').show();
 
 
-            ////////////////////////
-            ////////////////////////
-             // $.ajax({
-             //      type: 'POST', 
-             //      url: 'http://demo.nhaxe.vn/dat-ve?sub=getpayoo',
-             //      data: {   
-             //          'customerName': fullName,    
-             //          'ticketId': data.results.ticketId,    
-             //          'cyberCash': price,    
-             //          'customerPhone': phoneNumber,    
-             //      },
-             //      success: function(datapay){
-             //          console.log(datapay);
-             //          if( datapay.code != 200 ){
-             //            alert('Đã có lỗi xảy ra, hãy đặt lại!');
-             //              $('#hoanthanhbtn').show();
-             //              $('#loadingbtn').hide();
-             //          }
-             //          else{
-                         
-             //              var codetran = datapay.results.Transaction.transactionNo
-             //                $('#codetran').text(codetran);
+    }
+    else {
 
-             //                $('.ifram_payoo').show();
-             //                $('#datthanhcong').show();
-             //                $('#hoanthanhbtn').hide();
-             //                $('#loadingbtn').hide();
-             //                $('#gohomebtn').show();
-                         
-             //          }
-             //      }
-             //  });
-            ////////////////////////
-            ////////////////////////
-               
-          }
+        if (ghedachon.length > 10) {
+            alert('Chỉ được chọn dưới 10 ghế!');
+            return false;
+        }
+
+        $('#chonghe_' + id1).addClass('chonghechon');
+        $('#chonghe_' + id1).addClass('adults');
+        ghedachon.push(id);
+    }
+    xacnhan(seat);
+}
+
+function search(nameKey, myArray) {
+    for (var i = 0; i < myArray.length; i++) {
+        if (myArray[i].seatId === nameKey) {
+            return myArray[i];
         }
     }
-});
+}
+
+
+function checknumbaby(value) {
+
+
+    if (value > ghedachon.length) {
+        $('#numberBayby').val(ghedachon.length);
+        alert('Số trẻ em phải nhỏ hơn số ghế!');
+        return true;
+    }
+
+    {if $_route['childrenTicketRatio'] != 0}
+    var numberMan = $('#numberMan').val();
+    numberMan = ghedachon.length - value;
+    $('#numberMan').val(numberMan);
+    {/if}
+
+    return true;
+}
+
+function xacnhan(seat) {
+    // can_chon_ghe = false;
+//  console.log(ghedachon);
+
+    if (ghedachon.length == 0) {
+        alert('Hãy chọn ghế!');
+        // return false;
+    }
+
+    if (ghedachon.length > 10) {
+        alert('Chỉ được chọn dưới 10 ghế!');
+        return false;
+    }
+    var ghedachontext = '';
+
+    $.each(ghedachon, function (key, val) {
+        ghedachontext += val + ',';
+    });
+//    console.log(ghedachon.length);
+    $('#ghedachonspan').html(ghedachontext);
+
+    // $('#chonghe').hide();
+    $('.xacnhanbtn').hide();
+    $('#thongtin').show();
+
+    var numbb = (document.getElementsByClassName('baybe')).length;
+    console.log(numbb);
+    //var numbb = $('#numberBayby').val();
+    var numman = ghedachon.length - numbb;
+
+    // if (numman < 0) {
+    //     numman = 0;
+    //     $('#numberBayby').val(ghedachon.length);
+    // }
+    price = parseInt(ticketPrice);
+    var raito=parseInt($('#raito').data('raito')) ? parseInt($('#raito').data('raito')) :0;
+    if (remove_baybe == 1) {
+        var subprice = price - price * (raito / 100);
+        price *= (raito / 100);
+    }
+    price += parseInt(seat.extraPrice);
+    if (ghedachon.length >= seatLength) {
+        if (remove_baybe == 1) totalprice -= subprice;
+        else totalprice += price;
+    }
+    else {
+        if (totalprice < price) totalprice = 0;
+        else
+            totalprice -= price;
+
+    }
+    seatLength = ghedachon.length;
+    console.log(price);
+
+    $('#numberMan').val(numman);
+//  var totalprice = ghedachon.length*ticketPrice;
+    $('#priceneedpay').text((parseInt(totalprice)).format());
+
+}
+
+function hoanthanh() {
+    if (ghedachon.length == 0) {
+        alert('Hãy chọn ghế!');
+        return false;
+    }
+    if (ghedachon.length > 10) {
+        alert('Chỉ được chọn dưới 10 ghế!');
+        return false;
+    }
+
+    var pttt = $('input[name=paymenttype]:checked').val();
+
+    var fullName = $('#fullName').val();
+    var phoneNumber = $('#phoneNumber').val();
+    if (fullName == '') {
+        alert('Hãy nhập tên!');
+        $('#fullName').focus();
+        return false;
+    }
+    if (phoneNumber == '') {
+        alert('Hãy nhập số điện thoại!');
+        $('#phoneNumber').focus();
+        return false;
+    }
+    if (tripId == '') {
+        alert('Thiếu dữ liệu!');
+        return false;
+    }
+    if (getInPointId == '') {
+        alert('Thiếu dữ liệu!');
+        return false;
+    }
+    if (getOffPointId == '') {
+        alert('Thiếu dữ liệu!');
+        return false;
+    }
+    if (scheduleId == '') {
+        alert('Thiếu dữ liệu!');
+        return false;
+    }
+    if (getInTime == '') {
+        alert('Thiếu dữ liệu!');
+        return false;
+    }
+    if (ticketPrice == 0) {
+        alert('Thiếu dữ liệu!');
+        return false;
+    }
+
+    var numberBayby = $('#numberBayby').val();
+    var numghe = parseInt($('#numberMan').val());
+//  var price = ticketPrice * numghe;
+
+    $('#hoanthanhbtn').hide();
+    $('#loadingbtn').show();
+
+    $.ajax({
+        type: 'POST',
+        url: 'http://demo.nhaxe.vn/dat-ve?sub=order',
+        data: {
+            'listSeatId': JSON.stringify(ghedachon),
+            'fullName': fullName,
+            'phoneNumber': phoneNumber,
+            'getInPointId': getInPointId,
+            'startDate': startDate,
+            'getOffPointId': getOffPointId,
+            'scheduleId': scheduleId,
+            'getInTimePlan': getInTime,
+
+            'originalTicketPrice': totalprice,
+            'paymentTicketPrice': totalprice,
+            'paymentType': pttt,
+            'paidMoney': 0,
+
+            'tripId': tripId,
+            'numberOfAdults': numghe,
+            'numberOfChildren': numberBayby,
+        },
+        success: function (data) {
+            console.log(data);
+            if (data.code != 200) {
+                alert('Đã có lỗi xảy ra, hãy đặt lại!');
+                $('#hoanthanhbtn').show();
+                $('#loadingbtn').hide();
+            }
+            else {
+                if (pttt == 1) {
+                    var url = 'https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo=' + data.results.ticketId + '&vpc_Amount=' + totalprice * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web";
+                    window.location.href = url;
+                }
+                else {
+                    $('#datthanhcong').show();
+                    $('#hoanthanhbtn').hide();
+                    $('#loadingbtn').hide();
+                    $('#gohomebtn').show();
+
+
+                    ////////////////////////
+                    ////////////////////////
+                    // $.ajax({
+                    //      type: 'POST',
+                    //      url: 'http://demo.nhaxe.vn/dat-ve?sub=getpayoo',
+                    //      data: {
+                    //          'customerName': fullName,
+                    //          'ticketId': data.results.ticketId,
+                    //          'cyberCash': price,
+                    //          'customerPhone': phoneNumber,
+                    //      },
+                    //      success: function(datapay){
+                    //          console.log(datapay);
+                    //          if( datapay.code != 200 ){
+                    //            alert('Đã có lỗi xảy ra, hãy đặt lại!');
+                    //              $('#hoanthanhbtn').show();
+                    //              $('#loadingbtn').hide();
+                    //          }
+                    //          else{
+
+                    //              var codetran = datapay.results.Transaction.transactionNo
+                    //                $('#codetran').text(codetran);
+
+                    //                $('.ifram_payoo').show();
+                    //                $('#datthanhcong').show();
+                    //                $('#hoanthanhbtn').hide();
+                    //                $('#loadingbtn').hide();
+                    //                $('#gohomebtn').show();
+
+                    //          }
+                    //      }
+                    //  });
+                    ////////////////////////
+                    ////////////////////////
+
+                }
+            }
+        }
+    });
 
 
 }
@@ -451,12 +532,14 @@ function gohome(){
         <div class="chuthich row">
 
         {if $_route['childrenTicketRatio'] != 0} 
-          <i style="color:red;">* Trẻ em vẫn được tính chỗ và giá vé bằng {$_route['childrenTicketRatio']}% vé người lớn. </i> 
+          <i style="color:red;" id="raito" data-raito="{$_route['childrenTicketRatio']}">* Trẻ em vẫn được tính chỗ và giá vé bằng {$_route['childrenTicketRatio']}% vé người lớn. </i>
         {/if}
         <br />
           <span class="chuthich_dachon">Ghế đã đặt</span>
           <span class="chuthich_chuachon">Ghế chưa đặt</span>
-          <span class="chuthich_banchon">Ghế bạn vừa chọn</span> 
+          <span class="chuthich_banchon">Ghế bạn vừa chọn</span>
+            </br></br>
+            <span class="chuthich_baybe">Ghế trẻ em(click lần 2)</span>
       </div> 
         <div class="box-chonghe row">
           <center>Loading...</center>
@@ -646,149 +729,141 @@ function gohome(){
 <script src="{$web['static_temp']}{$web['temp']}/statics/libs/bootstrap-datetimepicker/js/moment.js" type="text/javascript"></script>
 <script src="{$web['static_temp']}{$web['temp']}/statics/libs/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-$('.chuyendi').click(function(){
-    ghedachon = [];
+    $('.chuyendi').click(function () {
+        ghedachon = [];
 
-    tripId = $(this).attr('data-id'); 
-    scheduleId = $(this).attr('data-scheduleId'); 
-    getOffPointId = $(this).attr('data-getOffPointId'); 
-    getInPointId = $(this).attr('data-getInPointId'); 
-    getInTime = $(this).attr('data-getInTime'); 
-    ticketPrice = $(this).attr('data-ticketPrice'); 
-    companyStatus = $(this).attr('data-companyStatus'); 
-    startDate = $(this).attr('data-startDate'); 
+        tripId = $(this).attr('data-id');
+        scheduleId = $(this).attr('data-scheduleId');
+        getOffPointId = $(this).attr('data-getOffPointId');
+        getInPointId = $(this).attr('data-getInPointId');
+        getInTime = $(this).attr('data-getInTime');
+        ticketPrice = $(this).attr('data-ticketPrice');
+        companyStatus = $(this).attr('data-companyStatus');
+        startDate = $(this).attr('data-startDate');
 
-    if( companyStatus == 1 ){
-      $('#goidien').show();
-      return false;
-    }
+        if (companyStatus == 1) {
+            $('#goidien').show();
+            return false;
+        }
 
-    $('.chuyendi').removeClass('selected');
-    $(this).addClass('selected');
-    $('.box-chonghe').html('<center>Loading...</center>');
+        $('.chuyendi').removeClass('selected');
+        $(this).addClass('selected');
+        $('.box-chonghe').html('<center>Loading...</center>');
 
-    $('#chonghe').show(); 
-  // $('#thongtin').hide();
-  $('#thongtin').show();
-   var fflo = true;
+        $('#chonghe').show();
+        // $('#thongtin').hide();
+        $('#thongtin').show();
+        var fflo = true;
 
-    $.getJSON( "http://demo.nhaxe.vn/dat-ve?tripId=" + tripId +'&scheduleId='+scheduleId, function( data ) {
-      var html = '';
-      //theo numberOfFloors
-      for (var floor = 1; floor < data.seatMap.numberOfFloors+1; floor++) {
+        $.getJSON("http://demo.nhaxe.vn/dat-ve?tripId=" + tripId + '&scheduleId=' + scheduleId, function (data) {
+            var html = '';
+            //theo numberOfFloors
+            for (var floor = 1; floor < data.seatMap.numberOfFloors + 1; floor++) {
 
-          html += '<div class="col-md-6 tachtang"><div class="col-md-12 col-sm-12 col-xs-12 tang2">Tầng '+floor+'</div>';
+                html += '<div class="col-md-6 tachtang"><div class="col-md-12 col-sm-12 col-xs-12 tang2">Tầng ' + floor + '</div>';
 
-          //theo hang
-          for (var row = 1; row < data.seatMap.numberOfRows +1; row++) {
-            for (var column = 1; column < data.seatMap.numberOfColumns +1; column++) {
-              coghe = false;
-              iddd = '';
-              
+                //theo hang
+                for (var row = 1; row < data.seatMap.numberOfRows + 1; row++) {
+                    for (var column = 1; column < data.seatMap.numberOfColumns + 1; column++) {
+                        coghe = false;
+                        iddd = '';
+                        seatMap = data.seatMap.seatList;// lay du lieu seatMap
 
-               $.each( data.seatMap.seatList, function(index,val ) {
-                  var id = val['seatId'];
-                  var id1 = id.replace(',','_');
-                  iddd = floor+' '+ row+' '+column;
-                  if(
+                        $.each(data.seatMap.seatList, function (index, val) {
+                            var id = val['seatId'];
+                            var id1 = id.replace(',', '_');
+                            iddd = floor + ' ' + row + ' ' + column;
+                            if (
 
-                    val['floor'] != floor
-                    || val['row'] != row
-                    || val['column'] != column
-                    ){
-                      // coghe = false;
-                  }
-                  else{
-                    coghe = true;
-                    if( val['seatType'] == 2){
-                      html += '<div data-id="'+iddd+'" class="col-md-2 ghe_'+data.seatMap.numberOfColumns+'"><div class="chonghe chonghekodcchon" >Tài</div></div>';
+                                val['floor'] != floor
+                                || val['row'] != row
+                                || val['column'] != column
+                            ) {
+                                // coghe = false;
+                            }
+                            else {
+                                coghe = true;
+                                if (val['seatType'] == 2) {
+                                    html += '<div data-over="'+val['overTime'] +'"data-id="' + iddd + '" class="col-md-2 ghe_' + data.seatMap.numberOfColumns + '"><div class="chonghe chonghekodcchon" >Tài</div></div>';
+                                }
+
+                                else if (val['seatType'] == 1) {
+                                    html += '<div data-over="'+val['overTime'] +'" data-id="' + iddd + '" class="col-md-2 ghe_' + data.seatMap.numberOfColumns + '"><div class="chonghe chonghekodcchon" >Door</div></div>';
+                                }
+
+                                else if (val['seatType'] == 5) {
+                                    html += '<div data-over="'+val['overTime'] +'" data-id="' + iddd + '" class="col-md-2 ghe_' + data.seatMap.numberOfColumns + '"><div class="chonghe chonghekodcchon" >WC</div></div>';
+                                }
+
+                                else if (val['seatType'] == 6) {
+                                    html += '<div data-over="'+val['overTime'] +'" data-id="' + iddd + '" class="col-md-2 ghe_' + data.seatMap.numberOfColumns + '"><div class="chonghe chonghekodcchon" >Phụ</div></div>';
+                                }
+
+                                else if ((val['seatStatus'] == 2 && val['overTime'] < Date.now() && val['overTime']!=0) || val['seatStatus'] == 1 ) {
+                                    html += '<div data-over="'+val['overTime'] +'" data-id="' + iddd + '" class="col-md-1 ghe_' + data.seatMap.numberOfColumns + ' gheloai_' + val['seatType'] + '"><div class="chonghe" id="chonghe_' + id1 + '" onclick="chonghe(\'' + id + '\')">' + id + '</div></div>';
+                                }
+                                else {
+                                    html += '<div data-over="'+val['overTime'] +'" data-id="' + iddd + '"  class="col-md-2 ghe_' + data.seatMap.numberOfColumns + ' gheloai_' + val['seatType'] + '"><div class="chonghe chonghekodcchon" >' + id + '</div></div>';
+                                }
+
+                            }
+
+
+                        });
+
+
+                        if (!coghe) {
+                            html += '<div id="' + iddd + '"  class="col-md-2 ghe_' + data.seatMap.numberOfColumns + ' kocoghe"> </div>';
+                        }
+
                     }
-
-                    else if( val['seatType'] == 1){
-                      html += '<div data-id="'+iddd+'" class="col-md-2 ghe_'+data.seatMap.numberOfColumns+'"><div class="chonghe chonghekodcchon" >Door</div></div>';
-                    }
-
-                    else if( val['seatType'] == 5){
-                      html += '<div data-id="'+iddd+'" class="col-md-2 ghe_'+data.seatMap.numberOfColumns+'"><div class="chonghe chonghekodcchon" >WC</div></div>';
-                    }
-
-                    else if( val['seatType'] == 6){
-                      html += '<div data-id="'+iddd+'" class="col-md-2 ghe_'+data.seatMap.numberOfColumns+'"><div class="chonghe chonghekodcchon" >Phụ</div></div>';
-                    }
-
-                    else if( val['seatStatus'] == 1 ){
-                      html += '<div data=id="'+iddd+'" class="col-md-1 ghe_'+data.seatMap.numberOfColumns+' gheloai_'+val['seatType']+'"><div class="chonghe" id="chonghe_' + id1 + '" onclick="chonghe(\'' + id + '\')">' + id + '</div></div>';
-                    }
-                    else
-                    {
-                      html += '<div data=id="'+iddd+'"  class="col-md-2 ghe_'+data.seatMap.numberOfColumns+' gheloai_'+val['seatType']+'"><div class="chonghe chonghekodcchon" >' + id + '</div></div>';
-                    } 
-
-                  }
-                  
-
-                });
-                 
-
-                if(!coghe){
-                  html += '<div data=id="'+iddd+'"  class="col-md-2 ghe_'+data.seatMap.numberOfColumns+' kocoghe"> </div>';
+                    ;
                 }
+                ;
+                html += '</div>';
 
-            };
-          };
-          html += '</div>';
-
-      };
-     
-
-    //   $.each( data.seatMap.seatList, function(index,val ) {
-    //     var id = val['seatId'];
-    //     var id1 = id.replace(',','_');
+            }
+            ;
 
 
+            //   $.each( data.seatMap.seatList, function(index,val ) {
+            //     var id = val['seatId'];
+            //     var id1 = id.replace(',','_');
 
 
+            //     if(fflo && val['floor'] == 2){
+            //       fflo = false;
+            //        html += '<div class="col-md-12 col-sm-12 col-xs-12 tang2">Tầng 2</div>';
+            //     }
+
+            //     if( val['seatStatus'] == 1 ){
 
 
-       
-    //     if(fflo && val['floor'] == 2){
-    //       fflo = false;
-    //        html += '<div class="col-md-12 col-sm-12 col-xs-12 tang2">Tầng 2</div>';
-    //     }
-
-    //     if( val['seatStatus'] == 1 ){
-
-          
-    //       html += '<div class="col-md-2 col-sm-2 col-xs-2"><div class="chonghe" id="chonghe_' + id1 + '" onclick="chonghe(\'' + id + '\')">' + id + '</div></div>';
-    //     }
-    //     else{ 
-    //          html += '<div class="col-md-2 col-sm-2 col-xs-2"><div class="chonghe chonghekodcchon" >' + id + '</div></div>';
-    //     }
-    // });
+            //       html += '<div class="col-md-2 col-sm-2 col-xs-2"><div class="chonghe" id="chonghe_' + id1 + '" onclick="chonghe(\'' + id + '\')">' + id + '</div></div>';
+            //     }
+            //     else{
+            //          html += '<div class="col-md-2 col-sm-2 col-xs-2"><div class="chonghe chonghekodcchon" >' + id + '</div></div>';
+            //     }
+            // });
 
 
-
-
-
-
-
-    $('.box-chonghe').html(html);
+            $('.box-chonghe').html(html);
+        });
     });
-}); 
 
 
-$('#numberBayby').on('keyup', function() {
-     if (this.value > ghedachon.length) {
-         $('#numberBayby').val(ghedachon.length);
-     }
-});
+    $('#numberBayby').on('keyup', function () {
+        if (this.value > ghedachon.length) {
+            $('#numberBayby').val(ghedachon.length);
+        }
+    });
 
 
-$(function() { 
-    $('#datetimepicker').datetimepicker({ 
-      format: 'DD-MM-YYYY'
-    }); 
-});
+    $(function () {
+        $('#datetimepicker').datetimepicker({
+            format: 'DD-MM-YYYY'
+        });
+    });
 </script>
 <style type="text/css">
 .tachtang {
