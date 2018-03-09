@@ -1,0 +1,65 @@
+
+<script type="text/javascript">
+    var urlNow=document.URL;
+</script>
+<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/css/BNCcart.css"/>
+
+<script src="{$web['static_temp']}{$web['temp']}/statics/plugins/pjax/jquery.cookie.js"></script>
+<script src="{$web['static_temp']}{$web['temp']}/statics/plugins/pjax/jquery.pjax.js"></script>
+<link rel="stylesheet" type="text/css" href="{$web['static_temp']}{$web['temp']}/statics/plugins/magnific-popup/magnific-popup.css"/>
+<script src="{$web['static_temp']}{$web['temp']}/statics/plugins/magnific-popup/jquery.magnific-popup.js"></script>
+<script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/productFast.js"></script>
+
+<div id="fast-container">
+</div>
+
+
+<!--{if !empty($_home_tab)}-->
+<div class="container">
+    <div class="v2-tabhome v2tabonly">
+        <div class="v2-tabhome-title ">
+    <!--         <div class="v2-tabhome-name">
+
+                <span>{lang product}</span>
+            </div> -->
+            <ul id="f-pr-tab-home" class="nav-tabs v2-tab-home-ul ">
+                <!--{eval $i=0}-->
+                <!--{loop $_home_tab $key $value}-->
+                <!--{if $i < 2}-->
+                   
+                        <li class="<!--{if $key==0}-->active<!--{/if}-->"><a href="#f-pr-tab0{$key}" data-toggle="tab">{$value['title']}</a></li>
+                <!--{/if}-->
+                <!--{eval $i++}-->    
+                <!--{/loop}--> 
+            </ul>
+        </div>
+        <div class="f-center-body">
+            <div class="clearfix"></div>
+            <div class="tab-content">
+                <!--{loop $_home_tab $key_2 $value_2}-->                       
+                        <div id="f-pr-tab0{$key_2}" class="tab-pane <!--{if $key_2==0}-->active<!--{/if}--> v2-tabhome-product">
+                            <ul class="owl-carousel{$key_2} owl-theme">
+                            <!--{temphome homes/productItem}--> 
+                            </ul>                      
+                        </div>
+                        
+                        <script type="text/javascript">
+                                $(".owl-carousel{$key_2}").owlCarousel();
+                        </script>
+                <!--{/loop}-->
+            <div class="clearfix"></div>
+
+
+        </div>
+        </div>
+    </div><!--end v2tabhome-->
+</div>
+<!--{/if}-->
+
+<div id="fast-dialog" class="zoom-anim-dialog mfp-hide">
+    <div id="fast-product-content">
+    </div>
+</div>
+   
+     
+

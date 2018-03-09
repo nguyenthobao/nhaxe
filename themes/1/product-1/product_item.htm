@@ -1,0 +1,31 @@
+<!--{loop $_content $k $v}-->
+<li class=" col-md-3">
+	<div class="f-pr-item">
+		<div class="f-pr-item-compare"><span>So sánh</span></div>
+		<!--{if $v['percent'] > 0}--><div class="f-pr-item-saleof"><span>{$v['percent']}</span></div><!--{/if}-->
+		<div class="f-pr-item-img <!--{if $_page['display']=='list'}-->col-md-4 col-xs-4<!--{/if}-->"> 
+			<a href="{$v['link']}" title="{$v['name']}"><img alt="{$v['name']}" src="<!--{loadImage $v['image'] resize 265 250}-->"  class="img-responsive" /></a> 
+		</div>
+		<div class="f-pr-item-boxdetail <!--{if $_page['display']=='list'}-->col-md-8 col-xs-8<!--{/if}-->">
+			<h2><a class="f-pr-item-name" href="{$v['link']}" title="{$v['name']}">{$v['name']}</a></h2>
+			<p class="f-pr-item-price">{$v['price']}</p>
+			<!--{if $v['price_old'] != 0}--><p class="f-pr-item-old-price">{$v['price_old']}</p><!--{/if}-->
+			<div class="f-pr-item-action"> 
+				<a href="{$v['link']}" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-info-sign"></span> Chi tiết</a> 
+				<a href="javascript:;" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-shopping-cart"></span> Mua nhanh</a> 
+			</div>
+			<!--{if !empty($v['other_info'])}-->
+			<div class="f-pr-otherdetail">
+				<ul>
+					<!--{loop $v['other_info'] $row}-->
+					<li class="row"> 
+						<span class="col-md-3 col-xs-3">{$row['title']}: </span> <span class="col-md-9 col-xs-9">{$row['content']} </span>
+					</li>
+					<!--{/loop}-->
+				</ul>
+	        </div>
+	        <!--{/if}-->
+		</div>
+	</div>
+</li>
+<!--{/loop}-->

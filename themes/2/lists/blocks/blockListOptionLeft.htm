@@ -1,0 +1,43 @@
+<!--{if !empty($data)}-->
+<div class="f-block">
+    <div class="f-block-title"><span>{$block['title']}</span> </div>
+  <div class="f-block-body">
+  	<a class="prev-2"><i class="fa fa-angle-left"></i></a>
+    <a class="next-2"><i class="fa fa-angle-right"></i></a>
+      <ul class="f-block-news-menu" id="feedleft">
+        <!--{loop $data $k $v}-->
+            <!--{tempblock blocks/blockListOptionItemLeft}--> 
+            <!--{/loop}-->
+      </ul>
+  </div>
+</div>
+<!--{/if}-->
+
+
+
+<script>
+  $(document).ready(function() {
+
+    var owl = $("#feedleft");
+
+    owl.owlCarousel({
+
+    items : 4, //10 items above 1000px browser width
+    itemsDesktop : [1000,3], //5 items between 1000px and 901px
+    itemsDesktopSmall : [900,2], // 3 items betweem 900px and 601px
+    itemsTablet: [768,2], //2 items between 600 and 0;
+    itemsMobile : [480,1] // itemsMobile disabled - inherit from itemsTablet option
+    
+    });
+
+    // Custom Navigation Events
+    $(".next-2").click(function(){
+      owl.trigger('owl.next');
+    })
+    $(".prev-2").click(function(){
+      owl.trigger('owl.prev');
+    })
+
+
+  });
+</script>

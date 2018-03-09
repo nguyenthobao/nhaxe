@@ -1,0 +1,24 @@
+<!--{loop $_maps $k $v}-->
+<div class="list">
+    <!--{if $v['gmap_default']==1}-->
+    <span>{lang tru_so_chinh}:</span>
+    <!--{/if}-->
+    <div class="address">
+        <!--{eval echo $k+1}-->. 
+        <a href="#map" onclick="moveToMaker($v['id'])">{$v['gmap_address']}</a>
+    </div>
+    <!--{if $v['gmap_phone']!=''}-->
+    <p>- {lang dien_thoai}: {$v['gmap_phone']}</p>
+    <!--{/if}-->
+    <!--{if $v['gmap_email']!=''}-->
+    <p>- {lang email}: <a href="mailto:{$v['gmap_email']}">{$v['gmap_email']}</a></p>
+    <!--{/if}-->
+    <!--{if $v['gmap_website']!=''}-->
+    <p>- {lang website}: <a href="{$v['gmap_website']}" target="_blank">{$v['gmap_website']}</a></p>
+    <!--{/if}-->
+    <!--{if $v['gmap_time']!=''}-->
+    <p>- {lang thoi_gian}: {$v['gmap_time']}</p>
+    <!--{/if}-->
+    <a href="#map" onclick="moveToMaker($v['id'])" class="view_maps"><font lang="vi">({lang view_in_map})</font></a>
+</div>
+<!--{/loop}-->

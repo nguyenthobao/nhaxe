@@ -1,0 +1,29 @@
+<div class="clearfix"></div>
+<div class="productbreadcrumb">
+    <ol class="breadcrumb">
+       <!--{loop $_breadcrumbs $k $v}-->
+       <li ><a href="{$v['href']}">{$v['text']}</a> <i class="fa fa-caret-right"></i></li>
+       <!--{/loop}-->
+   </ol>
+</div>
+<div class="clearfix"></div>
+<div class="f-ctn-center introducedetail">
+    <div class="f-module-page">
+        <div class="f-module-page-title" style="display:none"> 
+            <h1><span>{lang title_info}</span></h1>
+        </div>
+        <div class="f-module-page-body padding-10">
+            <div class="clearfix"></div>
+            <div class="f-page-tab">
+                <div class="tab-content margin-top-10">
+                    <div id="f-pr-tab01" class="tab-pane active">
+                        <!--{temp info/info_page_info_list}-->
+                        <div class="clearfix"></div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

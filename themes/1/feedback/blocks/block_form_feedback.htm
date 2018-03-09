@@ -1,0 +1,86 @@
+ <link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/css/style_block.css">
+
+ <div class="f-block">
+        <div class="f-block-title"> <i></i><span>$block['title']</span> </div>
+        <div class="f-block-body padding-10" >
+                
+                             
+                            <form class="form-horizontal no-padding" action="" id=""  method="POST" name="register">
+                          
+                                <fieldset >
+
+                                    <!-- Form Name -->
+
+
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                      <label class="col-md-3 col-sm-3 col-xs-3 control-label block-laber" for="name_block">{lang name}<span style="color:red"> * </span></label>  
+                                      <div class="col-md-9 col-sm-9 col-xs-9">
+                                      <input id="name_block" name="name_block" type="text" class="form-control input-md block-control-input"  class ='number'>
+                                       <div class="warning" id="name_Error"  style="display:none" ><small style="color: red;">Bạn chưa nhập tên</small></div>
+                                        
+                                      </div>
+                                    </div>
+
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                      <label class="col-md-3 col-sm-3 col-xs-3 control-label block-laber" for="phone_block">{lang phone}<span style="color:red"> * </span></label>  
+                                      <div class="col-md-9 col-sm-9 col-xs-9">
+                                      <input id="phone_block" name="phone_block" type="text" class="form-control input-md block-control-input"  class ='number'>
+                                      <div class="warning" id="phone_Error"  style="display:none" ><small style="color: red;">Bạn chưa nhập số điện thoại</small></div>
+                                        
+                                      </div>
+                                    </div>
+
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                      <label class="col-md-3 col-sm-3 col-xs-3 control-label block-laber" for="email_block">{lang email}<span style="color:red"> * </span></label>  
+                                      <div class="col-md-9 col-sm-9 col-xs-9">
+                                      <input id="email_block" name="email_block" type="text"class="form-control input-md block-control-input"  >
+                                      <div class="warning" id="email_Error"  style="display:none" ><small style="color: red;">Email không hợp lệ</small></div>
+
+                                        
+                                      </div>
+                                    </div>
+
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                      <label class="col-md-3  col-sm-3 col-xs-3 control-label block-laber" for="address_block">{lang address}<span style="color:red"> * </span></label>  
+                                      <div class="col-md-9  col-sm-9 col-xs-9">
+                                      <input id="address_block" name="address_block" type="text"class="form-control input-md block-control-input" >
+                                      <div class="warning" id="address_Error"  style="display:none" ><small style="color: red;">Bạn chưa nhập địa chỉ</small></div>
+                                        
+                                      </div>
+                                    </div>
+
+                                    <!-- Textarea -->
+                                    <div class="form-group">
+                                      <label class="col-md-3  col-sm-3 col-xs-3 control-label block-laber" for="content_block">{lang content}<span style="color:red"> * </span></label>
+                                      <div class="col-md-9  col-sm-9 col-xs-9" >                     
+                                        <textarea class="form-control block-control-input" id="content_block" name="content_block"></textarea>
+                                        <div class="warning" id="content_Error"  style="display:none" ><span style="color: red;">Bạn chưa nhập nội dung</span></div>
+                                      </div>
+                                      
+                                    </div>
+
+                                    <!-- Button -->
+                                    <div class="form-group">
+                                      <label class="col-md-3 col-sm-3 col-xs-3 control-label" for="btnSent"></label>
+                                      <div class="col-md-9 col-sm-9 col-xs-9 ">
+                                        <button id="gui" type="submit" name="action_block" class="btn btn-primary btn-block-primary" style="text-align: center;" value="addContat" ><small>{lang sent_contact}</small></button>
+                                        <button type="reset" id="huy" name="btnSent" class="btn btn-primary btn-block-primary" style="text-align: center;"><small>{lang cancel}</small></button>
+
+                                      </div>
+                                    </div>
+                                    </fieldset>
+                                </form>
+                                
+        </div>
+      </div>
+       <script src="{$web['static_temp_mod']}/resource/js/blockfeedback.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){       
+        blockFeedback.init();
+})
+</script>
+

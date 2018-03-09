@@ -1,0 +1,19 @@
+.block-laber{
+	padding-right: 1px !important;
+	padding-left: 1px !important;
+	font-family: Arial, Helvetica, sans-serif; font-size: 12px;
+}
+.block-control-input{
+	height: 24px !important;
+}
+textarea.form-control {
+height: auto !important;
+}
+.btn-block-primary{
+	width: 40px !important;
+	height: 30px !important;
+	padding: 0px !important;
+}
+#input_file{
+	width: 169px!important;
+}

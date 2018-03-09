@@ -1,0 +1,24 @@
+<!--{if isset($v['flash'])}-->
+	<li class="BNC_adv" data-type="flash" data-id="{$v['id']}">
+		<a href="{$v['link_GA']}" title="{$v['title']}">
+			<object width="{$v['width']}" height="{$v['height']}" data="{$v['flash']}"></object>
+		</a>
+	</li>
+<!--{elseif isset($v['img'])}-->
+	<li class="BNC_adv" data-type="img">
+		<a href="{$v['link_GA']}" title="{$v['title']}">
+			<img alt="{$v['title']}" src=" <!--{loadImage $v['img'] resize $v['width'] $v['height']}-->">	
+		</a>
+	</li>
+<!--{elseif isset($v['code_adv'])}-->
+	<li class="BNC_adv" data-type="gg" data-id="{$v['id']}">
+		{$v['code_adv']}	
+	</li>
+<!--{else}-->
+	<li class="BNC_adv" data-type="text" data-id="{$v['id']}">
+		<a href="{$v['link_GA']}" title="{$v['title']}">
+			{$v['content']}	
+		</a>
+	</li> 
+<!--{/if}-->
+

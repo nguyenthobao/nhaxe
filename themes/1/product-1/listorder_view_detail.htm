@@ -1,0 +1,97 @@
+<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/css/quickview.css"></script>
+
+<div id="fast-container">
+	<!--{temp product/breadcrumbs}-->
+	<div class="f-ctn-center">
+		<div class="row">
+			<!--Thông tin nhận hàng-->
+			<div class="col-md-6">
+				<div class="f-module-page">
+					<div class="f-module-page-title"> 
+						<span class="orderv" >{lang label_receive_info}</span>
+					</div>
+					<div class="f-module-page-body padding-10">
+						<!--{if !empty($_order)}-->
+						<!--{temp product/listorder_receive_info}-->
+						<!--{/if}-->
+					</div>
+				</div>
+			</div>
+			<!--Thông tin đơn hàng-->
+			<div class="col-md-6">
+				<div class="f-module-page">
+					<div class="f-module-page-title"> 
+						<span class="orderv" >{lang label_order_info}</span>
+					</div>
+					<div class="f-module-page-body padding-10">
+						<!--{if !empty($_order)}-->
+						<!--{temp product/listorder_order_info}-->
+						<!--{/if}-->
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--Danh sách sản phẩm mua trong đơn-->
+		<div class="row">
+			<div class="col-md-12">
+				<div class="f-module-page">
+					<div class="f-module-page-title"> 
+						<span class="orderv" >{lang label_order_detail}</span>
+					</div>
+					<div class="f-module-page-body padding-10 table-responsive">
+						<table class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th class="text-center">{lang label_stt}</th>
+									<th class="text-center">{lang label_image}</th>
+									<th class="text-center">{lang label_product_name}</th>
+									<th class="text-center">{lang label_product_model}</th>
+									<th class="text-center">{lang label_shop_name}</th>
+									<th class="text-center">{lang label_quantity}</th>
+									<th class="text-center">{lang label_price}</th>
+									<th class="text-center">{lang label_total}</th>
+								</tr>
+							</thead>
+							<tbody>
+							<!--{if !empty($_listProduct)}-->
+							<!--{loop $_listProduct $k $v}-->
+							<!--{temp product/listorder_listproduct}-->
+							<!--{/loop}-->
+							<!--{/if}-->
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Tiến trình xử lý đơn-->
+		<div class="f-module-page">
+			<div class="f-module-page-title"> 
+				<span  class="orderv">{lang label_order_process}</span>
+			</div>
+			<div class="f-module-page-body padding-10 table-responsive">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th class="text-center">{lang label_create_time}</th>
+							<th class="text-center">{lang label_creater}</th>
+							<th class="text-center">{lang label_email}</th>
+							<th class="text-center">{lang label_action}</th>
+							<th class="text-center">{lang label_reason}</th>
+							<th class="text-center">{lang label_status}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!--{if !empty($_historyProcess)}-->
+						<!--{loop $_historyProcess $k $v}-->
+						<!--{temp product/listorder_historyprocess}-->
+						<!--{/loop}-->
+						<!--{/if}-->
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<input type="hidden" id="params" value="{$_params}" />

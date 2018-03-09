@@ -1,0 +1,80 @@
+/* CSS Document */
+
+.r-mg-t-5{
+	margin-top:5px;
+}
+.r-mg-t-10{
+	margin-top:10px;
+}
+.riopanel{
+	padding: 5px;
+	background: #ECECEC;
+	border-radius: 2px;
+}
+.info{}
+.info>ul{list-style: none;
+margin: 0;
+padding: 0;}
+.info>ul>li{margin: 5px 0;
+padding: 5px 0;
+border-bottom: 1px solid #DADADA;}
+.info>ul>li .r-label{
+
+}
+.info>ul>li .r-price{
+	color:#C92124;
+}
+.info>ul>li .r-code{
+	}
+.info>ul>li .r-size{}
+.info>ul>li .r-quantity{}
+.info>ul>li ul{list-style: none;
+margin: 0;
+padding: 0;}
+.info>ul>li ul li{
+display: block;
+height: 40px;
+width: 40px;
+float: left;
+margin-right: 4px;}
+.info>ul>li ul li a{border: 1px solid #F2F2F2;
+font-size: 12px;
+display: block;
+text-align: center;
+color: #848484;
+padding: 8px;}
+.info>ul>li ul li.active a{border: 1px solid #CE4A4C}
+.q-thumb-image{
+
+}
+.q-thumb-image a{
+ display: inline-block;
+}
+.q-thumb-image a img{
+ display: block;
+margin-bottom: 4px;
+max-width: 64px;
+max-height: 64px;
+}
+.q-tab-other-ct{}
+.q-tab-other-ct ul{margin: 0;
+padding: 0;
+list-style: none;}
+.q-tab-other-ct ul li{float: left;
+width: 69px;
+height: 69px;
+margin: 2px;}
+.q-tab-other-ct ul li a{display: block;
+border: 1px solid #CCC;
+text-align: center;}
+.q-tab-other-ct ul li a img{}
+.main-image{text-align: center;
+margin-bottom: 10px;}
+.main-image img{}
+.fancybox-nav{
+width:80px !important;
+}
+.fancybox-inner{
+	overflow: hidden !important;
+	overflow-y:visible !important;
+}

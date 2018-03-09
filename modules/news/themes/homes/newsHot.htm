@@ -1,0 +1,22 @@
+<div class="f-center-module">
+  <div class="f-center-title row"> <i></i><span>{lang news_hot}</span> </div>
+  <div class="f-center-body">
+    <ul class="f-news row">
+
+      <!--{loop $_news $k $v}--> 
+      <li class=" col-md-3">
+        <div class="f-news-item">
+          <div class="f-news-item-img"> <a href="$v['link']" title=""> <img src="{$v['thumb']}" class="img-responsive" alt="" /> </a> </div>
+          <div class="f-news-item-title">
+            <h2> <a title="Title" href="$v['link']">$v['title']</a> </h2>
+            <div class="f-new-item-sum"><!--{cutString $v['short'] 0 200}--> </div>
+          </div>
+        </div>
+      </li>
+      <!--{/loop}-->  
+       
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+</div>
+

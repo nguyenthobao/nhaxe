@@ -1,0 +1,32 @@
+<div class="backgroundnew">
+  <div class="container">
+    <div class="f-center-module">
+      <div class="f-center-title"> <i></i><span>{lang news_new}</span> </div>
+      <div class="f-center-body">
+        <ul class="f-news row">
+          <!--{eval $i=0}-->
+          <!--{loop $_news $k $v}-->
+          <!--{if $i < 2}--> 
+          <li class="col-md-6 col-sm-6 col-xs-6 full-xs">
+            <div class="f-news-item">
+              <div class="f-news-item-img"> <a href="$v['link']" title=""> <img src="<!--{loadImage $v['img'] crop 570 290}-->" class="img-responsive" alt="$v['title']" /> </a>
+
+              </div>
+              <div class="f-news-item-title">
+                
+                <h3> <a title="Title" href="$v['link']">$v['title']</a> </h3>
+              </div>
+            </div>
+
+            <div class="f-new-item-sum"><!--{cutString $v['short'] 0 200}--></div>
+          </li>
+          <!--{/if}-->
+          <!--{eval $i++}-->
+          <!--{/loop}-->
+           
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>

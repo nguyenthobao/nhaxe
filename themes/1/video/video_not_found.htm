@@ -1,0 +1,30 @@
+<div class="clearfix"></div>
+
+<div class="breadcrumbs">
+    <ul style="list-style:none">
+        <!--{loop $_breadcrumbs $k $v}-->
+        <!--{if $v['separator']==true}-->
+            <li style="float:left;font-size:11px;color:#ccc"><a href="" style="font-size:11px;color:#333;padding-left:5px;padding-right:5px;"> » </a></li>
+        <!--{/if}-->
+        <li style="float:left"><a href="{$v['href']}">{$v['text']}</a></li>
+        <!--{/loop}-->
+    </ul>
+</div>
+<div class="f-ctn-center">
+    
+    <div class="f-module-page">
+        <!--{temp video/video_category}-->
+        <div class="f-module-page-title"> 
+            <h1><i><img src="<!--{if isset($_icon)}--> {$_icon} <!--{/if}-->" /></i>
+            	<span><!--{if isset($_title) }--> {$_title} <!--{/if}--></span></h1>
+        </div>
+        <div class="f-module-page-desc row" <!--{if isset($_bg) }--> style="background-image:url({$_bg})" <!--{/if}-->>
+            <div class="col-md-3 img">
+                     <img class="img-thumbnail img-responsive" src=" <!--{if isset($_img) }-->{$_img}<!--{/if}-->">
+            </div>
+            <div class="col-md-9">
+                <p><!--{if isset($_description)}--> {$_description} <!--{/if}-->
+            </div>
+        </div>
+    </div>
+</div>

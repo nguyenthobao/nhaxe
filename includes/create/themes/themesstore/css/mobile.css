@@ -1,0 +1,248 @@
+/* Edit by DTM for Mobile */
+/* Custom Desktop Landscape Big */
+@media only screen and (min-width:1200px){
+    .top_products_main .col-xs-6.col-sm-6.col-md-4.col-lg-4 {
+        width: 28.5%;
+        margin-right: 89px;
+    }
+    .top_products_main .col-xs-6.col-sm-6.col-md-4.col-lg-4:nth-child(3n){
+        margin-right: 0;
+    }
+}
+@media only screen and (max-width:1199px){
+    .header_main_inner.navbar-shrink {
+        padding: 1px 0;
+        -webkit-transition: all .3s ease;
+        -moz-transition: all .3s ease;
+        transition: all .3s ease;
+        position: fixed;
+        top: 0;
+        z-index: 9999;
+        left: 0;
+        right: 0;
+        -webkit-animation: fadeInDown .3s ease-in;
+        -moz-animation: fadeInDown .3s ease-in;
+        animation: fadeInDown .3s ease-in;
+        box-shadow: 0 4px 4px -2px rgba(0,0,0,.15);
+        height: 64px;
+    }
+    .header_main_inner.navbar-shrink .navbar-toggle{
+        top:10px;
+    }
+    .header_main_inner.navbar-shrink .navbar .container>.navbar-collapse {
+        top: 64px;
+    }
+    .nav_main ul li a{
+        font-size: 12px;
+        padding: 0px 15px;
+    }
+    .nav_main {
+        padding: 0 0 0 16px;
+    }
+    .header_main_inner.navbar-shrink .logo h1{
+        margin:0;
+        line-height: 64px;
+    }
+    .header_main_inner.navbar-shrink .nav_main{
+        line-height: 61px;
+    }
+    .header_main_inner.navbar-shrink .nav_main ul li a:hover{
+        background: #fff;
+        padding:25px 20px;
+        text-decoration: none;
+    }
+    .header_main_inner.navbar-shrink .nav_main ul li:nth-child(7) a:hover,.header_main_inner.navbar-shrink .nav_main ul li:nth-child(8) a:hover,.header_main_inner.navbar-shrink .nav_main ul li:nth-child(9) a:hover{
+        background: none;
+        padding:0 20px;
+    }
+    .header_main_inner.navbar-shrink .nav_main ul li:nth-child(9) a:hover{
+        padding:0 0px 0 15px;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px){
+    .modal-dialog {
+        width: 100%;
+    }
+}
+@media only screen and (max-width:1024px){ 
+    .slideshow_img_inner {
+         width: 30%;
+    }
+    .background_title_breadcrumb {
+        background: url(https://themes.bizweb.vn/Themes/Portal/Default/Images/bizweb_banner.png) left center no-repeat;
+        background-size: cover;
+    }
+    .slideshow_info {
+        width: 56%;
+        right: 45px;
+    }
+    .left.carousel-control .fa {
+        left: 38%;
+    }
+}
+@media only screen and (max-width:991px){ 
+    .slideshow_img_register,.slideshow_info{
+        display: none !important;
+    }
+    .col-md-9.col-md-offset-30 {
+        margin-left: 0;
+    }
+    .slideshow_title {
+        top: 30px;
+        right: 146px;
+        font-size: 30px;
+    }
+    .slideshow_btn_action {
+        top: 100px;
+        right: 260px;
+    }
+    .navbar {
+        display: block;
+    }
+    .nav_main {
+        display: none;
+    }
+    .navbar-toggle {
+        top: 10px;
+    }
+    .navbar .container .navbar-header {
+        position: relative;
+    }
+    .our_cutomers_main{
+        height: auto;
+        padding:50px 0 70px;
+    }
+    .title_our_cutomers_main{
+        margin:0;
+    }
+    .contact_inner{
+        width: 100%;
+    } 
+    .owl-wrapper-outer > div > div:first-child > div > figure,.owl-wrapper-outer > div > div:last-child > div > figure{
+        margin:0 10px;
+    }
+    .top_products_box_info figure {
+        height: auto;
+    }
+}
+@media only screen and (max-width:767px){
+    .navbar .container .navbar-header {
+        position:inherit;
+    } 
+    .contact_main {
+        height: auto;
+        padding: 0px 0 30px;
+    }
+    .searh_products {
+        margin: 20px 0 20px;
+    }
+    .contact_form{
+        margin:30px 0;
+    }
+    .contact_inner_title h3 {
+        margin: 20px 0 20px 0;
+    }
+}
+@media only screen and (max-width:640px){
+    .box_slider_customer_owl{
+        padding:0;
+    }
+}
+
+/* Custom Mobile Landscape */ 
+@media only screen and (max-width: 480px){
+    .left.carousel-control .fa {
+        left: 7px;
+    }
+    .slideshow_img_inner {
+        width: 50%;
+        left: 24px;
+        top: 13px;
+    }
+    .carousel-inner>.item>img, .carousel-inner>.item>a>img {
+        height: 200px;
+    }
+    .slideshow_title{
+        font-size: 100%;
+    }
+    .slideshow_title {
+        top: 47px;
+        right: 52px;
+    }
+    .slideshow_btn_action {
+        right: 43px;
+    }
+    .contact_inner_images {
+        margin: 0 auto;
+    }
+    .contact_inner_images img{
+        display: block;
+        text-align: center;
+        width: 100%;
+        object-fit: scale-down;
+    }
+    .top_products_box_info_title span {
+        float: none;
+        margin: 0px 14px;
+    }
+    .modal_box_contact {
+        text-align: center;
+    }
+    .modal_box_contact_img {
+        float: none;
+        margin: 10px auto;
+    }
+    .modal_description {
+        text-align: justify;
+    }
+    .modal_themes_box {
+        width: auto;
+        margin: 20px 0;
+    }
+    .modal_review_template,.modal_use_tempale{
+        display: block;
+        text-align: center;
+    }
+}
+/* Custom Mobile Landscape */
+@media only screen and (max-width: 414px) and (min-width: 320px){ 
+    .our_services_main .col-xs-6.col-sm-6.col-md-4.col-lg-4,.contact_main .col-xs-4.col-sm-4.col-md-4.col-lg-4 {
+        width: 100%;
+    }
+    .title_box_our_services_main p{
+        margin: 0 0 20px 0;
+    }
+    .title_our_services_main {
+        text-align: center;
+        margin: 100px 0 42px;
+    }
+    .icon_our_services_main .fa{
+        margin:48px 0;
+    }
+    .title_our_services_main h2{
+        font-size: 39px;
+    }
+    .input_name{
+        margin-bottom: 30px;
+    }
+    .col-xs-6.col-sm-6.col-md-4.col-lg-4 {
+        width: 100%;
+    }
+    .link_categories ul li{
+        display: block;
+    }
+    .themes_mobile_bg {
+        margin: auto;
+    }
+    .themes_mobile {
+        position: relative;
+        right: 0;
+    }
+}
+@media only screen and (max-width: 320px){
+    .slideshow_img_inner {
+        width: 50%;
+        left: 24px;
+        top: 27px;
+    }
+}

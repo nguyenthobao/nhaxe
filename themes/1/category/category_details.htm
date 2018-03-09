@@ -1,0 +1,37 @@
+<div class="breadcrumbs">
+	<ul style="list-style:none">
+		<!--{loop $_breadcrumbs $k $v}-->
+		<!--{if $v['separator']==true}-->
+		<li style="float:left;font-size:11px;color:#ccc"><a href="" style="font-size:11px;color:#333;padding-left:5px;padding-right:5px;"> » </a></li>
+		<!--{/if}-->
+		<li style="float:left"><a href="{$v['href']}">{$v['text']}</a></li>
+		<!--{/loop}-->
+	</ul>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="f-ctn-center">
+	<div class="f-module-page">
+		<div class="f-module-page-title"> <i></i><span>{$_categoryDetail['title']}</span> </div>
+		<div class="f-module-page-body padding-10">
+			<div class="clearfix"></div>
+			<div class="f-news-view-page">
+				<div class="f-news-view-title">
+					<div class="f-news-date">{lang post_date}: {$_categoryDetail['create_time']} </div>
+				</div>
+			</div>
+			<div class="f-news-view-detail">
+					{$_categoryDetail['details']}
+			</div>
+			<div class="f-news-view-tags">
+				<span>{lang tags}:
+					<!--{loop $_categoryDetail['tags'] $k $v}-->
+					<a href="{$k}">{$v}</a>,
+					<!--{/loop}-->
+				</span>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>

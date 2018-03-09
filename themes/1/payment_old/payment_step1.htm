@@ -1,0 +1,56 @@
+<!--{temp payment_header}-->
+<div id="orderHeader" class="g980 osi s1">
+    <p class="logoOrder"><a href="/">
+        <!--{if $web['logo'] != null}--> 
+              <!--{if $web['logo']['is_swf']}--> 
+                  <object width="{$web['logo']['width']}" height="{$web['logo']['height']}">
+                  <param value="transparent" name="wmode">
+                  <param value="{$web['static_upload']}{$web['logo']['img']}" name="movie">
+                  <embed width="{$web['logo']['width']}" height="{$web['logo']['height']}" wmode="transparent" src="{$web['static_upload']}{$web['logo']['img']}">
+                  </object>
+              <!--{else}-->
+                   <img src="{$web['static_upload']}{$web['logo']['img']}" width="{$web['logo']['width']}" height="{$web['logo']['height']}" class="img-responsive"  alt="Logo"/>
+              <!--{/if}--> 
+            <!--{else}-->
+             <img src="https://webbnc.net/image/data/logo_bnc.png" class="img-responsive"  alt="Logo"/>
+            <!--{/if}-->
+    </a></p>
+</div>
+    <div class="g980 box">
+        <div style="float: left;width: 50%;border-right: 1px solid #ccc;padding-left: 60px;">
+            <h3 class="title">{lang pl_login}</h3>
+            <form id="fSignin" action="{$_common['login']}" method="post" >
+                <p style="margin-top: 15px;">
+                    <a class="signinFb" href="#"><i class="fa fa-facebook"></i>Facebook</a>
+                    <a class="signinGg" href="#"><i class="fa fa-google-plus"></i>Google</a>
+                </p>
+
+                <p style="display: block;position: relative;border-bottom: 1px solid #ccc;margin: 20px 0;">
+                    <span style="background: #afb3c4;color: #fff;position: absolute;top: -10px;left: 130px;width: 30px;height: 30px;border-radius: 20px;line-height: 30px;text-align: center;font-size: 11px;">{lang or}</span>
+                </p>
+                <!--{if !empty($_error)}-->
+                <div class="error" >
+                    <p>{$_error}</p>
+                    </div>
+                
+                <!--{/if}-->
+                <p style="padding: 10px 0 5px 0;">{lang email_phone}:</p>
+                <input name="email" type="text" class="input validate[required]"/>
+
+                <p style="padding: 10px 0 5px 0;">{lang password}:</p>
+                <input name="password" type="password" class="input validate[required]"/>
+
+                <button type="submit" class="btnRed">{lang login}:</button>
+
+                <p style="padding: 10px 0;">{lang loss_password}? <a class="u" style="color: #188bb8" target="_blank" href="">{lang request_password}</a></p>
+                <p>{lang no_member} {$web['s_name']}? <a class="u" style="color: #188bb8" target="_blank" href="{$_reg}">{lang regnow}</a></p>
+            </form>
+        </div>
+        <div style="float: left;width: 50%;padding-left: 80px;">
+            <h3 class="title">{lang buy_not_login}</h3>
+            <p style="padding: 15px 0;line-height: 1.6em;">{lang des_buy_not_login}</p>
+            <a class="btnRed btnNextSignin" href="{$_common['step']}">{lang next_buy}</a>
+        </div>
+        <i class="clearfix"></i>
+    </div>
+<!--{temp payment_footer}-->

@@ -1,0 +1,176 @@
+<link rel="stylesheet" href="{$web['static_temp_mod']}/resource/css/home.css?rs={$_rs}">
+<div class="f-module-page">
+    <!--{if isset($_breadcrumbs)}-->
+    <div class="productbreadcrumb">
+        <ol class="breadcrumb">
+            <!--{loop $_breadcrumbs $k $v}-->
+            <li ><a href="{$v['href']}">{$v['text']}</a> <i class="fa fa-caret-right"></i></li>
+            <!--{/loop}-->
+        </ol>
+    </div>
+    <div class="clearfix"></div>
+    <!--{/if}-->
+<!--{if !empty($_home_title) }-->
+<div class="f-module-page-title"> 
+<h1><i><img src="<!--{loadImage $_home_icon resize 50 50}-->" onerror="this.onerror=null;this.src='<!--{loadImage $_no_img crop 50 50}-->'" /></i>
+<span>{$_home_title}</span></h1>
+</div>
+<!--{else}-->
+<div class="f-module-page-title"> <i></i><span>{lang module_name}</span> </div>
+<!--{/if}-->
+<!--{if !empty($_home_description) }-->
+<div class="f-module-page-desc" <!--{if !empty($_home_bg_image) }-->style="background-image:url({$_home_bg_image})"<!--{/if}-->>
+<div class="col-md-3 img">
+<img class="img-thumbnail img-responsive" src="<!--{loadImage $_home_avatar resize 170 170}-->" onerror="this.onerror=null;this.src='<!--{loadImage $_no_img crop 170 170}-->'">
+</div>
+<div class="col-md-9">
+<p><!--{if isset($_home_description)}-->{$_home_description}<!--{/if}-->
+</div>
+</div>
+<!--{/if}-->
+<div class="f-qa">
+    <hr />
+            <div class="row">
+            <form method="get" action="{$_home}">
+                <div class="col-md-3">
+                    <input type="text" name="q" placeholder="Tiêu đề" class="form-control" value="<!--{if !empty($_search_string) }-->{$_search_string}<!--{/if}-->">
+                </div>
+                <div class="col-md-3">
+                    <button type="submit">{lang search}</button>
+                </div>
+            </form>
+            </div>
+            <hr />
+    <!-- Doan nay la phan QA Moi nhat + danh muc + hot -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="f-qaList">
+                <div class="f-qaBox-title"><span class="glyphicon glyphicon-bullhorn"></span> {lang enquiry_list}</div>
+                <div class="f-qaList-body">
+                    <!--{if !empty($_faq) }-->
+                    <div class="f-qaList-sotr">
+                        {lang sort_by}: <a class="active" href="Javascript:;" data-type="new">{lang new}</a> | <a href="Javascript:;" data-type="unanswered">{lang unanswered}</a> | <a href="Javascript:;" data-type="answeredmore">{lang answer_more}</a> | <a href="Javascript:;" data-type="views">{lang view_more}</a><!-- | <a href="Javascript:;" data-type="useful">{lang useful}</a>-->
+                    </div><input type="hidden" name="sort" value="new" />
+                    
+                    <ul class="f-qaList-body-ul main-list">
+                        <!--{loop $_faq $k $v}-->
+                        <li id="{$v['id']}">
+                            <div class="media">
+                              <a class="media-left" href="#">
+                                <img data-src="{$v['user_avatar']}" alt="{$v['user_name']}" <!--{if !empty($v['user_avatar']) }-->src="{$v['user_avatar']}"<!--{else}-->src="{$web['static_temp_mod']}/resource/img/d3a6dc47bd18ec9a49bb9e13c786fb2b.png"<!--{/if}--> data-holder-rendered="true" style="width: 64px; height: 64px;">
+                              </a>
+                              <div class="media-body">
+                                <h4 class="media-heading"><a class="qa-name" href="#" title="{$v['user_name']}">{$v['user_name']}</a> 
+                                <a class="qa-title" href="{$v['link']}" title="{$v['title']}">
+                                {$v['title']}</a></h4>
+                                <div class="qa-desp"> 
+                                {$v['question_content']}
+                                <p>(
+                                    <span>
+                                    <i class="glyphicon glyphicon-eye-open"></i> {$v['views']}
+                                    </span>
+                                    <span> 
+                                    <i class="glyphicon glyphicon-comment"></i> {$v['answer']} 
+                                    </span>
+                                    <!--
+                                    <span>
+                                    <i class="glyphicon glyphicon-thumbs-up"></i> {$v['useful']}
+                                    </span> -->
+                                )</p>
+                                
+                                </div> 
+                              </div>
+                            </div>
+                        </li>
+                        <!--{/loop}-->  
+                    </ul>
+                    <!--{/if}-->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            
+        <div class="f-qaUpdate">
+            <a class="btn btn-success" title="Dang tin hoi dap" href="{$_post_question_url}"><span class="glyphicon glyphicon-send"></span> {lang post_a_question}</a>
+        </div>
+        <!--
+        <div class="f-qaHot">
+            <div class="f-qaBox-title"><span class="glyphicon glyphicon-bookmark"></span> Đang được quan tâm nhất</div>
+            <div class="f-qaHot-body">
+                <ul>
+                    <li>
+                        <a href="" title=""><span class="glyphicon glyphicon-star"></span> Linh vuc dang duoc quan tam nhat tren hoi dap? <span class="badge ">4</span></a>
+                    </li>
+                    <li>
+                        <a href="" title=""><span class="glyphicon glyphicon-star"></span> Linh vuc dang duoc quan tam nhat tren hoi dap? <span class="badge ">4</span></a>
+                    </li>
+                    <li>
+                        <a href="" title=""><span class="glyphicon glyphicon-star"></span> Linh vuc dang duoc quan tam nhat tren hoi dap? <span class="badge ">4</span></a>
+                    </li>
+                    <li>
+                        <a href="" title=""><span class="glyphicon glyphicon-star"></span> Linh vuc dang duoc quan tam nhat tren hoi dap?</a>
+                    </li>
+                    <li>
+                        <a href="" title=""><span class="glyphicon glyphicon-star"></span> Linh vuc dang duoc quan tam nhat tren hoi dap? <span class="badge ">4</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        -->
+        </div>
+    </div>
+    
+    <!-- Doan nay la QA theo tung danh muc -->
+    
+    <div class="row">
+        
+        
+        
+           
+           <!--{if !empty($_faqByCate) }-->
+           <!--{loop $_faqByCate $k $vl}-->
+           <div class="col-md-6">
+            <div class="f-qaList">
+                <div class="f-qaBox-title"><a href="{$vl['link']}" title="{$vl['title']}"><span class="glyphicon glyphicon-bullhorn"></span> {$vl['title']}</a></div>
+                <div class="f-qaList-body">
+                    <div class="f-qaList-sotr onloadcontent">
+                    <a class="active" href="Javascript:;" data-type="new">{lang new}</a> | <a href="Javascript:;" data-type="unanswered">{lang unanswered}</a> | <a href="Javascript:;" data-type="answeredmore">{lang answer_more}</a> | <a href="Javascript:;" data-type="views">{lang view_more}</a><!-- | <a href="Javascript:;" data-type="useful">{lang useful}</a>-->
+                    </div>
+                    <input type="hidden" name="sort" value="new" />
+                    <input type="hidden" name="category" value="{$vl['id']}" />
+                     <div class="f-qaBox-list">
+                    
+                    <ul class="f-qaList-body-ul category-list">
+                         
+                    </ul>
+                    
+                    </div>
+                </div>
+            </div>       
+           </div>
+           <!--{/loop}-->
+           <!--{/if}-->
+           
+    </div>
+</div>
+ <script src="{$web['static_temp_mod']}/resource/js/jquery.slimscroll.min.js" type="text/javascript"></script> 
+ <script src="{$web['static_temp_mod']}/resource/js/home.js?rs={$_rs}" type="text/javascript"></script> 
+
+<script>
+    jQuery(document).ready(function() {
+var per = new Array();
+    per['load_faq_url'] = '$_load_faq_url';
+    faq.init(per);
+    }); 
+</script>
+</div>
+<!--{if !empty($_message)}-->
+<script>
+$("body").append('<div class="message" id="message">{$_message}</div>');
+setTimeout(function(){
+$('#message').fadeOut(3000, function(){
+    $(this).remove();
+});
+}, 3000);
+</script>
+<!--{/if}-->

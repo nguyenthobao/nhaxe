@@ -1,0 +1,26 @@
+<!--{loop $web['adv']['adv_8'] $k $v}-->
+	<!--{if $v['type']=='image'}-->
+	<div id="rich-media">
+		<div id="rich-media-item">
+			<div class="click">
+				<span id="hide" title="Ẩn đi"><i class="fa fa-minus"></i></span>
+				<span id="show" title="Hiện Lên"><i class="fa fa-plus"></i></span>
+				<span id="close" title="Tắt đi"><i class="fa fa-remove"></i></span>
+			</div>
+			<a href="{$v['link_GA']}" title="{$v['title']}">
+				<img src="<!--{loadImage $v['img'] none 100 200}-->" alt="{$v['title']}"/>
+			</a>
+		</div>
+	</div>
+	<!--{elseif $v['type']=='flash'}-->
+		<!--<a href="{$v['link_GA']}" title="{$v['title']}">
+			<object width="{$v['width']}" height="{$v['height']}" data="{$v['flash']}"></object>
+		</a>
+	<!--{elseif $v['type']=='text'}
+			<!--<p>{$v['short']}</p>
+			<!--<div class="v2-categories-products-text-top text-center">{$v['content']}</div>-->
+	<!--{else}-->
+		{$v['code_adv']}
+	<!--{/if}-->
+
+<!--{/loop}-->

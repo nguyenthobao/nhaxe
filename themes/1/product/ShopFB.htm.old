@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<title>Template default</title>
+		<!-- Bootstrap -->
+		<link href="{$web['static_temp_mod']}/ShopFB/css/bootstrap.css" rel="stylesheet">
+		<link href="{$web['static_temp_mod']}/ShopFB/css/style.css" rel="stylesheet">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		
+	</head>
+	<body>
+		<div id="fb-root"></div>
+		<script>
+		(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.4";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+		
+		
+window.fbAsyncInit = function() {
+	FB.Canvas.setSize( {height: 1100} );
+}
+// Do things that will sometimes call sizeChangeCallback()
+// function sizeChangeCallback() {
+// 	FB.Canvas.setSize( {height: 1000} );
+// }
+
+		
+		</script>
+		
+		<div class="navbar navbar-default navCustom" role="navigation">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" rel="home" href="{$_home_url}" title="{$_webname}">{$_webname}</a>
+						</div>
+						<div class="collapse navbar-collapse navbar-ex1-collapse">
+							<div class="col-sm-9 col-md-9">
+								<form class="navbar-form" role="search" action="product-shopfb-shop.html" method="get" id="search-form" name="search-form">
+									<div class="btn-group pull-left col-sm-4 col-md-4" >
+										 <select name="category" class="form-control col-sm-4 col-md-4">
+										 		<option value="all" <!--{if $_search['category']=='all'}-->selected<!--{/if}--> >Danh mục</option>
+										 	<!--{loop $_category $k $v}-->
+										 		<option value="{$v['id']}" <!--{if $_search['category']==$v['id']}-->selected<!--{/if}--> >{$v['line']}{$v['name']}</option>
+										 	<!--{/loop}-->
+										  </select>
+									</div>
+									<div class="input-group col-sm-8 col-md-8">
+										<input type="text" class="form-control" placeholder="Nhập từ khóa..." id="title" name="title" value="<!--{if $_search['title']!=''}-->{$_search['title']}<!--{/if}-->">
+										<div class="input-group-btn">
+											<button type="submit" class="btn btn-success btnCustom"><span class="glyphicon glyphicon-search"></span></button>
+										</div>
+									</div>
+									<input name="signed_request" type="hidden" value="{$_signed_request}">
+									<input name="idw" type="hidden" value="{$_web['idw']}">
+									<input name="s_name" type="hidden" value="{$_web['s_name']}">
+								</form>
+							</div>
+							
+						</div>
+					</div>
+		
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-1 col-md-2"></div>
+				<div class="col-sm-12 col-md-8">
+					<div class="content">
+						<!--{if !empty($_product)}-->
+						<ul class="ulContent">
+						<!--{loop $_product $k $v}-->
+							<li>
+								<div class="ulContentLiHover">
+									<div class="ulContentLiHoverLeft">
+										<div class="fb-share-button" data-href="{$v['link']}" data-layout="button_count"></div>
+									</div>
+									<div class="ulContentLiHoverRight">
+										<div class="fb-like" data-href="{$v['link']}" data-layout="button"></div>
+									</div>
+								</div>
+								<img src="<!--{loadImage $v['image'] resize 154 120}-->"/>
+								<div class="title">
+									<a  class="newTab" href="{$v['link']}" title="{$v['name']}" data-toggle="tooltip" data-placement="auto" title="{$v['name']}"><!--{cutString $v['name'] 0 18}--></a>
+								</div>
+								<div class="price">
+									<!--{if isset($v['price_num']) && $v['price_num']!=0}-->
+										{$v['price']}
+									<!--{else}-->
+										Liên hệ
+									<!--{/if}-->
+								</div>
+								<div class="percent">
+									<!--{if isset($v['price_market_num']) && $v['price_market_num']!=0}-->
+										{$v['price_market']}
+									<!--{/if}-->
+									
+								</div>
+								<div style="text-align: center;">
+									<a class="btn btn-sm btn-info newTab" href="{$v['link']}"><span class="glyphicon glyphicon-shopping-cart"></span> Mua ngay</a>
+								</div>
+								
+							</li>
+						<!--{/loop}-->
+						</ul>
+						<div class="clearfix">
+					</div>
+					<div class="divPagination">
+						<!--{if $_pagination['info']['total']!=0}-->
+							<!--{temp ShopFbpagination}-->
+						<!--{/if}-->
+					</div>
+					<!--{else}-->
+						<p class="text-center text-danger">Không có sản phẩm phù hợp</p>
+					<!--{/if}-->
+					
+				</div>
+				<div class="col-sm-1 col-md-2"></div>
+			</div>
+		</div>
+		
+		
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="{$web['static_temp_mod']}/ShopFB/js/bootstrap.min.js"></script>
+		<script>
+		$(document).ready(function(){
+		    $('[data-toggle="tooltip"]').tooltip(); 
+		    // $("a.newTab").on("click",function(){
+		    //      window.open($(this).attr('href'),'_blank');
+		    //      return false;
+		    //  });
+		});
+		
+		</script>
+	</body>
+</html>

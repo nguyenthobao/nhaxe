@@ -1,0 +1,19 @@
+ 
+		<!--{if !empty($content_album)}-->
+		<ul class="f-video row">
+			<!--{loop $content_album $k $v}--> 
+			 <li class="col-md-3  col-sm-3 col-xs-3 col-xs-6 full-xs">
+              <div class="f-video-item">
+                <div class="f-video-item-img"> <a href="$v['link']" title="$v['title']"> <img src="<!--{loadImage $v['avatar'] crop 448 250}-->" class="img-responsive" alt="$v['title']"  />
+                  <div class="f-video-item-img-hover"></div>
+                  </a> </div>
+                <div class="f-video-item-title">
+                  <h3><a href="$v['link']" title="$v['title']"> <!--{cutString $v['title'] 0 25}--> </a></h3>
+                </div>
+              </div>
+            </li>  
+			<!--{/loop}-->
+		</ul>
+		<!--{/if}-->
+		<div class="clearfix"></div>
+ 

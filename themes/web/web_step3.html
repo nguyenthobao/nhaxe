@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tao website</title>
+<link rel="stylesheet" type="text/css" href="http://v2.webbnc.net/includes/create/themes/resources/plugins/bootstrapv3/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="http://v2.webbnc.net/includes/create/themes/resources/css/style.css">
+<link rel="stylesheet" type="text/css" href="http://v2.webbnc.net/includes/create/themes/resources/plugins/font-awesome-4.2.0/css/font-awesome.min.css">
+<script src="http://v2.webbnc.net/includes/create/themes/resources/js/jquery-1.11.1.min.js"></script>
+<script src="http://v2.webbnc.net/includes/create/themes/resources/plugins/bootstrapv3/js/bootstrap.min.js"></script>
+</head>
+
+<body class="wbodystep3">
+<div class="web-body">
+  <div class="r-header">
+    <div class="r-header-topline"></div>
+    <div class="r-header-main">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-2 col-md-2 col-sm-2  "> <a href="https://webbnc.net" title="Webbnc.net" class="web-logo"> <img src="https://webbnc.net/image/data/logo_bnc.png" alt="WEBBNC" class="img-responsive " width="200px"> </a>
+            <div class="clearfix"></div>
+          </div>
+          <div class="col-lg-10 col-md-8 col-sm-2"> <a href="javascript:void(0);" class="mobi-toggler"><span class="icon-bar b1"></span><span class="icon-bar b2"></span><span class="icon-bar b3"></span></a>
+            <div class="r-menu-top menu-open desktop-mn">
+              <ul>
+                <li style="margin:0"><a href="" title="Trang chủ"><img src="resources/css/imgs/home.jpg"></a></li>
+                <li><a href="https://webbnc.net/gioi-thieu.html" title="Giới thiệu">Giới thiệu</a></li>
+                <li><a href="https://webbnc.net/tuyen-dung.html">Tuyển dụng</a></li>
+                <li><a title="Tính năng" href="tinh-nang.html">Tính năng</a></li>
+                <li><a title="Kinh doanh" href="https://webbnc.net/nhan-vien-kinh-doanh.html">Kinh doanh</a></li>
+                <li><a title="Bảng giá" href="https://webbnc.net/bang-gia.html">Bảng giá</a></li>
+                <li><a title="Giao diện" href="https://webbnc.net/kho-giao-dien-noi-bat.html">Giao diện</a></li>
+                <li><a title="Blog" href="https://webbnc.net/tin-tuc.html">Blog</a> </li>
+                <li><a title="Trợ giúp" href="tro-giup.html">Trợ giúp</a></li>
+                <!-- <li ><a title="Tin tức" href="tin-tuc">Blogs</a></li> -->
+                
+                <li><a title="Liên hệ" href="https://webbnc.net/lien-he.html">Liên hệ</a></li>
+                <div class="clearfix"></div>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mystep">
+  	<div class="container">
+    	 
+        <ul>
+        	<li>
+            	<i>1</i><span>Đăng ký tài khoản</span>
+            </li>
+            <li>
+            	<i>2</i><span>Chọn giao diện mẫu</span>
+            </li>
+            <li class="active">
+            	<i>3</i><span>Copy dữ liệu website</span>
+            </li>
+        </ul>
+    </div>
+  </div>
+  
+  <div id="clouds">
+	<div class="cloud x1"></div>
+	<div class="cloud x2"></div>
+	<div class="cloud x3"></div>
+	<div class="cloud x4"></div>
+	<div class="cloud x5"></div>
+    <div class="cloud x6"></div>
+</div>
+  
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="pd-20">
+          <div class="procesweb panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title"><i class="fa fa-cog fa-spin"></i> Vui lòng không ấn f5 trong quá trình copy dữ liệu...</h3>
+            </div>
+            <div class="panel-body pd-20"> <span class="loadingweb fa fa-spinner fa-spin fa-5x"></span>
+              <h4>Đang xử lý...</h4>
+              <div class="progress progress-striped active">
+                <div class="progress-bar" style="width: 45%"></div>
+              </div>
+              
+              <a href="" class="gowebsite btn btn-primary" style="display:none">Vào website của bạn</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+ .modal-dialog {
+width: 400px;
+margin: 10% auto;
+text-align:center;
+}
+ </style>
+<script>
+ 	window.setTimeout(function(){
+		 
+		window.setTimeout(function(){
+			$(".procesweb .progress-bar").css("width","90%");
+			
+		},500);
+		window.setTimeout(function(){
+			$(".procesweb .progress-bar").css("width","100%");
+			$(".procesweb").removeClass("panel-danger");
+			$(".procesweb").addClass("panel-success");
+			$(".panel-title").html("<i class='fa fa-check'></i> Dữ liệu đã copy xong");
+			$(".procesweb h4").html("Dữ liệu đã copy xong");
+			$(".loadingweb").removeClass("fa-spinner");
+			$(".loadingweb").removeClass("fa-spin");
+			$(".loadingweb").addClass("fa-check-circle-o");
+			$(".loadingweb").css("color","#4CAF50");
+			$(".procesweb .progress").hide();
+			$(".gowebsite").show();
+			 $("body").css("background","#0069A3");
+		},2000);
+	},2000);
+ </script>
+</body>
+</html>

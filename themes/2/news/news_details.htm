@@ -1,0 +1,160 @@
+<style type="text/css">
+.content123{
+  text-align: left;
+}
+</style>
+<div class="shell content123">
+<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/css/style.css"/>
+<div class="productbreadcrumb">
+	<ol class="breadcrumb">
+		<!--{loop $_breadcrumbs $k $v}-->
+		<li ><a href="{$v['href']}">{$v['text']}</a> <i class="fa fa-caret-right"></i></li>
+		<!--{/loop}-->		
+	</ol>
+</div>
+<div class="clearfix"></div>
+<div class="f-ctn-center marginnews">
+	<div class="f-module-page">
+		
+		<div class="f-module-page-body">
+			<div class="top-new padding-10">
+				<div class="clearfix"></div>
+				<div class="f-news-view-page">
+					<div class="f-news-view-title">
+						<h1>{$_newsDetail['title']}</h1>
+						<div class="f-news-date">
+							<div class="left"><i class="fa fa-clock-o"></i> {lang date_posted} : {$_newsDetail['create_time']}</div>
+						</div>
+					</div>
+				</div>
+				<div class="f-news-view-detail">
+					{$_newsDetail['details']}
+					<div class="button-facebook">
+                                     
+                    </div>
+				</div>
+				 
+			</div>
+
+	 
+
+			 
+	 
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+</div>
+
+
+
+<div class="clearfix"></div>
+      <!--Tin tức cùng danh mục-->
+      <!--{if isset($_newsOther['news'])}-->
+
+
+       <section class="section-90 section-md-111 bg-zircon">
+                    <div class="shell">
+                        <h2 class="text-bold">{lang news_cat}</h2>
+                        <hr class="divider bg-chathams-blue">
+
+
+          <div class="range range-xs-center offset-top-60">
+
+                        <!--{eval $i=0}-->
+          <!--{loop $_newsOther['news'] $k $v}-->
+          <!--{if $i < 6}--> 
+
+                            <div class="cell-xs-10 cell-sm-6 offset-top-30">
+                                <!-- Post Boxed-->
+                                <div class="reveal-block">
+                                    <div class="post post-boxed">
+                                        <!-- Post media-->
+                                        <header class="post-media"><img width="570" height="310" src="<!--{loadImage $v['img'] crop 570 290}-->" alt="" class="img-responsive"></header>
+                                        <!-- Post content-->
+                                        <section class="post-content text-left">
+                                             
+                                            <div class="post-body">
+                                                <!-- Post Title-->
+                                                <div class="post-title">
+                                                    <div class="h4 text-bold text-white"><a href="$v['href']">$v['title']</a></div>
+                                                </div>
+                                                 
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div> 
+                        
+
+
+           
+          <!--{/if}-->
+          <!--{eval $i++}-->
+          <!--{/loop}-->
+
+</div>
+
+                         
+                    </div>
+                </section>
+
+
+               
+
+
+       
+      <!--{/if}-->
+
+
+
+<!--{if isset($_newsRelated['newsr'])}-->
+
+<section class="section-90 section-md-111 bg-zircon">
+                    <div class="shell">
+                        <h2 class="text-bold">{lang related_news}</h2>
+                        <hr class="divider bg-chathams-blue">
+
+
+          <div class="range range-xs-center offset-top-60">
+
+                        <!--{eval $i=0}-->
+          <!--{loop $_newsRelated['newsr'] $k $v}-->
+          <!--{if $i < 6}--> 
+
+                            <div class="cell-xs-10 cell-sm-6 offset-top-30">
+                                <!-- Post Boxed-->
+                                <div class="reveal-block">
+                                    <div class="post post-boxed">
+                                        <!-- Post media-->
+                                        <header class="post-media"><img width="570" height="310" src="<!--{loadImage $v['img'] crop 570 290}-->" alt="" class="img-responsive"></header>
+                                        <!-- Post content-->
+                                        <section class="post-content text-left">
+                                             
+                                            <div class="post-body">
+                                                <!-- Post Title-->
+                                                <div class="post-title">
+                                                    <div class="h4 text-bold text-white"><a href="$v['href']">$v['title']</a></div>
+                                                </div>
+                                                 
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div> 
+                        
+
+
+           
+          <!--{/if}-->
+          <!--{eval $i++}-->
+          <!--{/loop}-->
+
+</div>
+
+                         
+                    </div>
+                </section>
+
+
+      <!--{/if}-->

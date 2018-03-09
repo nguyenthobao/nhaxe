@@ -1,0 +1,37 @@
+﻿/* he thong css*/
+.support-icon-right {
+    position: fixed;
+    left: 5px;
+    bottom: 0;
+    z-index: 999999;
+    overflow: hidden;
+    width: 250px;
+    color: #fff!important;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.support-icon-right h3 {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 13px!important;
+    font-family: Arial;
+    color: #fff!important;
+    margin: 0!important;
+    background-color: #3a5795;
+    cursor: pointer;
+    border-radius: 10px 10px 0px 0px;
+    overflow: hidden;
+}
+.support-icon-right i {
+    padding: 10px;
+    font-size: 24px;
+}
+.online-support {
+    display: none;
+}
+.tab-content img, .tab-content object, .tab-content embed, .tab-content table, .tab-content input[type='image']{
+    max-width:100%;
+}

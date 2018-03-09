@@ -1,0 +1,256 @@
+<!--{temp payment/payment_header}-->
+<style type="text/css" media="screen">
+.divInfoBanks{
+  width: 300px;
+  border: #CCC solid 1px;
+  padding: 10px;
+  margin-left: 2px;
+  box-shadow: 4px 4px 3px #888;
+  margin-bottom: 10px;
+  text-shadow: 1px 0px 1px #A9AFD7;
+  display: none;
+}
+.divInfoBanks:hover{
+  text-shadow: 1px 0px 1px #8A98F4;
+  box-shadow: 5px 5px 3px #929CDE;
+}
+</style>
+<div id="orderHeader" class="g980 osi s3">
+    <p class="logoOrder"><a href="/"><!--{if $web['logo'] != null}-->
+    <!--{if $web['logo']['is_swf']}-->
+    <object width="{$web['logo']['width']}" height="{$web['logo']['height']}">
+    <param value="transparent" name="wmode">
+        <param value="{$web['static_upload']}{$web['logo']['img']}" name="movie">
+            <embed width="{$web['logo']['width']}" height="{$web['logo']['height']}" wmode="transparent" src="{$web['static_upload']}{$web['logo']['img']}">
+            </object>
+            <!--{else}-->
+            <img src="{$web['static_upload']}{$web['logo']['img']}" width="{$web['logo']['width']}" height="{$web['logo']['height']}" class="img-responsive"  alt="Logo"/>
+            <!--{/if}-->
+            <!--{else}-->
+            <img src="https://webbnc.net/image/data/logo_bnc.png" class="img-responsive"  alt="Logo"/>
+            <!--{/if}--></a></p>
+        </div>
+        <form action="{$_common['step']}" method="post" id="step3">
+            <input type="hidden" value="" name="bankId">
+            <input type="hidden" value="" name="bankName">
+            <div class="g980 box">
+                <div class="g630">
+                    <h3 class="title">{lang select_method_pay}</h3>
+                    <br>
+                    <br>
+                    <!--{if isset($_err)}-->
+                    
+                    <div class="error showPm" >
+                        <!--loop $_err $k $v-->
+                        <p>{$_err['bank']}</p>
+                        <!--/loop-->
+                    </div>
+                    
+                    <!--{/if}-->
+                    <!--{if $_paymentMethodAllow['AT_HOME']==1}-->
+                    <div class="showPm">
+                        <h4>{lang pay_after}</h4>
+                        <label class="method" id="pHome" style="border-bottom: none;">
+                            <span class="title">
+                                <input type="radio" onchange="changeMethodPayment('{lang pay_after}')"  name="paymentMethod" class="cod validate[required]" data-show=".bank7" title="{lang pay_after}" value="7">
+                                <i style="background-position: 0 -235px;" class="osi"></i>
+                                <b>{lang pay_after}</b>
+                                <sub>{lang des_pay_after}</sub>
+                                <i class="clearfix"></i>
+                            </span>
+                        </label>
+                    </div>
+                    <!--{/if}-->
+                    <div class="showPm">
+                        <h4>{lang before_pay}</h4>
+                        <!--{if isset($_banks)}-->
+                        <!--{eval $i=0}-->
+                        <!--{loop $_banks $k $v}-->
+                            <!--{if $k==1 && $_paymentMethodAllow['LOCAL_CARD']==1}-->
+                                <label class="method">
+                                    <span class="title">
+                                        <input type="radio" onchange="changeMethodPayment('{$v['title']}')"  <!--{if isset($_paymentMethod) && $_paymentMethod==$k}-->checked<!--{/if}--> name="paymentMethod" data-show=".bank<!--{$k}-->" class="validate[required]" title="Thanh toán bằng thẻ ngân hàng nội địa" value="<!--{$k}-->">
+                                        <i style="background:url({$web['static_temp_mod']}/resource/img/method_type/spriteOrder_0{$k}.png);" class="osi"></i>
+                                        <b>{$v['title']} <i>({lang free})</i></b>
+                                        <sub>{lang to_atm}.</sub>
+                                        <i class="clearfix"></i>
+                                    </span>
+                                        <span class="listBank bank<!--{$k}--> <!--{if isset($_paymentMethod) && $_paymentMethod==$k}-->active<!--{/if}-->">
+                                            <sub class="notice">{lang to_bank}:</sub>
+                                            <!--{loop $v['data'] $k1 $v1}-->
+                                            <span class="bankItem"  data-baokimpmid="<!--{$v1['id']}-->" title="<!--{$v1['title']}-->"><img src="{$web['static_temp_mod']}/banks/<!--{$v1['logo_url']}-->"></span>
+                                            <!--{/loop}-->
+                                            <sub>{lang to_pay_email}</sub>
+                                        </span>
+                                </label>
+                            <!--{/if}-->
+                            
+                            <!--{if $k==2 && $_paymentMethodAllow['CREDIT_CARD']==1}-->
+                                <label class="method">
+                                    <span class="title">
+                                        <input type="radio" onchange="changeMethodPayment('{$v['title']}')" <!--{if isset($_paymentMethod) && $_paymentMethod==$k}-->checked<!--{/if}--> name="paymentMethod" data-show=".bank<!--{$k}-->" class="validate[required]" title="Thanh toán bằng thẻ ngân hàng nội địa" value="<!--{$k}-->">
+                                        <i style="background:url({$web['static_temp_mod']}/resource/img/method_type/spriteOrder_0{$k}.png);" class="osi"></i>
+                                        <b>{$v['title']} <i>({lang free})</i></b>
+                                         <sub>{lang to_atm}.</sub>
+                                        <i class="clearfix"></i>
+                                    </span>
+                                    
+                                        <span class="listBank bank<!--{$k}--> <!--{if isset($_paymentMethod) && $_paymentMethod==$k}-->active<!--{/if}-->">
+                                            <sub class="notice">{lang to_bank}:</sub>
+                                            <!--{loop $v['data'] $k1 $v1}-->
+                                            <span class="bankItem" data-baokimpmid="<!--{$v1['id']}-->" title="<!--{$v1['title']}-->"><img src="{$web['static_temp_mod']}/banks/<!--{$v1['logo_url']}-->"></span>
+                                            <!--{/loop}-->
+                                            <sub>{lang to_pay_email}</sub>
+                                        </span>
+                                    
+                                </label>
+                            <!--{/if}-->
+                            
+                            
+                            <!--{if $k==3  && $_paymentMethodAllow['INTERNET_BANKING']==1}-->
+                                <label class="method">
+                                    <span class="title">
+                                        <input type="radio" onchange="changeMethodPayment('{$v['title']}')" <!--{if isset($_paymentMethod) && $_paymentMethod==$k}-->checked<!--{/if}--> name="paymentMethod" data-show=".bank<!--{$k}-->" class="validate[required]" title="Thanh toán bằng thẻ ngân hàng nội địa" value="<!--{$k}-->">
+                                        <i style="background:url({$web['static_temp_mod']}/resource/img/method_type/spriteOrder_0{$k}.png);" class="osi"></i>
+                                        <b>{$v['title']} <i>({lang free})</i></b>
+                                            <sub>{lang to_atm}.</sub>
+                                        <i class="clearfix"></i>
+                                    </span>
+                                   
+                                        <span class="listBank bank<!--{$k}--> <!--{if isset($_paymentMethod) && $_paymentMethod==$k}-->active<!--{/if}-->">
+                                            <sub class="notice">{lang to_bank}:</sub>
+                                            <!--{loop $v['data'] $k1 $v1}-->
+                                            <span class="bankItem" data-baokimpmid="<!--{$v1['id']}-->" title="<!--{$v1['title']}-->"><img src="{$web['static_temp_mod']}/banks/<!--{$v1['logo_url']}-->"></span>
+                                            <!--{/loop}-->
+                                            <sub>{lang to_pay_email}</sub>
+                                        </span>
+                                   
+                                </label>
+                            <!--{/if}-->
+                            
+                            
+                            <!--{if $k==4  && $_paymentMethodAllow['ATM_TRANSFER']==1}-->
+                                <label class="method">
+                                    <span class="title">
+                                        <input type="radio" onchange="changeMethodPayment('{$v['title']}')" <!--{if isset($_paymentMethod) && $_paymentMethod==$k}-->checked<!--{/if}--> name="paymentMethod" data-show=".bank<!--{$k}-->" class="validate[required]" title="Thanh toán bằng thẻ ngân hàng nội địa" value="<!--{$k}-->">
+                                        <i style="background:url({$web['static_temp_mod']}/resource/img/method_type/spriteOrder_0{$k}.png);" class="osi"></i>
+                                        <b>{$v['title']} <i>({lang free})</i></b>
+                                        <sub>{lang to_atm}.</sub>                                        
+                                        <i class="clearfix"></i>
+                                    </span>
+                                    
+                                        <span class="listBank bank<!--{$k}--> <!--{if isset($_paymentMethod) && $_paymentMethod==$k}-->active<!--{/if}-->">
+                                            <sub class="notice">{lang to_bank}:</sub>
+                                            <!--{loop $v['data'] $k1 $v1}-->
+                                            <span class="bankItem" data-baokimpmid="<!--{$v1['id']}-->" title="<!--{$v1['title']}-->"><img src="{$web['static_temp_mod']}/banks/<!--{$v1['logo_url']}-->"></span>
+                                            <!--{/loop}-->
+                                            <sub>{lang to_pay_email}</sub>
+                                        </span>
+                                  
+                                </label>
+                            <!--{/if}-->
+                            
+                            <!--{if $k==5  && $_paymentMethodAllow['BANK_TRANSFER']==1}-->
+                                <label class="method">
+                                    <span class="title">
+                                        <input type="radio" onchange="changeMethodPayment('{$v['title']}')" <!--{if isset($_paymentMethod) && $_paymentMethod==$k}-->checked<!--{/if}--> name="paymentMethod" data-show=".bank<!--{$k}-->" class="validate[required]" title="Thanh toán bằng thẻ ngân hàng nội địa" value="<!--{$k}-->">
+                                        <i style="background:url({$web['static_temp_mod']}/resource/img/method_type/spriteOrder_0{$k}.png);" class="osi"></i>
+                                        <b>{$v['title']} <i>({lang free})</i></b>
+                                        <sub>{lang to_atm}.</sub>
+                                        <i class="clearfix"></i>
+                                    </span>
+                                        <span class="listBank bank<!--{$k}--> <!--{if isset($_paymentMethod) && $_paymentMethod==$k}-->active<!--{/if}-->">
+                                            <sub class="notice">{lang to_bank}:</sub>
+                                            <!--{loop $v['data'] $k1 $v1}-->
+                                            <span class="bankItem" data-baokimpmid="<!--{$v1['id']}-->" title="<!--{$v1['title']}-->"><img src="{$web['static_temp_mod']}/banks/<!--{$v1['logo_url']}-->"></span>
+                                            <!--{/loop}-->
+                                            <sub>{lang to_pay_email}</sub>
+                                        </span>
+                                </label>
+                            <!--{/if}-->
+                            
+                            <!--{if $k==6  && $_paymentMethodAllow['BAO_KIM']==1}-->
+                                <label class="method">
+                                    <span class="title">
+                                        <input type="radio" onchange="changeMethodPayment('{$v['title']}')" <!--{if isset($_paymentMethod) && $_paymentMethod==$k}-->checked<!--{/if}--> name="paymentMethod" data-show=".bank<!--{$k}-->" class="validate[required]" title="Thanh toán bằng thẻ ngân hàng nội địa" value="<!--{$k}-->">
+                                        <i style="background:url({$web['static_temp_mod']}/resource/img/method_type/spriteOrder_0{$k}.png);" class="osi"></i>
+                                        <b>{$v['title']} <i>({lang free})</i></b>
+                                        <sub>{lang to_baokim}.</sub>
+                                        <i class="clearfix"></i>
+                                    </span>
+                                </label>
+                            <!--{/if}-->
+                            
+                            <!--{if $k==8  && $_paymentMethodAllow['BANK_TRANSFER_CUSTOM']==1}-->
+                                <label class="method">
+                                    <span class="title">
+                                        <input type="radio" onchange="changeMethodPayment('Chuyển khoản qua ngân hàng (Tùy chọn)')" <!--{if isset($_paymentMethod) && $_paymentMethod==$k}-->checked<!--{/if}--> name="paymentMethod" data-show=".bank<!--{$k}-->" class="validate[required]" title="Thanh toán bằng thẻ ngân hàng nội địa" value="<!--{$k}-->">
+                                        <i style="background:url({$web['static_temp_mod']}/resource/img/method_type/spriteOrder_0{$k}.png);" class="osi"></i>
+                                        <b>Chuyển khoản qua ngân hàng (Tùy chọn) <i>({lang free})</i></b>
+                                        <sub>Chuyển khoản qua ngân hàng (Tùy chọn).</sub>
+                                        <i class="clearfix"></i>
+                                    </span>
+                                        <span class="listBank bank<!--{$k}--> <!--{if isset($_paymentMethod) && $_paymentMethod==$k}-->active<!--{/if}-->">
+                                            <sub class="notice">{lang to_bank}:</sub>
+                                            <ul>
+                                            <!--{loop $v['data'] $k1 $v1}-->
+                                                <li>
+                                                    <span class="bankItem" style="width: 200px;height: 24px;padding: 5px;text-align: left;" data-baokimpmid="<!--{$k1}-->" title="<!--{$v1['title']}-->">{$v1['title']}</span>
+                                                    <div class="divInfoBanks">
+                                                        Tên ngân hàng: {$v1['title']}<br/>
+                                                        Chi nhánh: {$v1['local']}<br/>
+                                                        Chủ tài khoản: {$v1['personal']}<br/>
+                                                        Số tài khoản: {$v1['number']}<br/>
+                                                    </div>
+                                                <li>
+                                            <!--{/loop}-->
+                                            </ul>
+                                            <sub>{lang to_pay_email}</sub>
+                                        </span>
+                                </label>
+                            <!--{/if}-->
+                            
+                        <!--{/loop}-->
+                    <!--{/if}-->
+                </div>
+            </div>
+        </div>
+        <p class="nextStep" style="text-align: center;padding: 20px 0;">
+        <button type="submit" class="btnRed" id="payNow">{lang dh}</button></p>    <br><br><br><br><br><br>
+    </form>
+    
+     <script type="text/javascript">
+        var productList=[]; 
+    </script>
+    <!--{loop $_orders['products'] $k $v}-->
+    <!--{eval $price=explode('.',$v['price'])}-->
+         <script type="text/javascript">
+            var tmp_item={};
+            tmp_item['name']="{$v['name']}";
+            tmp_item['id']="{$v['product_id']}";
+            tmp_item['price']="{$price[0]}.00";
+            tmp_item['quantity']={$v['quantity']};
+            productList.push(tmp_item); 
+        </script>
+    <!--{/loop}-->
+    
+    <script type="text/javascript">
+        function changeMethodPayment (title) {
+             dataLayer.push({
+                'event': 'checkout_step_2',
+                'ecommerce': {
+                    //'checkout': {
+                        'actionField': {
+                            'step': 2,
+                            'option': title // Tên hình thức thanh toán
+                        },
+                        'products': productList
+                    //}
+                }
+            });
+        }
+    </script>
+    
+    
+    <!--{temp payment/payment_footer}-->
+    

@@ -1,0 +1,112 @@
+<div class="clearfix"></div>
+
+<div class="productbreadcrumb">
+
+<ol class="breadcrumb">
+     <!--{loop $_breadcrumbs $k $v}-->
+        
+        <li ><a href="{$v['href']}">{$v['text']}</a> <i class="fa fa-caret-right"></i></li>
+         
+        <!--{/loop}-->
+   
+</ol>
+</div>
+
+<div class="clearfix"></div>
+
+
+
+<div class="f-ctn-center">
+    
+    <div class="f-module-page">
+        <!--{temp video/video_category}-->
+        <div class="f-module-page-title"> 
+            <h1><i><img src="<!--{if isset($_icon)}--> {$_icon} <!--{/if}-->" /></i>
+                <span><!--{if isset($_title) }--> {$_title} <!--{/if}--></span></h1>
+        </div>
+        <div class="f-module-page-desc  " <!--{if isset($_bg) }--> style="background-image:url({$_bg})" <!--{/if}-->>
+            <div class="col-md-3  col-sm-3 col-xs-3 img">
+                     <img class="img-thumbnail img-responsive" src=" <!--{if isset($_img) }-->{$_img}<!--{/if}-->">
+            </div>
+            <div class="col-md-9  col-sm-9 col-xs-9">
+                <p><!--{if isset($_description)}--> {$_description} <!--{/if}-->
+            </div>
+            <div class="clearfix"></div>
+        </div>
+       <div class="clearfix"></div>
+        
+        <div class="f-module-page-body padding-10">
+            <div class="clearfix"></div>
+
+            <hr/>
+            <div class="row styleformcontrol">
+            <form id="video_filter" method="POST" action="{$_curUrl}" enctype="multipart/form-data">
+                <div class="col-md-3  col-sm-3 col-xs-3">
+                     
+                    <select name="type_filter" class="form-control type_filter">
+                        <option value = "video_latsted" <!--{if isset($_filter_type) && ($_filter_type == 'video_latsted')}--> selected <!--{/if}-->> {lang video_new}</option>
+                        <option value = "video_vip" <!--{if isset($_filter_type) && $_filter_type == 'video_vip'}--> selected <!--{/if}--> > {lang video_hot}</option>
+                        <option value = "video_az" <!--{if isset($_filter_type) && $_filter_type == 'video_az'}--> selected <!--{/if}--> > {lang video_az}</option>
+                    </select>
+                </div>
+                <div class="col-md-3  col-sm-3 col-xs-3">
+                    <input type="text" value="<!--{if isset($_filter_title)}-->{$_filter_title}<!--{/if}-->" name="name_filter" placeholder="Tiêu đề " class="form-control"/>
+                </div>
+                <div class="col-md-3  col-sm-3 col-xs-3">
+                    <select name="limit_filter" class="form-control limit_filter">
+                        <option value = "10">{lang number_records}</option>
+                        <option value = "10" <!--{if isset($_filter_limit) && ($_filter_limit == '10')}--> selected <!--{/if}--> >10</option>
+                        <option value = "15" <!--{if isset($_filter_limit) && ($_filter_limit == '15')}--> selected <!--{/if}--> >15</option>
+                        <option value = "20" <!--{if isset($_filter_limit) && ($_filter_limit == '20')}--> selected <!--{/if}--> >20</option>
+                        <option value = "25" <!--{if isset($_filter_limit) && ($_filter_limit == '25')}--> selected <!--{/if}--> >25</option>
+                        <option value = "50" <!--{if isset($_filter_limit) && ($_filter_limit == '50')}--> selected <!--{/if}--> >50</option>
+                    </select>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <a href="javascript:void(0);" class="btn btn-success" id="submitSearch">{lang search}</a>
+                </div>
+            </div>
+            </form>
+            <hr/>
+            <div class="clearfix"></div>
+
+            <div class="f-page-tab">                
+                <!-- <ul class="nav-tabs">
+                    <li class="active"><a href="#f-pr-tab01" data-toggle="tab">Mới</a>
+                    </li>
+                    <li><a href="#f-pr-tab02" data-toggle="tab">Nổi bật</a>
+                    </li>
+                    <li><a href="#f-pr-tab03" data-toggle="tab">A-Z</a>
+                    </li>
+                </ul> -->
+
+                <div class="clearfix"></div>
+                <div class="tab-content margin-top-10">
+                    <div id="f-pr-tab01" class="tab-pane active">
+
+
+                        <!--{temp video/video_page_videos_list}-->
+
+                        <div class="clearfix"></div>
+
+                        <!--{temp video/video_pagination}-->
+                    </div>
+                    <div id="f-pr-tab02" class="tab-pane ">
+                        <!--{temp video/video_page_videos_list}-->
+                    </div>
+                    <div id="f-pr-tab03" class="tab-pane ">
+                        <!--{temp video/video_page_videos_list}-->
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!--/VIDEO -->
+</div>
+<script src="{$web['static_temp_mod']}/resource/js/video.js" type="text/javascript"></script>
+<script>
+$(document).ready(function() {
+   Video.init();
+});
+</script>

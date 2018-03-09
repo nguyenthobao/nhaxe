@@ -1,0 +1,52 @@
+<div class="f-center-module">
+  <!--{loop $data $k $v}-->
+  <div class="f-center-title row"> <i></i><a href="{$v['link']}"><span>Ý KIẾN KHÁCH HÀNG</span></a> </div>
+  <div class="f-center-body">
+    <ul class="f-news row owl-carousel owl-theme" id="feed">
+      <li class=" col-md-4 col-sm-4 col-xs-6 item">
+        <div class="f-news-item">
+          <div class="f-news-item-img"> <a> <img src="{$v['thumb']}" class="img-responsive" alt="" /> </a> </div>
+          <div class="f-news-item-title">
+            <h2> <a>$v['customers']</a> 
+              <p style="font-family: Arial, Helvetica, sans-serif; font-size: 10px">(Thời gian: $v['create_time'])</p>
+            </h2>
+             <p style="font-family: Arial, Helvetica, sans-serif; font-size: 13px">$v['content']</p>
+          </div>
+        </div>
+      </li>
+      <!--{/loop}-->  
+       
+    </ul>
+    <div class="customNavigation">
+          <a class="btn btn-left prev-{$value['id']}">Previous</a>
+          <a class="btn btn-right next-{$value['id']}">Next</a>
+        </div>
+          <script>
+          $(document).ready(function() {
+
+            var owl = $("#feed");
+
+            owl.owlCarousel({
+
+            items : 2, //10 items above 1000px browser width
+            itemsDesktop : [1000,5], //5 items between 1000px and 901px
+            itemsDesktopSmall : [900,5], // 3 items betweem 900px and 601px
+            itemsTablet: [600,3], //2 items between 600 and 0;
+            itemsMobile : [400,2] // itemsMobile disabled - inherit from itemsTablet option
+            
+            });
+
+            // Custom Navigation Events
+            $(".next-{$value['id']}").click(function(){
+              owl.trigger('owl.next');
+            });
+            $(".prev-{$value['id']}").click(function(){
+              owl.trigger('owl.prev');
+            });
+
+
+          });
+        </script>
+    <div class="clearfix"></div>
+  </div>
+</div>

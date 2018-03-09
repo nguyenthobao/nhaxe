@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'metro-l';
+  font-style: normal;
+  src: local('Segoe UI Light'), local('Segoe-UI-Light'), url(../fonts/segoeuil.woff) format('woff');
+}
+@font-face {
+  font-family: 'metro-b';
+  font-style: normal;
+  src: local('Segoe UI Bold'), local('Segoe-UI-Bold'), url(../fonts/segoeuib.woff) format('woff');
+}
+@font-face {
+  font-family: 'metro-n';
+  font-style: normal;
+  src: local('Segoe UI'), local('Segoe-UI'), url(../fonts/segoeui.woff) format('woff');
+}
+@font-face {
+  font-family: 'metro-i';
+  font-style: normal;
+  src: local('Segoe UI Italic'), local('Segoe-UI-Italic'), url(../fonts/segoeuii.woff) format('woff');
+}

@@ -1,0 +1,31 @@
+<div class="f-center-module tab-hot">
+   <div class="f-center-title ">
+    <ul class="f-video-tab-home" class="nav-tabs ">
+      <li class="active"><a href="#f-video-tab01" data-toggle="tab">Album Hot</a></li>
+      
+    </ul>
+  </div>
+ 
+  <div class="f-center-body">
+    <ul class="f-album ">
+
+      <!--{loop $_album $k $v}--> 
+      <li class=" col-md-5ths">
+        <div class="f-album-item">
+                    <div class="f-album-item-img"> <a href="$v['link']" title="$v['title']"> <img src="<!--{loadImage $v['avatar'] crop 248 173}-->" class="img-responsive" alt="$v['title']" />
+                      <div class="f-album-item-img-hover"></div>
+                      </a> </div>
+                    <div class="f-album-item-title">
+                      <h2><a href="$v['link']" title="$v['title']"> $v['title']</a></h2>
+                    </div>
+                  </div>
+ 
+      </li>
+      <!--{/loop}-->  
+       
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+</div>
+
+ 

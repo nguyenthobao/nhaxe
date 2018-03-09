@@ -1,0 +1,62 @@
+
+<!--{if $k=='news'}-->
+<li class="f-news-page-item row">
+  <div class="f-news-page-item-img col-md-3">
+    <a href="{$v2['href']}" class="thumbnail" title="">
+      <img src="<!--{loadImage $v2['img'] resize 200 180}-->"  alt="{$v2['title']}"/>
+    </a>
+  </div>
+  <div class="f-news-page-item-text col-md-9">
+    <h2><a href="{$v2['href']}" title="{$v2['title']}">{$v2['title']}</a></h2>
+    <div class="f-news-page-item-summary">{$v2['short']}</div>
+    <div class="f-read-more pull-right">
+      <a href="{$v2['href']}"><span class="label label-info">{lang read_more}...</span></a>
+    </div>
+  </div>
+</li> 
+<!--{elseif $k=='product'}-->
+<li class="f-news-page-item row">
+  <div class="f-news-page-item-img col-md-3">
+    <a href="{$v2['href']}" class="thumbnail" title="">
+      <img src="<!--{loadImage $v2['image'] resize 200 180}-->"  alt="{$v2['name']}"/>
+    </a>
+  </div>
+  <div class="f-news-page-item-text col-md-9">
+    <h2><a href="{$v2['href']}" title="{$v2['name']}">{$v2['name']}</a></h2>
+    <div class="f-news-page-item-summary">{$v2['short_info']}</div>
+    <div class="f-read-more pull-right">
+      <a href="{$v2['href']}"><span class="label label-info">{lang read_more}...</span></a>
+    </div>
+  </div>
+</li>
+<!--{elseif $k=='album'}-->
+<li class="f-news-page-item row">
+  <div class="f-news-page-item-img col-md-3">
+    <a href="{$v2['href']}" class="thumbnail" title="">
+      <img src="<!--{loadImage $v2['avatar'] resize 200 180}-->"  alt="{$v2['title']}"/>
+    </a>
+  </div>
+  <div class="f-news-page-item-text col-md-9">
+    <h2><a href="{$v2['href']}" title="{$v2['title']}">{$v2['title']}</a></h2>
+    <div class="f-news-page-item-summary">{$v2['contents_description']}</div>
+    <div class="f-read-more pull-right">
+      <a href="{$v2['href']}"><span class="label label-info">{lang read_more}...</span></a>
+    </div>
+  </div>
+</li>
+<!--{else}-->
+<li class="f-news-page-item row">
+  <div class="f-news-page-item-img col-md-3">
+    <a href="{$v2['href']}" class="thumbnail" title="">
+      <img src="<!--{loadImage $v2['img'] resize 200 180}-->"  alt="{$v2['title']}"/>
+    </a>
+  </div>
+  <div class="f-news-page-item-text col-md-9">
+    <h2><a href="{$v2['href']}" title="{$v2['title']}">{$v2['title']}</a></h2>
+    <div class="f-news-page-item-summary">{$v2['meta_description']}</div>
+    <div class="f-read-more pull-right">
+      <a href="{$v2['href']}"><span class="label label-info">{lang read_more}...</span></a>
+    </div>
+  </div>
+</li>
+<!--{/if}-->

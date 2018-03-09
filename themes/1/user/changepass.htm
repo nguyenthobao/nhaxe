@@ -1,0 +1,51 @@
+<div class="row login">
+	<!--{if isset($_error)}-->
+	<div class="alert alert-danger" role="alert">$_error</div>
+	<!--{/if}-->
+	<!--{if isset($_success)}-->
+	<div class="alert alert-success" role="alert">$_success</div>
+	<!--{/if}-->
+	<form action="$_common['action_changepass']" class="form-horizontal" method="POST" />
+		<h3>{lang changepassword}</h3>
+
+	 	<div class="form-group">
+		    <label for="inputEmail3" class="col-sm-2 control-label">{lang username}</label>
+		    <div class="col-sm-5">
+		       <input type="text" class="form-control" name="username" value ="$_user['username']" displaceholder="{lang username}" disabled>
+			</div>
+		</div> 
+
+		<div class="form-group">
+		    <label for="inputEmail3" class="col-sm-2 control-label">{lang password}</label>
+		    <div class="col-sm-3">
+		       <input  type="password" class="form-control" name="password" value =""  placeholder="{lang password}">
+		    </div>
+		</div>
+
+		<div class="form-group">
+		    <label for="inputEmail3" class="col-sm-2 control-label">{lang newspassword}</label>
+		    <div class="col-sm-3">
+		       <input type="password" class="form-control" id="news_password" name="news_password" value =""placeholder="{lang newspassword}"> 
+		    </div>
+		</div>
+
+		<div class="form-group">
+		    <label for="inputEmail3" class="col-sm-2 control-label">{lang retypepassword}</label>
+		    <div class="col-sm-3">
+		       <input type="password" class="form-control" id="retype_password" name="retype_password" displaceholder="nhập lại password mới của bạn" placeholder="{lang retypepassword}">
+		    </div>
+		</div>
+
+		<!-- Standard button -->
+ 		<div class="form-group">
+		    <label for="inputEmail3" class="col-sm-2 control-label"></label>
+		    <div class="col-sm-3">
+                <button type="submit" class="btn btn-success">{lang pass_submit}</button>
+                <button type="reset" class="btn btn-success">{lang pass_reset}</button>
+			</div>
+		</div>
+	</form> 
+
+	
+	<hr>
+</div>

@@ -1,0 +1,48 @@
+      <div class="f-block">
+        <div class="f-block-title"> <i></i><span>$block['title']</span> </div>
+        <div class="f-block-body" >
+          <ul class="f-news-bl v2-block-support" id="feed-block">
+            <!--{loop $data $k $v}-->
+            <li class="item">
+              <div class="f-news-bl-item">
+                <div class="f-news-bl-item-img "> <img src="{$v['thumb']}" class="img-thumbnail img-responsive" />
+                </div>
+
+                <div class="f-news-bl-item-title">
+                  <h2 style="text-align:center;margin-top:10px;"> <a href = "{$v['url']}">$v['customers']</a> </h2>
+                  <p style="font-size: 12px;color: #c18107;text-align: center;">(Thời gian: $v['create_time'])</p>
+                  <p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px"><!--{cutString $v['content'] 0 100}--></p>
+                </div>
+              </div>
+            </li>
+            <!--{/loop}--> 
+          </ul>
+        </div>
+      </div>
+
+        <script>
+          $(document).ready(function() {
+
+            var owl = $("#feed-block");
+
+            owl.owlCarousel({
+
+            items : 1, //10 items above 1000px browser width
+            itemsDesktop : [1000,1], //5 items between 1000px and 901px
+            itemsDesktopSmall : [900,1], // 3 items betweem 900px and 601px
+            itemsTablet: [600,1], //2 items between 600 and 0;
+            itemsMobile : [400,1] // itemsMobile disabled - inherit from itemsTablet option
+            
+            });
+
+            // Custom Navigation Events
+            $(".next-{$value['id']}").click(function(){
+              owl.trigger('owl.next');
+            });
+            $(".prev-{$value['id']}").click(function(){
+              owl.trigger('owl.prev');
+            });
+
+
+          });
+        </script>

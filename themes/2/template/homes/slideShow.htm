@@ -1,0 +1,61 @@
+  <style>
+  #owl-demo-slide .item img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+  </style>
+
+  <!--################################## BEGIN REVOLUTION SLIDER -->
+      <div class="row">
+      <div class="f-slider col-lg-6 col-md-6 col-sm-6 col-xs-12"> 
+        <!--{if isset($_slides)}-->
+        <!-- Carousel
+                ================================================== -->
+          <!-- Indicators -->
+          <div id="owl-demo-slide" class="owl-carousel">
+            <!--{loop $_slides $k $v1}--> 
+            <!--{if !empty($v1['image_slide'])}-->
+            <!--{eval $image_slide = $v1['image_slide']}-->
+            <!--{loop $image_slide $key $val}--> 
+            <div class="item">
+             <img src="<!--{loadImage $val['src_link'] crop $val['width'] $val['height']}-->" alt="$val['title']">
+              <div class="container">
+                <div class="carousel-caption">
+                  <h2>$val['title']</h2>
+                  <p>$val['description']</p>
+                </div>
+              </div>
+            </div>
+             <!--{/loop}-->
+        <!--{/if}-->
+        <!--{/loop}--> 
+             
+            
+          </div>
+        <!-- /.carousel --> 
+        <!--{/if}-->
+      </div><!--end f slider-->
+      <div class="clearfix"></div>
+    </div><!--end row-->
+  
+    
+
+  <!--################################## END REVOLUTION SLIDER -->
+    <div class="clearfix"></div>
+
+    <script>
+    $(document).ready(function() {
+
+      var owl = $("#owl-demo-slide");
+
+      owl.owlCarousel({
+        navigation : true,
+        singleItem : true,
+        transitionStyle : "backSlide"
+      });
+
+    });
+    </script>
+
+ 

@@ -1,0 +1,178 @@
+<!--{temp payment_header}-->
+<div id="orderHeader" class="g980 osi s2">
+    <p class="logoOrder"><a href="/"><!--{if $web['logo'] != null}--> 
+              <!--{if $web['logo']['is_swf']}--> 
+                  <object width="{$web['logo']['width']}" height="{$web['logo']['height']}">
+                  <param value="transparent" name="wmode">
+                  <param value="{$web['static_upload']}{$web['logo']['img']}" name="movie">
+                  <embed width="{$web['logo']['width']}" height="{$web['logo']['height']}" wmode="transparent" src="{$web['static_upload']}{$web['logo']['img']}">
+                  </object>
+              <!--{else}-->
+                   <img src="{$web['static_upload']}{$web['logo']['img']}" width="{$web['logo']['width']}" height="{$web['logo']['height']}" class="img-responsive"  alt="Logo"/>
+              <!--{/if}--> 
+            <!--{else}-->
+             <img src="https://webbnc.net/image/data/logo_bnc.png" class="img-responsive"  alt="Logo"/>
+            <!--{/if}--></a></p>
+</div>
+<div class="g980 box" style="margin-bottom:30px;">
+<form action="{$_common['step']}" method="post" id="step2" style="overflow: hidden;">
+
+    <div class="g460" style="float:left">
+        <h3 class="title">{lang address_buy}
+        
+        </h3>
+        <br/>
+        <!--{if isset($_err)}-->
+                <div class="error showPm" >
+                    <!--{loop $_err $k $v}-->
+                    <p>{$v}</p>
+                    <!--{/loop}-->
+                    </div>
+                
+                <!--{/if}-->
+        <ul class="fInputOrder">
+                <li><span>{lang name}:</span>
+                    <input name="cus[name]" type="text" class="input validate[required]" placeholder="Nguyễn Văn A" value="<!--{if isset($_cus['name'])}-->{$_cus['name']}<!--{/if}-->">
+                </li>
+                <li><span>{lang email}:</span>
+                    <input name="cus[email]" type="text" class="input validate[required,custom[email]]" placeholder="Nhập email của bạn" value="<!--{if isset($_cus['email'])}-->{$_cus['email']}<!--{/if}-->">
+                </li>
+                <li><span>{lang city}:</span>
+                    <select id="cityId" name="cus[cityId]" class="input validate[required]">
+                        <option name="" value="">{lang city}</option>
+                        <!--{loop $_city $k $v}-->
+                            <option name="{$v['name']}" value="{$v['provinceid']}" <!--{if isset($_cus['cityId']) && $_cus['cityId']== $v['provinceid']}--> selected<!--{/if}-->>{$v['name']}</option> 
+                        <!--{/loop}-->
+                    </select>
+                    <input type="hidden" value="" name="cus[cityname]"/>
+                
+                </li>
+                <li><span>{lang dis}:</span>
+                    <select id="districtId" <!--{if !isset($_cus['districtId'])}-->disabled<!--{/if}--> name="cus[districtId]" class="input validate[required]">
+                        <option value="">{lang dis}</option>
+                        <!--{if isset($_cus['cityId'])}-->
+                            <!--{loop $_district $k $v}-->
+                            <option name="{$v['name']}" value="{$v['districtid']}" 
+                            <!--{if isset($_cus['districtId']) && $_cus['districtId'] == $v['districtid'] }--> selected <!--{/if}-->>{$v['name']}</option> 
+                            <!--{/loop}-->
+                        <!--{/if}-->
+                    </select>
+                     <input type="hidden" value="" name="cus[districtname]"/>
+                </li>
+                <li><span>{lang phone}:</span>
+                    <input name="cus[phone]" type="text" class="input validate[required,custom[phone]]" placeholder="VD: 0989123456" value="<!--{if isset($_cus['phone'])}-->{$_cus['phone']}<!--{/if}-->">
+                </li>
+                <li><span>{lang address}:</span>
+                    <input name="cus[address]" type="text" class="input validate[required]" placeholder="VD: Số 51 Lê Đại Hành, Hai Bà Trưng, Hà Nội" value="<!--{if isset($_cus['address'])}-->{$_cus['address']}<!--{/if}-->">
+                </li>
+                <li><span>{lang note}:</span>
+                    <textarea name="cus[comment]" style="padding: 5px;resize: none;height: 70px;" class="input" placeholder="Ghi chú cho đơn hàng..."><!--{if isset($_cus['comment'])}-->{$_cus['comment']}<!--{/if}--></textarea>
+                </li>
+                    </ul>
+        <i class="clearfix"></i>
+        <br/><br/>
+
+        <h3 class="title"><!--{if !empty($_addShipping)}-->{$_addShipping}<!--{/if}-->
+            <input type="checkbox" name="addShipping"  id="chooseAddShipping"/>
+           {lang re_not_i}
+        </h3>
+         <ul id="addressShipping" class="fInputOrder" style="display:none;height: 330px;">
+            <li><span>{lang name}:</span>
+                    <input name="cusShip[name]" type="text" class="input validate[required]" placeholder="Nguyễn Văn A" value="<!--{if isset($_cusShip['name'])}-->{$_cusShip['name']}<!--{/if}-->">
+                </li>
+                <li><span>{lang email}:</span>
+                    <input name="cusShip[email]" type="text" class="input validate[required,custom[email]]" placeholder="Nhập email của bạn" value="<!--{if isset($_cusShip['email'])}-->{$_cusShip['email']}<!--{/if}-->">
+                </li>
+                <li><span>{lang city}:</span>
+                    <select id="cityId2" name="cusShip[cityId]" class="input validate[required]">
+                        <option name="" value="">{lang city}</option>
+                        <!--{loop $_city $k $v}-->
+                        <option name="{$v['name']}" value="{$v['provinceid']}" <!--{if isset($_cusShip['cityId']) && $_cusShip['cityId']== $v['provinceid']}--> selected<!--{/if}-->>{$v['name']}</option> 
+                        <!--{/loop}-->
+                    </select>
+                    <input type="hidden" value="" name="cusShip[cityname]"/>
+                
+                </li>
+                <li><span>{lang dis}:</span>
+                    <select id="districtId2" <!--{if !isset($_cusShip['districtId'])}-->disabled<!--{/if}--> name="cusShip[districtId]" class="input validate[required]">
+                        <option value="">{lang dis}</option>
+                        <!--{if isset($_cusShip['cityId'])}-->
+                            <!--{loop $_districtShip $k $v}-->
+                            <option name="{$v['name']}" value="{$v['districtid']}" 
+                            <!--{if isset($_cusShip['districtId']) && $_cusShip['districtId'] == $v['districtid'] }--> selected <!--{/if}-->>{$v['name']}</option> 
+                            <!--{/loop}-->
+                        <!--{/if}-->
+                    </select>
+                     <input type="hidden" value="" name="cusShip[districtname]"/>
+                </li>
+                <li><span>{lang phone}:</span>
+                    <input name="cusShip[phone]" type="text" class="input validate[required,custom[phone]]" placeholder="VD: 0989123456" value="<!--{if isset($_cusShip['phone'])}-->{$_cusShip['phone']}<!--{/if}-->">
+                </li>
+                <li><span>{lang address}:</span>
+                    <input name="cusShip[address]" type="text" class="input validate[required]" placeholder="VD: Số 51 Lê Đại Hành, Hai Bà Trưng, Hà Nội" value="<!--{if isset($_cusShip['address'])}-->{$_cusShip['address']}<!--{/if}-->">
+                </li>
+                <li><span>{lang note}:</span>
+                    <textarea name="cusShip[comment]" style="padding: 5px;resize: none;height: 70px;" class="input" placeholder="Ghi chú cho đơn hàng..."><!--{if isset($_cusShip['comment'])}-->{$_cusShip['comment']}<!--{/if}--></textarea>
+                </li>
+        </ul>
+        <h3 class="title">
+            <input type="checkbox" name="methodShipping" id="chooseMethodShipping"/>
+            {lang service_tran}
+        </h3>
+        <ul id="methodShipping" style="display:none">
+        </ul>
+        <h3 class="title">
+            <input type="checkbox" name="invoice" id="chooseVoiceShipping"/>
+            {lang exp_hd}
+        </h3>
+        <ul id="voiceShipping" class="fInputOrder" style="display:none;height: 330px;">
+                <li><span>{lang com_name}:</span>
+                    <input name="invoice[name]" value="<!--{if isset($_invoice['name'])}-->{$_invoice['name']}<!--{/if}-->" type="text" class="input " placeholder="Công ty Cổ phần ..." >
+                </li>
+                <li><span>{lang com_people}:</span>
+                    <input name="invoice[mastername]" value="<!--{if isset($_invoice['mastername'])}-->{$_invoice['mastername']}<!--{/if}-->" type="text" class="input " placeholder="Nguyễn Văn A" >
+                </li>
+                <li><span>{lang com_address}:</span>
+                    <input name="invoice[address]" value="<!--{if isset($_invoice['address'])}-->{$_invoice['address']}<!--{/if}-->" type="text" class="input " placeholder="VD: Số 51 Lê Đại Hành, Hai Bà Trưng, Hà Nội" >
+                </li>
+                <li><span>{lang com_tax}:</span>
+                   <input name="invoice[code]" value="<!--{if isset($_invoice['code'])}-->{$_invoice['code']}<!--{/if}-->" type="text" class="input " placeholder="MST công ty">
+                </li>
+                <li><span>{lang com_method_pay}:</span>
+                   <input name="invoice[pay]" value="<!--{if isset($_invoice['pay'])}-->{$_invoice['pay']}<!--{/if}-->" type="text" class="input " placeholder="Tiền mặc hoặc Chuyển khoản">
+                </li>
+        </ul>
+        <div style="border-top: 1px solid #eee;width:85%"></div>
+        
+       
+        <i class="clearfix"></i>
+    </div>
+
+    <div class="g460" style="float:left">
+     <!--{if isset($_error)}-->
+    <div class="error " style="height: 30px;background: #FFD0D0;border-radius: 3px;opacity: 0.7;margin-bottom: 10px;padding: 7px;color:#000;text-align: left;">{$_error}
+        </div>
+    <!--{/if}-->
+    <table class="cartReview">
+        <tbody>
+        <tr class="title">
+            <td style="width: 370px;">{lang product}</td>
+            <td style="width: 150px;text-align: center;">{lang quantity}</td>
+            <td style="width: 200px;text-align: center;">{lang money}</td>
+        </tr>
+        <!--{if isset($_orders)}-->
+            <!--{temp payment_step2_product}-->
+        <!--{/if}-->
+        
+
+    </tbody></table>
+    </div>
+    <br><br><br><br>
+</form>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#step2").validationEngine();
+});
+</script>
+<!--{temp payment_footer}-->

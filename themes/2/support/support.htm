@@ -1,0 +1,87 @@
+      
+<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/css/style.css">
+      <div class="clearfix"></div>
+      <!---->
+
+      <div class="f-module-page">
+        <div class="f-module-page-title"> <i></i><span class="pull-left">{lang module}</span> </div>
+        <div class="f-module-page-body padding-10">
+          <div class="clearfix"></div>
+          <div class="f-customer-vote">
+            <div class="ykienkhachhang">
+              <div style = "text-align: center;font-size: 20px;color: #0069A3;font-family: Avo-b;"><h4>{lang noti_support}</h4></div>
+               <div class="clearfix"></div>
+                  <hr/>
+                      <div class="row">
+                      <form id="news_filter" method="POST" action="{$_curUrl}" enctype="multipart/form-data">
+                          <div class="col-md-3">
+                              <input type="text" id="name_member" value="<!--{if isset($_filter_title)}--> {$_filter_title} <!--{/if}-->" name="name_filter" placeholder="Tìm theo tên" class="form-control"/>
+                          </div>
+                          <div class="col-md-3">
+                              <select name="limit_filter" class="form-control">
+                                  <option value = "">{lang select_group}</option>
+                                  <!--{if isset ($_supportgroup)}-->
+                                  <!--{loop $_supportgroup $k $v}-->
+                                  <option value = "{$v['name_group']}"<!--{if isset($_filter_group) && ($_filter_group == $v['name_group'])}--> selected <!--{/if}-->>{$v['name_group']}</option>
+                                  <!--{/loop}-->
+                                  <!--{/if}-->
+                              </select>
+                          </div>
+                          <div class="col-md-3">
+                              <a href="javascript:void(0);" id="submitSearch">{lang search}</a>
+                          </div>
+                      </div>
+                      </form>
+                  <hr/>
+                <div class="tab-content margin-top-10">
+                    <div id="f-pr-tab01" class="tab-pane active">
+                      <!--{if isset($_support)}-->
+                      <ul class="r-employee-list row">
+                      <!--{loop $_support $k $v}-->
+                          <li class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="eitem">
+                                    <div class="eimg">
+                                    <div class="ehover">
+                                        <a href="tel:{$v['phone']}" title="Gọi tư vấn qua SKYPE">
+                                    
+                                        </a>
+                                    </div>
+                                    <img src="{$v['thumb']}&amp;size=215x215&amp;mode=crop" class="img-responsive img-thumbnail img-circle">
+                                    </div>
+                                <div class="einfo">
+                                    <span class="ename">{$v['name_member']}</span>
+                                    <span class="edep">{$v['room']}<a href="tel:{$v['phone']}"><span class="ephone"><i></i> {$v['phone']}</span></a></span>
+                                </div>
+                                 <div class="echat">
+                                        <div class="eskype"><a href="skype:{$v['skype']}?chat"><i></i>chat skype</a></div>
+                                        <div class="eyahoo"><a href="ymsgr:sendIM?quynhanhmt02211&amp;m==Chào bạn, mình cần tư vấn sử dụng dịch vụ BNC"><i></i>chat yahoo</a></div>
+                                    </div>
+                                </div>
+                            </li>  
+                         
+
+                      <!--{/loop}-->
+                      </ul>
+                      <!--{else}-->
+                      <div>
+                        {lang notfound}
+                      </div>
+                      <!--{/if}-->
+                        <div class="clearfix"></div>
+                         <div id="f-pr-tab03" class="tab-pane ">
+                     <!--{temp news_pagination}-->
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+               
+            </div>
+            
+          </div>
+        </div>
+<script src="{$web['static_temp_mod']}/resource/js/support.js" type="text/javascript"></script>
+<script>
+$(document).ready(function() {
+    Support.init();
+});
+</script>

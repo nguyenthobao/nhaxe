@@ -1,0 +1,32 @@
+// Cac bien global de khai bao cac color 
+@f-color-themes-a: #0069a3;
+@f-color-themes-b: #0069a3;
+@f-background-thems-a: #0069a3;
+@f-border-color-themes-a:red;
+
+@f-color-link:red;
+@f-color-link-hover:red;
+//--------------
+.f-color-base{
+	color: @f-color-themes-a;
+}
+.f-bg-base{
+	background-color: @f-background-thems-a;
+}
+.f-border-base{
+	border-color: @f-border-color-themes-a;
+}
+//---------------
+.f-link-base{
+	color: @f-color-link;
+	&:hover{
+		color: @f-color-link-hover;
+	}
+}
+
+a{
+	color: @f-color-themes-a;
+	&:hover{
+		color: @f-color-themes-b;
+	}
+}

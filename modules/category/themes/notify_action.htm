@@ -1,0 +1,22 @@
+<!--{if isset($_SESSION['error_submit'])}-->
+<div class="alert alert-danger">
+	<button class="close" data-close="alert"></button>
+	{show_ss error_submit}
+</div>
+<!--{/if}--> 
+<!--{if isset($_SESSION['success'])}-->
+<div class="alert alert-success">
+	<button class="close" data-close="alert"></button>
+	{show_ss success}
+</div>
+<!--{/if}--> 
+
+<div class="alert alert-danger display-hide">
+	<button class="close" data-close="alert"></button>
+	{lang notify_error}
+</div>
+
+<div class="alert alert-success display-hide">
+<button class="close" data-close="alert"></button>
+	{lang notify_success}
+</div>

@@ -1,0 +1,15 @@
+<table class="table table-bordered table-condensed table-striped table-hover">
+	<!--{loop $content $k $v}-->
+		<!--{if $v['content'] == '@'}-->
+		<tr>
+			<td class="col-md-12" colspan="2"><span style="color:red">{$v[title]}</span></td>
+		</tr>
+		<!--{else}-->
+		<tr>
+			<td class="col-md-3">{$v[title]}</td>
+			<td class="col-md-9">{$v['content']}</td>
+		</tr>
+		<!--{/if}-->
+	<!--{/loop}-->
+</table>
+<div class="clearfix"></div>

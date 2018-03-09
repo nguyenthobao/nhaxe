@@ -1,0 +1,186 @@
+.form_ykien {
+display: none;
+border-bottom: 1px solid #F1F1F1;
+margin-bottom: 30px;
+padding-bottom: 20px;
+}
+.ykientitle {
+position: relative;
+text-align: left;
+height: 51px;
+padding-bottom: 10px;
+border-bottom: 1px solid #F1F1F1;
+margin-bottom: 10px;
+}
+.ykientitle a {
+padding: 10px;
+background: #0069A3;
+width: 200px;
+margin: auto;
+border-radius: 3px;
+color: #FFF;
+font-weight: bold;
+float: right;
+text-align: center;
+cursor: pointer;
+}
+.form_ykien .form-horizontal .form-group {
+margin-right: -15px;
+margin-left: -15px;
+margin-bottom: 23px;
+}
+.form_ykien .control-label {
+font-size: 12px;
+}
+.form_ykien .col-md-5 {
+position: relative;
+}
+.form_ykien .form-control {
+border-radius: 1px;
+box-shadow: none;
+border: 1px solid #0069A3;
+}
+.list-ykien-item {
+margin-bottom: 40px;
+border-bottom: 1px dashed #F1F1F1;
+padding-bottom: 40px;
+}
+.ykien-thum {
+border-right: 2px solid #E72121;
+}
+.ykien-thum a {
+width: 140px;
+height: 140px;
+overflow: hidden;
+border-radius: 50%;
+background: #A3A3A3;
+border: 2px solid #0069A3;
+position: relative;
+display: block;
+z-index: 100;
+}
+.ykien-thum img {
+width: 170px;
+height: 170px;
+position: absolute;
+top: 0;
+bottom: 0;
+left: -17px;
+right: 0;
+margin: auto;
+-webkit-transition: all 0.3s ease-in-out;
+transition: all 0.3s ease-in-out;
+z-index: 1;
+max-width:none !important;
+}
+.ykien-thum img:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+.ykien-ct {
+padding-left: 12px;
+}
+.ykien-name {
+font-weight: bold;
+font-size: 13px;
+}
+.yk-time {
+font-size: 13px;
+color: #707070;
+text-transform: lowercase;
+font-style: italic;
+}
+.yk-short {
+display: block;
+font-size: 13px;
+line-height: 23px;
+margin-top: 6px;
+padding-left: 5px;
+border-left: 1px dashed #EBEBEB;
+margin-left: 8px;
+text-align: justify;
+}
+.phai .ykien-thum {
+  border-left: 2px solid #E72121;
+  border-right: 0;
+}
+.phai .ykien-thum a {
+  width: 140px;
+  height: 140px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #A3A3A3;
+  border: 2px solid #0069A3;
+  position: relative;
+  display: block;
+  float: right;
+}
+.phai .ykien-thum img {
+  width: 170px;
+  height: 170px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -17px;
+  right: 0;
+  margin: auto;
+}
+.phai .ykien-ct {
+  padding-right: 12px;
+  padding-left: 0;
+  border-left: 0;
+  text-align: right;
+}
+.phai .yk-time {
+  font-size: 13px;
+  color: #707070;
+  text-transform: lowercase;
+  font-style: italic;
+}
+.phai .yk-short {
+  display: block;
+  font-size: 13px;
+  line-height: 23px;
+  margin-top: 6px;
+  padding-left: 5px;
+  border-left: 0px dashed #EBEBEB;
+  margin-left: 8px;
+  text-align: justify;
+  border-right: 1px dashed #EBEBEB;
+  margin-right: 8px;
+  padding-right: 5px;
+}
+.phai .ykien-name {
+  font-weight: bold;
+  font-size: 13px;
+}
+.phai .list-ykien-item .col-md-10 {
+  padding: 0;
+}
+.form_ykien .control-label {
+  font-size: 12px;
+}
+.form_ykien .form-control {
+  border-radius: 1px;
+  box-shadow: none;
+  border: 1px solid #0069A3;
+}
+.form_ykien .col-md-5 {
+  position: relative;
+}
+.form_ykien .help-block {
+  display: block;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  color: #E60A0A;
+  position: absolute;
+  top: 35px;
+  left: 15px;
+  font-size: 12px;
+}
+.form_ykien .form-horizontal .form-group {
+  margin-right: -15px;
+  margin-left: -15px;
+  margin-bottom: 23px;
+}

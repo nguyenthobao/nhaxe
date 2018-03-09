@@ -1,0 +1,114 @@
+@media only screen and (min-width: 1200px) {
+ 	.container{
+ 		width:1040px;
+ 	}
+}
+@media only screen and (max-width: 1200px) {
+ 
+}
+
+@media only screen and (max-width: 1024px) {
+ 
+}
+ 
+@media only screen and (max-width: 980px) {
+ 
+}
+ 
+@media only screen and (max-width: 800px) {
+ 
+}
+ 
+@media only screen and (max-width: 780px) {
+	.fly-search-inner{
+		display: block;
+		padding: 0 15px;
+	}
+	.fly-search-item{
+		width:100%;
+	}
+	.box-search-body button{
+		width:100%
+	}
+	.box-search-body input{
+		border-bottom:1px solid #a5a5a5
+	}
+	.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+		border-bottom-color:#000;
+	}
+	ul.routes-list li{
+		height:auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+	.routes-list li a{
+		width:auto;
+	}
+	.menu-mobile{
+		display: block;
+		float: right;
+	}
+	.menu{
+		display: none;
+	}
+	.account{
+		padding: 5px 0;
+	}
+	ul.routes-list li span.price{
+		width: auto;
+	}
+}
+ 
+@media only screen and (max-width: 768px) {
+ 
+}
+ 
+@media only screen and (max-width: 720px) {
+ 
+}
+ 
+@media only screen and (max-width: 640px) {
+ 
+}
+ 
+@media only screen and (max-width: 600px) {
+ 
+}
+ 
+@media only screen and (max-width: 568px) {
+ 
+}
+ 
+@media only screen and (max-width: 563px) {
+ 
+}
+ 
+@media only screen and (max-width: 549px) {
+ 
+}
+ 
+@media only screen and (max-width: 534px) {
+ 
+}
+ 
+@media only screen and (max-width: 480px) {
+ 
+}
+ 
+@media only screen and (max-width: 360px) {
+ 
+}
+ 
+@media only screen and (max-width: 338px) {
+ 
+}
+ 
+@media only screen and (max-width: 330px) {
+ 
+}
+ 
+@media only screen and (max-width: 320px) {
+ 
+}

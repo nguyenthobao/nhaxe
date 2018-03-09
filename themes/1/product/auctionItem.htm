@@ -1,0 +1,45 @@
+<ul class="f-product-viewid row f-product">
+<!--{if !empty($_content)}-->
+<!--{loop $_content $k $v}-->
+<li class=" col-md-3  col-sm-3 col-xs-3" id="like-product-item-{$v['id']}">
+	<div class="v2-pr-item">		
+		<!--{if $v['price']['percent'] != 0}--><div class="v2-pr-item-saleof"><i class="fa fa-angle-double-down"></i> <span>{$v['price']['percent']}</span></div><!--{/if}-->
+		<div class="v2-pr-item-img ">
+			<a href="{$v['link']}" title="{$v['name']}"><img alt="{$v['name']}"  src="<!--{loadImage $v['image'] resize 265 250}-->" id="f-pr-image-zoom-id-{$v['id']}"  class="img-responsive BNC-image-add-cart-{$v['id']}" /></a>
+		</div>
+		<div class="downtime BNC_down_time_{$v['id']}"></div>
+		<div class="v2-pr-item-boxdetail ">
+			<div class="v2-pr-item-price-gr">
+				
+				<!--{if $v['price']['price']==''}-->
+					<p class="v2-pr-item-price no-price">{lang contact}</p>
+				<!--{else}-->
+					<p class="v2-pr-item-price">{$v['price']['price']}</p>
+				<!--{/if}-->
+
+				<!--{if $v['price']['price_old'] != 0}--><p class="v2-pr-item-price-old">{$v['price']['price_old']}</p><!--{/if}-->
+			</div>
+			<a class="v2-pr-item-name" href="{$v['link']}" title="{$v['name']}"><h2>{$v['name']}</h2></a>
+
+			<!--{if !empty($v['other_info'])}-->
+			<div class="f-pr-otherdetail" style="display:none">
+				<ul>
+					<!--{loop $v['other_info'] $row}-->
+					<li class="row">
+						<span class="col-md-3  col-sm-3 col-xs-3">{$row['title']}: </span> <span class="col-md-9  col-sm-9 col-xs-9">{$row['content']} </span>
+					</li>
+					<!--{/loop}-->
+				</ul>
+	        </div>
+	        <!--{/if}-->
+	        
+		</div>
+	</div>
+	<input type="hidden" class="BNC_value_downtime" data-id="{$v['id']}" data-time="{$v['auction_end']}">
+</li>
+
+<!--{/loop}-->
+</ul>
+<!--{else}-->
+<center>{lang no_product}</center>
+<!--{/if}-->

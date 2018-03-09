@@ -1,0 +1,82 @@
+<div class="productbreadcrumb">
+
+<ol class="breadcrumb">
+     <!--{loop $_breadcrumbs $k $v}-->
+        
+        <li ><a href="{$v['href']}">{$v['text']}</a></li>
+         
+        <!--{/loop}-->
+   
+</ol>
+</div>
+
+<div class="clearfix"></div>
+<div class="f-module-page">
+  <div class="f-module-page-title"> <i></i><span>{$_videoDetail['title']}</span> </div>
+  <div class="f-module-page-body padding-10">
+    <div class="clearfix"></div>
+    <div class="f-page-split">
+      <div class="f-page-split-title">{lang timecreate} {$_videoDetail['create_time']}</div>
+    </div>
+    <div class="f-video-view-page">
+      <div class="f-video-view-player">
+        <div class="video-container">
+         
+          <div id="myElement"></div>
+
+          <script>
+          jwplayer("myElement").setup({
+            file: "https://www.youtube.com/watch?v={$_video['link_video']}", 
+            width: 828,
+            height: 465 
+          });
+          </script>
+
+
+
+        </div>
+      </div>
+      <div class="f-video-view-detail">
+        {$_videoDetail['short']} 
+      </div>
+      <div class="f-video-view-detail" style="display: none">
+       {$_videoDetail['details']}
+
+
+     </div>
+     <div class="f-video-detail-readmore">
+      <a class="f-video-detail-readmorebt">{lang view_more}</a>
+    </div>
+    
+    <div class="f-page-split">
+      <div class="f-page-split-title"></div>
+      <div class="f-page-split-body">
+        <!--{if !empty($_videoDetail['tags'])}-->
+        <div class="f-news-view-tags">
+         <span>Tags: 
+
+          <!--{loop $_videoDetail['tags'] $k $v}-->
+          <a href="{$k}">{$v}</a>,
+          <!--{/loop}-->
+        </span>
+      </div>
+      <!--{/if}-->                              
+    </div>
+  </div>
+  
+  
+
+
+  <!--{if $_videotc == '1'}-->
+  <!--{temp video/video_other_related}-->  
+  <!--{/if}-->
+  <div class="clearfix"></div>
+  <!--{if $_videodm == '1'}-->
+  <!--{temp video/video_other_category}-->
+  <!--{/if}-->
+
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+<!--/VIDEO --> 

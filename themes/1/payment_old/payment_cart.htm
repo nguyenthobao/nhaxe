@@ -1,0 +1,23 @@
+<!--{temp payment_header}-->
+<div id="orderHeader" class="g980">
+    <p class="logoOrder"><a href="/"><!--{if $web['logo'] != null}--> 
+              <!--{if $web['logo']['is_swf']}--> 
+                  <object width="{$web['logo']['width']}" height="{$web['logo']['height']}">
+                  <param value="transparent" name="wmode">
+                  <param value="{$web['static_upload']}{$web['logo']['img']}" name="movie">
+                  <embed width="{$web['logo']['width']}" height="{$web['logo']['height']}" wmode="transparent" src="{$web['static_upload']}{$web['logo']['img']}">
+                  </object>
+              <!--{else}-->
+                   <img src="{$web['static_upload']}{$web['logo']['img']}" width="{$web['logo']['width']}" height="{$web['logo']['height']}" class="img-responsive"  alt="Logo"/>
+              <!--{/if}--> 
+            <!--{else}-->
+             <img src="https://webbnc.net/image/data/logo_bnc.png" class="img-responsive"  alt="Logo"/>
+            <!--{/if}--></a></p>
+</div>
+<div class="g980 box">
+    <center>
+    	<p style="line-height:40px">{lang no_product}</p>
+    <a class="continue_shop" href="{$_common['step']}" title="{lang next_buy}" >{lang next_buy}</a>
+    </center>
+</div>
+<!--{temp payment_footer}-->

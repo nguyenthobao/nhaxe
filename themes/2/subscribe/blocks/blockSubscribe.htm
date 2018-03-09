@@ -1,0 +1,38 @@
+<script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/subscribe.js"></script>
+<script src=""></script>
+ <div class="f-block theodoi">
+  <div class="f-block-title"> <i></i><span>{lang submit_subscribe}</span> </div>
+  <div class="f-block-body padding-10" >     
+    
+    <form class="form-horizontal no-padding" action="" id=""  method="POST" >
+     <div id="alert-subscribe" class="alert alert-danger alert-dismissible" data-lang="{lang not_empty}" role="alert" style="display: none">
+            <span id="notify-subscribe"></span>
+      </div>
+            <span id="notify-"></span>
+      <fieldset >
+        <!-- Text input-->
+        <div class="form-group"> 
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <input id="subscribe_email" placeholder="Địa chỉ email" name="name_block" type="text" class="form-control">
+          </div>
+        </div>
+        <!-- Button -->
+        <div class="form-group">
+          <div class="col-md-12 col-sm-12 col-xs-12 ">
+            <button  name="action_block" class="btn btn1 BNC_submit_subscribe" style="text-align: center;" data-gender="1" ><i class="fa fa-mars"></i> {lang submit_subscribe_gender1}</button>
+            <button  name="action_block" class="btn btn2 BNC_submit_subscribe" style="text-align: center;" data-gender="2" ><i class="fa fa-mars"></i> {lang submit_subscribe_gender2}</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    
+  </div>
+</div>
+
+<div class="clearfix"></div>
+<script type="text/javascript">
+  $(function() {
+    Subscribe.init();
+  })
+
+</script>

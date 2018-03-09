@@ -1,0 +1,29 @@
+<div class="backgroundnew">
+  <div class="container" style="min-height: 500px">
+    <div class="f-center-module">
+      <div class="f-center-title"> <i></i><span>Đặt vé trực tuyến</span> </div>
+      <div class="f-center-body">
+      	<ul class="f-news row">
+        	<!--{eval $i=0}-->
+			{loop $_chuyen $k $v}
+            <!--{if $i < 9}--> 
+			<li class="col-md-4 col-sm-4 col-xs-6 full-xs">
+	            <div class="f-news-item">
+	              <div class="f-news-item-img"> <a href="$v['link']" title="$v['routeName']"> <img src="http://demo.nhaxe.vn/themes/1/datve/TuyenXeMau.jpg" class="img-responsive" alt="$v['routeName']" style="opacity: .5" /> </a>
+
+	              </div>
+	              <div class="f-news-item-title">
+	              
+	                <h3> <a title="$v['routeName']" href="$v['link']">$v['routeName']</a> </h3>
+	                <h4> <a title="$v['routeName']" href="$v['link']">$v['price']</a> </h4>
+	              </div>
+	            </div> 
+	          </li>
+            <!--{/if}-->
+       		<!--{eval $i++}-->
+			{/loop}
+		</ul> 
+      </div>
+    </div>
+  </div>
+</div> 

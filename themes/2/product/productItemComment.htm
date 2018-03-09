@@ -1,0 +1,26 @@
+<div class="form-group row_view_comment">
+	<div class="col-md-1">
+		<img src="{$web['static_temp']}{$web['temp']}/statics/imgs/avatar-01.jpg" class="logo-default" />
+		<a href="javascript:void(0)" class="btn_bao_cao" data-id="{$v['id']}">
+			<img src="{$web['static_temp']}{$web['temp']}/statics/imgs/vi_pham.gif" class="logo-default" title="Báo cáo vi phạm" alt="Báo cáo vi phạm" style="display:block; margin-top:5px; margin-left:6px;" />
+		</a>
+
+	</div>
+	<div class="col-md-11">					
+		<p><span class="name_comment">{$v['name']}</span><span class="time_comment">{$v['create_time']}</span></p>
+		<p>{$v['comment']}</p>
+
+		<div class="row_btn_reply actions btn-set" data-id="{$v['id']}">
+			<a href="javascript:void(0)" class="btn green btn_reply">Trả lời</a>			
+		</div>
+		<div class="subReply"></div>
+
+	</div>
+</div>
+<!--{if !empty($v['sub'])}-->
+	<!--{loop $v[sub] $k $v}-->
+	<div class="child_view_comment">
+		<!--{temp product/productItemComment}-->
+	</div>
+	<!--{/loop}-->
+<!--{/if}-->

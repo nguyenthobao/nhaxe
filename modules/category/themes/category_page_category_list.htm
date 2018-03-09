@@ -1,0 +1,20 @@
+<!--{if isset($_category)}-->
+<ul class="f-news-page">
+  <!--{loop $_category $k $v}-->
+  <li class="f-news-page-item row">
+
+        <div class="f-news-page-item-text col-md-9">
+          <h2><a href="{$v['href']}" title="">{$v['title']}</a></h2>
+          <div class="f-news-page-item-summary">{$v['short']}</div>
+          <div class="f-read-more pull-right"><a href="{$v['href']}"><span class="label label-category">đọc tiếp...</span></a></div>
+        </div>
+      </li>
+      <!--{/loop}-->
+    </ul>
+    <!--{else}-->
+    <ul class="f-news-page">
+      <li class="f-news-page-item row">
+        {lang no_record_exists}
+      </li>
+    </ul>
+<!--{/if}-->

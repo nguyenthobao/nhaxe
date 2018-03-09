@@ -1,0 +1,14 @@
+<div class="f-cate  ">
+	<!--{if isset($_listCategory)}-->
+    <ul class="f-cate-ul no-margin no-padding">        
+        <!--{loop $_listCategory $k $v}-->
+        <li class="col-md-3  col-sm-3 col-xs-3" style="margin-bottom:5px">
+        	<h2>
+            <a href="{$v['href']}" title="{$v['title']}"><span>{$v['title']}</span></a>
+            </h2>
+        </li>
+        <!--{/loop}-->        
+    </ul>
+    <!--{/if}-->
+    <div class="clearfix"></div>
+</div>

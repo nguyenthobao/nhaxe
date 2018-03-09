@@ -1,0 +1,30 @@
+<!--{if !empty($data['home_cat'])}-->
+	<!--{loop $data['home_cat'] $key $value}-->
+		<!--{if !empty($value['content_news'])}-->
+		<div class="f-center-module">
+			<div class="f-center-title row"> 
+				<span class="first">{$value['title']}</span>		
+				<!--{if !empty($value['sub'])}-->
+				<ul class="f-pr-tab-home-cate nav-tabs">
+		            <!--{eval $i = 1}--> 
+		            <!--{loop $value['sub'] $k $v}-->
+		            	<li class="<!--{if $i==1}--> active <!--{/if}-->">		            		
+		            		<a href="#f-pr-cate01-tab0{$i}" data-toggle="tab">{$v['title']}</a>
+		            	</li>
+		            <!--{eval $i++}-->
+		            <!--{/loop}--> 
+				</ul>
+				<!--{/if}-->
+			</div>
+			<div class="f-center-body">
+				<div class="clearfix"></div>
+				<div class="tab-content">
+					<!--{eval $content_news = $value['content_news']}-->
+					<!--{temphome homes/newsItem}-->
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<!--{/if}-->
+	<!--{/loop}-->
+<!--{/if}-->

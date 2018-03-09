@@ -1,0 +1,18 @@
+<li class="col-md-6 col-lg-6 col-sm-6 ">
+	<!--{if $v['avatar']}--><img style="display:none" src="<!--{loadImage $v['avatar'] resize 32 32}-->" class="img-responsive" alt="{$v['title']}" /><!--{/if}-->
+	<!--{if $v['icon']}--><img style="display:none" src="<!--{loadImage $v['icon'] resize 32 32}-->" class="img-responsive" alt="{$v['title']}" /><!--{/if}-->
+	<!--{if $v['background']}--><img style="display:none" src="<!--{loadImage $v['background'] resize 32 32}-->" class="img-responsive" alt="{$v['title']}" /><!--{/if}-->
+	<a href="{$v['link']}" title="{$v['title']}">
+		<img src="<!--{loadImage $v['icon'] none 50 50}-->" width="" height="" class="img-responsive" alt="" />
+		<h4 class="title">{$v['title']}</h4>
+		<p>{$v['info']}</p>
+	</a>
+	
+	<!--{if !empty($v['sub'])}-->
+	<ul>
+		<!--{loop $v[sub] $k $v}-->
+		<!--{tempblock blocks/blockListOptionItemRight}-->
+		<!--{/loop}-->
+	</ul>
+	<!--{/if}-->
+</li>

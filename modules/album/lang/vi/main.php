@@ -1,0 +1,29 @@
+<?php
+$_L['empty_the_list']                     = 'Chưa có album nào thuộc danh mục';
+$_L['new']                                = 'Mới';
+$_L['hot']                                = 'Nổi bật';
+$_L['a_z']                                = 'A-Z';
+$_L['title']                              = 'Tiêu đề';
+$_L['read_more']                          = 'Xem thêm';
+$_L['collapse']                           = 'Thu gọn';
+$_L['album_related']                      = 'Album liên quan';
+$_L['search']                             = 'Tìm kiếm';
+$_L['could_not_find_any_results']         = 'Không tìm thấy kết quả nào cho từ';
+$_L['blockNew']                           = 'Album mới';
+$_L['blockHot']                           = 'Album xem nhiều';
+$_L['module_name']                        = 'Album';
+$_L['no_record_exists']                   = 'Không có bản ghi nào tồn tại';
+$_L['comment_with_your_facebook_account'] = 'Bình luận bằng tài khoản facebook';
+$_L['comment_with_your_google_account']   = 'Bình luận bằng tài khoản google+';
+$_L['displaying']                         = 'Hiển thị từ';
+$_L['page_to']                            = 'đến';
+$_L['page_on']                            = 'trên';
+$_L['records']                            = 'bản ghi - Trang số';
+$_L['page']                               = 'trang';
+$_L['before']                             = 'Trước';
+$_L['after']                              = 'Sau';
+$_L['show_number']                        = 'Số lượng hiện thị';
+$_L['album_new']                          = 'Album mới';
+$_L['album_vip']                          = 'Album Vip';
+$_L['album_hot']                          = 'Album HOT';
+?>

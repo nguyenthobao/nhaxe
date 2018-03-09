@@ -1,0 +1,122 @@
+<div class="f-block">
+	<div class="f-block-title stlyeblocktitle"> <i></i><span>{$block['title']}</span> </div>
+	<div class="f-block-body">
+		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+			<!--{if !empty($data['category'])}-->
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="heading-1">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">Tìm kiếm theo danh mục</a>
+					</h4>
+				</div>
+				<div id="collapse-1" class="panel-collapse in" role="tabpanel" aria-labelledby="heading-1" style="height: auto;">
+					<div class="panel-body">
+						<div class="f-advsearch">
+							<div class="f-advsearch-body">
+								<ul id="search-category">
+									<!--{loop $data['category'] $k $v}-->
+									<li><input type="checkbox" value="{$v['id']}" <!--{if $v['active']==1}-->checked<!--{/if}-->> 
+										<span>{$v['name']}</span>
+										</a>
+									</li>
+									<!--{/loop}-->
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--{/if}-->
+
+			<!--{if !empty($data['price'])}-->
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="heading-2">
+					<h4 class="panel-title">
+						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-2" aria-expanded="true" aria-controls="collapse-2">Khoảng giá</a>
+					</h4>
+				</div>
+				<div id="collapse-2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-2">
+					<div class="panel-body">
+						<input type="text" id="range_price" name="range_price" data-min="{$data['price']['min']}" data-max="{$data['price']['max']}" data-from="{$data['price']['from']}" data-to="{$data['price']['to']}" />
+					</div>
+				</div>
+			</div>
+			<!--{/if}-->
+
+			<!--{if !empty($data['color'])}-->
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="heading-3">
+					<h4 class="panel-title">
+						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-3" aria-expanded="true" aria-controls="collapse-3">Màu sắc</a>
+					</h4>
+				</div>
+				<div id="collapse-3" class="panel-collapse in" role="tabpanel" aria-labelledby="heading-3" style="height: auto;">
+					<div class="panel-body">
+						<div class="f-color-search">
+							<ul id="search-color">
+								<!--{loop $data['color'] $k $v}-->
+								<li <!--{if $v['active']==1}-->class="active"<!--{/if}-->><a href="javascript:;" style="background:{$v['color']}" data-color="{$v['color']}">{$v['count']}</a></li>
+								<!--{/loop}-->
+							</ul>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--{/if}-->
+
+			<!--{if !empty($data['properties'])}-->
+			<!--{loop $data['properties'] $k $v}-->
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="heading-<!--{eval echo ($k+4)}-->">
+					<h4 class="panel-title">
+						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-<!--{eval echo ($k+4)}-->" aria-expanded="true" aria-controls="collapse-<!--{eval echo ($k+4)}-->">{$v['name']}</a>
+					</h4>
+				</div>
+				<div id="collapse-<!--{eval echo ($k+4)}-->" class="panel-collapse in" role="tabpanel" aria-labelledby="heading-<!--{eval echo ($k+4)}-->" style="height: auto;">
+					<div class="panel-body">
+						<div class="f-advsearch">
+							<div class="f-advsearch-body">
+								<ul class="search-properties">
+									<!--{loop $v['sub'] $k1 $v1}-->
+									<li><input type="checkbox" value="{$v1['id']}" <!--{if $v1['active']==1}-->checked<!--{/if}--> /> 
+										<span>{$v1['name']}</span>
+									</li>
+									<!--{/loop}-->
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--{/loop}-->
+			<!--{/if}-->
+
+		</div>
+	</div>
+</div>
+
+<style type="text/css">
+	.f-color-search ul li {
+		border: 1px solid white;
+	}
+	.f-color-search ul li.active {
+		border: 1px solid red;
+		border-radius: 50%;
+	}
+	.f-color-search ul li.active a {
+		border: 1px solid white;
+	}
+</style>
+
+<link rel="stylesheet" href="{$web['static_temp']}/{$web['temp']}/statics/plugins/ion.rangeSlider-2.0.2/css/ion.rangeSlider.css" />
+<link rel="stylesheet" href="{$web['static_temp']}/{$web['temp']}/statics/plugins/ion.rangeSlider-2.0.2/css/ion.rangeSlider.skinFlat.css" />
+<script src="{$web['static_temp']}/{$web['temp']}/statics/plugins/ion.rangeSlider-2.0.2/js/ion-rangeSlider/ion.rangeSlider.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/productSearch.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        ProductSearch.init();
+    });
+</script>

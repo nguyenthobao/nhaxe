@@ -1,0 +1,45 @@
+<script src="{$web['static_temp']}{$web['temp']}/statics/plugins/pjax/jquery.cookie.js"></script>
+<script src="{$web['static_temp']}{$web['temp']}/statics/plugins/pjax/jquery.pjax.js"></script>
+<link rel="stylesheet" type="text/css" href="{$web['static_temp']}{$web['temp']}/statics/plugins/magnific-popup/magnific-popup.css"/>
+<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/css/quickview.css"/>
+<script src="{$web['static_temp']}{$web['temp']}/statics/plugins/magnific-popup/jquery.magnific-popup.js"></script>
+
+<div id="fast-container">
+	<!--{temp product/breadcrumbs}-->
+	<div class="f-ctn-center">
+		<div class="f-module-page">
+			<div class="f-module-page-title"> 
+				<span class="orderv">{lang label_order_manager}</span>
+			</div>
+			<div class="f-module-page-body padding-10 table-responsive">
+				 
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th class="text-center">{lang label_stt}</th>
+							<th class="text-center">{lang label_create_time}</th>
+							<th class="text-center">{lang label_order_code}</th>
+							<th class="text-center">{lang label_sub_total}</th>
+							<th class="text-center">{lang label_shipping}</th>
+							<th class="text-center">{lang label_total}</th>
+							<th class="text-center">{lang label_action}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!--{if !empty($_listorder)}-->
+						<!--{loop $_listorder $k $v}-->
+						<!--{temp product/listorder_item}-->
+						<!--{/loop}-->
+						<!--{/if}-->
+					</tbody>
+				</table>
+				<div style="overflow: hidden;">
+					<!--{if !empty($_pagination)}-->
+					<!--{temp product/pagination}-->
+					<!--{/if}-->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<input type="hidden" id="params" value="{$_params}" />

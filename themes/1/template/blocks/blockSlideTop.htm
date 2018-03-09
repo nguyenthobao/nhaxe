@@ -1,0 +1,69 @@
+
+<div id="carousel-example-generic" class="carousel slide carousel-fade" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <!--{loop $data $k $v}--> 
+      <!--{if !empty($v['image_slide'])}-->
+          <!--{loop $v['image_slide'] $k2 $v2}-->
+    <li data-target="#carousel-example-generic" data-slide-to="{$k2}" class="<!--{if $k2==0}--> active <!--{/if}-->"></li>
+    <!--{/loop}-->
+      <!--{/if}-->
+      <!--{/loop}-->
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <!--{loop $data $k $v}-->
+      <!--{if !empty($v['image_slide'])}-->
+          <!--{loop $v['image_slide'] $k2 $v2}--> 
+          <div class="item <!--{if $k2==0}--> active <!--{/if}-->">
+            <a href="{$v2['link']}">
+              <img src=" <!--{loadImage $v2['src_link'] none 1170 500}-->" class="img-responsive" alt="$v2['title']" />
+
+              <div class="wrapnewitem">
+                      
+              </div><!--end wrapnewitem-->
+            </a>
+
+            <div class="container">
+              <div class="carousel-caption">
+
+                <p class="styletag">
+                   <span><a href="#">Fashion</a></span>
+                   <span><a href="#">Review</a></span>
+                 </p>
+
+                <h2>$v2['title']</h2>
+                <p class="titlecaption">$v2['description']</p>
+                <p class="readdetail"><a title="Title" href="{$v2['link']}">Read Detail</a></p>
+              </div><!--end carousel caption-->
+            </div><!--end container-->
+
+          </div><!--end item-->
+          <!--{/loop}-->
+      <!--{/if}-->
+      <!--{/loop}-->
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <i class="fa fa-angle-left commonleft"></i>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <i class="fa fa-angle-right commonright "></i>
+  </a>
+
+</div>
+
+<div class="clearfix"></div>
+
+<div class="tuychontop">
+    <div class="container">
+      bnc_position_block_6
+    </div>
+</div><!--end tuychontop-->
+
+<div class="clearfix"></div>
+ 
+
+ bnc_position_adv_adv_7

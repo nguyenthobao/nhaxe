@@ -1,0 +1,324 @@
+﻿/* 
+    Document   : reset
+    Created on : 1-10-2013, 16:03:39
+    Author     : mrr.rio
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+/*********************
+  UI CONTROL
+*********************/
+#fb-root {
+	display: none;
+}
+/* To fill the container and nothing else */
+
+.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe[style] {
+	width: 100% !important;
+}
+.button-small {
+	-moz-box-shadow: inset 0px 1px 0px 0px #f5978e;
+-webkit-box-shadow: inset 0px 1px 0px 0px #F5978E;
+box-shadow: inset 0px 1px 0px 0px #F5978E;
+background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #F24537), color-stop(1, #C62D1F) );
+background: -moz-linear-gradient( center top, #f24537 5%, #c62d1f 100% );
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f24537', endColorstr='#c62d1f');
+background-color: #F24537;
+-webkit-border-top-left-radius: 2px;
+-moz-border-radius-topleft: 2px;
+border-top-left-radius: 2px;
+-webkit-border-top-right-radius: 2px;
+-moz-border-radius-topright: 2px;
+border-top-right-radius: 2px;
+-webkit-border-bottom-right-radius: 2px;
+-moz-border-radius-bottomright: 2px;
+border-bottom-right-radius: 2px;
+-webkit-border-bottom-left-radius: 2px;
+-moz-border-radius-bottomleft: 2px;
+border-bottom-left-radius: 2px;
+text-indent: 0;
+border: 1px solid #D02718;
+display: inline-block;
+color: #FFF;
+font-family: metro-n;
+font-size: 15px;
+font-style: normal;
+height: 35px;
+line-height: 31px;
+text-decoration: none;
+text-align: center;
+padding-left: 15px;
+padding-right: 15px;
+}
+.button-small:hover {
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #f24537) );
+	background: -moz-linear-gradient( center top, #c62d1f 5%, #f24537 100% );
+ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c62d1f', endColorstr='#f24537');
+	background-color: #c62d1f;
+	color: #fff;
+}
+/*********************
+ GENERAL UI COLORS 
+*********************/
+
+/***
+Colors
+***/
+.bg-color-1 {
+	background: #f34711;
+}
+.bg-color-2 {
+	background: #fff;
+}
+.bg-color-3 {
+	background: #f34711;
+}
+.color-1 {
+	color: #f34711 !important;
+}
+.color-2 {
+	color: #000;
+}
+.color-3 {
+	color: #ccc;
+}
+.border-left {
+	border-left: 1px solid #f3f3f3;
+}
+.border-right {
+	border-right: 1px solid #f3f3f3;
+}
+.color-one {
+	color: #000;
+}
+.color-red {
+	color: #e02222;
+}
+.color-blue {
+	color: #0da3e2;
+}
+.color-grey {
+	color: #555555;
+}
+.color-green {
+	color: #35aa47;
+}
+.color-yellow {
+	color: #ffb848;
+}
+.color-purple {
+	color: #852b99;
+}
+.color-light-red {
+	color: #ff5400;
+}
+.color-light-blue {
+	color: #bfd5fa;
+}
+.color-light-grey {
+	color: #fafafa;
+}
+.color-light-green {
+	color: #78df1d;
+}
+/*********************
+ GENERAL RESET & SETUP 
+*********************/
+
+/***
+General typography 
+***/
+html {
+	overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+p, h1, h2, h3, h4, h5, h6, ul {
+	margin: 0;
+	padding: 0;
+}
+img {
+	border: 0px;
+}
+h2 a:hover {
+	color: #0da3e2;
+	text-decoration: none;
+	transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+}
+h3 {
+	color: #222;
+}
+/***
+ie8 & ie9 modes
+***/
+.visible-ie8 {
+	display: none;
+}
+.ie8 .visible-ie8 {
+	display: inherit !important;
+}
+.visible-ie9 {
+	display: none;
+}
+.ie9 .visible-ie9 {
+	display: inherit !important;
+}
+.hidden-ie8 {
+	display: inherit;
+}
+.ie8 .hidden-ie8 {
+	display: none !important;
+}
+.hidden-ie9 {
+	display: inherit;
+}
+.ie9 .hidden-ie9 {
+	display: none !important;
+}
+/***
+General More Link
+***/
+
+/***
+Fix link outlines after click
+***/
+a, a:focus, a:hover, a:active {
+	outline: 0;
+	text-decoration:none !important;
+}
+/***
+IE8 fix for form input height in fluid rows
+***/
+.ie8 .row-fluid [class*="span"] {
+	min-height: 20px !important;
+}
+/***
+Fix grid offset used for reponsive layout handling(refer app.js=>handleResponsive)
+***/
+.fix-offset {
+	margin-left: 0px !important;
+}
+/***
+Misc tools
+***/
+.clearfix {
+	clear: both;
+}
+.visible-ie8 {
+	display: none
+}
+.no-padding {
+	padding: 0px !important;
+}
+.no-margin {
+	margin: 0px !important;
+}
+.no-bottom-space {
+	padding-bottom: 0px !important;
+	margin-bottom: 0px !important;
+}
+.no-top-space {
+	padding-top: 0px !important;
+	margin-top: 0px !important;
+}
+.space5 {
+	display: block;
+	height: 5px !important;
+	clear: both;
+}
+.space7 {
+	height: 7px !important;
+	clear: both;
+}
+.space10 {
+	height: 10px !important;
+	clear: both;
+}
+.space12 {
+	height: 12px !important;
+	clear: both;
+}
+.space15 {
+	height: 15px !important;
+	clear: both;
+}
+.space20 {
+	height: 20px !important;
+	clear: both;
+}
+.no-space {
+	margin: 0px !important;
+	padding: 0px !important;
+}
+.no-text-shadow {
+	text-shadow: none !important;
+}
+.no-left-padding {
+	padding-left: 0 !important;
+}
+.no-left-margin {
+	margin-left: 0 !important;
+}
+.margin-auto {
+	margin: auto;
+}
+.padding-10 {
+	padding: 10px !important;
+}
+.margin-bottom-10 {
+	margin-bottom: 10px !important;
+}
+.margin-top-10 {
+	margin-top: 10px !important;
+}
+.margin-bottom-15 {
+	margin-bottom: 15px !important;
+}
+.margin-bottom-20 {
+	margin-bottom: 20px !important;
+}
+.margin-bottom-30 {
+	margin-bottom: 30px !important;
+}
+.margin-bottom-40 {
+	margin-bottom: 40px !important;
+}
+.margin-top-20 {
+	margin-top: 20px !important;
+}
+.margin-bottom-25 {
+	margin-bottom: 25px !important;
+}
+.margin-right-10 {
+	margin-right: 10px !important;
+}
+.margin-right-20 {
+	margin-right: 20px !important;
+}
+.margin-left-10 {
+	margin-left: 10px !important;
+}
+.hide {
+	display: none;
+}
+.bold {
+	font-weight: 600 !important;
+}
+.fix-margin {
+	margin-left: 0px !important
+}
+.border {
+	border: 1px solid #ddd
+}
+.inline {
+	display: inline;
+}
+hr {
+	margin: 20px 0;
+	border: 0;
+	border-top: 1px solid #E0DFDF;
+	border-bottom: 1px solid #FEFEFE;
+}

@@ -1,0 +1,365 @@
+@charset "utf-8";
+.form-control
+{
+	display: table;
+}
+.fileinput
+{
+	margin-right: 10px;
+}
+.btn-del
+{
+	margin-left: 8px;
+}
+.scrollbar {
+	float: left;
+	height: 240px;
+	width: 100%;
+	overflow-y: scroll;
+	margin: 10px 0;
+}
+.force-overflow {
+	min-height: 240px;
+}
+
+/*
+ *  STYLE SCROLL
+ */
+
+#style-scroll::-webkit-scrollbar-track {
+ -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+ border-radius: 2px;
+ background-color: #fff;
+}
+ #style-scroll::-webkit-scrollbar {
+ width: 6px;
+ background-color: #fff;
+}
+ #style-scroll::-webkit-scrollbar-thumb {
+ border-radius: 2px;
+ -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+ background-color: rgb(228, 228, 228);
+ background: rgb(228, 228, 228);
+}
+/*************************************/
+.thumbnail
+{
+	margin-bottom: 0 !important;
+}
+.form-horizontal .form-group {
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+.row { margin-left:0 !important; margin-right: 0 !important; }
+
+.scrollbar .help-block
+{
+	display: none !important;
+}
+.row_check_all
+{
+	width: 98%;
+	border-bottom: dashed 1px #e5e5e5;
+	margin-bottom: 10px;
+}
+.row-title-check label.control-label
+{
+	padding-top: 0 !important;
+	margin-top: 0 !important;
+}
+
+.list-cat-img{position: relative;}
+.list-cat-img img 
+{
+	max-width: 150px;
+	max-height: 120px;
+}
+.btn-all{position: absolute;top: 0px;right: 0px;left: 0px;}
+
+/********* Tin tức liên quan *********/
+.related_form .left, .related_form .right {
+	width: 320px;
+	float: left;
+	border: 1px solid #E5E5E5;
+	padding: 5px;
+	border-radius: 3px;
+	height: 300px;
+	margin: 0px;
+}
+.related_form span.arrow {
+	width: 32px;
+	height: 32px;
+	float: left;
+	margin: 135px 10px 0px 10px;
+}
+ul.s_r_left
+{
+	list-style: none;
+	width: 100%;
+}
+ul.s_r_left li
+{
+	list-style: none;;
+	clear: both;
+	border-bottom: solid 1px #FAFAFA;
+	width: 100%;
+}
+ul.s_r_left li img
+{
+	max-width: 60px;
+	max-height: 50px;
+	float: left;
+	margin: 5px;
+}
+ul.s_r_left li a
+{
+	width: 100%;
+	float: left;
+	font-size: 12px;
+	line-height: 16px;
+}
+.nonebottom
+{
+	border-bottom: none !important;
+	cursor: pointer;
+}
+.spanbold
+{
+	font-weight: bold;
+}
+.label22
+{
+	width: 25%;
+	float: left;
+	margin-bottom: 10px;
+}
+.force-over
+{
+	min-height: 125px;
+}
+.clearboth
+{ clear: both;}
+.scrollbar_1 {
+    float: left;
+    height: 240px;
+    margin: 10px 0;
+    width: 100%;
+    overflow: hidden;
+}
+.scrollbar_2 {
+    float: left;
+    height: 240px;
+    margin: 10px 0;
+    width: 100%;
+    overflow: hidden;
+}
+.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+	background:#E1E1E1 !important;
+	}
+/*
+ *  STYLE SCROLL
+ */
+
+#style-scroll::-webkit-scrollbar-track {
+ -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+ border-radius: 2px;
+ background-color: #fff;
+}
+ #style-scroll::-webkit-scrollbar {
+ width: 6px;
+ background-color: #fff;
+}
+ #style-scroll::-webkit-scrollbar-thumb {
+ border-radius: 2px;
+ -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+ background-color: rgb(228, 228, 228);
+ background: rgb(228, 228, 228);
+}
+/*************************************/
+.scrollbar_1 {
+	float: left;
+	height: 240px;
+	width: 100%;
+	overflow-y: scroll;
+	margin: 10px 0;
+}
+.force-overflow-1 {
+	min-height: 240px;
+}
+
+/*
+ *  STYLE SCROLL
+ */
+
+#style-scroll-1::-webkit-scrollbar-track {
+ -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+ border-radius: 2px;
+ background-color: #fff;
+}
+ #style-scroll-1::-webkit-scrollbar {
+ width: 6px;
+ background-color: #fff;
+}
+ #style-scroll-1::-webkit-scrollbar-thumb {
+ border-radius: 2px;
+ -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+ background-color: rgb(228, 228, 228);
+ background: rgb(228, 228, 228);
+}
+
+/*************************************/	
+/********* Video liên quan *********/
+.related_form .col_left, .related_form .col_right {
+	border: 1px solid #E5E5E5;
+}
+
+.related_form span.arrow {
+	width: 15px;
+	height: 15px;
+	float: left;
+	margin: 120px 10px 0px 10px;
+}
+ul#video_left, ul#video_right
+{
+	list-style: none;
+	width: 100%;
+	padding-left: 5px;
+	list-style-type: disc;
+	-webkit-margin-before: 0em !important;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-padding-start: 0px !important;
+}
+ul#video_left li, ul#video_right li
+{
+	list-style: none;
+	clear: both;
+	border-bottom: solid 1px #FAFAFA;
+	width: 100%;
+	display: table;
+	cursor: pointer;
+	padding: 5px 0;
+	border-bottom: 1px dotted #E5E5E5;
+}
+
+ul#video_left li:hover, ul#video_right li:hover
+{
+	background-color: #eaeaea;
+}
+ul#video_left li img, ul#video_right li img
+{
+	max-width: 60px;
+	max-height: 50px;
+	width: 60px;
+	height: 50px;
+	float: left;
+	margin: 0 5px;
+}
+ul#video_left li a, ul#video_right li a
+{
+	width: 75%;
+	float: left;
+	line-height: 16px;
+	font-size: 13px;
+	color: #222;
+}
+ul#video_left li a:hover, ul#video_right li a:hover
+{
+	text-decoration: none;
+	}
+.related_form .col_left p, .related_form .col_right p {
+	height: 38px;
+	line-height: 32px;
+	font-size: 16px;
+	text-align: center;
+	color: #2b8b3a;
+	border-bottom: 1px dotted #E5E5E5;
+	margin-bottom: 0 !important;
+}
+.related_form .right i
+{
+	float: right;
+}
+.fileinput .btn {
+	vertical-align: middle;
+	margin-top: 6px;
+}
+.margin-bt-10 {
+	margin-bottom: 10px;
+}
+.col-width-4
+{
+	width: 4%;
+	float: left;
+	padding: 120px 10px;
+}
+.col-md-48
+{
+	width: 48%;
+	float: left;
+	padding: 0 5px;
+}
+.linkyou
+{
+	color: #649ddc;
+	font-size: 12px;
+	cursor: pointer;
+}
+.linkyou:hover
+{
+	text-decoration:none;
+}
+.cotsearch
+{
+	margin-top: 3px;
+	padding: 0 0 5px 0;
+	border-bottom: 1px dotted #ddd;
+}
+.inputsearch
+{
+	height: 30px !important;
+	font-size: 14px;
+	padding: 2px 7px !important;
+	width: 85%;
+	float: left;
+}
+#btn_seach
+{
+	float: left;
+}
+.btn_search
+{
+	margin: 0 3px;
+	padding: 5px;
+}
+.row-search {
+    background: none repeat scroll 0 0 #f7f7f7;
+    padding: 10px 0 !important;
+}
+.width-100
+{
+	width: 100%;
+}
+.rightwidth
+{
+	float: right;
+	width: 9%;
+	margin: 0 3px;
+	width: auto;
+	padding: 0;
+}
+.rightwidtha
+{
+	padding: 5px 14px !important;
+}
+.imgkhung
+{
+	width:150px;
+	height:120px;
+}
+.table .btn {
+    margin-left: 3px !important;
+    margin-right: 3px !important;
+    margin-top: 0;
+}

@@ -1,0 +1,25 @@
+<div class="f-block">
+	<div class="f-block-title"><span>{$block['title']}</span></div>
+	<div class="f-block-body" style="overflow: scroll;overflow-x: hidden;height: 200px;">
+		Cập nhật lúc:{$data['DateTime']}
+		<table border="1" width='100%'>
+			<tr align='center' style='background:#a4a4a4'>
+					<!-- <td align='center'>Tien te</td> -->
+				<td align='center'>Đơn vị</td>
+				<td align='center'>Bán ra</td>
+				<td align='center'>Mua vào</td>
+				<td align='center'>Chuyển khoản</td>
+			</tr>
+			<!--{loop $data['Exrate'] $k $v}-->
+				<!--{eval $price=$v['@attributes'];}-->
+				<tr align='center'>
+					<!-- <td>price['CurrencyName']</td> -->
+					<td>{$price['CurrencyCode']}</td>
+					<td>{$price['Sell']}</td>
+					<td>{$price['Buy']}</td>
+					<td>{$price['Transfer']}</td>
+				</tr>
+			<!--{/loop}-->
+		</table>
+	</div>
+</div>

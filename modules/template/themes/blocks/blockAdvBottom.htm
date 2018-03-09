@@ -1,0 +1,12 @@
+<!--{if !empty($data['content'])}-->
+<div class="f-block">
+    <div class="f-block-title"><span>{$block['title']}</span> </div>
+  <div class="f-block-body">
+      <ul class="f-block-news-menu no-margin no-padding">
+        <!--{loop $data['content'] $k $v}-->
+            <!--{tempblock blocks/blockAdvItemBottom}--> 
+         <!--{/loop}-->
+      </ul>
+  </div>
+</div>
+<!--{/if}-->

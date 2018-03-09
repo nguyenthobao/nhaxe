@@ -1,0 +1,29 @@
+<?php
+$_L['empty_the_list']='មានអាល់ប៊ុមនៅក្នុងបញ្ជីទេ';
+$_L['new']='ថ្មី';
+$_L['hot']='ការបន្លិច';
+$_L['a_z']='ការ-Z';
+$_L['title']='ចំណងជើង';
+$_L['read_more']='មើល';
+$_L['collapse']='ការដួលរលំ';
+$_L['album_related']='អាល់ប៊ុមទាក់ទងនឹង';
+$_L['search']='ស្វែងរក';
+$_L['could_not_find_any_results']='លទ្ធផលស្វែងរករបស់អ្នកសម្រាប់ពាក្យនេះ';
+$_L['blockNew']='អាល់ប៊ុមថ្មី';
+$_L['blockHot']='អាល់ប៊ុមបានមើល';
+$_L['module_name']='អាល់ប៊ុម';
+$_L['no_record_exists']='មិនមានកំណត់ត្រាសាធារណៈមាន';
+$_L['comment_with_your_facebook_account']='មតិដោយគណនីហ្វេសប៊ុក';
+$_L['comment_with_your_google_account']='មតិដោយគណនី Google + +';
+$_L['displaying']='បង្ហាញពី';
+$_L['page_to']='នៅលើ';
+$_L['page_on']='នៅលើ';
+$_L['records']='កំណត់ត្រា - លេខទំព័រ';
+$_L['page']='ទំព័រ';
+$_L['before']='ដំបូង';
+$_L['after']='បន្ទាប់ពី';
+$_L['show_number']='បង្ហាញលេខ';
+$_L['album_new']='អាល់ប៊ុមថ្មី';
+$_L['album_vip']='អាល់ប៊ុមវីអាយភី';
+$_L['album_hot']='អាល់ប៊ុម "ក្តៅ';
+?>

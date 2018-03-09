@@ -1,0 +1,64 @@
+<!--{if isset($_orders['products'])}-->
+    <!--{loop $_orders['products'] $k $v}-->
+    <tr class="cartItem">
+            <td class="productItemCart">
+                <a target="_parent" href="{$v['link']}">
+                    <img src="<!--{loadImage $v['image'] resize 70 45}-->" alt="{$v['name']}" title="{$v['name']}">
+                </a>
+
+                <h4 style="margin: 20px 0 10px 0;line-height: 1.4em;">
+                    <a target="_parent" href="{$v['link']}">{$v['name']}</a>
+                </h4>
+                <p>Giá: <!--{formatNumber $v['price'] $_orders['invoice']['currency_code'] }--></p>                    </td>
+            <td style="text-align: center;">{$v['quantity']}</td>
+            <td style="text-align: center;">
+                <!--{formatNumber $v['total'] $_orders['invoice']['currency_code'] }-->
+            </td>
+    </tr>
+    <!--{/loop}-->
+<!--{/if}-->
+<!--{if isset($_orders['invoice'])}-->
+    <tr  class="subOrderInfo">
+        <td colspan="5">
+            <br>
+            <p style="font-weight: bold;">{lang total_money}: 
+                <span>
+                <!--{formatNumber $_orders['invoice']['sub_total'] $_orders['invoice']['currency_code'] }--></span></p>
+        </td>
+    </tr>
+<!--{/if}-->
+    
+
+<!--{if isset($_orders['invoice']['shippingFee']) && $_orders['invoice']['shippingFee'] > 0}-->
+    <tr  class="subOrderInfo">
+        <td colspan="5">
+            <br>
+            <p style="font-weight: bold;">{lang fee_ship}: 
+                <span>
+                <!--{formatNumber $_orders['invoice']['shippingFee'] $_orders['invoice']['currency_code'] }--></span></p>
+        </td>
+    </tr>
+<!--{/if}-->
+<!--{if $_orders['invoice']['tax']!=0 }-->
+    <tr class="subOrderInfo">
+        <td colspan="5">
+            <br>
+            <p style="font-weight: bold;">{lang money_tax}: <span>{$_orders['invoice']['tax']}</span></p>
+        </td>
+    </tr>
+<!--{/if}-->
+<tr>
+    <td colspan="3">&nbsp;</td>
+</tr>
+
+<tr class="orderInfo">
+    <td colspan="5">
+        <p><b>{lang total_order}:</b>
+            <span style="font-size: 30px;color: #ef4d22;"><!--{formatNumber $_orders['invoice']['total'] $_orders['invoice']['currency_code'] }--></span>
+        </p>
+        
+        <p class="nextStep">
+            <button type="submit" class="btnRed">{lang next}</button>
+        </p>
+    </td>
+</tr>

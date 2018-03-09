@@ -1,0 +1,210 @@
+<link rel="stylesheet" href="{$web['static_temp_mod']}/resources/css/maps.css">
+<div class=" bg-color-2 ">
+    <div class="f-ctn-center">
+         <!--{if isset($_breadcrumbs)}-->
+   <div class="productbreadcrumb">
+
+<ol class="breadcrumb">
+     <!--{loop $_breadcrumbs $k $v}-->
+        
+        <li ><a href="{$v['href']}">{$v['text']}</a> <i class="fa fa-caret-right"></i></li>
+         
+        <!--{/loop}-->
+   
+</ol>
+</div>
+    <div class="clearfix"></div>
+    <!--{/if}-->
+        <div class="clearfix"></div>
+        
+        <div class="f-module-page">
+            <!--{if !empty($_home_title) }-->
+            <div class="f-module-page-title"> 
+                <h1><i><img src="<!--{loadImage $_home_icon resize 50 50}-->" onerror="this.onerror=null;this.src='<!--{loadImage $_no_img crop 50 50}-->'" /></i>
+                    <span>{$_home_title}</span></h1>
+                </div>
+                <!--{else}-->
+                <div class="f-module-page-title"> <i></i><span>{lang module_name}</span> </div>
+                <!--{/if}-->
+                <!--{if !empty($_home_description) }-->
+                <div class="f-module-page-desc " <!--{if !empty($_home_bg_image) }-->style="background-image:url({$_home_bg_image})"<!--{/if}-->>
+                    <div class="col-md-3 col-sm-3 col-xs-12 img">
+                        <img class="img-thumbnail img-responsive" src="<!--{loadImage $_home_avatar resize 170 170}-->" onerror="this.onerror=null;this.src='<!--{loadImage $_no_img crop 170 170}-->'">
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <p><!--{if isset($_home_description)}-->{$_home_description}<!--{/if}-->
+                        </div>
+                         <div class="clearfix"></div>
+                    </div>
+                     <div class="clearfix"></div>
+                     <div class="clearfix"></div>
+                    <!--{/if}-->
+                    <div class="f-module-page-body padding-10">
+                        <div class="clearfix"></div>
+                        <div class="f-maps-page row">
+                          <div class="f-maps-left col-md-3 col-sm-3 col-xs-12" style="margin-right: 5px">
+                            <form class="form-horizontal">
+                              <fieldset>
+                                <!-- Select Basic -->
+                                <div class="form-group">
+                                    <select id="city_map_bnc" class="form-control">
+                                        <option value="">{lang chon_khu_vuc}</option>
+                                        <!--{$_district}-->
+                                        <option value="0">{lang noi_khac}</option>
+                                    </select>
+                                </div>
+                                
+                                <!-- Search input-->
+                                <div class="form-group">
+                                  <input id="map_search_key" name="map_search_key" type="search" placeholder="{lang tim_kiem_dia_chi}" class="form-control input-md">
+                              </div>
+                          </fieldset>
+                      </form>
+                      <div class="map_list_address">
+                        <div id="s_maps">
+                            <div id="citySearchMap">
+                                <!--{loop $_maps $k $v}-->
+                                <div class="list">
+                                    <!--{if $v['gmap_default']==1}-->
+                                    <span>{lang tru_so_chinh}:</span>
+                                    <!--{/if}-->
+                                    <div class="address">
+                                        <!--{eval echo $k+1}-->. 
+                                        <a href="#map" onclick="moveToMaker($v['id'])">{$v['gmap_address']}</a>
+                                    </div>
+                                    <!--{if $v['gmap_phone']!=''}-->
+                                    <p>- {lang dien_thoai}: {$v['gmap_phone']}</p>
+                                    <!--{/if}-->
+                                    <!--{if $v['gmap_email']!=''}-->
+                                    <p>- {lang email}: <a href="mailto:{$v['gmap_email']}">{$v['gmap_email']}</a></p>
+                                    <!--{/if}-->
+                                    <!--{if $v['gmap_website']!=''}-->
+                                    <p>- {lang website}: <a href="{$v['gmap_website']}" target="_blank">{$v['gmap_website']}</a></p>
+                                    <!--{/if}-->
+                                    <!--{if $v['gmap_time']!=''}-->
+                                    <p>- {lang thoi_gian}: {$v['gmap_time']}</p>
+                                    <!--{/if}-->
+                                    <a href="#map" onclick="moveToMaker($v['id'])" class="view_maps"><font lang="vi">({lang view_in_map})</font></a>
+                                </div>
+                                <!--{/loop}-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="f-maps-right">
+                  <div class="video-container">
+                    <!--{if !empty($_maps)}-->
+                    <div class="bg_map" id="map">
+                        <div id="map_canvas" style=" height: 900px"></div><div class="clear"></div>    
+                    </div>
+                    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+                    <script>
+                    (function($){
+                        $(window).load(function(){
+                            $('#city_map_bnc').change(function() {
+                                var key = $('#city_map_bnc').val();
+                                $("#map_search_key").val('');
+                                if (key == '') {
+                                    return false;
+                                }
+                                $('#citySearchMap').html('<p align="center" style="padding:5px">{lang loading}</p>');
+                                $.post("{$_ajax_url}", {
+                                    cityNum : key
+                                }, function(data) {
+                                    if (data != "") {
+                                        $('#citySearchMap').html(data);
+                                    }
+                                });
+                                return false;
+                            });
+                            $("#map_search_key").keyup(function() {
+                                var kw = $(this).val();
+                                var ct = $("#city_map_bnc").val();
+                                if (kw != '') {
+                                    $('#citySearchMap').html('<p align="center" style="padding:5px">{lang loading}</p>');
+                                    $.post("{$_ajax_url}", {
+                                        cityNum : ct, title: kw
+                                    }, function(data) {
+                                        if (data != "") {
+                                            $('#citySearchMap').html(data);
+                                        }
+                                    });
+                                }
+                                return false;
+                            });
+                            initialize();
+                        });
+})(jQuery);
+</script>
+
+<script type="text/javascript">
+var map;
+var infowindow;
+var marker = new Array();
+var old_id = 0;
+var infoWindowArray = new Array();
+var infowindow_array = new Array();
+function initialize() {
+    var defaultLatLng = new google.maps.LatLng({$_lat}, {$_lng});
+    var myOptions = {
+        zoom : 16,
+        center : defaultLatLng,
+        scrollwheel : false,
+        mapTypeId : google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    map.setCenter(defaultLatLng);
+    <!--{loop $_maps $k $v}-->
+    var arrLatLng = new google.maps.LatLng({$v['lat']}, {$v['lng']});
+    infoWindowArray[{$v['id']}] = '<div class="map_description"><div class="map_title">{$_ten_web}</div><!--{if $v['gmap_default']==1}--><div class="default">({lang tru_so_chinh})</div><!--{/if}--><div><b>{lang dia_chi}:</b> {$v['gmap_address']}</div><!--{if $v['gmap_phone']!=''}--><div><b>{lang dien_thoai}:</b> {$v['gmap_phone']}</div><!--{/if}--><!--{if $v['gmap_email']!=''}--><div><b>{lang email}:</b><a href="mailto:{$v['gmap_email']}"> {$v['gmap_email']}</a></div><!--{/if}--><!--{if $v['gmap_website']!=''}--><div><b>{lang website}:</b><a target="_blank" href="{$v['gmap_website']}"> {$v['gmap_website']}</a></div><!--{/if}--></div>';
+    loadMarker(arrLatLng, infoWindowArray[{$v['id']}], {$v['id']});
+    <!--{/loop}-->
+    moveToMaker({$_default_id});
+}
+
+function loadMarker(myLocation, myInfoWindow, id) {
+    marker[id] = new google.maps.Marker({
+        position : myLocation,
+        map : map,
+        visible : true
+    });
+    var popup = myInfoWindow;
+    infowindow_array[id] = new google.maps.InfoWindow({
+        content : popup
+    });
+    google.maps.event.addListener(marker[id], 'mouseover', function() {
+        if (id == old_id)
+            return;
+        if (old_id > 0)
+            infowindow_array[old_id].close();
+        infowindow_array[id].open(map, marker[id]);
+        old_id = id;
+    });
+    google.maps.event.addListener(infowindow_array[id], 'closeclick', function() {
+        old_id = 0;
+    });
+}
+
+function moveToMaker(id) {
+    var location = marker[id].position;
+    map.setCenter(location);
+    if (old_id > 0)
+        infowindow_array[old_id].close();
+    infowindow_array[id].open(map, marker[id]);
+    old_id = id;
+}
+</script>
+
+<!--{else}-->
+<div class="bg_map">
+    <div class="data_is_updating">{lang map_is_updating}</div>
+</div>
+<!--{/if}-->
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+</div>

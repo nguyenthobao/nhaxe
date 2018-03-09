@@ -1,0 +1,190 @@
+
+
+<div class="f-product-view-info row">
+	<div class="f-product-view-info-image col-md-5">
+		<style>
+			#f-pr-image-zoom-gallery .active img{
+				opacity: 1 !important;
+			}
+		</style>
+		<div class="f-pr-image-zoom">
+			<div   class="zoomWrapper">
+				<img id="f-pr-image-zoom-id" src="<!--{loadImage $_item['avatar'] resize 500 500}-->" data-zoom-image="<!--{loadImage $_product['image'] none null null}-->" class="img-responsive BNC-image-add-cart-{$_product['id']}" alt="{$_product['name']}">
+			</div>
+		</div>
+		 <div class="f-pr-image-zoom-gallery">
+			<div id="slidezoompage" >
+
+				<div id="f-pr-image-zoom-gallery" class="owl-carousel">
+
+				<!--{loop $_item['images'] $k $v}-->
+
+							<div class="pr-carol-item">
+								<a href="javascript:;"   data-image="<!--{loadImage $v['image'] resize 500 500}-->" data-zoom-image="{BNCGLOBAL['upload_path']}{$v['image']}" title="{$v['att_title']}">
+									<img src="<!--{loadImage $v['image'] crop 62 62}-->"  alt="{$v['att_alt']}"   />
+								</a>
+							</div>
+
+				<!--{/loop}-->
+
+				</div>
+
+				 <script type="text/javascript">
+				 	$(document).ready(function() {
+ 					//
+	 					$("#f-pr-image-zoom-id").elevateZoom(
+	 						{
+	 							gallery:'f-pr-image-zoom-gallery',
+	 							cursor: 'pointer',
+	 							galleryActiveClass: 'active',
+	 							imageCrossfade: true,
+	 							loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif',
+	 							scrollZoom : true,
+	 							easing : true
+	 						});
+	  					//
+	  					$("#f-pr-image-zoom-id").bind("click", function(e) {
+	  						var ez = $('#f-pr-image-zoom-id').data('elevateZoom');
+	  						$.fancybox(ez.getGalleryList());
+	  						return false;
+	  					});
+	  					//--------------
+	  					$("#f-pr-image-zoom-gallery").owlCarousel();
+
+					});
+				 </script>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="f-product-view-info-detail col-md-7">
+		<div class="f-product-view-name">
+			<h1>
+				<span>{$_item['name']}</span>
+
+			</h1>
+
+			<div class="f-pr-view-tool">
+				<ul class="no-margin no-padding">
+
+					<li style="display:none"><a href="javascript:;">{lang label_compare}</a></li>
+					<li>{lang label_view}: {$_item['views']}</li>
+					<li>{lang label_date_create}: {$_item['create_time']}</li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="f-pr-view-info">
+			<ul class="no-margin no-padding">
+				<li class="key"><!--{if $_item['price_market'] != 0}-->{lang price_deals}<!--{else}-->{lang label_price}<!--{/if}--></li>
+				<li class="value">
+					<span class="price"><!--{formatNumber $_item['price'] $_current }--></span>
+					<!--{if $_item['vat'] != ''}-->
+						<span class="vat">$_item['vat']</span>
+					<!--{/if}-->
+				</li>
+				<li class="clearfix"></li>
+				<!--{if $_item['percent']!=0}-->
+					<li class="key">{lang saving}</li>
+					<li class="value">
+						<span class="percent">{$_item['percent']} %</span>
+					</li>
+					<li class="clearfix"></li>
+				<!--{/if}-->
+
+				<!--{if $_item['price_market']!=0}-->
+						<li class="key">{lang price_old}</li>
+						<li class="value">
+							<span class="price_market"><!--{formatNumber $_item['price_market'] $_current }--></span>
+						</li>
+						<li class="clearfix"></li>
+				<!--{/if}-->
+
+				<!--{if $_item['unit']!=0}-->
+					<li class="key">{lang unit}</li>
+					<li class="value">{$_item['unit']}</li>
+					<li class="clearfix"></li>
+				<!--{/if}-->
+
+				<!--{if !empty($_item['method'])}-->
+					<li class="key">{lang label_method}</li>
+					<li class="value">{$_item['method']}</li>
+					<li class="clearfix"></li>
+				<!--{/if}-->
+
+				<!--{if !empty($_item['total_order'])}-->
+					<li class="key">{lang label_total_order}</li>
+					<li class="value">{$_item['total_order']} Lượt</li>
+					<li class="clearfix"></li>
+				<!--{/if}-->
+
+				<!--{if $_item['exp_time']!=0}-->
+					<li class="key" id="exp_time" data-time="{$_item['exp_time']}">Thời gian còn lại</li>
+					<li class="value downtime" id="downtime"></li>
+					<li class="clearfix"></li>
+				<!--{/if}-->
+				<li class="key">{lang label_shop_name}</li>
+					<li class="value f-pr-view-choosesizeGroup">
+							<!--{eval $shop_count=count($_item['address']);}-->
+							<div class="dealer-tab" data-is-more="0" id="shop-content"  style="<!--{if $shop_count > 3}-->overflow: hidden;height: 120px;<!--{/if}-->">
+								<ul class="v2-dealer">
+					            	<!--{loop $_item['address'] $k $v}-->
+					            		<!--{if !empty($v['quantity']) && $v['quantity']!=0}-->
+					        				<li>{lang phone}:{$v['phone']} - {$v['address']} - {$v['manual']}</li><br/>
+					        			<!--{/if}-->
+									<!--{/loop}-->
+								</ul>
+
+				            </div>
+				            <!--{if $shop_count > 3}-->
+									<button class="btn" id="more-shop" style="margin:5px;">{lang view_more}</buton>
+							<!--{/if}-->
+	        	 </li>
+	        	 <li class="clearfix"></li>
+	        	 <!--{if !empty($_item['total_quantity']) && $_item['total_quantity']!=0}-->
+					<li class="key">{lang label_quantity}</li>
+					<li class="value">
+						<select>
+							<!--{loopfor $i=1 $i<=$_item['total_quantity'] $i++}-->
+									<option>{$i}</option>
+							<!--{/loopfor}-->
+						</select>
+					</li>
+					<li class="clearfix"></li>
+				<!--{else}-->
+					 <label>{lang hethang}</label>
+				<!--{/if}-->
+
+
+
+
+				<!--{if !empty($_product['weigh_class']['w'])}-->
+				<li class="key">{lang weight}</li>
+				<li class="value">
+					$_product['weigh_class']['w'] $_product['weigh_class']['weigh_class']['name']
+				</li>
+				<li class="clearfix"></li>
+				<!--{/if}-->
+
+				<!--{if !empty($_product['other_info'])}-->
+					<!--{loop $_product['other_info'] $k_other_info $v_other_info}-->
+							<li class="key">{$v_other_info['title']}</li>
+							<li class="value">
+								{$v_other_info['content']}
+							</li>
+							<li class="clearfix"></li>
+					<!--{/loop}-->
+				<!--{/if}-->
+
+
+			</ul>
+
+			<div class="clearfix"></div>
+			<button class="add-cart button-small" data-size="{$v1['size_id']}" data-shop="1" data-product="{$_product['id']}">{lang label_add_to_cart}</button>
+		</div>
+        <div class="clearfix"></div>
+	</div>
+	<div class="clearfix"></div>
+</div>
+
+

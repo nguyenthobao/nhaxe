@@ -1,0 +1,41 @@
+<div class="clearfix"></div>
+<div class="productbreadcrumb">
+    <ol class="breadcrumb">
+        <!--{loop $_breadcrumbs $k $v}-->
+        <li><a href="{$v['href']}">{$v['text']}</a></li>
+        <!--{/loop}-->
+    </ol>
+</div>
+<div class="clearfix"></div>
+<div clas="f-ctn-center">
+    <!--{loop $_content $k $v}-->
+    <div class="f-module-page">
+        <div class="f-module-page-title">
+            <h1><i><img src="<!--{if isset($_icon)}--> {$_icon} <!--{/if}-->" /></i>
+                <span>{$v['name']}</span>
+            </h1> 
+        </div>
+        <div class="clearfix"></div>
+        <div class="f-module-page-body padding-10">
+            <div class="clearfix"></div>
+            <hr/>
+            <div class="clearfix"></div>
+            <div class="f-page-tab">
+                <div class="clearfix"></div>
+                <div class="tab-content margin-top-10">
+                    <div id="f-pr-tab01" class="tab-pane active">
+                        <ul class="f-news-page">
+                            <!--{loop $v['item'][0] $k2 $v2}-->
+                                <!--{temp tag_list_item}-->
+                            <!--{/loop}--> 
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!--{/loop}-->
+    
+</div>

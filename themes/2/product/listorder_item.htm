@@ -1,0 +1,11 @@
+<tr data-pk="{$v['id']}">
+	<td class="text-center">{$v['stt']}</td>
+	<td class="text-center">{$v['create_time']}</td>
+	<td class="text-center">{$v['invoice']}</td>
+	<td class="text-center">{$v['sub_total']} {$v['currency_code']}</td>
+	<td class="text-center">{$v['shippingFee']} {$v['currency_code']}</td>
+	<td class="text-center">{$v['total']} {$v['currency_code']}</td>
+	<td class="text-center">
+		<a href="{$_linkUrl}-{$v['id']}.html" class="custom-action" title="{lang view_detail}"><span class="glyphicon glyphicon-eye-open"></span></a>
+	</td>
+</tr>

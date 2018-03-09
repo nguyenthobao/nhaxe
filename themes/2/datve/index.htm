@@ -1,0 +1,53 @@
+<section class="section-90 section-md-111 bg-zircon">
+                    <div class="shell">
+                        <h2 class="text-bold">Đặt vé trực tuyến</h2>
+                        <hr class="divider bg-chathams-blue">
+                        <div class="range range-xs-center offset-top-60">
+
+
+
+                        	<!--{eval $i=0}-->
+			{loop $_chuyen $k $v}
+            <!--{if $i < 9}--> 
+
+
+            <div class="cell-xs-10 cell-sm-6 cell-md-4">
+                                <!-- Post Ticket-->
+                                <a href="$v['link']" class="post-ticket">
+                                    <div class="post-ticket-header">
+                                        <img src="http://demo.nhaxe.vn/themes/1/datve/TuyenXeMau.jpg" width="370" height="280" alt="" class="img-responsive">
+                                        <div class="post-ticket-price-svg-wrap">
+                                            <div class="post-ticket-price-svg">
+                                                <svg viewBox="0 0 140 36">
+                                                    <path d="m 0.01190457,18.011904 0,-17.99999966 70.00000343,0 69.999992,0 0,5.50000006 c 0,4.157048 -0.35675,5.4999996 -1.46104,5.4999996 -2.34992,0 -5.53896,4.138795 -5.53896,7.188561 0,3.025049 3.05738,6.811439 5.5,6.811439 1.15152,0 1.5,1.277778 1.5,5.5 l 0,5.5 -69.999992,0 -70.00000343,0 0,-18 z"></path>
+                                                </svg>
+                                                <div class="post-ticket-price text-bold text-shark"><span>$v['price']</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="post-ticket-body text-left">
+                                        <!-- List Inline-->
+                                        <div>
+                                            $v['routeName']
+                                        </div>
+                                        <div class="offset-top-10 hide">
+                                            <div class="post-meta text-gray">5 hours 10 minutes</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+
+			 
+            <!--{/if}-->
+       		<!--{eval $i++}-->
+			{/loop}
+
+
+                            
+                             
+                            
+                        </div>
+                        <div class="offset-top-60 hide"><a href="#" class="btn btn-default">View All Destinations</a></div>
+                    </div>
+                </section>

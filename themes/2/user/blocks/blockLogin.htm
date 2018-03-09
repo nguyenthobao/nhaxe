@@ -1,0 +1,23 @@
+ <div class="f-block">
+  <div class="f-block-title"> <i></i><span>{$block['title']}</span> </div>
+  <div class="f-block-body padding-10" >
+    <!--{if !isset(BNCGLOBAL['uid'])}-->
+    <form action="BNCGLOBAL['action_login']" method="POST" /> 
+      <div class="input-group"> 
+        <input type="text" class="form-control" name="email"  placeholder="{lang email_username}">
+      </div> 
+      <br />
+      <div class="input-group"> 
+        <input type="password" class="form-control" name="password"  placeholder="{lang password}">
+      </div> 
+      <br />
+      <!-- Standard button -->
+      <button type="submit" class="btn btn-primary">{lang login_submit}</button>
+    </form>
+    <!--{else}-->
+        <a href="{BNCGLOBAL['user_url_setting']}">BNCGLOBAL['username']</a>
+        <br />
+        <a href="{BNCGLOBAL['user_url_logout']}">{lang common_logout}</a> 
+      <!--{/if}-->
+  </div>
+</div>

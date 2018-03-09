@@ -1,0 +1,286 @@
+<!--{temp payment_header}-->
+    <div id="orderHeader" class="g980">
+    <p class="logoOrder"><a href="{$_common['step']}"><!--{if $web['logo'] != null}--> 
+              <!--{if $web['logo']['is_swf']}--> 
+                  <object width="{$web['logo']['width']}" height="{$web['logo']['height']}">
+                  <param value="transparent" name="wmode">
+                  <param value="{$web['static_upload']}{$web['logo']['img']}" name="movie">
+                  <embed width="{$web['logo']['width']}" height="{$web['logo']['height']}" wmode="transparent" src="{$web['static_upload']}{$web['logo']['img']}">
+                  </object>
+              <!--{else}-->
+                   <img src="{$web['static_upload']}{$web['logo']['img']}" width="{$web['logo']['width']}" height="{$web['logo']['height']}" class="img-responsive"  alt="Logo"/>
+              <!--{/if}--> 
+            <!--{else}-->
+             <img src="https://webbnc.net/image/data/logo_bnc.png" class="img-responsive"  alt="Logo"/>
+            <!--{/if}--></a></p>
+	</div>
+    
+<!--{if isset($_orders)}-->
+
+<div class="g980 box">
+<form style="overflow: hidden;" action="{$_common['step']}">	
+		<div style="height: 30px;background: #green;border-radius: 3px;opacity: 0.7;margin-bottom: 10px;padding: 7px;color:#000;text-align: left;">{$_error}
+        
+        <p>{lang success_orders}
+        <p>{lang com_method_pay} : <b>{$_orders['payment_method_name']}</b></p>
+
+        <p>{lang note_o}
+	</div>
+     <br/><br/><br/>
+     <style type="text/css">
+        .info_order{
+            float:left;float: left;
+            background: #f2f2f2;
+            padding: 9px;
+            border-left: 2px solid green;
+            width: 450px;
+            margin-right: 10px;margin-bottom:10px
+        }
+        .fInputOrder li{
+                width: 100% !important;
+            }
+     </style>
+    
+     <div class="g460" style="float:left">
+        <!--{if !empty($_orders['info_buy'])}-->
+        <!--{eval $iBuy = $_orders['info_buy']}-->
+        <div class="info_order">
+            <h3 class="title">{lang info_buy}</h3>
+            <ul class="fInputOrder">
+                    <!--{if !empty($iBuy['name'])}-->
+                        <li><span>{lang name}:</span>
+                            <span>{$iBuy['name']}</span>
+                        </li>
+                    <!--{/if}-->
+                    <!--{if !empty($iBuy['name'])}-->
+                        <li><span>{lang email}:</span>
+                            <span>{$iBuy['email']}</span>
+                        </li>
+                    <!--{/if}-->
+                    <!--{if !empty($iBuy['cityname'])}-->
+                    <li><span>{lang city}:</span>
+                        <span> {$iBuy['cityname']}</span>
+                    </li>
+                    <!--{/if}-->
+                    <!--{if !empty($iBuy['districtname'])}-->
+                    <li><span>{lang dis}:</span>
+                        <span> {$iBuy['districtname']}</span>
+                    </li>
+                    <!--{/if}-->
+                    <!--{if !empty($iBuy['phone'])}-->
+                        <li><span>{lang phone}:</span>
+                            <span>{$iBuy['phone']}</span>
+                        </li>
+                    <!--{/if}-->
+                     <!--{if !empty($iBuy['address'])}-->
+                        <li><span>{lang address}:</span>
+                            <span>{$iBuy['address']}</span>
+                        </li>
+                    <!--{/if}-->
+                    <!--{if !empty($iBuy['address'])}-->
+                        <li><span>{lang note}:</span>
+                            <span>{$iBuy['comment']}</span>
+                        </li>
+                    <!--{/if}-->
+            </ul>
+        </div>
+        <!--{/if}-->
+        <!--{if !empty($_orders['info_receive'])}-->
+        <!--{eval $iBuy = $_orders['info_receive']}-->
+        <div class="info_order">
+            <h3 class="title">{lang info_re}</h3>
+            <ul class="fInputOrder">
+                    <!--{if !empty($iBuy['name'])}-->
+                        <li><span>{lang name}:</span>
+                            <span>{$iBuy['name']}</span>
+                        </li>
+                    <!--{/if}-->
+                    <!--{if !empty($iBuy['name'])}-->
+                        <li><span>{lang email}:</span>
+                            <span>{$iBuy['email']}</span>
+                        </li>
+                    <!--{/if}-->
+                    <!--{if !empty($iBuy['cityname'])}-->
+                    <li><span>{lang city}:</span>
+                        <span> {$iBuy['cityname']}</span>
+                    </li>
+                    <!--{/if}-->
+                    <!--{if !empty($iBuy['districtname'])}-->
+                    <li><span>{lang dis}:</span>
+                        <span> {$iBuy['districtname']}</span>
+                    </li>
+                    <!--{/if}-->
+                    <!--{if !empty($iBuy['phone'])}-->
+                        <li><span>{lang phone}:</span>
+                            <span>{$iBuy['phone']}</span>
+                        </li>
+                    <!--{/if}-->
+                     <!--{if !empty($iBuy['address'])}-->
+                        <li><span>{lang address}:</span>
+                            <span>{$iBuy['address']}</span>
+                        </li>
+                    <!--{/if}-->
+                    <!--{if !empty($iBuy['address'])}-->
+                        <li><span>{lang note}:</span>
+                            <span>{$iBuy['comment']}</span>
+                        </li>
+                    <!--{/if}-->
+            </ul>
+        </div>
+        <!--{/if}-->
+        <!--{if !empty($_orders['info_payment'])}-->
+        <!--{eval $iBuy = $_orders['info_payment']}-->
+        <div class="info_order">
+            <h3 class="title">{lang info_pay}</h3>
+            <ul class="fInputOrder">
+                    <!--{if !empty($iBuy['name'])}-->
+                        <li><span>{lang name}:</span>
+                            <span>{$iBuy['name']}</span>
+                        </li>
+                    <!--{/if}-->
+                    <!--{if !empty($iBuy['name'])}-->
+                        <li><span>{lang email}:</span>
+                            <span>{$iBuy['email']}</span>
+                        </li>
+                    <!--{/if}-->
+                    <!--{if !empty($iBuy['cityname'])}-->
+                    <li><span>{lang city}:</span>
+                        <span> {$iBuy['cityname']}</span>
+                    </li>
+                    <!--{/if}-->
+                    <!--{if !empty($iBuy['districtname'])}-->
+                    <li><span>{lang dis}:</span>
+                        <span> {$iBuy['districtname']}</span>
+                    </li>
+                    <!--{/if}-->
+                    <!--{if !empty($iBuy['phone'])}-->
+                        <li><span>{lang phone}:</span>
+                            <span>{$iBuy['phone']}</span>
+                        </li>
+                    <!--{/if}-->
+                     <!--{if !empty($iBuy['address'])}-->
+                        <li><span>{lang address}:</span>
+                            <span>{$iBuy['address']}</span>
+                        </li>
+                    <!--{/if}-->
+                    <!--{if !empty($iBuy['address'])}-->
+                        <li><span>{lang note}:</span>
+                            <span>{$iBuy['comment']}</span>
+                        </li>
+                    <!--{/if}-->
+            </ul>
+        </div>
+        <!--{/if}-->
+        <!--{if !empty($_orders['info_invoice'])}-->
+        <!--{eval $iBuy = $_orders['info_invoice']}-->
+        <div class="info_order">
+            <h3 class="title">{lang info_exp_pay}</h3>
+            <ul class="fInputOrder">
+                    <!--{if !empty($iBuy['name'])}-->
+                        <li><span>{lang com_name}:</span>
+                            <span>{$iBuy['name']}</span>
+                        </li>
+                    <!--{/if}-->
+                    <!--{if !empty($iBuy['mastername'])}-->
+                        <li><span>{lang com_people}:</span>
+                            <span>{$iBuy['mastername']}</span>
+                        </li>
+                    <!--{/if}-->
+                    <!--{if !empty($iBuy['code'])}-->
+                        <li><span>{lang com_tax}:</span>
+                            <span>{$iBuy['code']}</span>
+                        </li>
+                    <!--{/if}-->
+                    <!--{if !empty($iBuy['address'])}-->
+                        <li><span>{lang address}:</span>
+                            <span>{$iBuy['address']}</span>
+                        </li>
+                    <!--{/if}-->
+                    <!--{if !empty($iBuy['pay'])}-->
+                    <li><span>{lang payment_method}:</span>
+                        <span> {$iBuy['pay']}</span>
+                    </li>
+                    <!--{/if}-->
+            </ul>
+        </div>
+        <!--{/if}-->
+    </div>
+    
+
+     
+<!--{if isset($_error)}-->
+    <div class="error " style="height: 30px;background: #FFD0D0;border-radius: 3px;opacity: 0.7;margin-bottom: 10px;padding: 7px;color:#000;text-align: left;">{$_error}
+        </div>
+    <!--{/if}-->
+    <div class="g460 " style="float:left">
+    <table class="cartReview">
+        <tbody><tr class="title">
+            <td style="width: 370px;">{lang product}</td>
+            <td style="width: 150px;text-align: center;">{lang quantity}</td>
+            <td style="width: 200px;text-align: center;">{lang money}</td>
+        </tr>
+        <!--{if isset($_orders['products'])}-->
+            <!--{loop $_orders['products'] $k $v}-->
+            <tr class="cartItem">
+                    <td class="productItemCart">
+                        <a target="_parent" href="{$v['link']}">
+                            <img src="<!--{loadImage $v['image'] resize 70 45}-->" alt="{$v['name']}" title="{$v['name']}">
+                        </a>
+
+                        <h4 style="margin: 20px 0 10px 0;line-height: 1.4em;">
+                            <a target="_parent" href="{$v['link']}">{$v['name']}</a>
+                        </h4>
+                        <p>Giá: <!--{formatNumber $v['price'] $_orders['invoice']['currency_code'] }--></p>                    </td>
+                    <td style="text-align: center;">{$v['quantity']}</td>
+                    <td style="text-align: center;">
+                        <!--{formatNumber $v['total'] $_orders['invoice']['currency_code'] }-->
+                    </td>
+            </tr>
+            <!--{/loop}-->
+        <!--{/if}-->
+            <!--{if isset($_orders['sub_total'])}-->
+            <tr class="subOrderInfo">
+                <td colspan="5">
+                    <br>
+                    <p style="font-weight: bold;">{lang total_money}: <span><!--{formatNumber $_orders['sub_total'] $_orders['currency_code'] }--></span></p>
+                </td>
+            </tr>
+            <!--{/if}-->
+            <!--{if $_orders['tax']!=0 }-->
+            <tr class="subOrderInfo">
+                <td colspan="5">
+                    <br>
+                    <p style="font-weight: bold;">{lang money_tax}: <span>{$_orders['tax']}</span></p>
+                </td>
+            </tr>
+            <!--{/if}-->
+            <!--{if $_orders['shippingFee']!=0 }-->
+            <tr class="subOrderInfo">
+                <td colspan="5">
+                    <br>
+                    <p style="font-weight: bold;">{lang fee_ship}: <span><!--{formatNumber $_orders['shippingFee'] $_orders['currency_code'] }--></span></p>
+                </td>
+            </tr>
+            <!--{/if}-->
+            <tr>
+            <td colspan="3">&nbsp;</td>
+            
+        </tr>
+        <tr class="orderInfo">
+            <td colspan="5">
+                <p><b>{lang total_order}:</b>
+                    <span style="font-size: 30px;color: #ef4d22;"><!--{formatNumber $_orders['total'] $_orders['currency_code'] }--></span>
+                </p>
+                
+                <p class="nextStep">
+                    <button type="submit" class="btnRed">{lang next_buy}</button>
+                </p>
+            </td>
+        </tr>
+    </tbody></table>
+</div>
+</form>
+    </div>
+
+<!--{/if}-->
+<!--{temp payment_footer}-->

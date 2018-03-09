@@ -1,0 +1,18 @@
+<div class="popup_qc">
+  <div class="popup_close">X</div>
+  <!--{loop $_slides $k $v}--> 
+  <!--{if !empty($v['image_slide'])}-->
+  <!--{eval $image_slide = $v['image_slide']}-->
+  <!--{loop $image_slide $key $val}--> 
+  <a href="{$val['link']}">
+    <img src="{$val['thumb']}" class="img-responsive" alt="$v['title']" />
+  </a>
+  <!--{/loop}-->
+  <!--{/if}-->
+  <!--{/loop}--> 
+</div>
+<script type="text/javascript">
+$(".popup_close").click(function (e) {
+ $(".popup_qc").remove();
+});
+</script>

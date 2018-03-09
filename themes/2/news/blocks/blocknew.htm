@@ -1,0 +1,23 @@
+ <div class="f-block wrapstylenew">
+        <div class="f-block-title stlyeblocktitle"> <i></i><span>$block['title']</span> </div>
+        <div class="f-block-body" >
+          <ul class="f-news-bl slider8 ">
+            <!--{loop $data $k $v}-->
+            <li>
+              <div class="f-news-bl-item stylefnew">
+                <div class="f-news-bl-item-img stylef-news-bl-item-img col-md-3"> <a href="{$v['link']}" title="{$v['title']}"> <img src="<!--{loadImage $v['thumb'] crop 50 50}-->" alt="{$v['title']}" class="img-responsive"  /> </a> </div>
+                <div class="f-news-bl-item-title col-md-9">
+                  <h3> <a title="{$v['title']}" href="{$v['link']}">$v['title']</a> </h3>
+                  <p class="date-new">$v['create_time']</p>
+
+                  <p class="styleviews"><i class="fa fa-eye"></i><a href="#">$v['views']</a></p>
+                  
+                </div>
+
+              </div>
+            </li>
+            <!--{/loop}--> 
+          </ul>
+        </div>
+      </div>
+      

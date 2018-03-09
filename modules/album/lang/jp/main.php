@@ -1,0 +1,29 @@
+<?php
+$_L['empty_the_list']                     = 'そのカテゴリにアルバムません';
+$_L['new']                                = '各';
+$_L['hot']                                = 'ハイライト';
+$_L['a_z']                                = '-Z';
+$_L['title']                              = 'タイトル';
+$_L['read_more']                          = 'もっと見ます';
+$_L['collapse']                           = '崩壊';
+$_L['album_related']                      = '関連アルバム';
+$_L['search']                             = '検索';
+$_L['could_not_find_any_results']         = '結果は言葉が見つかりませんでしたん';
+$_L['blockNew']                           = 'ニューアルバム';
+$_L['blockHot']                           = 'アルバムを見ます';
+$_L['module_name']                        = 'アルバム';
+$_L['no_record_exists']                   = 'いいえレコードが存在しません';
+$_L['comment_with_your_facebook_account'] = 'Facebookアカウントでコメント';
+$_L['comment_with_your_google_account']   = 'Googleアカウント挨拶';
+$_L['displaying']                         = '表示';
+$_L['page_to']                            = '来ます';
+$_L['page_on']                            = 'オン';
+$_L['records']                            = 'レコード - ページ番号';
+$_L['page']                               = 'ページ';
+$_L['before']                             = '前';
+$_L['after']                              = '後に';
+$_L['show_number']                        = 'ディスプレイの数';
+$_L['album_new']                          = 'ニューアルバム';
+$_L['album_vip']                          = 'アルバムのVIP';
+$_L['album_hot']                          = 'ホットアルバム';
+?>

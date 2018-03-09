@@ -1,0 +1,166 @@
+      
+<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/css/style.css">
+      <div class="clearfix"></div>
+      <!---->
+      <div class="clearfix"></div>
+   <!--{if isset($_breadcrumbs)}-->
+   <div class="productbreadcrumb">
+
+<ol class="breadcrumb">
+     <!--{loop $_breadcrumbs $k $v}-->
+        
+        <li ><a href="{$v['href']}">{$v['text']}</a> <i class="fa fa-caret-right"></i></li>
+         
+        <!--{/loop}-->
+   
+</ol>
+</div>
+    <div class="clearfix"></div>
+    <!--{/if}-->
+
+<div class="clearfix"></div>
+      <div class="f-module-page feedback1">
+        <div class="f-module-page-title styletitlefeedback"> <i></i><h1><span class="">{lang module}</span></h1> </div>
+        <div class="f-module-page-body paddingtopbottom ">
+          <div class="clearfix"></div>
+          <div class="f-customer-vote">
+            <div class="ykienkhachhang">
+              <div class="ykientitle"> <a class="addcomment">{lang submit_feedback}</a><a class="deletecomment" style="display: none">{lang collapse}</a> </div>
+              <!--{if isset($_success)}-->
+              <!--{temp feedback/notifyAction}-->
+              <!--{/if}-->
+              <div class="form_ykien" style="display:none">
+                <form id="comment-form" action="{$_url}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                  <fieldset>
+                    <!-- Text input-->
+                    <div class="message" style="display: none;"></div>
+                    <div class="form-group">
+                      <label class="col-md-3 col-sm-3 col-xs-3 full-xs control-label" for="textinput">{lang name}<span style="color:red">(*)</span></label>
+                      <div class="col-md-5 col-sm-9 col-xs-9 full-xs">
+                        <input name="txtName" id ="txtName"type="text" placeholder="" class="form-control" value="">
+                        <div class="warning" id="nameError"  style="display:none" ><span style="color: red;">{lang name_null}</span></div>
+                      </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-3 col-sm-3 col-xs-3 full-xs control-label" for="textinput">{lang phone}</label>
+                      <div class="col-md-5 col-sm-9 col-xs-9 full-xs">
+                        <input name="txtPhone" type="text" placeholder=" " class="form-control">
+                      </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-3 col-sm-3 col-xs-3 full-xs control-label" for="textinput">{lang email}<span style="color:red">(*)</span></label>
+                      <div class="col-md-5 col-sm-9 col-xs-9 full-xs">
+                        <input name="txtEmail" id="txtEmail" type="text" placeholder=" " class="form-control" value="">
+                        <div class="warning" id="emailNull"  style="display:none" ><span style="color: red;">{lang email_null}</span></div>
+                        <div class="warning" id="emailError"  style="display:none" ><span style="color: red;">{lang email_error}</span></div>
+                      </div>
+                    </div>
+                    
+                    <!-- Text input-->
+
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-3 col-sm-3 col-xs-3 full-xs control-label" for="textinput">{lang address}</label>
+                      <div class="col-md-5 col-sm-9 col-xs-9 full-xs">
+                        <input name="txtAddress" id="txtAddressfeedback" type="text" placeholder=" " class="form-control">
+                        <span class="help-block"> </span> </div>
+                    </div>
+                    <!-- Text input-->
+
+                    <!-- Textarea -->
+                    <div class="form-group">
+                      <label class="col-md-3 col-sm-3 col-xs-3 full-xs control-label" for="textarea">{lang module}<span style="color:red">(*)</span></label>
+                      <div class="col-md-5 col-sm-9 col-xs-9 full-xs">
+                        <textarea class="form-control" id="txtContent" name="txtContent" height="150"></textarea>
+                        <div class="warning" id="contentError"  style="display:none" ><span style="color: red;">{lang content_null}</span></div>
+                      </div>
+                    </div>
+                    <!-- file img -->
+                    <div class="form-group">
+                      <label class="col-md-3 col-sm-3 col-xs-3 control-label" for="textarea">{lang img_feedback}</label>
+                      <div class="col-md-5 col-sm-5 col-xs-5">
+                       
+                        <input type="file" name="img" value="">
+                      </div>
+                    </div>
+
+                    <div class="form-group check_feedback_capcha" <!--{if isset($_check_captcha_url)}-->check_capcha= "{$_check_captcha_url}"<!--{/if}--> >
+                          <label class="col-md-3 col-sm-3 col-xs-3 full-xs control-label" for="textinput">{lang captcha}</label>
+                          <input type="hidden" name="captcha" id="cap_feedback_md" value="0" />
+                          <div class="col-md-9 col-sm-9 col-xs-9 full-xs">
+                              <img id="capt_feedback_img_ct" src="BNCGLOBAL['captcha']" /> <img title="{lang tai_lai_ma_bao_ve}" id="f5capt_feedback_cha" src="{$web['static_temp_mod']}/resource/img/view-refresh-small.png" /> 
+                              <div style="float: left; padding: 1px 5px 0 0; width: 25%;"><input type="text" class="form-control" id="captcha_feedback_cha" value="" /></div>
+                              <div class="warning" id="capcha_feedback_Error"  style="display:none" ><span style="color: red;">{lang capcha_null}</span></div>
+                          </div>
+
+                    </div>
+
+                    <!-- Button (Double) -->
+                    <div class="form-group">
+                      <label class="col-md-3 col-sm-3 col-xs-3 full-xs control-label" for="button1id"></label>
+                      <div class="col-md-5 col-sm-5 full-xs col-xs-5"> 
+                        <!-- <input type="hidden" name="submit"> -->
+                        <input type="submit"class="btn btn-success send" action="1" name="ok" id="btnSent" value="{lang gui_y_kien}"style="border-radius: 2px;text-transform: uppercase;padding: 6px 28px; width:auto;"></input>
+                        <input type="reset" name="button2id" id="btnCancel" value="{lang lam_lai}" class="btn btn-danger" style="border-radius: 2px;text-transform: uppercase;padding: 6px 20px; width:auto;">
+                      </div>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+               <div class="clearfix"></div>
+                <div class="tab-content margin-top-10">
+                    <div id="f-pr-tab01" class="tab-pane active">
+                      <!--{if isset($_feedback)}-->
+                      <!--{eval $i=0}-->
+                      <!--{loop $_feedback $k $v}-->
+                          <!--{if ($i%2)==0}--> 
+                              <!--{temp feedback/feedbackPageFeedbackList}-->
+                          <!--{else}-->
+                              <!--{temp feedback/feedbackPageFeedbackListR}-->
+                          <!--{/if}-->
+                        <!--{eval $i++}--> 
+                      <!--{/loop}-->
+                      <!--{else}-->
+                      <div>
+                        {lang notfound}
+                      </div>
+                      <!--{/if}-->
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+               
+            </div>
+            
+            <script>
+              $('.addcomment').click(function(){
+          $(".form_ykien").toggle();
+          $('.addcomment').hide();
+          $(".deletecomment").show();
+        });
+              $('.deletecomment').click(function(){
+                $(".form_ykien").toggle();
+                $('.addcomment').show();
+                $(".deletecomment").hide();
+
+              });
+
+            </script>
+          </div>
+        </div>
+        <script src="{$web['static_temp_mod']}/resource/js/jquery.validate.min.js" type="text/javascript"></script>
+        <script src="{$web['static_temp_mod']}/resource/js/feedback.js" type="text/javascript"></script>
+        
+<script>
+$(document).ready(function() {
+   Feedback.init();
+});
+</script>
+
+

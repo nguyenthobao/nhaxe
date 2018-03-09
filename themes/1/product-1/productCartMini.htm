@@ -1,0 +1,55 @@
+<!--{if BNCGLOBAL['cartMini']['show_cart'] == 1}-->
+<div class="f-miniCart-miniv2" data-status="hide" style="right: -250px;">
+	<div class="f-miniCart-miniv2-toolbar">
+		<div class="miniv2-toolbar-close" style="visibility: hidden;"><span>×</span></div>
+		<div class="miniv2-toolbar-name">
+			<a class="miniv2-toolbar-barclick"> 
+				<span class="fa fa-shopping-cart"></span>{lang cart}
+				<span class="miniv2-toolbar-count">{BNCGLOBAL['cartMini']['count']}</span>
+			</a>
+		</div>
+		<div class="v2-gotop">
+			<a class="lentop">
+				<i class="fa fa-arrow-circle-o-up "></i>
+			</a>
+		</div>
+		<script type="text/javascript">
+
+		$(".lentop").click(function(event){
+		
+		 $('html, body').animate({ scrollTop: 0 }, 1000);
+		});
+		</script>
+	</div>
+	<div class="miniCart-top">
+		<span>{lang my_cart} ({BNCGLOBAL['cartMini']['count']})</span>
+	</div>
+	<div class="miniCart-body">
+		<ul class="miniCartItem">
+			<!--{if !empty(BNCGLOBAL['cartMini']) && !empty(BNCGLOBAL['cartMini']['content'])}-->
+			<!--{loop BNCGLOBAL['cartMini']['content'] $k $v}-->
+			<li>
+				<a class="miniCartItemImg" href="{$v['link']}" target="_blank">
+					<img src="<!--{loadImage $v['image'] resize 50 50}-->" alt="{$v['name']}">
+				</a>
+				<p><a title="{$v['name']}" href="{$v['link']}">{$v['name']}</a></p>
+				<p><b>SL: {$v['quantity']} x </b><b>{$v['price']}</b><i class="removeCartItem fa fa-trash-o" data-product="{$v['id']}" data-size="{$v['idSize']}"></i></p>
+				<p><b>Size: {$v['size']}</b></p>
+				<i class="clearfix"></i>
+			</li>
+			<!--{/loop}-->
+			<!--{else}-->
+			<li><center>{lang no_product_in_cart}</center></li>
+			<!--{/if}-->
+		</ul>
+		<!--{if !empty(BNCGLOBAL['cartMini']) && !empty(BNCGLOBAL['cartMini']['content'])}-->
+		<p class="minicartItemTotal">
+			<b>{lang label_total}:</b><b>{BNCGLOBAL['cartMini']['total']}</b>
+		</p>
+		<p class="minicartItemPay">
+			<a href="{BNCGLOBAL['cartMini']['payment_url']}" id="payment" class="btnRed">{lang tienhanhdathang}</a>
+		</p>
+		<!--{/if}-->
+	</div>
+</div>
+<!--{/if}-->

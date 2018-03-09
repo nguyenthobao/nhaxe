@@ -1,0 +1,11 @@
+<div class="actions btn-set">
+	<a href="$_B['home']/category-categorylist-lang-{$_GET['lang']}" class="btn default"><i class="fa fa-angle-left"></i> {lang cancel}</a>
+	<button class="btn default" id="btn_reset" type="reset"><i class="fa fa-reply"></i> {lang reset}</button>
+	<button class="btn green continue" data-continue="categorylist"><i class="fa fa-check"></i> {lang submit}</button>
+	<button class="btn green continue" data-continue="category"><i class="fa fa-check-circle"></i> {lang submit_cont_}</button>
+	<button class="btn green continue" data-continue="category_lang"><i class="fa fa-flag"></i> {lang submit_cont_lang}</button>
+	<input type="hidden" name="action" value="addcategory">
+	<input type="hidden" name="lang" value="vi">
+	<input type="hidden" name="continue" value="">
+	<input type="hidden" name="issetLangDefault" <!--{if !empty($cat[id])}-->value="exist"<!--{/if}-->>
+</div>

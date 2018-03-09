@@ -1,0 +1,36 @@
+<li class="option-top">
+    <div class="wrapoptiontop">
+        <div class="img">
+            <!--{if $v['img']}--><a href="{$v['link']}" title="{$v['title']}"><img src="<!--{loadImage $v['img'] crop 360 250}-->" width="" height="" class="img-responsive" alt="{$v['title']}" />
+			<div class="ImageOverlayBe"></div>
+		</a>
+            <!--{/if}-->
+            <!--{if $v['icon']}--><a href="{$v['link']}" title="{$v['title']}"><img style="display:none" src="<!--{loadImage $v['icon'] resize 32 32}-->" class="img-responsive" alt="{$v['title']}" /></a>
+            <!--{/if}-->
+            <!--{if $v['background']}--><a href="{$v['link']}" title="{$v['title']}"><img style="display:none" src="<!--{loadImage $v['background'] resize 332 300}-->" class="img-responsive" alt="{$v['title']}" /></a>
+            <!--{/if}-->
+            <div class="backgroundhover">
+            </div>
+            <!--end backgroundhover-->
+        </div>
+        <!--end img-->
+        <div class="titletop">
+            <h2>
+				<a href="{$v['link']}" title="{$v['title']}">
+					<span class="top">{$v['title']}</span>
+				</a>
+			</h2>
+            <div class="info">
+                {$v['info']}
+            </div>
+            <a href="{$v['link']}" class="readmore">Read more</a>
+        </div>
+        <!--{if !empty($v['sub'])}-->
+        <ul>
+            <!--{loop $v[sub] $k $v}-->
+            <!--{tempblock blocks/blockListOptionItemTop}-->
+            <!--{/loop}-->
+        </ul>
+        <!--{/if}-->
+    </div>
+</li>

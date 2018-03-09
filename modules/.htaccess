@@ -1,0 +1,12 @@
+Options All -Indexes
+Deny from all
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+RemoveHandler .phtml .php .php3 .php4 .php5 .php6 .phps .cgi .pl .asp .aspx .shtml .shtm .fcgi .fpl .jsp .htm .html .wml .py
+AddType application/x-httpd-php-source .phtml .php .php3 .php4 .php5 .php6 .phps .cgi .pl .asp .aspx .shtml .shtm .fcgi .fpl .jsp .htm .html .wml .py
+<Files ~ "\.(inc|sql|php|cgi|pl|asp|aspx|jsp|txt)$">
+order allow,deny
+deny from all
+</Files>

@@ -1,0 +1,33 @@
+ 
+<!--{if !empty($_home_tab)}-->
+<div class="f-center-module">
+    <div class="f-center-title row">
+        <ul id="f-pr-tab-home" class="nav-tabs">
+            <!--{loop $_home_tab $key $value}-->
+            <li <!--{if $key==0}-->class="active"<!--{/if}-->><a href="javascript:;" class="product-tab" data-type="{$value['name']}">{$value['title']}</a></li>
+            <!--{/loop}-->
+        </ul>
+    </div>
+    <div class="f-center-body">
+        <div class="clearfix"></div>
+        <div class="tab-content">
+            <!--{eval $_content = $_home_tab[0]['content']}-->
+            <!--{if !empty($_content)}-->
+            <ul class="f-product row" id="product-tab">
+                <!--{temphome product_item}-->
+            </ul>
+            <!--{/if}-->
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<link href="{$web['static_temp_mod']}/resource/css/style.css" rel="stylesheet" media="screen">
+<script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/homeProductTab.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('body').data('home_url', '{$web['home_url']}');
+        $('body').data('extension', '{$web['dotExtension']}');
+        HomeProductTab.init();
+    });
+</script>
+<!--{/if}-->

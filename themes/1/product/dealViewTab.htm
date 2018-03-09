@@ -1,0 +1,44 @@
+<!--{if !empty($_tab)}-->
+<div class="f-product-view-tab">
+	<div class="f-product-view-tab-header">
+		<ul id="f-pr-page-view-tabid" class="nav-tabs">
+			<!--{eval $i = 0}-->
+			<!--{loop $_tab $k $v}-->
+			<!--{eval $i++}-->
+				<!--{if $v['name']!='require_calls'}-->
+					<li <!--{if $i==1}-->class="active"<!--{/if}-->><a href="#f-pr-view-0{$i}" data-toggle="tab">{$v['title']}</a></li>
+				<!--{/if}-->
+			<!--{/loop}-->
+		</ul>
+		<div class="clearfix"></div>
+	</div>
+	<div class="f-product-view-tab-body tab-content">
+		<!--{eval $i = 0}-->
+		<!--{loop $_tab $k $v}-->
+			<!--{eval $i++}-->
+			<!--{eval $content = $v['content']}-->
+			<!--{if $v['name'] == 'information'}-->
+				<div id="f-pr-view-0{$i}" class="tab-detail tab-pane <!--{if $i == 1}-->active<!--{/if}-->">
+				<!--{temp product/productViewTabInformation}-->
+				</div>
+			<!--{elseif $v['name'] == 'description' || $v['name'] == 'description_other'}-->
+				<div id="f-pr-view-0{$i}" class="tab-content tab-pane <!--{if $i == 1}-->active<!--{/if}-->">
+					{$v['content']}
+				</div>
+			<!--{elseif $v['name'] == 'contact_purchases'}-->
+				<div id="f-pr-view-0{$i}" class="tab-contact tab-pane <!--{if $i == 1}-->active<!--{/if}-->">
+				<!--{temp product/productViewTabContactPurchases}-->
+				</div>
+			<!--elseif $v['name'] == 'require_calls'
+				<div id="f-pr-view-0{$i}" class="tab-callback tab-pane {if $i == 1}active{/if}">
+				temp product/productViewTabRequireCalls
+				</div>-->
+			<!--{elseif $v['name'] == 'guide'}-->
+				<div id="f-pr-view-0{$i}" class="tab-content tab-pane <!--{if $i == 1}-->active<!--{/if}-->">
+					{$v['content']}
+				</div>
+			<!--{/if}-->
+		<!--{/loop}-->
+	</div>
+</div>
+<!--{/if}-->

@@ -1,0 +1,48 @@
+ <section class="section-90 section-md-111 bg-zircon">
+                    <div class="shell">
+                        <h2 class="text-bold">{lang news_new}</h2>
+                        <hr class="divider bg-chathams-blue">
+
+
+          <div class="range range-xs-center offset-top-60">
+
+                        <!--{eval $i=0}-->
+          <!--{loop $_news $k $v}-->
+          <!--{if $i < 6}--> 
+
+                            <div class="cell-xs-10 cell-sm-6 offset-top-30">
+                                <!-- Post Boxed-->
+                                <div class="reveal-block">
+                                    <div class="post post-boxed">
+                                        <!-- Post media-->
+                                        <header class="post-media"><img width="570" height="310" src="<!--{loadImage $v['img'] crop 570 290}-->" alt="" class="img-responsive"></header>
+                                        <!-- Post content-->
+                                        <section class="post-content text-left">
+                                             
+                                            <div class="post-body">
+                                                <!-- Post Title-->
+                                                <div class="post-title">
+                                                    <div class="h4 text-bold text-white"><a href="$v['link']">$v['title']</a></div>
+                                                </div>
+                                                 
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div> 
+                        
+
+
+           
+          <!--{/if}-->
+          <!--{eval $i++}-->
+          <!--{/loop}-->
+
+</div>
+
+                         
+                    </div>
+                </section>
+
+
+               

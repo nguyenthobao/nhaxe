@@ -1,0 +1,29 @@
+<?php
+$_L['empty_the_list']='K dispozici jsou v seznamu žádná alba';
+$_L['new']='Nová';
+$_L['hot']='Zvýraznění';
+$_L['a_z']='A-Z';
+$_L['title']='Název';
+$_L['read_more']='Zobrazit';
+$_L['collapse']='Sbalit';
+$_L['album_related']='související Album';
+$_L['search']='Vyhledávání';
+$_L['could_not_find_any_results']='Výsledky vyhledávání pro slovo';
+$_L['blockNew']='Nové album';
+$_L['blockHot']='Album zobrazeno';
+$_L['module_name']='Album';
+$_L['no_record_exists']='Je zde neexistuje žádný veřejný záznam';
+$_L['comment_with_your_facebook_account']='Komentáře přes facebook účet';
+$_L['comment_with_your_google_account']='Připomínky k účtu Google + ';
+$_L['displaying']='Zobrazit od';
+$_L['page_to']='na';
+$_L['page_on']='na';
+$_L['records']='záznamy - Čísla stránek';
+$_L['page']='stránku';
+$_L['before']='První';
+$_L['after']='Po';
+$_L['show_number']='display Číslo ';
+$_L['album_new']='Nové album';
+$_L['album_vip']='Album Vip';
+$_L['album_hot']='album Hot';
+?>

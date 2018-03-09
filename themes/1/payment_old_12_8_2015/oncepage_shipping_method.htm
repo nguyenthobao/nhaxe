@@ -1,0 +1,12 @@
+<!--{if isset($_shipping_method)}-->
+<div class="table-responsive"> 
+	<label class="BNC_choose_shipping" style=" margin-left: 2px;">
+		<input type="radio" value="" checked styl="padding-left:5px"/> 
+		Dịch vụ giao hàng tiết kiệm với phí: <b><!--{formatNumber $_shipTotal['total'] $_currency }--></b></label><br/>
+	<span class="ship_description">{$_shipTotal['description']}</span>
+</div> 
+<!--{else}-->
+<div class="table-responsive"> 
+	<p>{lang city_dis}
+</div>
+<!--{/if}-->

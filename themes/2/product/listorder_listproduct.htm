@@ -1,0 +1,14 @@
+<tr data-pk="{$v['id']}">
+	<td class="text-center">{$v['stt']}</td>
+	<td class="text-center"><img width="60" height="60" src="http://dev2.webbnc.vn/cdn/{$v['image']}" alt=""/></td>
+	<td class="text-center">{$v['name']}
+		<!--{if !empty($v['size_name'])}-->
+		<p><i>({lang label_size}: {$v['size_name']})</i></p>
+		<!--{/if}-->
+	</td>
+	<td class="text-center">{$v['model']}</td>
+	<td class="text-center">{$v['shopName']}</td>
+	<td class="text-center">{$v['quantity']}</td>
+	<td class="text-center">{$v['price']} {$_order['currency_code']}</td>
+	<td class="text-center">{$v['total']} {$_order['currency_code']}</td>
+</tr>

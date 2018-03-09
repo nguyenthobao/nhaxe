@@ -1,0 +1,20 @@
+<div class="f-block introduceblock">
+  <div class="f-block-title"> <i></i><h2><span>$block['title']</span></h2> </div>
+    <div class="f-block-body" >
+      <ul class="f-news-bl ">
+        <!--{loop $data $k $v}-->
+        <li>
+          <div class="f-news-bl-item">
+            <div class="f-news-bl-item-img"> <a href="{$v['link']}" title="{$v['title']}"> <img src="{$v['thumb']}" class="img-responsive" alt="{$v['title']}" /> </a>
+            </div>  
+
+            <div class="f-news-bl-item-title">
+              <h2 class="hideintroduce"> <a title="{$v['title']}" href="{$v['link']}">$v['title']</a> </h2>
+              <p>{$v['short']}</p>
+            </div>
+          </div><!--end f newbl-->
+        </li>
+        <!--{/loop}--> 
+      </ul>
+    </div><!--end block body-->
+</div>

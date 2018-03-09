@@ -1,0 +1,45 @@
+      
+<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/css/style.css">
+      <div class="clearfix"></div>
+      <!---->
+
+      <div class="f-module-page">
+        <div class="f-module-page-title"> <i></i><span class="pull-left">{lang module}</span> </div>
+        <div class="f-module-page-body padding-10">
+          <div class="clearfix"></div>
+          <div class="f-customer-vote">
+            <div class="ykienkhachhang">
+               <div class="clearfix"></div>
+                <div class="tab-content margin-top-10">
+                    <div id="f-pr-tab01" class="tab-pane active">
+                      <!--{if isset($_feedback)}-->
+                      <!--{eval $i=0}-->
+                      <!--{loop $_feedback $k $v}-->
+                          <!--{if ($i%2)==0}--> 
+                              <!--{temp feedback/feedbackPageFeedbackList}-->
+                          <!--{else}-->
+                              <!--{temp feedback/feedbackPageFeedbackListR}-->
+                          <!--{/if}-->
+                        <!--{eval $i++}--> 
+                      <!--{/loop}-->
+                      <!--{else}-->
+                      <div>
+                        {lang notfound}
+                      </div>
+                      <!--{/if}-->
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+               
+            </div>
+            
+          </div>
+        </div>
+        <script src="{$web['static_temp_mod']}/resource/js/feedback.js" type="text/javascript"></script>
+<script>
+$(document).ready(function() {
+   Feedback.init();
+});
+</script>

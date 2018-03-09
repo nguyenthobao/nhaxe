@@ -1,0 +1,67 @@
+<ul class="f-product-viewid row f-product">
+<!--{if !empty($_content)}-->
+<!--{loop $_content $k $v}-->
+<li class=" col-md-3  col-sm-3 col-xs-3" id="like-product-item-{$v['id']}">
+	<div class="v2-pr-item">		
+		<a data-pjax="#fast-container" data-product-id="{$v['id']}" class="quickview v2-pr-item-action-viewq nbh-popup-with-move-anim" data-href="#fast-dialog" href="{$v['link']}" >{lang viewfast}</a>
+		<!-- <div class="f-pr-item-compare"><span>So sánh</span></div> -->
+
+		<!--{if $v['price']['percent'] != 0}--><div class="v2-pr-item-saleof"><i class="fa fa-angle-double-down"></i> <span>{$v['price']['percent']}</span></div><!--{/if}-->
+		<div class="v2-pr-item-img ">
+			<a href="{$v['link']}" title="{$v['name']}"><img alt="{$v['name']}"  src="<!--{loadImage $v['image'] resize 265 250}-->" id="f-pr-image-zoom-id-{$v['id']}"  class="img-responsive BNC-image-add-cart-{$v['id']}" /></a>
+		</div>
+		<div class="downtime BNC_down_time_{$v['id']}"></div>
+		<div class="v2-pr-item-boxdetail ">
+			<div class="v2-pr-item-price-gr">
+				
+				<!--{if $v['price_min']<=0}-->
+					<p class="v2-pr-item-price no-price">{lang contact}</p>
+				<!--{else}-->
+					<p class="v2-pr-item-price">{$v['price_min_format']}</p>
+				<!--{/if}-->
+
+				<!--{if $v['price']['price_old'] != 0}--><p class="v2-pr-item-price-old">{$v['price']['price_old']}</p><!--{/if}-->
+			</div>
+			<a class="v2-pr-item-name" href="{$v['link']}" title="{$v['name']}"><h2>{$v['name']}</h2></a>
+
+			<div class="v2-pr-item-action">
+				<a href="{$v['link']}" class="v2-pr-item-action-detail"><span class="glyphicon glyphicon-info-sign"></span> {lang detailed}</a>
+				<!--{if $v['quantity']<1}-->
+					<button  class="v2-pr-item-action-buy no-buy" disabled><span class="glyphicon glyphicon-shopping-cart"></span> {lang hethang}</button>
+				<!--{else}-->
+					<button  data-product="{$v['id']}" data-quantity="1" class="BNC-add-cart v2-pr-item-action-buy"><span class="glyphicon glyphicon-shopping-cart"></span> {lang quickbuy}</button>
+				<!--{/if}-->
+			</div>
+			<!--{if ($v['is_like']!=2)}-->
+					<!--{if ($v['is_like']===0)}-->
+						<button class="btn btn-success like-product-{$v['id']} like-product" data-like="{$v['is_like']}" data-name="{$v['name']}" data-id="{$v['id']}" data-text-like="{lang like}" data-text-unlike="{lang unlike}"><i class="fa fa-thumbs-up"></i> <span id="text-like-{$v['id']}"> </span></button>
+
+					<!--{else}-->
+						<button class="btn btn-danger like-product-{$v['id']} like-product" data-like="{$v['is_like']}" data-name="{$v['name']}" data-id="{$v['id']}" data-text-like="{lang like}" data-text-unlike="{lang unlike}"><i class="fa fa-thumbs-down"></i> <span id="text-like-{$v['id']}"> </span></button>
+
+					<!--{/if}-->
+				<!--{else}-->
+						<button class="btn btn-success like-product-{$v['id']} like-product"  data-like="{$v['is_like']}" data-name="{$v['name']}" data-id="{$v['id']}" data-login="{lang not_login} <br/><a class='btn btn-success' href='{$web['home_url']}/user-login{$web['dotExtension']}'>{lang login}</a>"><i class="fa fa-thumbs-up"></i> <span id="text-like-{$v['id']}"> </span></button>
+				<!--{/if}-->
+			<!--{if !empty($v['other_info'])}-->
+			<div class="f-pr-otherdetail" style="display:none">
+				<ul>
+					<!--{loop $v['other_info'] $row}-->
+					<li class="row">
+						<span class="col-md-3  col-sm-3 col-xs-3">{$row['title']}: </span> <span class="col-md-9  col-sm-9 col-xs-9">{$row['content']} </span>
+					</li>
+					<!--{/loop}-->
+				</ul>
+	        </div>
+	        <!--{/if}-->
+	        
+		</div>
+	</div>
+	<input type="hidden" class="BNC_value_downtime" data-id="{$v['id']}" data-time="{$v['deal_end']}">
+</li>
+
+<!--{/loop}-->
+</ul>
+<!--{else}-->
+<center>{lang no_product}</center>
+<!--{/if}-->

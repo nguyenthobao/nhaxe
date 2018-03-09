@@ -1,0 +1,29 @@
+<div class="f-block">
+	<div class="f-block-title"><span>{$block['title']}</span></div>
+	<div class="f-block-body"> 
+		<div class="carousel slide" data-ride="carousel">
+			<div class="carousel-inner ">
+				<!--{loop $data $k $v}-->
+				<div class="item f-product-bl <!--{if $k==0}-->active<!--{/if}-->">
+					<div class="f-pr-bl-item">
+						<!--{if $v['price']['percent'] != 0}--><div class="f-pr-bl-item-saleof"><span>{$v['price']['percent']}</span></div><!--{/if}-->
+						<div class="f-pr-bl-item-img"> 
+							<a href="{$v['link']}" title="{$v['name']}"> <img alt="{$v['name']}" src="<!--{loadImage $v['image'] resize 243 250}-->" class="img-responsive"> </a> 
+						</div>
+						<div class="f-pr-bl-item-boxdetail">
+							<h2><a class="f-pr-bl-item-name" href="{$v['link']}" title="{$v['name']}">{$v['name']}</a></h2>
+							<!--{if $v['price']['price']==0}-->
+								<p class="f-pr-bl-item-price">Liên hệ</p>
+							<!--{else}-->
+								<p class="f-pr-bl-item-price">{$v['price']['price']}</p>
+							<!--{/if}-->
+							
+							<!--{if $v['price']['price_old'] != 0}--><p class="f-pr-bl-item-old-price">{$v['price']['price_old']}</p><!--{/if}-->
+						</div>
+					</div>
+				</div>
+				<!--{/loop}-->
+			</div>
+		</div>
+	</div>
+</div>

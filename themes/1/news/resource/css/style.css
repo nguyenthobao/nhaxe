@@ -1,0 +1,24 @@
+@charset "utf-8";
+ 
+.f-center-module .f-center-title .nav-tabs li.active a.parent_tab{
+	background: red;
+	padding: 10px;
+	color: #fff !important;
+	font-weight: bold !important;
+}
+.f-page-split-title
+{
+	font-size: 16px;
+  	color: #444;
+  	font-weight: bold;
+  	margin-top: 20px;
+}
+.f-page-split ul, .f-page-split ul li
+{
+	list-style: none;
+}
+
+.f-page-split ul li h3 a 
+{
+	font-size: 14px;
+}

@@ -1,0 +1,17 @@
+<li>
+    <div class="top-menu-backgroud">
+        <!--{if isset($v['sub']) AND count($v['sub']) > 0 }-->
+        <div class="top-menu-sub">
+            <ul class="row">
+                <!--{loop $v['sub'] $k $v2}-->
+                <!--{temp common/menu_top_list_list}-->
+                <!--{/loop}-->
+            </ul>
+        </div>
+        <!--{/if}-->
+    </div>
+    <a class="f-bg-base firstlink" href="{$v['link']}" title="">
+
+        <span>{$v['namemenu']}</span>
+    </a>
+</li>

@@ -1,0 +1,186 @@
+RewriteEngine on 
+Options +FollowSymlinks 
+RewriteBase /
+
+RewriteRule ^dat-ve$ index.php?mod=datve&page=datve [L,QSA]
+
+RewriteRule ^api/temp$ index.php?mod=api_temp [L,QSA]
+
+#### TRUY CAP QUAN TRI NHANH #####
+RewriteRule ^quantri$ index.php?setweb=1 [L]
+RewriteRule ^([0-9a-zA-Z\_\-]+)/quantri$ index.php?w=$1&setweb=1 [L]
+ 
+
+RewriteRule ^([0-9a-zA-Z\_\-]+)/dat-ve$ index.php?w=$1&mod=datve&page=datve [L,QSA]
+ 
+RewriteRule ^([a-zA-Z0-9_-]+)-1-1-([0-9_]+).html$ index.php?mod=product&page=product&sub=detail&id=$2 [L,QSA]
+
+RewriteRule ^([a-zA-Z0-9_-]+)-2-1-([0-9_]+).html$ index.php?mod=product&page=product&sub=category&id=$2 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-2-1-([0-9_]+)-p([0-9]+).html$ index.php?mod=product&page=product&sub=category&id=$2&p=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-5-1-([0-9_]+).html$ index.php?w=$1&mod=product&page=product&sub=auctionItem&id=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-5-1-([0-9_]+).html$ index.php?mod=product&page=product&sub=auctionItem&id=$2 [L,QSA]
+
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-8-1.html$ index.php?w=$1&mod=product&page=index [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-8-1.html$ index.php?mod=product&page=index [L,QSA]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-8-1-p([0-9]+).html$ index.php?w=$1&mod=product&page=index&p=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-8-1-p([0-9]+).html$ index.php?mod=product&page=index&p=$2 [L,QSA]
+
+
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-3-1-([0-9_]+)-p([0-9_]+).html$ index.php?w=$1&mod=product&page=product&sub=brand&id=$3&p=$4 [L,QSA]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-3-1-([0-9_]+).html$ index.php?w=$1&mod=product&page=product&sub=brand&id=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-3-1-([0-9_]+)-p([0-9_]+).html$ index.php?mod=product&page=product&sub=brand&id=$2&p=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-3-1-([0-9_]+).html$ index.php?mod=product&page=product&sub=brand&id=$2 [L,QSA]
+
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-4-1-([0-9_]+).html$ index.php?w=$1&mod=product&page=product&sub=auction&id=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-5-1-([0-9_]+).html$ index.php?w=$1&mod=product&page=product&sub=auctionitem&id=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-6-1-([0-9_]+).html$ index.php?w=$1&mod=product&page=product&sub=deal&id=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-7-1-([0-9_]+).html$ index.php?w=$1&mod=product&page=product&sub=dealItem&id=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-7-1-([0-9_]+).html$ index.php?mod=product&page=product&sub=dealItem&id=$2 [L,QSA]
+
+#News
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-1-2-([0-9_]+).html$ index.php?w=$1&mod=news&page=detail&sub=view&id=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-2-2-([0-9_]+).html$ index.php?w=$1&mod=news&page=category&sub=cat&id=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-2-2-([0-9_]+)-p([0-9]+).html$ index.php?w=$1&mod=news&page=category&sub=cat&id=$3&p=$4 [L,QSA]
+
+
+RewriteRule ^([a-zA-Z0-9_-]+)-2-2-([0-9_]+)-p([0-9]+).html$ index.php?mod=news&page=category&sub=cat&id=$2&p=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-2-2-p([0-9]+).html$ index.php?mod=news&page=category&sub=cat&p=$2 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-2-2-([0-9_]+).html$ index.php?mod=news&page=category&sub=cat&id=$2 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-2-2.html$ index.php?mod=news&page=category&sub=cat [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-1-2-([0-9_]+).html$ index.php?mod=news&page=detail&sub=view&id=$2 [L,QSA]
+
+
+
+#Album
+
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-1-3-([0-9_]+).html$ index.php?w=$1&mod=album&page=detail&sub=view&id=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-1-3-([0-9_]+).html$ index.php?mod=album&page=detail&sub=view&id=$2 [L,QSA]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-2-3-([0-9_]+).html$ index.php?w=$1&mod=album&page=category&sub=album&id=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-2-3-([0-9_]+)-p([0-9_]+).html$ index.php?w=$1&mod=album&page=category&sub=album&id=$3&p=$4 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-2-3-([0-9_]+).html$ index.php?mod=album&page=category&sub=album&id=$2 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-2-3-([0-9_]+)-p([0-9_]+).html$ index.php?mod=album&page=category&sub=album&id=$2&p=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-3-3-([0-9_]+).html$ index.php?w=$1&mod=album&page=category&sub=album&id=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-3-3-([0-9_]+).html$ index.php?mod=album&page=category&sub=album&id=$2 [L,QSA]
+
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-2-3.html$ index.php?w=$1&mod=album&page=home&sub=album [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-2-3.html$ index.php?mod=album&page=home&sub=album [L,QSA]
+
+
+#Video
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-1-4-([0-9_]+).html$ index.php?w=$1&mod=video&page=detail&sub=view&id=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-1-9-([0-9_]+).html$ index.php?w=$1&mod=video&page=detail&sub=view&id=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-1-9-([0-9_]+).html$ index.php?mod=video&page=detail&sub=view&id=$2 [L,QSA]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-2-9-([0-9_]+).html$ index.php?w=$1&mod=video&page=category&sub=cat&id=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-2-9-([0-9_]+).html$ index.php?mod=video&page=category&sub=cat&id=$2 [L,QSA]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-2-9-([0-9_]+)-p([0-9]+).html$ index.php?w=$1&mod=video&page=category&sub=cat&id=$3&p=$4 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-2-9-([0-9_]+)-p([0-9]+).html$ index.php?mod=video&page=category&sub=cat&id=$2&p=$3 [L,QSA]
+
+#recruit
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-1-5-([0-9_]+).html$ index.php?w=$1&mod=recruit&page=detail&sub=view&id=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-1-5-([0-9_]+).html$ index.php?mod=recruit&page=detail&sub=view&id=$2 [L,QSA]
+#RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-2-5-([0-9_]+).html$ index.php?w=$1&mod=recruit&page=detail&sub=profile&id=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-3-5.html$ index.php?w=$1&mod=recruit&page=detail&sub=profile&id=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-3-5.html$ index.php?mod=recruit&page=home&sub=recruit [L,QSA]
+
+#deal
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-1-6-([0-9_]+).html$ index.php?w=$1&mod=deal&page=detail&sub=index&id=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-2-6-([0-9_]+).html$ index.php?w=$1&mod=deal&page=category&sub=index&id=$3 [L,QSA]
+
+#category
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-1-7-([0-9_]+).html$ index.php?w=$1&mod=category&page=detail&sub=view&id=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-1-7-([0-9_]+).html$ index.php?mod=category&page=detail&sub=view&id=$2 [L,QSA]
+
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-2-7.html$ index.php?w=$1&mod=category&page=category&sub=index [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-2-7.html$ index.php?mod=category&page=category&sub=index [L,QSA]  
+
+
+#info
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-1-8-([0-9_]+).html$ index.php?w=$1&mod=info&page=detail&sub=view&id=$3 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-1-8-([0-9_]+).html$ index.php?mod=info&page=detail&sub=view&id=$2 [L,QSA]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_-]+)-2-8.html$ index.php?w=$1&mod=info&page=info&sub=index [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)-2-8.html$ index.php?mod=info&page=info&sub=index [L,QSA]
+
+
+
+ 
+
+RewriteRule ^([0-9a-zA-Z\_\-]+)/?$ index.php?w=$1 [L]
+RewriteRule ^([0-9a-zA-Z\_\-]+)/api/([a-zA-Z0-9]+)$ index.php?w=$1&api=$2 [L]  
+#RewriteRule ^([0-9a-zA-Z\_\-]+)/@([0-9]+)$ index.php?w=$1&settemp=$2 [L]
+RewriteRule ^([0-9a-zA-Z\_\-]+)/api/([a-zA-Z0-9]+)/([0-9]+)$ index.php?w=$1&api=$2&id=$3 [L]  
+
+
+
+RewriteRule ^([a-zA-Z0-9\-\_]+)/robots.txt$ index.php?w=$1&robots=1 [L] 
+RewriteRule ^robots.txt$ index.php?robots=1 [L] 
+RewriteRule ^sitemap.xml$ index.php?seo=sitemap&filename=sitemap.xml [L] 
+RewriteRule ^sitemap.html$ index.php?seo=sitemap&filename=sitemap.html [L] 
+RewriteRule ^urllist.txt$ index.php?seo=sitemap&filename=urllist.txt [L] 
+RewriteRule ^ror.xml$ index.php?seo=sitemap&filename=ror.xml [L] 
+
+RewriteRule ^sitemap-([a-z]+)\.xml$ index.php?seo=sitemap&sitemap=$1 [L] 
+RewriteRule ^([a-zA-Z0-9\-\_]+)/sitemap.xml$ index.php?w=$1&seo=sitemap [L]
+#RewriteRule ^([a-zA-Z0-9\-\_]+)/sitemap-([a-z]*)\.xml$ index.php?w=$1&seo=sitemap&sitemap=$2 [L]
+
+#mod danh cho TEN RUT GON
+RewriteRule ^([0-9a-zA-Z\_\-]+)/tag/([0-9a-zA-Z\_\-]+)$ index.php?w=$1&mod=tag&page=tag&sub=index&tag=$2
+
+RewriteRule ^([0-9a-zA-Z\_\-]+)/trang-([0-9a-zA-Z\_\-]+)\.html$ index.php?w=$1&mod=$2 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\_\-]+)/([0-9a-zA-Z\_]+)\.html$ index.php?w=$1&mod=$2 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\_\-]+)/([0-9a-zA-Z\_]+)-p([0-9]+)\.html$ index.php?w=$1&mod=$2&p=$3 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\_\-]+)/([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)\.html$ index.php?w=$1&mod=$2&page=$3 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\_\-]+)/([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)-p([0-9]+)\.html$ index.php?w=$1&mod=$2&page=$3&p=$4 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\_\-]+)/([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)-([0-9\_]+)\.html$ index.php?w=$1&mod=$2&page=$3&id=$4 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\_\-]+)/([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)\.html$ index.php?w=$1&mod=$2&page=$3&sub=$4 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\_\-]+)/([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)-p([0-9]+)\.html$ index.php?w=$1&mod=$2&page=$3&sub=$4&p=$5 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\_\-]+)/([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)-([0-9\_]+)-p([0-9]+)\.html$ index.php?w=$1&mod=$2&page=$3&id=$4&p=$5 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\_\-]+)/([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)-([0-9\_]+)\.html$ index.php?w=$1&mod=$2&page=$3&sub=$4&id=$5 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\_\-]+)/([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)-([0-9\_]+)-p([0-9]+)\.html$ index.php?w=$1&mod=$2&page=$3&sub=$4&id=$5&p=$6 [L,QSA]
+
+############################ DOMAIN RIENG ########################################
+
+ 
+
+RewriteRule ^robots.txt$ index.php?robots=1 [L]
+#--------Tags-----#
+RewriteRule ^tag/([0-9a-zA-Z\_\-]+)$ index.php?mod=tag&page=tag&sub=index&tag=$1
+
+#--------Customize url module-----#
+
+RewriteRule ^trang-([0-9a-zA-Z\_\-]+)-p([0-9]+).html$ index.php?mod=$1&p=$2 [L,QSA]
+RewriteRule ^trang-([0-9a-zA-Z\_\-]+)\.html$ index.php?mod=$1 [L,QSA]
+
+
+
+RewriteRule ^([0-9a-zA-Z\_]+)\.html$ index.php?mod=$1 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\_]+)-p([0-9]+)\.html$ index.php?mod=$1&p=$2 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)\.html$ index.php?mod=$1&page=$2 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)-p([0-9]+)\.html$ index.php?mod=$1&page=$2&p=$3 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)-([0-9\_]+)\.html$ index.php?mod=$1&page=$2&id=$3 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)\.html$ index.php?mod=$1&page=$2&sub=$3 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)-([0-9\_]+)-p([0-9]+)\.html$ index.php?mod=$1&page=$2&id=$3&p=$4 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)-p([0-9]+)\.html$ index.php?mod=$1&page=$2&sub=$3&p=$4 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)-([0-9\_]+)\.html$ index.php?mod=$1&page=$2&sub=$3&id=$4 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)-([0-9a-zA-Z\_]+)-([0-9\_]+)-p([0-9]+)\.html$ index.php?mod=$1&page=$2&sub=$3&id=$4&p=$5 [L,QSA]
+
+RewriteRule ^([0-9a-zA-Z\_\-]+)/([0-9a-zA-Z\_]+)-(\d)-(\d+)-(\d+)\.html$ index.php?w=$1&url=$2&subid=$4&modid=$4&id=$5 [L]
+
+
+#### DANH CHO DOMAIN RIENG ####
+##Xu ly khong qua FB
+
+
+
+#### DANH TEN RUT GON ####
+RewriteRule ^([0-9a-zA-Z\_\-]+)/([0-9a-zA-Z]+)\.html$ index.php?w=$1&customurl=$2 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\_\-]+)/([0-9a-zA-Z\-]+)-([0-9]{1})-([0-9]{1})-([0-9]{0,10})\.html$ index.php?w=$1&customurl=$2&sub=$3&mod=$4&id=$5 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\_\-]+)/([0-9a-zA-Z\-]+)-([0-9]{1})-([0-9]{1})-([0-9]{0,10})-p([0-9]{0,3})\.html$ index.php?w=$1&customurl=$2&sub=$3&mod=$4&id=$5&p=$6 [L,QSA]
+
+RewriteRule ^([0-9a-zA-Z]+)\.html$ index.php?customurl=$1 [L,QSA]
+RewriteRule ^([0-9a-zA-Z]+)\.html$ index.php?customurl=$1 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\-]+)-([0-9]{1})-([0-9]{1})-([0-9]{0,10})\.html$ index.php?customurl=$1&sub=$2&mod=$3&id=$4 [L,QSA]
+RewriteRule ^([0-9a-zA-Z\-]+)-([0-9]{1})-([0-9]{1})-([0-9]{0,10})-p([0-9]{0,3})\.html$ index.php?customurl=$1&sub=$2&mod=$3&id=$4&p=$5 [L,QSA]
+
+RewriteRule ^api/(.+)$ index.php?customurl=api/$1 [L]
+
+#RewriteRule ^(.+)$ index.php?customurl=api/$1 [L]

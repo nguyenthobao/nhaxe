@@ -1,0 +1,72 @@
+<div class="v2-hometab-news">
+  <div class="row">
+    <div class="col-md-5 border-r">
+      <div class="v2-hometab-news-big">        
+        <p class="v2-hometab-news-smalltype">{$data['config']['title_new']}</p>        
+         <ul>
+          <!--{eval $i=0}-->
+          <!--{loop $data['new'] $k $v}-->  
+          <li <!--{if $i==0}-->class="bigfirst"<!--{else}-->class="col-md-4 smallother"<!--{/if}--> >
+              <a class="v2-hometab-news-big-img" href="$v['link']" title=""><!--{if $i==0}--> <img src="<!--{loadImage $v['img'] crop 448 280}-->" class="img-responsive" alt="" /><!--{else}--> <img src="<!--{loadImage $v['img'] crop 119 80}-->" class="img-responsive" alt="" /><!--{/if}--></a> 
+              <div class="f-news-item-title">
+                 <a title="Title" href="$v['link']"><h2>$v['title']</h2></a> 
+               <!--{if $i==0}--> <p><!--{cutString $v['short'] 0 200}--></p> <!--{/if}--> 
+              </div>
+            
+          </li>
+          <!--{eval $i++}-->
+          <!--{/loop}--> 
+        </ul>
+         <div class="clearfix"></div>
+      </div>
+      
+      <div class="clearfix"></div>
+
+    </div>
+    <div class="col-md-7">
+       <div class="v2-hometab-news-small">
+        <p class="v2-hometab-news-smalltype">{$data['config']['title_hot']}</p>
+        <ul class="row">
+          <!--{loop $data['hot'] $k $v}--> 
+          <li class="col-md-4">
+            <div class="v2-hometab-news-small-item">
+              <div class="v2-hometab-news-small-img"> <a href="$v['link']" title=""> <img src="<!--{loadImage $v['img'] crop 194 116}-->" class="img-responsive" alt="" /> </a> </div>
+              <div class="v2-hometab-news-small-title">
+                <a title="Title" href="$v['link']"> <h2>$v['title']</h2></a> 
+                <div class="v2-hometab-news-small-sum"><!--{cutString $v['short'] 0 140}--></div>
+              </div>
+            </div>
+          </li>
+          <!--{/loop}--> 
+        </ul>
+
+       </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="v2-hometab-news-vip">
+   <p class="v2-hometab-news-smalltype">{$data['config']['title_vip']}</p>
+   <ul class=" row">
+    <!--{eval $i=0}-->
+    <!--{loop $data['vip'] $k $v}-->
+       <li class="col-md-5ths">
+            <div class="v2-hometab-news-small-item">
+              <div class="v2-hometab-news-small-img"> <a href="$v['link']" title=""> <img src="<!--{loadImage $v['img'] crop 194 116}-->" class="img-responsive" alt="" /> </a> </div>
+              <div class="v2-hometab-news-small-title" style="padding:5px">
+                <a title="Title" href="$v['link']"> <h2>$v['title']</h2></a> 
+                <div class="v2-hometab-news-small-sum"><!--{cutString $v['short'] 0 140}--></div>
+              </div>
+            </div>
+          </li>
+       <!--{eval $i++}-->
+      <!--{/loop}-->  
+       
+    </ul>
+    <div class="clearfix"></div>
+
+</div>
+<div class="clearfix"></div>

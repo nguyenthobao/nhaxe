@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'/>
+	<title>jQuery elevateZoom Demo</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+ 
+	<script src='jquery.elevatezoom.js'></script>
+    <link rel="stylesheet" href="http://fancyapps.com/fancybox/source/jquery.fancybox.css?v=2.1.5" />
+    <link rel="stylesheet" type="text/css" href="http://fancyapps.com/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=2.1.5" />
+    <script src="http://fancyapps.com/fancybox/source/jquery.fancybox.pack.js?v=2.1.5" type="text/javascript"></script>
+    
+</head>
+<body>
+
+
+
+
+
+<style>
+ #gallery_01 img{border:2px solid white;width: 96px;}
+  #gallery_09 img{border:2px solid white;width: 96px;}
+ .active img{border:2px solid #333 !important;}
+ 
+ </style>
+
+<div class="zoom-wrapper">
+<div class="zoom-left">
+<img style="border:1px solid #e8e8e6;" id="zoom_03" src="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/small/image3.png" 
+data-zoom-image="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/large/image3.jpg"
+width="411"  />
+
+<div id="gallery_01" style="width:500px;float:left; ">
+ 
+<a  href="#" class="active fancybox" data-update="" data-image="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/small/image1.png" 
+data-zoom-image="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/large/image1.jpg">
+<img src="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/small/image1.png" width="100"  /></a>
+
+<a  href="#" class="fancybox"
+     data-image="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/small/image2.png"
+     data-zoom-image="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/large/image2.jpg"
+    ><img src="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/small/image2.png" width="100"  /></a>
+
+<a href="tester" class="fancybox" 
+     data-image="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/small/image3.png"
+     data-zoom-image="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/large/image3.jpg">
+     <img src="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/small/image3.png" width="100"  />
+</a>
+
+<a href="tester" class="fancybox" 
+     data-image="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/small/image4.png"
+     data-zoom-image="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/large/image4.jpg"
+     
+     class="slide-content"
+    ><img src="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/small/image4.png" width="100"  /></a>
+    
+</div>
+</div>
+<div class="zoom-right">
+
+</div>
+<div style="clear:both;"></div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("#zoom_03").elevateZoom({gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: "active", imageCrossfade: true, loadingIcon: "http://www.elevateweb.co.uk/spinner.gif"}); 
+		
+		$("#zoom_03").bind("click", function(e) {  
+		  var ez =   $('#zoom_03').data('elevateZoom');
+		  ez.closeAll(); //NEW: This function force hides the lens, tint and window	
+		  $.fancybox(ez.getGalleryList(),{
+			helpers	: {
+			title	: {
+				type: 'outside'
+			},
+			thumbs	: {
+				width	: 50,
+				height	: 50
+			}
+				}
+		  }
+		  );
+		  
+		  return false;
+		}); 
+	
+	}); 
+
+</script>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    $('#zoom_01').elevateZoom({
+    zoomType: "inner",
+cursor: "crosshair",
+zoomWindowFadeIn: 500,
+zoomWindowFadeOut: 750
+   });
+</script>
+</body>
+</html>

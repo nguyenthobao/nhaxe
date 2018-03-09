@@ -1,0 +1,25 @@
+<!--{if isset($_info)}-->
+<ul class="f-news-page">
+    <!--{loop $_info $k $v}-->
+        <li class="f-news-page-item row">
+            <div class="f-news-page-item-img col-md-2 col-sm-3 col-xs-12"> 
+                <a href="{$v['href']}" class="thumbnail" title=""> 
+                <img src="<!--{loadImage $v['thumb'] none null null}-->" class="img-responsive"  alt="{$v['title']}"/> </a> 
+            </div>
+            <div class="f-news-page-item-text col-md-10 col-sm-9 col-xs-12">
+                <h2 style="display:block;margin-bottom:10px;"><a href="{$v['href']}" title="">{$v['title']}</a></h2>
+                <div class="f-news-page-item-summary">{$v['short']}</div>
+                <div class="f-read-more pull-right">
+                    <a href="{$v['href']}"><span class="label label-info">{lang read_more}...</span></a>
+                </div>
+            </div>
+        </li>
+    <!--{/loop}-->
+</ul>
+<!--{else}-->
+<ul class="f-news-page">
+    <li class="f-news-page-item row">
+        {lang no_record_exists}
+    </li>
+</ul>
+<!--{/if}-->

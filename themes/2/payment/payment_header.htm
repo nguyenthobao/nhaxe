@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="vi-VN">
+<head>    <meta charset="utf-8">
+    <title>Thanh toán</title><meta name="DC.language" content="scheme=utf-8 content=vi">
+    <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
+    <link href="{$web['static_temp']}/1/statics/plugins/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" media="screen">
+
+    <link href="https://webbnc.net/image/data/favicon.png" rel="shortcut icon" type="image/vnd.microsoft.icon">
+    <link rel="stylesheet" href="{$web['static_temp_mod']}/resource/css/main.css" type="text/css"></head>
+    <link rel="stylesheet" href="{$web['static_temp_mod']}/resource/css/payment.css" type="text/css"></head>
+    <script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/jquery.1.11.js"></script>
+    <script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/base64.min.js"></script>
+    <!-- <script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/process.js"></script> -->
+    <script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/jquery.validationEngine-vi.js"></script>
+    <script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/jquery.validationEngine.js"></script>
+    <script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/loading-overlay.min.js"></script>
+<body>
+<div id="target"></div>
+<div id="topHeader">
+    <div class="g980">
+        <div style="float: left;height: 25px;position: relative;">
+            <span style="color: #999;line-height: 25px;float: left;height: 25px;"><i style="color: #f04e23;font-size: 13px;" class="fa fa-phone"></i> Điện thoại : <a href="tel:{$web['phone']}">{$web['phone']}</a></span>
+            &nbsp;
+            <div style="position: absolute;top: 2px;left: 150px;overflow: hidden;width: 225px;">
+                <div style="overflow: hidden;" class="fb-like" data-href=""
+                     data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+                &nbsp;
+                <div class="g-plusone" data-size="medium" data-annotation="bubble"
+                     data-href=""></div>
+            </div>
+        </div>
+
+        <div style="float: right;position: relative;">
+            <!--{if !isset(BNCGLOBAL['uid'])}-->
+              <div class="account"><a  rel="nofollow" href="{BNCGLOBAL['user_url_regis']}">{lang common_regis}</a></div>
+              <div class="account"><a class="btnSignin" rel="nofollow" href="{BNCGLOBAL['user_url_login']}">{lang common_login}</a></div>  
+              <!--{else}-->
+              <div class="account"><a  rel="nofollow" href="{BNCGLOBAL['user_url_setting']}">{BNCGLOBAL['username']}</a></div>
+              <div class="account"><a class="btnSignin" rel="nofollow" href="{BNCGLOBAL['user_url_logout']}">{lang common_logout}</a></div>  
+            
+              <!--{/if}-->
+                  
+        </div>
+        <i class="clearfix"></i>
+    </div>
+</div>

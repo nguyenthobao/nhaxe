@@ -1,0 +1,145 @@
+<!--{eval $web['static_temp_mod']=str_replace('https://','http://',$web['static_temp_mod']);}-->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Thanh toán</title>
+		<base href="{$web['home_url']}" extention=".html" />
+		<!-- Bootstrap -->
+		<link href="{$web['static_temp_mod']}/oncepage/css/bootstrap.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{$web['static_temp']}1/statics/plugins/fancyapps-fancyBox2.1.5/source/jquery.fancybox.css">
+		<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/css/toastr.css"/>
+		<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/oncepage/plugins/font-awesome-4.4.0/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/oncepage/plugins/icheck-1.x/skins/minimal/_all.css"/>
+		<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/oncepage/css/style.css">
+	</head>
+	<body>
+		
+		
+		<div id="loadding">
+			<div class="small1">
+				<div class="small ball smallball1"></div>
+				<div class="small ball smallball2"></div>
+				<div class="small ball smallball3"></div>
+				<div class="small ball smallball4"></div>
+			</div>
+			<div class="small2">
+				<div class="small ball smallball5"></div>
+				<div class="small ball smallball6"></div>
+				<div class="small ball smallball7"></div> 
+				<div class="small ball smallball8"></div>
+			</div>
+			<div class="bigcon">
+				<div class="big ball"></div>
+			</div>
+		</div>
+		
+		<div class="wrapper">
+			<div id="header">
+				<div class="header-top">
+					<div class="container">
+						<div class="row">
+							<div class="header-left col-md-6">
+								<ul class="">
+									<li><a href="#">Gian hàng bán</a>
+								</li>
+								<li><a href="">Rao vặt</a></li>
+								<li><a href="">Hỏi đáp</a></li>
+								<li><a href="">Thêm</a></li>
+							</ul>
+						</div>
+						<div class="header-right col-md-6">
+							<ul>
+								<li><a href="#">Thông báo</a></li>
+								<li><a href="#">Hỗ trợ</a></li>
+								<li><a href="#">Đăng ký</a></li>
+								<li><a href="#">Đăng nhập</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="cf-logo">
+				<div class="container">
+					<!--{if $web['logo'] != null}-->
+					<!--{if $web['logo']['is_swf']}-->
+					<object width="{$web['logo']['width']}" height="{$web['logo']['height']}">
+					<param value="transparent" name="wmode">
+						<param value="{$web['static_upload']}{$web['logo']['img']}" name="movie">
+							<embed width="{$web['logo']['width']}" height="{$web['logo']['height']}" wmode="transparent" src="{$web['static_upload']}{$web['logo']['img']}">
+							</object>
+							<!--{else}-->
+							<img src="{$web['static_upload']}{$web['logo']['img']}" width="{$web['logo']['width']}" height="{$web['logo']['height']}" class="img-responsive"  alt="Logo"/>
+							<!--{/if}-->
+							<!--{else}-->
+							<img src="https://webbnc.net/image/data/logo_bnc.png" class="img-responsive"  alt="Logo"/>
+							<!--{/if}-->
+						</div>
+					</div>
+					
+				</div>
+				<div class="cf-main">
+					<div class="container">
+						<div class="row">
+							<p style="font-size: 30px;" class="text-center text-success">
+								Xác nhận thông tin thanh toán.
+							</p>
+							<p style="font-size: 15px;" class="text-center text-danger">
+								Mã đơn hàng: {$_order_id}
+							</p>
+							<ul class="ulSuccess">
+								<li>
+									<i class="fa fa-angle-right"></i> <span>Mã giao dịch:{$_transaction_id}</span><br/>
+								</li>
+								<li>
+									<i class="fa fa-angle-right"></i> <span>Thời gian thực hiện: <!--{eval echo date('d/m/Y H:i:s',$_created_on)}--></span><br/>
+								</li>
+								<li>
+									<i class="fa fa-angle-right"></i> <span>Hình thức thanh toán: <!--{if $_payment_type==1}-->Thanh toán an toàn<!--{else}-->Thanh toán trực tiếp<!--{/if}--></span><br/>
+								</li>
+								<li>
+									<i class="fa fa-angle-right"></i> <span>Số tiền thanh toán: <!--{eval echo formatNumber($_net_amount)}--></span><br/>
+								</li>
+								
+								<li>
+									<i class="fa fa-angle-right"></i> <span>Tên người thanh toán: {$_customer_name}</span><br/>
+								</li>
+								 <li>
+									<i class="fa fa-angle-right"></i> <span>Email người thanh toán: {$_customer_email}</span><br/>
+								</li>
+								
+								<li>
+									<i class="fa fa-angle-right"></i> <span>Số điện thoại người thanh toán: {$_customer_phone}</span><br/>
+								</li>
+								
+								<li>
+									<i class="fa fa-angle-right"></i> <span>Địa chỉ người thanh toán: {$_customer_address}</span><br/>
+								</li>
+							</ul>
+							<p style="font-size: 15px;" class="text-center text-danger">
+								<a href="/"  class="btn btn-success btn-sm"><i class="fa fa-shopping-cart"></i> Tiếp tục mua hàng</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Modal Login -->
+			
+			
+			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+			<script src="{$web['static_temp_mod']}/oncepage/js/jquery.min.js"></script>
+			<!-- Include all compiled plugins (below), or include individual files as needed -->
+			<script src="{$web['static_temp_mod']}/oncepage/js/bootstrap.min.js"></script>
+			<script src="{$web['static_temp_mod']}/resource/js/toastr.js"></script>
+			<script src="{$web['static_temp_mod']}/oncepage/js/oncepage.js"></script>
+			<!-- <script src="{$web['static_temp_mod']}/oncepage/js/nbhBopBop.js"></script>-->
+			<script src="{$web['static_temp_mod']}/oncepage/js/jquery.slimscroll.min.js"></script>
+			<script src="{$web['static_temp_mod']}/oncepage/js/jquery.validate.js"></script>
+			<script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/loading-overlay.min.js"></script>
+			<script type="text/javascript" src="{$web['static_temp']}1/statics/plugins/fancyapps-fancyBox2.1.5/source/jquery.fancybox.js"></script>
+			<script type="text/javascript" src="{$web['static_temp_mod']}/oncepage/plugins/icheck-1.x/icheck.min.js"></script>
+		</body>
+	</html>

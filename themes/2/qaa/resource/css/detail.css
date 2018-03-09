@@ -1,0 +1,48 @@
+.media-left, .media-right, .media-body {
+  display: table-cell;
+  vertical-align: top;
+}
+.f-qa{
+    background: #ffffff;
+}
+.f-qaView-body-ul li:last-child {
+    border-bottom: 0;
+}
+#f5capt{
+    cursor: pointer
+} 
+.qa-tool a{
+    outline: none
+}
+.cited_content{
+    float: left;
+    border-left: 1px solid #CCCCCC;
+    margin-top: 20px;
+    padding-left: 5px; 
+}
+.f-qaView-body-ul li .qa-quote .cited_content_sub{
+  background: none repeat scroll 0 0 #f3f3f3;
+  border-left: 2px solid #999999;
+  border-radius: 4px;
+  color: #868686;
+  font-size: 13px;
+  margin-bottom: 9px;
+  padding: 6px;
+}
+.message{
+    position: fixed;
+    top: 0;
+    border: 1px solid;
+    margin: 10px auto;
+    padding:15px 0 15px 0;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    z-index: 130;
+    color: #4F8A10;
+    text-align: center;
+    background-color: #DFF2BF;
+    padding: 10px;
+    left: 0;
+    right: 0;
+    width: 90%;
+}

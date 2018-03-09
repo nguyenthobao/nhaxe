@@ -1,0 +1,23 @@
+<tr id="tr_{$v['id']}" data-key="{$v['id']}" data-lang="{$_GET['lang']}">
+	<td class="highlight">
+			<input type="checkbox" name="nameid[]" class="checkboxes delete_multi_category"  value="<!--{if !empty({$v['id']})}-->{$v['id']}<!--{/if}-->">
+	</td>
+	
+	<td >
+		 <span><!--{if !empty({$v['space']})}-->{$v['space']}<!--{/if}--></span><span data-pk="<!--{if !empty({$v['id']})}-->{$v['id']}<!--{/if}-->"  data-type="text" data-lang="{$_GET['lang']}" data-original-title="{lang edittitle}" class="editable editable-click nonebottom catItem tooltips"><!--{if !empty({$v['title']})}-->{$v['title']}<!--{/if}--></span>
+	</td>
+	
+	<td class="hidden-xs">
+		<!--{if $v['status']==1}-->
+		<a class="btn default btn-xs green-stripe active_status" data-status="{$v['status']}" style="width:73px">{lang show}</a>
+		<!--{else}-->
+		<a class="btn default btn-xs red-stripe active_status" data-status="{$v['status']}" style="width:73px">{lang hide}</a>
+		<!--{/if}-->
+	</td>
+	<td>
+		<a href="#" class="btn default btn-xs green tooltips" data-placement="top" data-original-title="{lang view}"><i class="fa fa-eye"></i></a>
+		<!-- <a href="#" class="btn default btn-xs grey-cascade tooltips fast-edit" data-placement="top" data-original-title="Sửa nhanh"><i class="fa fa-send"></i></a> -->
+		<a href="category-category-{$v['id']}-{$_GET['lang']}" class="btn default btn-xs yellow tooltips" data-placement="top" data-original-title="{lang edit}"><i class="fa fa-edit"></i></a>
+		<a  class="btn default btn-xs red tooltips delete_category"  data-placement="top" data-original-title="{lang delete}"><i class="fa fa-trash-o"></i></a>
+	</td>
+</tr>

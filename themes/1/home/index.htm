@@ -1,0 +1,53 @@
+<!--temp block/block_center_category_custom--> 
+<div class="clearfix"></div>
+<!--temp block/block_center_category_custom_slide-->
+<div class="clearfix"></div>
+ 
+  <div class="container">
+<div class="backgroundnew" style="border-bottom: 25px solid #fff;"> 
+    <div class="f-center-module">
+      <div class="f-center-title" style="margin-left: 15px;"> <i></i><span>Đặt vé trực tuyến</span> </div>
+      <div class="f-center-body">
+      	<div class="f-news row" style="margin: 0px;">
+        	<!--{eval $i=0}-->
+			{loop $_chuyen $k $v}
+            <!--{if $i < 9}--> 
+			<div class="col-md-4 col-sm-4 col-xs-6 full-xs">
+	            <div class="f-news-item">
+	              <div class="f-news-item-img"> <a href="$v['link']" title="$v['routeName']"> <img src="http://demo.nhaxe.vn/themes/1/datve/TuyenXeMau.jpg" class="img-responsive" alt="$v['routeName']" style="opacity: .5" /> </a>
+
+	              </div>
+	              <div class="f-news-item-title">
+	              
+	                <h3> <a title="$v['routeName']" href="$v['link']">$v['routeName']</a> </h3>
+                  <h4> <a title="$v['routeName']" href="$v['link']">$v['price']</a> </h4>
+	              </div>
+	            </div> 
+	          </div>
+            <!--{/if}-->
+       		<!--{eval $i++}-->
+			{/loop}
+		</div> 
+      </div>
+    </div> 
+</div>
+
+
+
+<style type="text/css">
+#home-box .f-news {
+    margin-right: 15px !important;
+}
+.main1 .backgroundnew {
+    position: relative;
+    padding: 0px 0 30px;
+    background: #ededed;
+    margin-bottom: 0px;
+    margin-top: 25px;
+}
+</style>
+<div class="f-ctn-center" id="home-box" style="border-bottom: 25px solid #fff;">  
+	bnc_position_home 
+</div>
+
+</div>

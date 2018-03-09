@@ -1,0 +1,74 @@
+<div class="f-center-module tab-hot">
+  <div class="f-center-title ">
+    <ul class="f-video-tab-home" class="nav-tabs ">
+      <li class="active"><a href="#f-recruit-tab01" data-toggle="tab">{lang recruit_hot}</a></li>
+      <li><a href="#f-recruit-tab02" data-toggle="tab">{lang recruit_vip }</a></li>
+    </ul>
+  </div>
+  <div class="f-center-body">
+    <div class="clearfix"></div>
+    <div class="tab-content">
+      <div id="f-recruit-tab01" class="tab-pane active">
+  <div class="f-center-body">
+                            <div class="table-responsive">
+                            
+                            <table class="table table-bordered table-striped">
+                                <tr>
+                                    <th>STT</th>
+                                    <th>{lang ten_cong_viec}</th>
+                                    <th>{lang muc_luong_nhan}</th>
+                                    <th>{lang han_nop_ho_so}</th>
+                                    <th>{lang noi_lam_viec}</th>
+                                </tr>
+                                <!--{loop $_new $k $v}-->
+                                <!--{eval $k=$k+1}-->
+                                <tr>
+                                    <td>{$k}</td>
+                                    <td width ="290"><a href="$v['link']" title="{$v['title']}">{$v['title']}</a></td>
+                                    <td width ="150">{$v['wage']}</td>
+                                    <td width ="150">{$v['deadline']}</td>
+                                    <td>{$v['work_location']}</td>
+                                </tr>
+                                <!--{/loop}-->
+                                
+                            </table>
+                            
+                        </div>
+    <div class="clearfix"></div>
+  </div>
+      </div>
+      <div id="f-recruit-tab02" class="tab-pane">
+         <div class="f-center-body">
+                            <div class="table-responsive">
+                            
+                            <table class="table table-bordered table-striped">
+                                <tr>
+                                    <th>STT</th>
+                                    <th>{lang ten_cong_viec}</th>
+                                    <th>{lang muc_luong_nhan}</th>
+                                    <th>{lang han_nop_ho_so}</th>
+                                    <th>{lang noi_lam_viec}</th>
+                                </tr>
+                                <!--{loop $_vip $k $v}-->
+                                <!--{eval $k=$k+1}-->
+                                <tr>
+                                    <td>{$k}</td>
+                                    <td width ="290"><a href="$v['link']" title="{$v['title']}">{$v['title']}</a></td>
+                                    <td width ="150">{$v['wage']}</td>
+                                    <td width ="150">{$v['deadline']}</td>
+                                    <td>{$v['work_location']}</td>
+                                </tr>
+                                <!--{/loop}-->
+                                
+                            </table>
+                            
+                        </div>
+    <div class="clearfix"></div>
+  </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+
+ 

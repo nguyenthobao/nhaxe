@@ -1,0 +1,13 @@
+<div class="sidebar_widget">
+  <div class="sidebar_widget_content">
+      <!--{loop $data $k $v}--> 
+      <!--{if !empty($v['image_slide'])}-->
+          <!--{loop $v['image_slide'] $k2 $v2}--> 
+            <a href="{$v2['link']}">
+              <img src=" <!--{loadImage $v2['src_link'] resize 300 250}-->" class="img-responsive" alt="$v2['title']" />
+            </a>
+          <!--{/loop}-->
+      <!--{/if}-->
+      <!--{/loop}-->
+  </div>
+</div>
