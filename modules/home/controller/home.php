@@ -17,6 +17,7 @@ Class Home extends Controller {
  
 
 		if(!empty($web['anvui_id'])){
+            $data['anvuiId'] = $web['anvui_id'];
 			$data['chuyen'] = $this->GetAnvui('https://dobody-anvui.appspot.com/web/route-getlist?page=0&count=10&companyId='.$web['anvui_id'].'&version=0.1');
 			// echo 'https://dobody-anvui.appspot.com/web/route-getlist?page=0&count=10&companyId='.$web['anvui_id'].'&version=0.1';
 			// var_dump($data['chuyen']); die;
@@ -52,7 +53,7 @@ Class Home extends Controller {
 	 		$data['listPoint'] = $rt['results']['listPoint'];
 
 
-	 		$data['routeId'] = $routeId; 
+	 		$data['routeId'] = $routeId;
 
 
 		}

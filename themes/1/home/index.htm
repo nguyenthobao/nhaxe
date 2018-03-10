@@ -6,7 +6,7 @@
   <div class="container">
 <div class="backgroundnew" style="border-bottom: 25px solid #fff;"> 
     <div class="f-center-module">
-      <div class="f-center-title" style="margin-left: 15px;"> <i></i><span>Đặt vé trực tuyến</span> </div>
+      <div class="f-center-title" style="margin-left: 15px;"> <i></i><span>Đặt vé trực tuyến</span></div>
       <div class="f-center-body">
       	<div class="f-news row" style="margin: 0px;">
         	<!--{eval $i=0}-->
@@ -60,3 +60,46 @@
 </div>
 
 </div>
+<script>
+	$(document).ready(function () {
+        var isMobile = {
+            Android: function() {
+                return navigator.userAgent.match(/Android/i);
+            },
+            BlackBerry: function() {
+                return navigator.userAgent.match(/BlackBerry/i);
+            },
+            iOS: function() {
+                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+            },
+            Opera: function() {
+                return navigator.userAgent.match(/Opera Mini/i);
+            },
+            Windows: function() {
+                return navigator.userAgent.match(/IEMobile/i);
+            },
+            any: function() {
+                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+            }
+        };
+
+        var companyId = '$_anvuiId';
+        var urlAndroid = '';
+        var urlIOs = '';
+        if(companyId == 'TC03013FPyeySDW')
+		{
+            urlAndroid = 'https://play.google.com/store/apps/details?id=vn.anvui.saonghe';
+            urlIOs = 'https://itunes.apple.com/vn/app/sao-ngh%E1%BB%87-mua-v%C3%A9-xe-online/id1356662997?l=vi&mt=8';
+		}
+
+        if(isMobile.any() == 'Android' && urlAndroid != '')
+		{
+            window.location.href = urlAndroid;
+		}
+
+        if((isMobile.any() == 'iPhone' || isMobile.any() == 'iPad' || isMobile.any() == 'iPod') && urlIOs != '')
+        {
+            window.location.href = urlIOs;
+        }
+    });
+</script>
