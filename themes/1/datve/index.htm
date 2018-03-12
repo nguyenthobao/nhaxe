@@ -9,7 +9,14 @@
             <!--{if $i < 9}--> 
 			<li class="col-md-4 col-sm-4 col-xs-6 full-xs">
 	            <div class="f-news-item">
-	              <div class="f-news-item-img"> <a href="$v['link']" title="$v['routeName']"> <img src="http://demo.nhaxe.vn/themes/1/datve/TuyenXeMau.jpg" class="img-responsive" alt="$v['routeName']" style="opacity: .5" /> </a>
+	              <div class="f-news-item-img"> <a href="$v['link']" title="$v['routeName']">
+					  {if $v['listImages'][0] != "0"}
+					  <img src="$v['listImages'][0]" class="img-responsive" alt="$v['routeName']" style="opacity: .5; height: 220px" />
+					  {else}
+					  <img src="http://demo.nhaxe.vn/themes/1/datve/TuyenXeMau.jpg" class="img-responsive" alt="$v['routeName']" style="opacity: .5; height: 220px" />
+					  {/if}
+
+				  </a>
 
 	              </div>
 	              <div class="f-news-item-title">
