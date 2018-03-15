@@ -210,9 +210,11 @@
                 var remove_baybe;
                 var totalprice = 0, seatLength = 0;
                 var ghechuyendi = '';
+                var tongtienve = 0;
 
                 {if $_khuhoi['khuhoi'] == 1}
                 ghechuyendi = "$_khuhoi['ghedachon']";
+                tongtienve = $_khuhoi['tongtien'];
                 {/if}
 
                 function chonghe(id) {
@@ -260,7 +262,7 @@
                         $('#chonghe_' + id1).addClass('adults');
                         ghedachon.push(id);
                     }
-                    console.log('Xac nhan', before12H);
+
                     {if $_companyId == 'TC1OHmbCcxRS'}
                     if(before12H >= Date.now()){
                         xacnhan(seat);
@@ -360,6 +362,7 @@
                     }
 
                     function hoanthanh() {
+                        var mave;
                         if (ghedachon.length == 0) {
                             alert('Hãy chọn ghế!');
                             return false;
@@ -373,7 +376,7 @@
 
                         var fullName = $('#fullName').val();
                         var phoneNumber = $('#phoneNumber').val();
-                        var email = $('#email').val();
+                        var email = $('#txtEmail').val();
                         if (fullName == '') {
                             alert('Hãy nhập tên!');
                             $('#fullName').focus();
@@ -416,6 +419,7 @@
                         $('#hoanthanhbtn').hide();
                         $('#loadingbtn').show();
 
+                        {if $_khuhoi['khuhoi'] != 1}
                         $.ajax({
                             type: 'POST',
                             url: 'http://demo.nhaxe.vn/dat-ve?sub=order',
@@ -463,49 +467,112 @@
                                             $('#hoanthanhbtn').hide();
                                             $('#loadingbtn').hide();
                                             $('#gohomebtn').show();
-
-
-                                            ////////////////////////
-                                            ////////////////////////
-                                            // $.ajax({
-                                            //      type: 'POST',
-                                            //      url: 'http://demo.nhaxe.vn/dat-ve?sub=getpayoo',
-                                            //      data: {
-                                            //          'customerName': fullName,
-                                            //          'ticketId': data.results.ticketId,
-                                            //          'cyberCash': price,
-                                            //          'customerPhone': phoneNumber,
-                                            //      },
-                                            //      success: function(datapay){
-                                            //          console.log(datapay);
-                                            //          if( datapay.code != 200 ){
-                                            //            alert('Đã có lỗi xảy ra, hãy đặt lại!');
-                                            //              $('#hoanthanhbtn').show();
-                                            //              $('#loadingbtn').hide();
-                                            //          }
-                                            //          else{
-
-                                            //              var codetran = datapay.results.Transaction.transactionNo
-                                            //                $('#codetran').text(codetran);
-
-                                            //                $('.ifram_payoo').show();
-                                            //                $('#datthanhcong').show();
-                                            //                $('#hoanthanhbtn').hide();
-                                            //                $('#loadingbtn').hide();
-                                            //                $('#gohomebtn').show();
-
-                                            //          }
-                                            //      }
-                                            //  });
-                                            ////////////////////////
-                                            ////////////////////////
-
                                         }
                                     }
                                 }
                             });
 
+                        {else}
+                        var paymentCode = generatePaymentCode();
+                        var ghe = ghechuyendi.split(',');
+                        ghe.splice(-1,1);
+                        /*Chuyen di*/
+                        $.ajax({
+                            type: 'POST',
+                            url: 'http://demo.nhaxe.vn/dat-ve?sub=order',
+                            data: {
+                                'listSeatId': JSON.stringify(ghe),
+                                'fullName': fullName,
+                                'phoneNumber': phoneNumber,
+                                'email': email,
+                                'getInPointId': "$_khuhoi['getInPointId']",
+                                'startDate': $_khuhoi['startDate'],
+                                'getOffPointId': "$_khuhoi['getOffPointId']",
+                                'scheduleId': "$_khuhoi['scheduleId']",
+                                'getInTimePlan': $_khuhoi['getInTime'],
 
+                                'originalTicketPrice': tongtienve,
+                                'paymentTicketPrice': tongtienve ,
+                                'paymentType': pttt,
+                                'paidMoney': 0,
+
+                                'tripId': "$_khuhoi['tripId']",
+                                'numberOfAdults': $_khuhoi['numberMan'],
+                                'numberOfChildren': $_khuhoi['numberBayby'],
+                                'paymentCode': paymentCode
+                            },
+                            success: function (data) {
+                                if (data.code != 200) {
+                                    alert('Đã có lỗi xảy ra, hãy đặt lại!');
+                                    $('#hoanthanhbtn').show();
+                                    $('#loadingbtn').hide();
+                                }
+                                mave = data.results.ticketId;
+                            }
+                            });
+
+                        /*Chuyen ve*/
+                        $.ajax({
+                            type: 'POST',
+                            url: 'http://demo.nhaxe.vn/dat-ve?sub=order',
+                            data: {
+                                'listSeatId': JSON.stringify(ghedachon),
+                                'fullName': fullName,
+                                'phoneNumber': phoneNumber,
+                                'email': email,
+                                'getInPointId': getInPointId,
+                                'startDate': startDate,
+                                'getOffPointId': getOffPointId,
+                                'scheduleId': scheduleId,
+                                'getInTimePlan': getInTime,
+
+                                'originalTicketPrice': totalprice - tongtienve,
+                                'paymentTicketPrice': totalprice - tongtienve,
+                                'paymentType': pttt,
+                                'paidMoney': 0,
+
+                                'tripId': tripId,
+                                'numberOfAdults': numghe,
+                                'numberOfChildren': numberBayby,
+                                'paymentCode': paymentCode
+                            },
+                            success: function (data) {
+                                if (data.code != 200) {
+                                    alert('Đã có lỗi xảy ra, hãy đặt lại!');
+                                    $('#hoanthanhbtn').show();
+                                    $('#loadingbtn').hide();
+                                }
+                                mave = mave + "-" + data.results.ticketId;
+
+                                }
+                            });
+
+                        if (pttt == 1) {
+                            setTimeout(function () {
+                                var url = 'https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo=' + mave + '&vpc_Amount=' + totalprice * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web&paymentCode=" + paymentCode;
+
+                                {if $_companyId == 'TC1OHmbCcxRS'}
+                                url = 'https://dobody-anvui.appspot.com/pumpkin/dopay?vpc_OrderInfo=' + mave + '&vpc_Amount=' + totalprice * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web&paymentCode=" + paymentCode;
+                                {/if}
+
+                                    window.location.href = url;
+                                }, 3000);
+                        }
+                        else
+                        {
+                            $('#datthanhcong').show();
+                            $('#hoanthanhbtn').hide();
+                            $('#loadingbtn').hide();
+                            $('#gohomebtn').show();
+                        }
+
+                        {/if}
+
+
+                    }
+
+                    function generatePaymentCode() {
+                        return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Date.now();
                     }
 
                     function gohome() {
@@ -651,7 +718,7 @@
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
                                     <div class="col-sm-9">
-                                        <input type="email" name="email" id="email" class="form-control no-spinners"
+                                        <input type="email" name="email" id="txtEmail" class="form-control no-spinners"
                                                placeholder="Email">
                                     </div>
                                 </div>
@@ -697,6 +764,12 @@
                             <input type="hidden" name="tongtien" id="tongtien">
                             <input type="hidden" name="khuhoi" value="1">
                             <input type="hidden" name="routeId" id="routeId">
+                            <input type="hidden" name="getInPointId" id="getInPointId">
+                            <input type="hidden" name="startDate" id="startDate">
+                            <input type="hidden" name="getOffPointId" id="getOffPointId">
+                            <input type="hidden" name="scheduleId" id="scheduleId">
+                            <input type="hidden" name="getInTime" id="getInTime">
+                            <input type="hidden" name="tripId" id="tripId">
                             <input type="hidden" name="routeName" id="routeName" value="$_route['routeName']">
                             <br/>
                             {if $_route['childrenTicketRatio'] != 0}
@@ -925,7 +998,7 @@
     $('#khuhoi').prop('checked', true);
     $('#fullName').val("$_khuhoi['fullName']");
     $('#phoneNumber').val("$_khuhoi['phoneNumber']");
-    $('#email').val("$_khuhoi['email']");
+    $('#txtEmail').val("$_khuhoi['email']");
     totalprice = $_khuhoi['tongtien'];
     $('#priceneedpay').text((parseInt(totalprice)).format());
     {/if}
@@ -942,6 +1015,13 @@
         ticketPrice = $(this).attr('data-ticketPrice');
         companyStatus = $(this).attr('data-companyStatus');
         startDate = $(this).attr('data-startDate');
+
+        $('#getOffPointId').val(getOffPointId);
+        $('#getInTime').val(getInTime);
+        $('#getInPointId').val(getInPointId);
+        $('#scheduleId').val(scheduleId);
+        $('#tripId').val(tripId);
+        $('#startDate').val(startDate);
 
         if (companyStatus == 1) {
             $('#goidien').show();
