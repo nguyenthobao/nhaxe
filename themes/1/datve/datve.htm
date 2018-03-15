@@ -162,6 +162,7 @@
                 <div class="listchuyen row">
                     {loop $_listSchedule $k $v}
                     <div class="col-md-3 col-sm-3 col-xs-6 chuyendi"
+                         data-route="$v['routeId']"
                          data-id="$v['tripId']"
                          data-scheduleId="$v['scheduleId']"
                          data-getInPointId="$v['getInPointId']"
@@ -208,6 +209,11 @@
                 var id1;
                 var remove_baybe;
                 var totalprice = 0, seatLength = 0;
+                var ghechuyendi = '';
+
+                {if $_khuhoi['khuhoi'] == 1}
+                ghechuyendi = "$_khuhoi['ghedachon']";
+                {/if}
 
                 function chonghe(id) {
 
@@ -240,7 +246,11 @@
 
                     }
                     else {
-
+                        if(ghechuyendi != '' && (ghedachon.length >= (ghechuyendi.split(',').length - 1)))
+                        {
+                            alert('Chỉ được chọn dưới ' + (ghechuyendi.split(',').length - 1).toString() + ' ghế!');
+                            return false;
+                        }
                         if (ghedachon.length > 10) {
                             alert('Chỉ được chọn dưới 10 ghế!');
                             return false;
@@ -250,7 +260,14 @@
                         $('#chonghe_' + id1).addClass('adults');
                         ghedachon.push(id);
                     }
+                    console.log('Xac nhan', before12H);
+                    {if $_companyId == 'TC1OHmbCcxRS'}
+                    if(before12H >= Date.now()){
+                        xacnhan(seat);
+                    }
+                    {else}
                     xacnhan(seat);
+                    {/if}
                 }
 
                 function search(nameKey, myArray) {
@@ -300,6 +317,7 @@
                         });
 //    console.log(ghedachon.length);
                         $('#ghedachonspan').html(ghedachontext);
+                        $('#ghedachoninput').val(ghedachontext);
 
                         // $('#chonghe').hide();
                         $('.xacnhanbtn').hide();
@@ -337,6 +355,7 @@
                         $('#numberMan').val(numman);
 //  var totalprice = ghedachon.length*ticketPrice;
                         $('#priceneedpay').text((parseInt(totalprice)).format());
+                        $('#tongtien').val(totalprice);
 
                     }
 
@@ -519,7 +538,15 @@
                     margin-left: 50px;
                 }
 
-                #thongtin {
+                #thongtin{
+                    width: 440px;
+                    float: left;
+                    position: relative;
+                    padding-top: 88px;
+                    margin-left: 50px;
+                }
+
+                #datve {
                     width: 440px;
                     float: left;
                     position: relative;
@@ -583,71 +610,93 @@
 
 
             <div class="f-center-body" id="thongtin" style="display:none">
-
-
-                <div class="panel panel-default packagesFilter" style="width: 100%; float:left">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Thông tin khách hàng</h3>
-                    </div>
-                    <div class="panel-body transaction" style="padding: 10px;">
-
-                        <div class="box-thongtin row">
-
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-3 control-label">Ghế đã chọn:</label>
-                                <div class="col-sm-9" id="ghedachonspan">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-3 control-label">Tên của bạn</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="fullName" class="form-control" placeholder="Tên của bạn">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-3 control-label">Số điện thoại</label>
-                                <div class="col-sm-9">
-                                    <input type="number" id="phoneNumber" class="form-control no-spinners"
-                                           placeholder="Số điện thoại">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
-                                <div class="col-sm-9">
-                                    <input type="email" id="email" class="form-control no-spinners"
-                                           placeholder="Email">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-3 control-label">Số người lớn</label>
-                                <div class="col-sm-2">
-                                    <input type="text" style="width: 93px;" id="numberMan" class="form-control" value=""
-                                           disabled>
-                                </div>
-
-                                <label for="inputEmail3" class="col-sm-1 control-label"></label>
-                                <label for="inputEmail3" class="col-sm-3 control-label">Số trẻ em</label>
-                                <div class="col-sm-2">
-                                    <input type="number" style="width: 93px;" id="numberBayby"
-                                           onchange="checknumbaby(this.value)" class="form-control" value="0" min="0">
-                                </div>
-                            </div>
+                <form action="/dat-ve" method="post">
+                    <div class="panel panel-default packagesFilter" style="width: 100%; float:left">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Thông tin khách hàng</h3>
                         </div>
+                        <div class="panel-body transaction" style="padding: 10px;">
 
+                            <div class="box-thongtin row">
+                                {if $_khuhoi['khuhoi'] == 1}
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-3 control-label">Ghế chuyến đi:</label>
+                                    <div class="col-sm-9">
+                                        $_khuhoi['ghedachon']
+                                    </div>
+                                </div>
+                                {/if}
 
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-3 control-label">Ghế đã chọn:</label>
+                                    <div class="col-sm-9" id="ghedachonspan">
+                                    </div>
+                                    <input type="hidden" name="ghedachon" id="ghedachoninput">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-3 control-label">Tên của bạn</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="fullName" id="fullName" class="form-control" placeholder="Tên của bạn">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-3 control-label">Số điện thoại</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" name="phoneNumber" id="phoneNumber" class="form-control no-spinners"
+                                               placeholder="Số điện thoại">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" name="email" id="email" class="form-control no-spinners"
+                                               placeholder="Email">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-3 control-label">Số người lớn</label>
+                                    <div class="col-sm-2">
+                                        <input type="text" style="width: 93px;" id="numberMan" name="numberMan" class="form-control" value=""
+                                               readonly>
+                                    </div>
+
+                                    <label for="inputEmail3" class="col-sm-1 control-label"></label>
+                                    <label for="inputEmail3" class="col-sm-3 control-label">Số trẻ em</label>
+                                    <div class="col-sm-2">
+                                        <input type="text" style="width: 93px;" name="numberBayby" id="numberBayby"
+                                               class="form-control" value="0" min="0" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-9">
+                                        <input class="form-check-input" type="checkbox" id="khuhoi">
+                                        <label class="form-check-label" for="khuhoi">
+                                            Khứ hồi
+                                        </label>
+                                        {if $_khuhoi['khuhoi'] == 1}
+                                        <a href="/dat-ve?sub=huykhuhoi" style="float: right;">Hủy khứ hồi</a>
+                                        {/if}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
 
-                <div class="panel panel-default packagesFilter" style="width: 100%; float:left;">
+
+                <div class="panel panel-default packagesFilter" id="thanhtoan" style="width: 100%; float:left;">
                     <div class="panel-heading">
                         <h3 class="panel-title">Hình thức giao dịch</h3>
                     </div>
                     <div class="panel-body transaction" style="padding: 10px;">
                         <div class="radio">
                             Số tiền cần thanh toán: <span id="priceneedpay"></span> VNĐ
+                            <input type="hidden" name="tongtien" id="tongtien">
+                            <input type="hidden" name="khuhoi" value="1">
+                            <input type="hidden" name="routeId" id="routeId">
                             <br/>
                             {if $_route['childrenTicketRatio'] != 0}
                             <i style="color:red;">* Trẻ em vẫn được tính chỗ và giá vé bằng
@@ -735,8 +784,45 @@
                 <button type="button" id="gohomebtn" style="display: none;" onclick="gohome()" class="btn btn-primary">
                     Về trang chủ
                 </button>
+
+                <center>
+                <button type="submit" id="chonkhuhoi" style="display: none" class="btn btn-primary">Chọn chiều về
+                </button>
+                </center>
+
                 <span id="loadingbtn" style="display: none;    text-align: center;
     font-size: 20px; width: 100%; float: left">Đang đặt vé ...</span>
+                </form>
+            </div>
+
+
+            <div class="f-center-body" id="datve" style="display:none">
+
+                <div class="panel panel-default packagesFilter" style="width: 100%; float:left">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Đặt vé</h3>
+                    </div>
+                    <div class="panel-body transaction" style="padding: 10px;">
+
+                        <div class="box-thongtin row">
+                            <br/>
+                            <br/>
+                            <center>
+
+                                <h4>Vui lòng đặt chỗ trước giờ xe chạy 12 tiếng!</h4>
+                                <br/>
+                                <a href="callto:{$_listSchedule[0]['companyPhoneNumber']}">
+                                    <button type="button" class="btn btn-danger">Gọi {$_listSchedule[0]['companyPhoneNumber']} để đặt chỗ</button>
+                                </a>
+
+
+                            </center>
+                        </div>
+
+
+                    </div>
+                </div>
+
             </div>
 
 
@@ -821,9 +907,32 @@
 <script src="{$web['static_temp']}{$web['temp']}/statics/libs/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"
         type="text/javascript"></script>
 <script type="text/javascript">
+    var before12H = 0;
+    $('#khuhoi').change(function () {
+        if ($('#khuhoi').is(":checked")) {
+            $('#hoanthanhbtn').hide();
+            $('#thanhtoan').hide();
+            $('#chonkhuhoi').show();
+        } else {
+            $('#hoanthanhbtn').show();
+            $('#thanhtoan').show();
+            $('#chonkhuhoi').hide();
+        }
+    });
+    {if $_khuhoi['khuhoi'] == 1}
+    $('#khuhoi').attr('disabled', true);
+    $('#khuhoi').prop('checked', true);
+    $('#fullName').val("$_khuhoi['fullName']");
+    $('#phoneNumber').val("$_khuhoi['phoneNumber']");
+    $('#email').val("$_khuhoi['email']");
+    totalprice = $_khuhoi['tongtien'];
+    $('#priceneedpay').text((parseInt(totalprice)).format());
+    {/if}
+
     $('.chuyendi').click(function () {
         ghedachon = [];
 
+        routeId = $(this).attr('data-route');
         tripId = $(this).attr('data-id');
         scheduleId = $(this).attr('data-scheduleId');
         getOffPointId = $(this).attr('data-getOffPointId');
@@ -838,13 +947,28 @@
             return false;
         }
 
+        $('#routeId').val(routeId);
+
         $('.chuyendi').removeClass('selected');
         $(this).addClass('selected');
         $('.box-chonghe').html('<center>Loading...</center>');
 
         $('#chonghe').show();
+
+        before12H = parseFloat(getInTime) - (12 *60*60*1000);
         // $('#thongtin').hide();
-        $('#thongtin').show();
+        {if $_companyId == 'TC1OHmbCcxRS'}
+        if(before12H < Date.now())
+        {
+            $('#datve').show();
+            $('#thongtin').hide();
+        } else {
+            $('#thongtin').show();
+            $('#datve').hide();
+        }
+        {else}
+            $('#thongtin').show();
+        {/if}
         var fflo = true;
 
         $.getJSON("http://demo.nhaxe.vn/dat-ve?tripId=" + tripId + '&scheduleId=' + scheduleId, function (data) {

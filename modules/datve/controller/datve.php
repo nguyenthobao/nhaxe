@@ -16,6 +16,14 @@ Class Datve extends Controller {
 		$scheduleId   = $this->request->get_string('scheduleId', 'GET');
 		$companyId   = $this->request->get_string('companyId', 'GET');
 
+        $data['khuhoi'] = '';
+
+        if(isset($_POST) && $_POST['khuhoi'] == 1)
+        {
+            $_SESSION['khuhoi'] = $_POST;
+            $data['khuhoi'] = $_SESSION['khuhoi'];
+        }
+
 		if( !empty($companyId) ) $web['anvui_id'] = $companyId;
 		if(!empty($tripId)){
 			return $this->trip($tripId,$companyId,$scheduleId);
@@ -76,10 +84,22 @@ Class Datve extends Controller {
 		$_POST['ticketStartDate'] = $_POST['getInTimePlan'];
 
 		$rt = $this->PostAnvui('https://dobody-anvui.appspot.com/web/ticket-order',$_POST);
+		if(isset($_SESSION['khuhoi'])) {
+            unset($_SESSION['khuhoi']);
+        }
 		header('Content-Type: application/json');
 		echo json_encode($rt); 
 		die;
-	} 
+	}
+
+	function huykhuhoi(){
+	    $routeId = $_SESSION['khuhoi']['routeId'];
+        if(isset($_SESSION['khuhoi'])) {
+            unset($_SESSION['khuhoi']);
+        }
+        header('Location: /dat-ve?routeId='.$routeId);
+        die();
+    }
 	function getpayoo(){
 		$data = array();
 		$data['customerName']   = $this->request->get_string('customerName', 'POST');
@@ -106,7 +126,7 @@ $data['days'][] = date("d-m-Y",$endOfDay);
 		$beginOfDay = $beginOfDay*1000;
 		$endOfDay = $endOfDay*1000;
 
-		
+        $data['khuhoi'] = '';
 			
 			 
 
@@ -191,6 +211,11 @@ $data['days'][] = date("d-m-Y",$endOfDay);
 	 		if($tuyen && !$customtuyen){
 	 			$data['route']['routeName'] = $tuyen;
 	 		}
+
+        if(isset($_SESSION['khuhoi'])) {
+            $data['khuhoi'] = $_SESSION['khuhoi'];
+        }
+//        echo "<pre>";var_dump($data['khuhoi']);echo "</pre>";exit();
 
         $data['companyId'] = $web['anvui_id'];
 
