@@ -88,9 +88,7 @@ Class Datve extends Controller {
 		$_POST['ticketStartDate'] = $_POST['getInTimePlan'];
 
 		$rt = $this->PostAnvui('https://dobody-anvui.appspot.com/web/ticket-order',$_POST);
-		if(isset($_SESSION['khuhoi'])) {
-            unset($_SESSION['khuhoi']);
-        }
+
 		header('Content-Type: application/json');
 		echo json_encode($rt); 
 		die;
@@ -218,6 +216,7 @@ $data['days'][] = date("d-m-Y",$endOfDay);
 
         if(isset($_SESSION['khuhoi'])) {
             $data['khuhoi'] = $_SESSION['khuhoi'];
+            unset($_SESSION['khuhoi']);
         }
 //        echo "<pre>";var_dump($data['khuhoi']);echo "</pre>";exit();
 
