@@ -14,7 +14,11 @@ Class Home extends Controller {
 
 		$data['home_block'] = $this->getHomeBlock();
 
- 
+        $data['khuhoi'] = '';
+        if(isset($_SESSION['khuhoi']))
+        {
+            $data['khuhoi'] = $_SESSION['khuhoi'];
+        }
 
 		if(!empty($web['anvui_id'])){
             $data['anvuiId'] = $web['anvui_id'];

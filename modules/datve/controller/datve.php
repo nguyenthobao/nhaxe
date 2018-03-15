@@ -21,6 +21,10 @@ Class Datve extends Controller {
         if(isset($_POST) && $_POST['khuhoi'] == 1)
         {
             $_SESSION['khuhoi'] = $_POST;
+        }
+
+        if(isset($_SESSION['khuhoi']))
+        {
             $data['khuhoi'] = $_SESSION['khuhoi'];
         }
 
@@ -35,9 +39,9 @@ Class Datve extends Controller {
 			$data['chuyen'] = $this->GetAnvui('https://dobody-anvui.appspot.com/web/route-getlist?page=0&count=100&companyId='.$web['anvui_id'].'&version=0.1');
 			$data['chuyen'] = $data['chuyen']['results']['listRoute'];
 
-			// echo '<pre>';
-			// var_dump($data['chuyen']);
-			// die;
+//			 echo '<pre>';
+//			 var_dump($data['khuhoi']);
+//			 die;
 			$routeId = '';
 
 			foreach ($data['chuyen'] as $key => &$value) {
