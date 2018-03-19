@@ -84,6 +84,10 @@ Class Datve extends Controller {
 	function order(){
 		$phoneNumber   = $this->request->get_string('phoneNumber', 'POST');
 		$fullName   = $this->request->get_string('fullName', 'POST');
+
+        if(isset($_SESSION['khuhoi'])) {
+            unset($_SESSION['khuhoi']);
+        }
 		
 		$_POST['ticketStartDate'] = $_POST['getInTimePlan'];
 
@@ -216,7 +220,6 @@ $data['days'][] = date("d-m-Y",$endOfDay);
 
         if(isset($_SESSION['khuhoi'])) {
             $data['khuhoi'] = $_SESSION['khuhoi'];
-            unset($_SESSION['khuhoi']);
         }
 //        echo "<pre>";var_dump($data['khuhoi']);echo "</pre>";exit();
 
