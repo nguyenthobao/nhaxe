@@ -21,6 +21,9 @@ Class Datve extends Controller {
         if(isset($_POST) && $_POST['khuhoi'] == 1)
         {
             $_SESSION['khuhoi'] = $_POST;
+        } else if (empty($routeId)){
+//            echo "error";exit();
+            unset($_SESSION['khuhoi']);
         }
 
         if(isset($_SESSION['khuhoi']))
@@ -217,6 +220,11 @@ $data['days'][] = date("d-m-Y",$endOfDay);
 	 		if($tuyen && !$customtuyen){
 	 			$data['route']['routeName'] = $tuyen;
 	 		}
+
+	 		if($routeId == $_SESSION['khuhoi']['routeId'])
+            {
+                unset($_SESSION['khuhoi']);
+            }
 
         if(isset($_SESSION['khuhoi'])) {
             $data['khuhoi'] = $_SESSION['khuhoi'];

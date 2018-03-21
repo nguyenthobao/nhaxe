@@ -738,7 +738,7 @@
                                 <div class="form-group">
                                     <div class="col-sm-9">
                                         <input class="form-check-input" type="checkbox" id="khuhoi">
-                                        <label class="form-check-label" for="khuhoi">
+                                        <label class="form-check-label" for="khuhoi" style="font-size: 20px;">
                                             Khứ hồi
                                         </label>
                                         {if $_khuhoi['khuhoi'] == 1}
@@ -820,6 +820,8 @@
                                     <p>Chủ tài khoản: VŨ THANH HOÀI</p>
                                     <p>Số tài khoản: 150 2205 120668</p>
                                     <p>Chi nhánh: Ngân hàng AGRIBANK CN Hoàn Kiếm HN</p>
+                                    <p>Nội dung: <i>SDT</i> thanh toan ma ve <i>MÃ VÉ</i></p>
+                                    <p>Ví dụ: 0987654321 thanh toan ma ve 181903-123456</p>
                                 </div>
                             </div>
                         </div>
@@ -1160,7 +1162,14 @@
         }
     });
 
-
+    $('#chonkhuhoi').click(function () {
+        if(ghedachon.length < 1)
+        {
+            alert('Hãy chọn ghế');
+            return false;
+        }
+        return true;
+    });
 
     $(function () {
         $('#datetimepicker').datetimepicker({

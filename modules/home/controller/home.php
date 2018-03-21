@@ -14,12 +14,6 @@ Class Home extends Controller {
 
 		$data['home_block'] = $this->getHomeBlock();
 
-        $data['khuhoi'] = '';
-        if(isset($_SESSION['khuhoi']))
-        {
-            $data['khuhoi'] = $_SESSION['khuhoi'];
-        }
-
 		if(!empty($web['anvui_id'])){
             $data['anvuiId'] = $web['anvui_id'];
 			$data['chuyen'] = $this->GetAnvui('https://dobody-anvui.appspot.com/web/route-getlist?page=0&count=10&companyId='.$web['anvui_id'].'&version=0.1');
