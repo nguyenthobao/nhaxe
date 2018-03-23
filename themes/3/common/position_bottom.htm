@@ -1,0 +1,31 @@
+<footer class="page-footer font-small unique-color-dark pt-0">
+
+    <!--Footer Links-->
+    <div class="container mt-5 mb-4 text-md-left">
+        {$web['footer']}
+    </div>
+    <!--/.Footer Links-->
+
+    <!-- Copyright-->
+    <div class="footer-copyright py-3 text-center">
+        © 2018 Copyright:
+        <a href="https://anvui.vn" style="color: #ffffff">
+            <strong> An vui</strong>
+        </a>
+    </div>
+    <!--/.Copyright -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('body').data('home_url', '{$web['home_url']}');
+            //$('body').data('page_url', '{$_B['curUrl']['fullLink']}');
+            $('body').data('extension', '{$web['dotExtension']}');
+            WebCommon.init();
+        });
+
+    </script>
+</footer>
+<!--{if $web['audio'] != null}-->
+<audio controls autoplay<!--{if $web['audio']['play_again'] == 1}--> loop<!--{/if}--> style="display:none">
+<source src="{$web['static_upload']}{$web['audio']['audio']}" type="audio/mpeg">
+</audio>
+<!--{/if}-->

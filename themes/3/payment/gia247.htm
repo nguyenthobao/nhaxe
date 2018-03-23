@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Đặt hàng</title>
+    <link rel="shortcut icon" type="image/png" href="themes/themes_frontend/default/common/imgs/favicon.png" />
+    <!-- Bootstrap -->
+    <link href="http://gia247.com/themes/themes_frontend/default/common/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- <link href="http://gia247.com/themes/themes_frontend/default/common/css/animations.css" rel="stylesheet" type="text/css"/>
+<link href="http://gia247.com/themes/themes_frontend/default/common/star/css/star-rating.css" rel="stylesheet" type="text/css"/>
+<link href="http://gia247.com/themes/themes_frontend/default/common/css/toastr.min.css" rel="stylesheet" type="text/css"/> -->
+    <link href="http://gia247.com/themes/themes_frontend/default/payment/css/style.css" rel="stylesheet" type="text/css" />
+
+    <script src="http://gia247.com/themes/themes_frontend/default/common/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <base data-home="{$web['home_url']}" data-ext=".html">
+</head>
+
+<body>
+
+
+    <div class="cf-main">
+        <div class="container page-payment">
+            <div class="logo-payment">
+                <a href="http://gia247.com/"><img src="http://gia247.com/themes/themes_frontend/default/payment/imgs/logo.png"></a>
+            </div>
+            <div class="row">
+                <!-- <div class="login_tab_payment">
+                    <span><a href="https://id.webbnc.vn/?service=gia247&cont=http://gia247.com/dat-hang.html" title="Đăng nhập qua ID BNC">Đăng nhập</a> tài khoản để quản lý đơn hàng của bạn tốt hơn.</span>
+                    <a class="icon icon-facebook" href=""></a>
+                    <a class="icon icon-google" href=""></a>
+                </div> -->
+                <form class="form-payment" id="formOrder">
+                    <table>
+                        <tr>
+                            <td class="pay-left ">
+                                <div class="cf-title">
+                                    <span class="icon">1</span>Thông tin khách hàng
+                                </div>
+                                <div class="content">
+                                    <div class="cf-middle">
+                                        <div class="cf-middle-content">
+                                            <div class="input-form">
+                                                <input type="text" name="payment[name]" class="form-control" placeholder="Họ và tên" value="" required>
+                                                <p style="display:none;"></p>
+                                            </div>
+                                            <div class="input-form">
+                                                <input type="email" name="payment[email]" class="form-control" placeholder="Email" value="" required>
+                                                <p style="display:none;"></p>
+                                            </div>
+                                            <div class="input-form">
+                                                <input type="phone" name="payment[phone]" class="form-control" placeholder="Số điện thoại" value="" required>
+                                                <p style="display:none;"></p>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 input-form">
+                                                    <select class="form-control" name="payment[city]">
+															<option value="0">Tỉnh/Thành phố</option>
+														<!--{loop $_city $k $v}-->
+															<option value="{$v['provinceid']}">{$v['name']}</option>
+														<!--{/loop}-->
+													</select>
+                                                    <p style="display:none;"></p>
+                                                </div>
+                                                <div class="col-md-6 input-form">
+                                                    <select class="form-control" name="payment[district]">
+															<option value="0">Quận/Huyện</option>
+													</select>
+                                                    <p style="display:none;"></p>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" name="payment[address]" placeholder="Số nhà, đường phố, tòa nhà, thôn, xã,..."></textarea>
+                                        </div>
+                                        <div class="info_buyer">
+                                            <p class="title"><b><i class="fa fa-user"></i> Thông tin người nhận</b></p>
+                                            <div class="select_option">
+                                                <input type="checkbox" id="check_same_buyer" name="payment[check_same]" value="1" class="fl" checked="checked">
+                                                <label class="fl" for="check_same_buyer">Thông tin người nhận trùng thông tin người mua.</label>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="info_buyer_content" style="display:none">
+                                                <div>
+                                                    <div class="input-form">
+                                                        <input type="text" name="payment[cus_name]" class="form-control" placeholder="Họ và tên" required>
+                                                    </div>
+                                                    <div class="input-form">
+                                                        <input type="email" name="payment[cus_email]" class="form-control" placeholder="Email" required>
+                                                    </div>
+                                                    <div class="input-form">
+                                                        <input type="phone" name="payment[cus_phone]" class="form-control" placeholder="Số điện thoại" required>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 input-form">
+                                                            <select class="form-control" name="payment[cus_city]">
+																		<option value="0">Tỉnh/Thành phố</option>
+																		<!--{loop $_city $k $v}-->
+																			<option value="{$v['provinceid']}">{$v['name']}</option>
+																		<!--{/loop}-->
+															</select>
+                                                        </div>
+                                                        <div class="col-md-6 input-form">
+                                                            <select class="form-control" name="payment[cus_district]">
+																		<option value="0">Quận/Huyện</option>
+															</select>
+                                                        </div>
+                                                    </div>
+                                                    <textarea class="form-control" name="payment[cus_address]" placeholder="Số nhà, đường phố, tòa nhà, thôn, xã,..."></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cf-ship">
+                                    <div class="ship-title">
+                                        <span><i class="fa fa-truck"></i> Dịch vụ giao hàng</span>
+                                    </div>
+                                    <div class="ship-content">
+                                        <div class="NoBusiness"><i class="fa fa-spinner fa-pulse"></i> Vui lòng chọn địa chỉ giao hàng.</div>
+                                        <!-- <div class="NoBusinessSupport">
+											    	<i class="fa fa-ban"></i><i class="fa fa-exclamation-triangle"></i> Thông báo.
+											    	<p><small><i class="fa fa-ban"></i> Hiện tại không có dịch vụ vận chuyển tới địa chỉ trên</small></p>
+											    </div> -->
+                                        <!-- <div class="ShipOrder">
+												    <div class="ShopName"><i class="fa fa-map-marker"></i> USCOM</div>
+												    <div class="ShopProduct">
+												    	<i class="fa fa-shopping-bag"></i> 
+												    	Iphone 6 xxxxxx,ádas
+												    </div>
+													<div class="BusinessService">
+														<input type="radio"> Dịch vụ/thời gian 2 ngày
+														<p><small>Cước phí 15.000</small></p>
+													</div>
+													<div class="BusinessService">
+														<input type="radio"> Cước phí 15.000<sup>đ</sup>
+														<p><small>Thời gian vận chuyển 2 ngày</small></p>
+													</div>
+													<div class="BusinessService">
+														<input type="radio"> Cước phí 15.000<sup>đ</sup>
+														<p><small>Thời gian vận chuyển 2 ngày</small></p>
+													</div>
+												</div> -->
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="pay-center">
+										<div class="cf-title">
+											<span class="icon">2</span>Hình thức thanh toán
+										</div>
+										<div class="content">
+											<div class="input-radio radio active">
+											  <label>
+											    <input type="radio" name="payment[method]"  value="option1" checked="checked">
+											    Thanh toán khi nhận hàng
+											  </label>
+											  <div class="tt_decription"><p>Bạn cần thanh toán thêm 0đ phí thu tiền tận nơi.(Phí thu hộ)</p></div>
+											</div>
+											<div class="input-radio radio">
+												<label>
+											    <input type="radio" name="payment[method]"  value="option2" >
+											    Thanh toán online <span>Miễn phí</span>
+											  </label>
+											  <div id="cssmenu" class="list_paymentonline" style="display:none;">
+											  	<ul>
+											  		<!--{loop $_payment_bk  $k $v}-->
+											  		<li class="has-sub"><label><input type="radio" name="payment[paymentonline]" value="{$v['id']}">
+													    {$v['name']}
+													  </label>
+													  <ul>
+													  	<li >
+													  		<div style="padding-bottom: 4px; color: #b7b7b7; font-size: 12px; font-style: italic;">Sử dụng thông tin thẻ ATM để thực hiện thanh toán.</div>
+													  		<div class="list_data">
+													  			<!--{loop $v['banks'] $k_bank $v_bank}-->
+													  	        	<a class="list_data_bank" href="javascript:void(0)" data-id="{$v_bank['id']}" title="<b>{$v_bank['name']}</b><br/>Phí tiện ích thoanh toán:{$v_bank['fix_fee']}<br/>Thời gian hoàn tất:{$v_bank['complete_time']}" data-toggle="tooltip" data-placement="auto" data-html="true">
+														  				<i></i>
+														  				<img src="{$v_bank['logo_url']}" title="{$v_bank['name']}" alt="{$v_bank['name']}">
+														  			</a>	
+													  	        <!--{/loop}-->
+													  		</div>
+													  	</li>
+													  </ul>
+													</li>
+													<!--{/loop}-->
+													<li class="has-sub"><label><input type="radio" name="payment[paymentonline]" value="0">
+													    Bằng tài khoản Bảo Kim  
+													  </label>
+													  <ul>
+													  	<li>
+													  		<div style="padding-bottom: 4px; color: #b7b7b7; font-size: 12px; font-style: italic;">Sử dụng tiền trong tài khoản Bảo Kim để thanh toán.</div>
+													  	</li>		
+													  </ul>
+													</li>
+													
+											  	</ul>
+											  </div>
+											</div>
+											<!-- <div class="bk_ttonline_required">
+												<div class="bk_ttonline_required_content">
+													<p class="bk_ttonline_txt">Thanh toán online tại Vatgia.com được cam kết bảo mật theo chính sách của Cổng thanh toán Baokim.vn <a href="https://www.baokim.vn/ho-tro/a/gioi-thieu-ve-bao-kim/chinh-sach-bao-mat" target="_blank">Xem chi tiết</a></p>
+													<p class="fl bk_ttonline_utility" style="width:102px;"><i></i>An toàn 100%</p>
+													<p class="fl bk_ttonline_utility"><i></i>Bảo hiểm 20.000.000đ</p>
+													<p class="fl bk_ttonline_utility" style="width:102px;"><i></i>Miễn phí hoàn toàn</p>
+													<p class="fl bk_ttonline_utility"><i></i>Đơn giản - nhanh chóng</p>
+													<div class="clearfix"></div>
+													<div style="margin-top:5px;"><input type="checkbox" style="float:left"><label style="font-weight:bold;font-size:11px;color:#666;    margin-top: 3px;">Đồng ý với nội dung bảo mật thanh toán</label></div>
+												</div>	
+											</div> -->
+										</div>
+									</td>
+                            <td class="pay-right">
+                                <div class="cf-title">
+                                    <span class="icon"><i class="icon_bill"></i></span> Hóa đơn mua hàng
+                                </div>
+                                <div class="content" id="reload">
+                                    <div class="b-head">
+                                        <a href="{$web['home_url']}"><i class="fa fa-shopping-bag"></i> {$web['info']['business']}</a>
+                                    </div>
+                                    <div id="reloadProduct">
+                                    	<!--{loop $_cart['items'] $k $v}-->
+                                        <div class="list-product row">
+                                            <div class="img col-md-3 col-sm-4 col-xs-3">
+                                                <a href="{$v['link']}"><img class="img-responsive" src="{$web['static_upload']}/{$v['image']}"></a>
+                                            </div>
+                                            <div class="product-info col-md-9 col-sm-8 col-xs-9">
+                                                <div class="product-name">
+                                                    <a href="{$v['link']}">{$v['name']}</a>
+                                                    <a class="delete" href="javascript:void(0)" data-key="{$v['id']}">Xóa</a>
+                                                </div>
+                                                <div class="product_quantity">
+                                                    <div class="">
+                                                        <select name="quantity" data-key="{$v['id']}">
+                                                        	<!--{loopfor $i=1 $i<=50 $i++}-->
+																 <option <!--{if $v['quantity']==$i}-->selected="selected"<!--{/if}-->>{$i}</option>
+															<!--{/loopfor}-->		
+														</select>
+													x {$v['price_format']} </div>
+                                                    = {$v['price_sub_format']} </div>
+                                            </div>
+                                        </div>
+                                        <!--{/loop}-->
+                                    </div>
+                                    <div class="dola">
+                                        <div id="reloadDola">
+                                            <div class="dola1">
+                                                <span>Tổng tiền hàng:</span>
+                                                <span> {$_cart['total']['price_format']} </span>
+                                            </div>
+                                            <div class="dola1 reLoad">
+                                                <span>Phí giao hàng:</span>
+                                                <span id="totalShipFee"> {$_cart['total']['ship_format']}</span>
+                                            </div>
+                                            <!-- <div class="dola1 reLoad">
+                                                <span>Phí thu hộ:</span>
+                                                <span id="totalCodFee"> 0 đ</span>
+                                            </div> -->
+                                            <div class="dola1 end-dola">
+                                                <span>Tổng thanh toán:</span>
+                                                <span id="totalPrice" data-price="{$_cart['total']['total']}"> {$_cart['total']['total_format']} </span>
+                                            </div>
+                                        </div>
+                                        <div class="order_bill_info">
+                                            <a class="text_link" id="exportBill" href="javascript:void(0)"><i class="fa fa-file-text-o"></i> Tôi muốn xuất hóa đơn.</a>
+                                            <div id="box_order_bill" style="display: none;">
+                                                <input type="text" name="payment[bill_company]" class="form-control" placeholder="Tên công ty/cá nhân">
+                                                <textarea name="payment[bill_address]" class="form-control" placeholder="Địa chỉ công ty"></textarea>
+                                                <input name="payment[bill_taxcode]" type="text" class="form-control" placeholder="Mã số thuế">
+                                                <hr/>
+                                            </div>
+                                        </div>
+                                        <textarea class="form-control" name="payment[comment]" placeholder="Yêu cầu thêm."></textarea>
+                                    </div>
+                                </div>
+                                <div class="dathang">
+                                    <a href="javascript:void(0)" id="submitOrder">Đặt hàng</a>
+                                    <input name="payment[bk_item_bank]" value="0" type="hidden">
+                                </div>
+                                <div id="note_next_action_bank" class="text_link">
+                                    <small><b>* </b>Click <b>Đặt hàng</b> màn hình sẽ chuyển sang cổng thanh toán để bạn trả tiền cho đơn hàng này.</small>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalRedirect" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                    <h4 class="modal-title">Thanh toán đơn hàng</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="position-code">
+                        <div>Mã đơn hàng: <span class="order_code">x</span></div>
+                        <div>Số tiền thanh toán: <span class="total_price">x</span></div>
+                    </div>
+                    <div class="modalRedirect-body">
+                        <div class="bold">Thông tin người nhận</div>
+                        <div>Họ tên: <span class="receiver_name">x</span></div>
+                        <div>SDT: <span class="receiver_phone">x</span></div>
+                        <div>Email: <span class="receiver_email">x</span></div>
+                        <div>Địa chỉ: <span class="receiver_address">x</span></div>
+                    </div>
+                    <hr/>
+                    <div class="btn-pay">
+                        <a class="btn btn-danger btn-sm" href="http://gia247.com">Tôi sẽ thanh toán sau</a>
+                        <a class="btn btn-success btn-sm payNow" href="">Thanh toán ngay</a>
+                    </div>
+                </div>
+                <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div> -->
+            </div>
+
+        </div>
+    </div>
+
+    
+    <script src="http://gia247.com/themes/themes_frontend/default/common/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="http://gia247.com/themes/themes_frontend/default/common/js/jquery.cookie.js" type="text/javascript"></script>
+    <script src="http://gia247.com/themes/themes_frontend/default/common/js/toastr.min.js" type="text/javascript"></script>
+    <script src="{$web['static_temp_mod']}/gia247/js/payment.js" type="text/javascript"></script>
+    
+    <!-- <div id="fountainG" style="display:none">
+	<div class="fountainG-content">
+		<div id="fountainG_1" class="fountainG"></div>
+		<div id="fountainG_2" class="fountainG"></div>
+		<div id="fountainG_3" class="fountainG"></div>
+		<div id="fountainG_4" class="fountainG"></div>
+		<div id="fountainG_5" class="fountainG"></div>
+		<div id="fountainG_6" class="fountainG"></div>
+		<div id="fountainG_7" class="fountainG"></div>
+		<div id="fountainG_8" class="fountainG"></div>
+	</div>	
+</div> -->
+
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!--{if $_history}-->
+<div class="f-page-split">
+	<div class="f-page-split-title">{lang label_product_history}</div>
+	<div class="f-page-split-body">
+		<div class="f-product-view-other">
+				<ul class="f-product-viewid f-product row">
+					<!--{loop $_history $k $v}-->
+					<li class="col-lg-3 col-md-4">
+						<div class="f-pr-item">
+							<div class="f-pr-item-compare"><span>{lang label_compare}</span></div>
+							<!--{if $v['sale'] != 0}-->
+								<div class="f-pr-item-saleof"><span>{$v['sale']}%</span></div>
+							<!--{/if}-->
+							<div class="f-pr-item-img"> 
+								<a href="{$v['link']}" title="{$v['name']}"> <img alt="{$v['name']}" src="<!--{loadImage $v['image'] resize 186 202}-->" class="img-responsive"> </a> 
+							</div>
+							<div class="f-pr-item-boxdetail">
+								<h2> <a class="f-pr-item-name" href="{$v['link']}" title="{$v['name']}">{$v['name']}</a> </h2>
+								<p class="f-pr-item-price"><!--{formatNumber $v['price_after_sale'] VND }--></p>
+								<!--{if $v['price'] > 0}-->
+									<p class="f-pr-item-old-price"><!--{formatNumber $v['price'] VND }--></p>
+								<!--{else}-->
+									 <p class="f-pr-item-price">{lang contact}</p>
+								<!--{/if}-->
+								<div class="f-pr-item-action"> 
+									<a href="{$v['link']}" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-info-sign"></span> {lang detailed}</a> <a href="javascript:;" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-shopping-cart"></span> {lang quickbuy}</a> 
+									<!--{if ($v['is_like']!=2)}-->
+										<!--{if ($v['is_like']===0)}-->
+											<button class="btn btn-success like-product-{$v['id']}" id="like-product" data-like="{$v['is_like']}" data-name="{$v['name']}" data-id="{$v['id']}" data-text-like="{lang like}" data-text-unlike="{lang unlike}"><i class="fa fa-thumbs-up"></i> <span id="text-like-{$v['id']}">{lang like}</span></button>
+											
+										<!--{else}-->	
+											<button class="btn btn-danger like-product-{$v['id']}" id="like-product" data-like="{$v['is_like']}" data-name="{$v['name']}" data-id="{$v['id']}" data-text-like="{lang like}" data-text-unlike="{lang unlike}"><i class="fa fa-thumbs-down"></i> <span id="text-like-{$v['id']}">{lang unlike}</span></button>
+											
+										<!--{/if}-->
+									<!--{else}-->
+											<button class="btn btn-success like-product-{$v['id']}" id="like-product" data-like="{$v['is_like']}" data-name="{$v['name']}" data-id="{$v['id']}" data-login="{lang not_login} <br/><a class='btn btn-success' href='{$web['home_url']}/user-login{$web['dotExtension']}'>{lang login}</a>"><i class="fa fa-thumbs-up"></i> <span id="text-like-{$v['id']}">{lang like}</span></button>
+									<!--{/if}-->
+								</div>
+							</div>
+						</div>
+					</li>
+					<!--{/loop}-->
+				</ul>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+<!--{/if}-->
+

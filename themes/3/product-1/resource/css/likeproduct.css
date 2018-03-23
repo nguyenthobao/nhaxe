@@ -1,0 +1,31 @@
+.like-btn{
+     
+}
+.viewlist li:hover .like-btn{
+	display:block;
+}
+
+.size{
+	border: rgb(194, 209, 223) solid 1px;
+	width: 33px;
+	height: 33px;
+	text-align: -webkit-center;
+	display: -webkit-inline-box;
+	margin: auto;
+	padding: 4px;
+}
+.size:hover{
+	border: rgb(255, 0, 0) solid 1px;
+}
+.size:focus{
+	border: rgb(255, 0, 0) solid 1px;
+}
+.brand{
+	
+    border: #DDD solid 1px;
+padding: 2px 5px;
+border-radius: 0px;
+background: #EDEDED;
+color: #4A4A4A;
+
+}

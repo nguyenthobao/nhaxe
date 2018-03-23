@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="f-center-module tab-hot">
+    <div class="f-center-title ">
+      <ul class="f-video-tab-home" class="nav-tabs ">
+        <li class="active"><a href="#f-video-tab01" data-toggle="tab">Album new</a></li>
+        <li><a href="#f-video-tab02" data-toggle="tab">Album hot</a></li>
+        <li><a href="#f-video-tab03" data-toggle="tab">Album vip</a></li>
+      </ul>
+    </div>
+    <div class="f-center-body">
+      <div class="clearfix"></div>
+      <div class="tab-content">
+        <div id="f-video-tab01" class="tab-pane active">
+          <ul class="f-video row">
+            <!--{eval $i=0}-->
+            <!--{loop $_new $k $v}-->
+            <!--{if $i < 4}--> 
+           <li class="col-lg-3 col-md-3 col-sm-6 col-xs-6 full-xs">
+                <div class="f-video-item">
+                  <div class="f-video-item-img"> <a href="$v['link']" title="$v['title']"> <img src="<!--{loadImage $v['avatar'] crop 331 184}-->" class="img-responsive" alt="$v['title']"  />
+                    <div class="f-video-item-img-hover"></div>
+                    </a> </div>
+                  <div class="f-video-item-title">
+                    <h3><a href="$v['link']" title="$v['title']"> <!--{cutString $v['title'] 0 25}--> </a></h3>
+                  </div>
+                </div>
+              </li>
+            <!--{/if}-->
+            <!--{eval $i++}-->    
+            <!--{/loop}--> 
+          </ul>
+        </div>
+        <div id="f-video-tab02" class="tab-pane">
+          <ul class="f-video row">
+            <!--{eval $i=0}-->
+            <!--{loop $_hot $k $v}-->
+            <!--{if $i < 4}--> 
+           <li class="col-md-3  col-sm-3 col-xs-6 full-xs">
+                <div class="f-video-item">
+                  <div class="f-video-item-img"> <a href="$v['link']" title="$v['title']"> <img src="<!--{loadImage $v['avatar'] crop 331 184}-->" class="img-responsive" alt="$v['title']"  />
+                    <div class="f-video-item-img-hover"></div>
+                    </a> </div>
+                  <div class="f-video-item-title">
+                    <h3><a href="$v['link']" title="$v['title']"> <!--{cutString $v['title'] 0 25}--> </a></h3>
+                  </div>
+                </div>
+              </li>
+            <!--{/if}-->
+            <!--{eval $i++}-->    
+            <!--{/loop}--> 
+          </ul>
+        </div>
+        
+        <div id="f-video-tab03" class="tab-pane">
+          <ul class="f-video row">
+            <!--{eval $i=0}-->
+            <!--{loop $_vip $k $v}-->
+            <!--{if $i < 4}--> 
+           <li class="col-md-3  col-sm-3 col-xs-6 full-xs">
+                <div class="f-video-item">
+                  <div class="f-video-item-img"> <a href="$v['link']" title="$v['title']"> <img src="<!--{loadImage $v['avatar'] crop 331 184}-->" class="img-responsive" alt="$v['title']"  />
+                    <div class="f-video-item-img-hover"></div>
+                    </a> </div>
+                  <div class="f-video-item-title">
+                    <h3><a href="$v['link']" title="$v['title']"> <!--{cutString $v['title'] 0 25}--> </a></h3>
+                  </div>
+                </div>
+              </li>
+            <!--{/if}-->
+            <!--{eval $i++}-->    
+            <!--{/loop}--> 
+          </ul>
+        </div>
+        
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+
+ 

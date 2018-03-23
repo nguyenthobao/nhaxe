@@ -1,0 +1,31 @@
+<script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/jquery.1.11.js"></script>
+<script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/base64.min.js"></script>
+<!-- <script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/process.js"></script> -->
+<script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/jquery.validationEngine-vi.js"></script>
+<script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/jquery.validationEngine.js"></script>
+<script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/loading-overlay.min.js"></script>
+<script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/payment.js"></script>
+<script>
+$(document).ready(function() {
+Payment.init('<!--{WEBGLOBAL['home_url']}-->');
+});
+$("#step2").validationEngine();
+$("#step3").validationEngine();
+
+</script>
+<div class="g980" style="position: fixed;left:0px;right:0px;margin-top:20px">
+	<p align="center" >{lang buy_security} </p>
+</div>
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WTGBK6"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WTGBK6');</script>
+<!-- End Google Tag Manager --> 
+
+</body>
+</html>

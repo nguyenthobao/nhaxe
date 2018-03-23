@@ -1,0 +1,63 @@
+<!--{if !empty($_related)}-->
+<!--{loop $_related $key $value}-->
+<div class="f-page-split">
+	<div class="f-page-split-title">{$value['title']}</div>
+	<div class="f-page-split-body">
+		<div class="f-product-view-other">
+			<!--{if $value['type'] == 'list'}-->
+				<ul class="f-product-viewid f-product row">
+					<!--{loop $value['content'] $k $v}-->
+					<li class="col-lg-3 col-md-4">
+						<div class="f-pr-item">
+							<div class="f-pr-item-compare"><span>{lang label_compare}</span></div>
+							<!--{if $v['percent'] != 0}--><div class="f-pr-item-saleof"><span>{$v['percent']}</span></div><!--{/if}-->
+							<div class="f-pr-item-img">
+								<a href="{$v['link']}" title="{$v['name']}"> <img alt="{$v['name']}" src="<!--{loadImage $v['image'] resize 186 202}-->" class="img-responsive"> </a>
+							</div>
+							<div class="f-pr-item-boxdetail">
+								<h2> <a class="f-pr-item-name" href="{$v['link']}" title="{$v['name']}">{$v['name']}</a> </h2>
+								<p class="f-pr-item-price">{$v['price']}</p>
+								<!--{if $v['price_old'] > 0}--><p class="f-pr-item-old-price">{$v['price_old']}</p><!--{/if}-->
+								<div class="f-pr-item-action">
+									<a href="{$v['link']}" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-info-sign"></span> Chi tiết</a> <a href="javascript:;" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-shopping-cart"></span> {lang quickbuy}</a>
+								</div>
+							</div>
+						</div>
+					</li>
+					<!--{/loop}-->
+				</ul>
+			<!--{else}-->
+
+						<div class="carousel slide" data-ride="carousel">
+							<div class="carousel-inner ">
+								<!--{loop $value['content'] $k $v}-->
+								<div class="item f-product-bl <!--{if $k==0}-->active<!--{/if}-->">
+									<div class="f-pr-bl-item">
+										<!--{if $v['price']['percent'] != 0}--><div class="f-pr-bl-item-saleof"><span>{$v['price']['percent']}</span></div><!--{/if}-->
+										<div class="f-pr-bl-item-img">
+											<a href="{$v['link']}" title="{$v['name']}"> <img alt="{$v['name']}" src="<!--{loadImage $v['image'] resize 243 250}-->" class="img-responsive"> </a>
+										</div>
+										<div class="f-pr-bl-item-boxdetail">
+											<h2><a class="f-pr-bl-item-name" href="{$v['link']}" title="{$v['name']}">{$v['name']}</a></h2>
+											<!--{if $v['price']['price']==0}-->
+												<p class="f-pr-bl-item-price">Liên hệ</p>
+											<!--{else}-->
+												<p class="f-pr-bl-item-price">{$v['price']['price']}</p>
+											<!--{/if}-->
+
+											<!--{if $v['price']['price_old'] != 0}--><p class="f-pr-bl-item-old-price">{$v['price']['price_old']}</p><!--{/if}-->
+										</div>
+									</div>
+								</div>
+								<!--{/loop}-->
+							</div>
+						</div>
+
+
+			<!--{/if}-->
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+<!--{/loop}-->
+<!--{/if}-->

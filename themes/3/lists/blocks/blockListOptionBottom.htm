@@ -1,0 +1,13 @@
+<!--{if !empty($data)}-->
+<div class="f-block block-bottom wow fadeIn" Data-wow-duration='2s'>
+  <div class="f-block-title"><span>{$block['title']}</span> </div>
+  	
+  <div class="f-block-body">
+      <ul class="f-block-news-menu row">
+        <!--{loop $data $k $v}-->
+            <!--{tempblock blocks/blockListOptionItemBottom}--> 
+            <!--{/loop}-->
+      </ul>
+  </div>
+</div>
+<!--{/if}-->

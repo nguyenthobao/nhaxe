@@ -1,0 +1,17 @@
+
+	<!--{if $_adBlock['type']=='image'}-->
+	<a href="{$_adBlock['link_GA']}" title="{$_adBlock['title']}">
+		<img src="<!--{loadImage $_adBlock['img'] crop 100 200}-->" alt="{$_adBlock['title']}"/>
+	</a>
+	<!--{elseif $_adBlock['type']=='flash'}-->
+		<a href="{$_adBlock['link_GA']}" title="{$_adBlock['title']}">
+			<object width="{$_adBlock['width']}" height="{$_adBlock['height']}" data="{$_adBlock['flash']}"></object>
+		</a>
+	<!--{elseif $_adBlock['type']=='text'}-->
+		<a href="{$_adBlock['link_GA']}" title="{$_adBlock['title']}">
+			<p>{$_adBlock['short']}</p>
+			<div>{$_adBlock['content']}</div>
+		</a>
+	<!--{else}-->
+		{$_adBlock['code_adv']}
+	<!--{/if}-->

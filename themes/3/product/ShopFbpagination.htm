@@ -1,0 +1,39 @@
+﻿<!--{if !empty($_pagination) }-->
+
+<div class="f-pagging text-center"> 
+    <ul class="pagination ">
+        <!--{if !isset($_pagination[first])}-->
+            <li class="disabled"><a >|<< </a></li>
+        <!--{else}-->
+            <li> <a href="{$_pagination[first][href]}?signed_request={$_signed_request}">|<< </a></li>
+        <!--{/if}-->
+
+        <!--{if !isset($_pagination[previous])}-->
+            <li class="disabled"> <a>Trước</a> </li>
+        <!--{else}-->
+            <li><a href="{$_pagination[previous][href]}?signed_request={$_signed_request}"> Trước </a></li>
+        <!--{/if}-->
+
+        <!--{loop $_pagination[numbers] $k $v}-->
+            <!--{if $k=='active' }-->
+                <li class="active"><a >{$v['num']}</a></li>
+            <!--{else}-->
+                <li ><a href="{$v['href']}?signed_request={$_signed_request}">{$v['num']}</a></li>
+            <!--{/if}-->                                           
+        <!--{/loop}-->
+
+        <!--{if !isset($_pagination[next])}-->
+            <li class="disabled"> <a >Sau</a></li>
+        <!--{else}-->
+            <li><a href="{$_pagination[next][href]}?signed_request={$_signed_request}"> Sau </a> </li>
+        <!--{/if}-->
+
+        <!--{if !isset($_pagination[last])}-->
+            <li class="disabled"> <a> >>| </a></li>
+        <!--{else}-->
+            <li><a href="{$_pagination[next][href]}?signed_request={$_signed_request}"> >>| </a></li>
+        <!--{/if}-->
+    </ul>
+    <div class="clearfix"></div>
+</div>
+<!--{/if}-->

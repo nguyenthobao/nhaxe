@@ -1,0 +1,40 @@
+<!--{if isset($_pagination) }-->
+<div class="row">
+<div class="col-md-6" style="display:none">
+    <p> {lang displaying}
+        <strong>{$_pagination[info][start]}  </strong> {lang page_to}
+        <strong>{$_pagination[info][end]}    </strong> {lang page_on}
+        <strong>{$_pagination[info][total]}  </strong> {lang records}
+        <strong>{$_pagination[info][page]}   </strong> {lang page_on}
+        <strong>{$_pagination[info][pages]}  </strong> {lang page}
+    </p>
+</div>
+<div class="f-pagging text-right col-md-12">
+    <ul class="pagination ">
+        <!--{if !isset($_pagination[first])}-->
+            <li class="disabled"><a ><i class="fa fa-caret-left"></i> </a></li>
+        <!--{else}-->
+            <li> <a href="{$_pagination[first][href]}"><i class="fa fa-caret-left"></i> </a></li>
+        <!--{/if}-->
+
+         
+
+        <!--{loop $_pagination[numbers] $k $v}-->
+            <!--{eval if ($v['num'] == 0) continue;}-->
+            <!--{if $k=='active' }-->
+                <li class="active"><a >{$v['num']}</a></li>
+            <!--{else}-->
+                <li ><a href="{$v['href']}">{$v['num']}</a></li>
+            <!--{/if}-->                                           
+        <!--{/loop}-->
+         
+        <!--{if !isset($_pagination[last])}-->
+            <li class="disabled"> <a> <i class="fa fa-caret-right"></i> </a></li>
+        <!--{else}-->
+            <li><a href="{$_pagination[next][href]}"> <i class="fa fa-caret-right"></i> </a></li>
+        <!--{/if}-->
+    </ul>
+    <div class="clearfix"></div>
+</div>
+</div>
+<!--{/if}-->

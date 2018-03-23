@@ -1,0 +1,47 @@
+<!--{if !empty($_pagination) }-->
+<div class="col-md-6">
+    <p> Hiển thị từ  
+        <strong>{$_pagination[info][start]}</strong> đến 
+        <strong>{$_pagination[info][end]}</strong> trên
+        <strong>{$_pagination[info][total]}</strong> bản ghi - Trang số 
+        <strong>{$_pagination[info][page]}</strong> trên 
+        <strong>{$_pagination[info][pages]}</strong> trang
+    </p>
+</div>
+<div class="f-pagging text-right col-md-6">
+    <ul class="pagination ">
+        <!--{if !isset($_pagination[first])}-->
+            <li class="disabled"><a >|<< </a></li>
+        <!--{else}-->
+            <li> <a href="{$_pagination[first][href]}">|<< </a></li>
+        <!--{/if}-->
+
+        <!--{if !isset($_pagination[previous])}-->
+            <li class="disabled"> <a>Trước</a> </li>
+        <!--{else}-->
+            <li><a href="{$_pagination[previous][href]}"> Trước </a></li>
+        <!--{/if}-->
+
+        <!--{loop $_pagination[numbers] $k $v}-->
+            <!--{if $k=='active' }-->
+                <li class="active"><a >{$v['num']}</a></li>
+            <!--{else}-->
+                <li ><a href="{$v['href']}">{$v['num']}</a></li>
+            <!--{/if}-->                                           
+        <!--{/loop}-->
+
+        <!--{if !isset($_pagination[next])}-->
+            <li class="disabled"> <a >Sau</a></li>
+        <!--{else}-->
+            <li><a href="{$_pagination[next][href]}"> Sau </a> </li>
+        <!--{/if}-->
+
+        <!--{if !isset($_pagination[last])}-->
+            <li class="disabled"> <a> >>| </a></li>
+        <!--{else}-->
+            <li><a href="{$_pagination[next][href]}"> >>| </a></li>
+        <!--{/if}-->
+    </ul>
+    <div class="clearfix"></div>
+</div>
+<!--{/if}-->

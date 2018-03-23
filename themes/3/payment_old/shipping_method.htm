@@ -1,0 +1,43 @@
+<!--{if isset($_shipping_method)}-->
+	<p>{lang info_tran} </p>
+	<p>{lang from} : <b>{$_shippingAddress['from']}</b> 
+	<p>{lang to}: <b>{$_shippingAddress['to']}</b></p>
+<div class="table-responsive"> 
+	<table class="table" id="priceShipping">
+		<thead>
+			<th>{lang select}</th>
+			<th>{lang com_tran}</th>
+			<th>{lang com_des_tran}</th>
+			<th>{lang fee_ship}</th>
+			<th>{lang com_fee_thutien}</th>
+			<th>{lang com_total_fee}</th>
+		</thead>
+		<tbody>
+			<!--{eval $total_ship}-->
+			<!--{loop $_shipping_method $k $v}-->
+		<tr data-carrierId="{$v['carrierId']}" data-serviceId="{$v['serviceId']}" >
+			<td><input type="radio" name="serviceId"  value="{$v['serviceId']}" /></td>
+			<td style="width:60px;">{$v['carrierName']}
+			</td>
+			<td style="width:100px;">
+				{$v['serviceDescription']}
+			</td>
+			<td style="width:80px;">
+				<!--{formatNumber $v['shipFee'] $_currency }-->
+			</td>
+			<td style="width:80px;">
+				<!--{formatNumber $v['codFee'] $_currency }-->
+			</td>
+			<td style="width:90px;">
+				<!--{formatNumber $v['total'] $_currency }-->
+			</td>
+		</tr>
+		<!--{/loop}-->
+		</tbody>
+	</table>
+</div> 
+<!--{else}-->
+<div class="table-responsive"> 
+	<p>{lang city_dis}
+</div>
+<!--{/if}-->

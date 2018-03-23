@@ -1,0 +1,197 @@
+<style type="text/css">
+.filter {
+  border: 5px solid #E9EDEE;
+  margin-bottom: 10px;
+  position: relative;
+}
+.filter>div {
+  border-top: 1px solid #ddd;
+  min-height: 45px;
+  padding-left: 125px;
+  position: relative;
+  overflow: hidden;
+  height: 45px;
+  padding-right: 30px;
+}
+.filter>div>span {
+  line-height: 45px;
+  background: #F5F6F8;
+  color: #666;
+  height: 100%;
+  width: 125px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-weight: bold;
+  padding-left: 10px;
+}
+.filter label input{
+    position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  opacity: 0;
+  z-index: -1;
+}
+.filter>div>a {
+  display: inline-block;
+  margin: 0 20px;
+  line-height: 45px;
+  white-space: nowrap;
+}
+.filter .attr>a {
+  border: 1px solid #fff;
+  min-width: 20px;
+  height: 20px;
+  box-shadow: 0 0 0 1px #b8b8b8;
+  margin: 11px 0 11px 15px;
+  text-align: center;
+  line-height: 22px;
+}
+.filtered {
+  padding: 20px 0;
+  text-align: center;
+}
+.filtered>span {
+  display: inline-block;
+  border: 1px dashed #eee;
+  padding: 0 5px;
+  border-radius: 3px;
+  margin-right: 5px;
+}
+.filtered>span>a {
+  display: inline-block;
+  color: #999;
+  padding: 3px 5px;
+}
+
+.filter>div.full {
+  height: inherit;
+}
+.filter>div>i.fa {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  line-height: 45px;
+  cursor: pointer;
+  text-align: center;
+}
+.filter>div.slider-price{
+    height: 39px;
+    overflow: inherit;
+}
+#BNC-slider-price,#BNC-slider-price-value-lower{
+  margin: 10px;
+}
+.tooltip {
+  display: block;
+position: absolute;
+border: 1px solid #D9D9D9;
+font: 400 12px/12px Arial;
+border-radius: 3px;
+background: #FFF;
+top: -21px;
+padding: 2px;
+left: -15px;
+text-align: center;
+width: auto;
+opacity: 1;
+white-space: nowrap;
+font-size: 10px;
+}
+.tooltip strong {
+  display: block;
+  padding: 2px;
+}
+#search-color>li.active{
+  border: black solid 1px;
+  border-radius: 100%;
+}
+</style>
+<input id="BNC_current_url" type="hidden" value="{BNCGLOBAL['curUrl']['fullLink']}"/>
+<div class="filter">
+    <!--{if !empty($_category)}-->
+      <div class="category_filter">
+
+      </div>
+    <!--{/if}-->
+        <!--{if !empty($_supplier)}-->
+        <div>
+          <span>{lang supplier}</span>
+          <ul id="search-supplier" class="searchsupplier">
+            <!--{loop $_supplier $k $v}-->
+             <li><input type="checkbox"  <!--{if $v['active']==1}-->checked<!--{/if}--> value="{$v['id']}"><span>{$v['name']}</span></li>
+             <!--<a href="javascript:void(0);" class="BNC_filter" data-value="{$v['id']}" data-name="supplier" title="{$v['name']}">{$v['name']}</a>-->
+            <!--{/loop}-->
+          </ul>
+        </div>
+        <!--{/if}-->
+        <div class="slider-price">
+          <span>{lang price_range}</span>
+          <div id="BNC-slider-price"></div>
+        </div>
+
+        <!--{if !empty($_colors)}-->
+          <div class="attr f-color-search">
+            <span>Màu sắc</span>
+            <ul id="search-color">
+            <!--{loop $_colors $k_color $v_color}-->
+              <li <!--{if $v_color['select']==1}-->class="active"<!--{/if}--> >
+                 <a href="javascript:void(0)" title="{$v_color['name']}" data-color="{$v_color['id']}" style="background:{$v_color['code']};"></a>
+              </li>
+            <!--{/loop}-->
+            </ul>
+          </div>
+        <!--{/if}-->
+
+        <!--{if !empty($_properties)}-->
+         <!--{loop $_properties $k_properties $v_properties}-->
+          <!--{if !empty($v_properties['sub'])}-->
+              <div class="attr">
+                <span>{$v_properties['name']}</span>
+                <ul id="search-properties" class="searchsize search-properties">
+                <!--{loop $v_properties['sub'] $k_sub $v_sub}-->
+                  <li>
+                     <input type="checkbox" value="{$v_sub['id']}" <!--{if $v_sub['active']==1}-->checked<!--{/if}-->><span>{$v_sub['name']}</span>
+                  </li>
+                <!--{/loop}-->
+                </ul>
+                <i class="fa fa-chevron-down fa-chevron-up BNC_showhide"></i>
+              </div>
+            <!--{/if}-->
+          <!--{/loop}-->
+        <!--{/if}-->
+
+        <!--{if !empty($_sizes)}-->
+        <div class="attr">
+          <span>{lang label_size}</span>
+          <ul id="search-size" class="searchsize">
+          <!--{loop $_sizes $k $v}-->
+              <li><input type="checkbox" <!--{if $v['active']==1}-->checked<!--{/if}--> value="{$v['id']}"><span>{$v['name']}</span></li>
+             <!--<a href="javascript:void(0);" class="BNC_filter" data-value="{$v['id']}" data-name="size" title="{$v['name']}" >{$v['name']}</a>-->
+          <!--{/loop}-->
+          </ul>
+          <i class="fa fa-chevron-down fa-chevron-up BNC_showhide"></i>
+        </div>
+        <!--{/if}-->
+          <!-- <span id="miniFilter">Thu gọn <i class="fa fa-angle-up"></i></span> -->
+    </div>
+
+    <!--<div class="filtered">
+      <b>Đã chọn:</b> &nbsp;
+      <span>Hồng nhạt
+        <a class="fa fa-times" href="/pc1/hang-thoi-trang?store=662&amp;i5=87"></a>
+      </span>
+      <span>28<a class="fa fa-times" href="/pc1/hang-thoi-trang?store=662&amp;i4=152"></a>
+      </span>
+      <span>HỆ THỐNG THỜI TRANG NAM TONY4MEN<a class="fa fa-times" href="/pc1/hang-thoi-trang?i4=152&amp;i5=87"></a></span>
+    </div>-->
+<script src="{$web['static_temp_mod']}/resource/js/productSearchAdvance.js"></script>
+ <script type="text/javascript">
+ $( document ).ready(function(){
+  ProductSearchAdvance.init();
+ });
+ </script>

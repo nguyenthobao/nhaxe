@@ -1,0 +1,134 @@
+
+<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/css/datetimepicker.css"/>
+<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/css/component.css"/>
+<div class="col-md-10">
+<div class=" login">
+	<!--{if isset($_error)}-->
+	<div class="alert alert-danger" role="alert">$_error</div>
+	<!--{/if}-->
+	<!--{if isset($_success)}-->
+	<div class="alert alert-success" role="alert">$_success</div>
+	<!--{/if}-->
+	<input type="hidden" id="url_ajax" value="$_common['ajax_url']">
+	<form action="$_common['action_setting']" class="form-horizontal" method="POST" />
+		<h3>{lang setting}</h3>
+		
+		<div class="form-group">
+		    <label for="inputEmail3" class="col-sm-3 control-label">{lang email}</label>
+		    <div class="col-sm-9">
+		       <input type="text" class="form-control" name="email" value ="$_user['email']" displaceholder="{lang email}" disabled>
+		    </div>
+		  </div>
+
+	 	<div class="form-group">
+		    <label for="inputEmail3" class="col-sm-3 control-label">{lang username}</label>
+		    <div class="col-sm-9">
+		       <input type="text" class="form-control" name="username" value ="$_user['username']" displaceholder="{lang username}" disabled>
+		    </div>
+		 </div> 
+
+		 <div class="form-group">
+		    <label for="inputEmail3" class="col-sm-3 control-label">{lang first_name}</label>
+		    <div class="col-sm-9">
+		       <input type="text" class="form-control" name="first_name" value ="$_user['first_name']" displaceholder="{lang first_name}">
+		    </div>
+		 </div> 
+
+		 <div class="form-group">
+		    <label for="inputEmail3" class="col-sm-3 control-label">{lang last_name}</label>
+		    <div class="col-sm-9">
+		       <input type="text" class="form-control" name="last_name" value ="$_user['last_name']" displaceholder="{lang last_name}">
+		    </div>
+		 </div> 
+
+		  <div class="form-group">
+		    <label for="inputEmail3" class="col-sm-3 control-label">{lang phone}</label>
+		    <div class="col-sm-9">
+		       <input type="text" class="form-control" name="phone" value ="$_user['phone']" displaceholder="{lang phone}">
+		    </div>
+		 </div> 
+
+		 <div class="form-group">
+		    <label for="inputEmail3" class="col-sm-3 control-label">{lang address}</label>
+		    <div class="col-sm-9">
+		       <input type="text" class="form-control" name="address" value ="$_user['address']" displaceholder="{lang address}">
+		    </div>
+		 </div> 
+
+		  <div class="form-group">
+		    <label for="inputEmail3" class="col-sm-3 control-label">{lang skype}</label>
+		    <div class="col-sm-9">
+		       <input type="text" class="form-control" name="skype" value ="$_user['skype']" displaceholder="{lang skype}">
+		    </div>
+		 </div>
+
+		 <div class="form-group">
+				<label class="control-label col-md-3">{lang sex}</label>
+					<div class="col-md-3">
+						 <label class="radio-inline" for="radios-0">
+     						 <input type="radio" name="sex" value="1" <!--{if $_user['sex'] == 1}-->checked<!--{/if}-->>Nam
+   						</label>
+                        <label class="radio-inline" for="radios-0">
+     						 <input type="radio" name="sex" value="2" <!--{if $_user['sex'] == 2}-->checked<!--{/if}-->>Nữ
+   						</label>
+					</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-md-3 control-label">{lang date}</label>
+				<div class="  col-md-3 col-padding-3">
+					<input class="form_datetime form-control form-filter input-sm" type="text"   data-date="12-02-2012" data-date-format="dd-mm-yyyy" data-date-viewmode="years" value="$_user['birthday']" name="birthday" id="datetime">
+				</div>
+		</div>
+
+		<div class="form-group ">
+				<label class="control-label col-md-3">{lang provinces}</label>
+				<div class="col-md-3">
+					<select class="form-control provinces" id="city_id" name="city_id" data-error="{lang contactinfo_error}" id="provinces">
+						<option value="">{lang choose_provinces}</option>
+						<!--{loop $_Province $k $v}-->
+						<option value="{$v['provinceid']}"> {$v['name']}</option>
+						<!--{/loop}-->
+					</select>
+				</div>
+		</div>
+
+		<div class="form-group  "id="show_district" <!--{if isset($_Distric)}--> style=""<!--{else}-->style="display:none"<!--{/if}-->>
+				<label class="control-label col-md-3">{lang districtid}</label>
+				<div class="col-md-3" id="district">
+					<select class="form-control districtid " id="distric_id" name="distric_id" data-error="{lang contactinfo_error}" data-defaultoption="{lang choose_district}" id="districtid">
+						<option value="">{lang choose_district}</option>
+
+						<!--{loop $_Distric $k $v}-->
+						<option value="{$v['districtid']}" <!--{if $v['districtid']== $_user['distric_id']}--> selected <!--{/if}-->> {$v['name']}</option>
+						<!--{/loop}-->
+					</select>
+				</div>
+		</div>
+		<script type="text/javascript">
+			$('#city_id').val('{$_user['city_id']}');
+			$('#distric_id').val('{$_user['distric_id']}'); 
+		</script>
+	  
+		<!-- Standard button -->
+		<div class="form-group">
+		    <label for="inputEmail3" class="col-sm-3 control-label"></label>
+		    <div class="col-sm-3">
+				<button type="submit" class="btn btn-success">{lang setting_submit}</button>
+			</div>
+		</div>
+	</form> 
+
+	
+	<hr>
+</div>
+</div>
+<script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/metronic.js"></script>
+<script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/user.js"></script>
+        
+<script>
+$(document).ready(function() {
+   User.init();
+});
+</script>

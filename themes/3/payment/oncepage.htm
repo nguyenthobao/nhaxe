@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Thanh toán</title>
+    <base href="{$web['home_url']}" extention=".html" />
+    <!-- Bootstrap -->
+    <link href="{$web['static_temp_mod']}/oncepage/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/oncepage/css/style.css">
+	
+</head>
+  <body>
+  	<div id="target"></div>
+    	<div class="wrapper">
+			<div id="header">
+				<div class="header-top">
+					<div class="container">
+						<div class="row">
+							<div class="header-left col-md-6">
+								<ul class="">
+									<li><a href="#">Gian hàng bán</a>
+									</li>
+									<li><a href="">Rao vặt</a></li>
+									<li><a href="">Hỏi đáp</a></li>
+									<li><a href="">Thêm</a></li>
+								</ul>
+							</div>
+							<div class="header-right col-md-6">
+								<ul>
+									<li><a href="#">Thông báo</a></li>
+									<li><a href="#">Hỗ trợ</a></li>
+									<li><a href="#">Đăng ký</a></li>
+									<li><a href="#">Đăng nhập</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="cf-logo">
+					<div class="container">
+						<!--{if $web['logo'] != null}--> 
+			              <!--{if $web['logo']['is_swf']}--> 
+			                  <object width="{$web['logo']['width']}" height="{$web['logo']['height']}">
+			                  <param value="transparent" name="wmode">
+			                  <param value="{$web['static_upload']}{$web['logo']['img']}" name="movie">
+			                  <embed width="{$web['logo']['width']}" height="{$web['logo']['height']}" wmode="transparent" src="{$web['static_upload']}{$web['logo']['img']}">
+			                  </object>
+			              <!--{else}-->
+			                   <img src="{$web['static_upload']}{$web['logo']['img']}" width="{$web['logo']['width']}" height="{$web['logo']['height']}" class="img-responsive"  alt="Logo"/>
+			              <!--{/if}--> 
+			            <!--{else}-->
+			             <img src="https://webbnc.net/image/data/logo_bnc.png" class="img-responsive"  alt="Logo"/>
+			            <!--{/if}-->
+					</div>
+				</div>
+				
+			</div>
+			<div class="cf-main">
+				<div class="container">
+					<div class="row">
+						<form id="onePageSubmit" name="onePageSubmit" method="POST" action="/payment-oncepage-orderSubmit.html">
+							<div class="col-md-4 col-sm-4 col-xs-12">
+								<div  class="cf-title address-list">
+									<div class="top"><span class="icon">1</span>Địa chỉ nhận hàng</div>
+									<!--{if isset($_cus)}-->
+									<div id="address-Scroll" class="content ">
+										
+										<div class="input-radio1 radio ">
+										  <label>
+										    <input type="radio" name="optionsRadios1" id="optionsRadios2" value="option1" checked>
+										    <div >
+												<div>{$_cus['name']}</div>
+												<div>{$_cus['email']}</div>
+												<div>{$_cus['phone']}</div>
+												<div>{$_cus['address']}</div>
+											</div>
+										  </label>
+										</div>
+										
+
+										<!--{if isset($_cusSS)}-->
+										<!--{loop $_cusSS $k $v}-->
+										<div class="input-radio1 radio ">
+										  <label>
+										    <input type="radio" name="optionsRadios1" id="optionsRadios2" value="option1" checked>
+										    <div >
+												<div>{$v['name']}</div>
+												<div>{$v['email']}</div>
+												<div>{$v['phone']}</div>
+												<div>{$v['address']}</div>
+												
+											</div>
+										  </label>
+										</div>
+										<!--{/loop}-->
+										<!--{/if}-->
+										
+									</div>
+									<!--{else}-->
+									<!--{temp oncepage_cus}-->
+									<!--{/if}-->
+								</div>
+								
+								
+								<div  class="cf-ship address-list">
+									<div class="ship-title">
+										<span>Dịch vụ giao hàng</span>
+									</div>
+									<div id="methodShipping">
+										<!-- <div class="input-radio2 radio ">
+										  <label>
+										    <input type="radio" name="optionsRadios2" id="optionsRadios2" value="option1" checked>
+										    <div class="sub-list-bank">
+												<div class="bold"> Gian hàng tự vận chuyển với phí 15.000<sup>đ</sup></div>
+												<p>Thời gian vận chuyển ...</p>
+											</div>
+										  </label>
+										  
+										</div>
+										<div class="input-radio2 radio ">
+										  <label>
+										    <input type="radio" name="optionsRadios2" id="optionsRadios2" value="option1" checked>
+										    <div class="sub-list-bank">
+												<div class="sub-list-bank">
+													<div class="bold"> Gian hàng tự vận chuyển với phí 15.000<sup>đ</sup></div>
+													<p>Thời gian vận chuyển ...</p>
+												</div>
+											</div>
+										  </label>
+										  
+										</div> -->
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-4 col-xs-12">
+								<div class="cf-title">
+									<span class="icon">2</span>Hình thức thanh toán
+								</div>
+								<div class="content">
+								<!--{if isset($_banks)}-->
+			                        <!--{eval $i=0}-->
+			                    <!--{loop $_banks $k $v}-->
+			                        <!--{if $k==7}-->
+										<div class="input-radio radio active">
+										  <label>
+										    <input type="radio" name="optionsRadios" id="optionsRadios{$k}" value="{$k}" checked>
+										    Thanh toán khi nhận hàng
+										  </label>
+										  <div class="sub-list-bank">
+												<p>Hình thức thanh toán được ưa chuộng nhất tại Vatgia.com.</p>
+												<p>	Người mua chỉ trả tiền sau khi đã được giao hàng tận tay.</p>
+											</div>
+										</div>
+									<!--{elseif $k==6}-->
+										<div class="input-radio radio">
+											<label><input type="radio" name="optionsRadios" id="optionsRadios{$k}" value="{$k}">
+											{$v['title']} </label>
+											<div class="sub-list-bank">
+												<p>Đăng nhập tài khoản của bạn</p>
+												<a class="btn_naptien" href="">Đăng nhập</a>
+											</div>
+										</div>
+									
+									<!--{elseif $k==2}-->
+									<div class="input-radio radio">
+											<label>
+												<input type="radio" name="optionsRadios" id="optionsRadios{$k}" value="{$k}">
+											Bằng thẻ quốc tế Visa/MasterCard 
+											</label>
+											<div class="sub-list-bank">
+											<ul>
+												<!--{loop $v['data'] $k1 $v1}-->
+												<li><a href=""><img src="{$web['static_temp_mod']}/banks/{$v1['logo_url']}" title="{$v1['title']}" width="50" height="34"></a></li>
+												<!--{/loop}-->
+											</ul>
+											</div>
+									</div>
+									<!--{elseif $k==1 || $k==3}-->
+										<div class="input-radio radio">
+										  <label>
+										    <input type="radio" name="optionsRadios" id="optionsRadios{$k}" value="{$k}">
+										    {$v['title']}
+										  </label>
+										  <div class="sub-list-bank">
+											<p>Vui lòng chọn ngân hàng thanh toán</p>
+											<ul>
+												<!--{loop $v['data'] $k1 $v1}-->
+												<li><a href=""><img src="{$web['static_temp_mod']}/banks/{$v1['logo_url']}" title="{$v1['title']}" width="50" height="34"></a></li>
+												<!--{/loop}-->
+											</ul>
+											</div>
+										</div>
+									<!--{elseif $k==4}-->
+										<div class="input-radio radio">
+										  <label>
+										    <input type="radio" name="optionsRadios" id="optionsRadios{$k}" value="{$k}">
+										    <div class="sub_title">Tại máy ATM/quầy giao dịch ngân hàng </div>
+										  </label>
+										  <div class="sub-list-bank">
+										  	<div class="sub_title">{$v['title']}</div>
+											<p>Vui lòng chọn ngân hàng thanh toán</p>
+											<ul>
+												<!--{loop $v['data'] $k1 $v1}-->
+												<li><a href=""><img src="{$web['static_temp_mod']}/banks/{$v1['logo_url']}" title="{$v1['title']}" width="50" height="34"></a></li>
+												<!--{/loop}-->
+											</ul>
+											</div>
+										<!--{elseif $k==5}-->
+										  <div class="sub-list-bank">
+										  	<div class="sub_title">{$v['title']}</div>
+											<p>Vui lòng chọn ngân hàng thanh toán</p>
+											<ul>
+												<!--{loop $v['data'] $k1 $v1}-->
+												<li><a href=""><img src="{$web['static_temp_mod']}/banks/{$v1['logo_url']}" title="{$v1['title']}" width="50" height="34"></a></li>
+												<!--{/loop}-->
+											</ul>
+											</div>
+										</div>
+									<!--{/if}-->
+								<!--{/loop}-->
+								<!--{/if}-->
+								</div>
+							</div>
+							<div id="BNC_product_list" class="col-md-4 col-sm-4 col-xs-12">
+								<div class="cf-title">
+									<span class="icon"><i class="icon_bill"></i></span>
+									Hóa đơn mua hàng
+								</div>
+								<div class="content">
+									<!--{if isset($_orders['products'])}-->
+    								<!--{loop $_orders['products'] $pK $pV}-->
+									<div class="list-product row ">
+										<div class="img col-md-3 col-sm-4 col-xs-3">
+											<a href="{$pV['link']}" target="_blank" tilte="{$pV['name']}"><img class="img-responsive" src="<!--{loadImage $pV['image'] resize 70 45}-->" alt="{$pV['name']}" title="{$pV['name']}"></a>
+										</div>
+										<div class="product-info col-md-9 col-sm-8 col-xs-9">
+											<div class="product-name">
+												<a href="{$pV['link']}" target="_balank"><!--{cutString $pV['name'] 0 30}--></a>
+											</div>
+											<div class="product_quantity">
+												<span style="float:left;margin-left:130px;">
+												<select class="BNC_product_quantity" order-product-id="{$pV['order_product_id']}" product-id="{$pV['product_id']}">
+													<!--{if !empty($pV['quantity_in_stock'])}-->
+													<!--{loopfor $i=1 $i<=$pV['quantity_in_stock'] $i++}-->
+													<option value="{$i}" <!--{if $pV['quantity']==$i}-->selected<!--{/if}-->>{$i}</option>
+													<!--{/loopfor}-->
+													<!--{/if}-->
+												</select>
+												</span>
+												  
+												 <span style="float:left;width:80px;">x  <!--{formatNumber $pV['price'] $_orders['invoice']['currency_code'] }--> </span>
+												<span style="color:red;font-size:11px;margin-left:5px;"><span class="glyphicon glyphicon-remove" ></span></span>
+											</div>
+
+										</div>
+									</div>
+									<!--{/loop}-->
+									
+									<!--{if isset($_orders['invoice'])}-->
+									<div class="dola">
+										<div class="dola1">
+											<span>{lang total_money}:</span>
+											<span> <!--{formatNumber $_orders['invoice']['sub_total'] $_orders['invoice']['currency_code'] }--></span>
+										</div>
+										<!--{if isset($_orders['invoice']['shippingFee']) && $_orders['invoice']['shippingFee'] > 0}-->
+										<div class="dola1">
+											<span>{lang fee_ship}:</span>
+											<span> <!--{formatNumber $_orders['invoice']['shippingFee'] $_orders['invoice']['currency_code'] }--></span>
+										</div>
+										<!--{/if}-->
+										
+										<!--{if $_orders['invoice']['tax']!=0 }-->
+										<div class="dola1">
+											<span>{lang money_tax}: </span>
+											<span>{$_orders['invoice']['tax']}</span>
+										</div>
+										<!--{/if}-->
+
+										<div class="dola1 end-dola">
+											<span>{lang total_order}: </span>
+											<span><!--{formatNumber $_orders['invoice']['total'] $_orders['invoice']['currency_code'] }--></span>
+										</div>
+										
+										<textarea class="form-control" placeholder="Vui lòng nhập địa chỉ nhận hàng"></textarea>
+									</div>
+									<!--{/if}-->
+									<!--{/if}-->
+								</div>
+								<div class="dathang"><button type="submit" >Đặt hàng</button></div>
+								<div id="note_next_action_bank" class="text_link"><a href="#"><b>* </b>Click <b>Đặt hàng</b> màn hình sẽ chuyển sang cổng thanh toán để bạn trả tiền cho đơn hàng này.</a></div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{$web['static_temp_mod']}/oncepage/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{$web['static_temp_mod']}/oncepage/js/bootstrap.min.js"></script>
+    <script src="{$web['static_temp_mod']}/oncepage/js/oncepage.js"></script>
+    <script src="{$web['static_temp_mod']}/oncepage/js/jquery.slimscroll.min.js"></script>
+    <script src="{$web['static_temp_mod']}/oncepage/js/jquery.validate.js"></script>
+    <script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/loading-overlay.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	OncePage.init();
+    $('.sub-list-bank ul li').click(function(){
+        $('.sub-list-bank ul li').removeClass('active1');
+        $(this).addClass('active1');
+        
+        var activeTab = $(this).attr('href');
+        //activeTab = #hinhanh// activeTab =#video
+     
+        $(activeTab).fadeIn();
+        return false;
+    });
+    $('.input-radio').click(function(){
+        $('.input-radio').removeClass('active');
+        $(this).addClass('active');
+
+       
+    });
+    // $('.cf-middle-title').click(function(){
+    //     $('.cf-middle-content').slideToggle('300');
+       
+    // });
+ 
+})
+</script>
+<script type="text/javascript">
+	jQuery(function(){
+    // $('.address-list').click(function(){
+    //     $('.address-list').removeClass('active');
+    //     $(this).addClass('active');
+    // });
+ 
+})
+</script>
+
+  </body>
+</html>

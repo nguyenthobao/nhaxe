@@ -1,0 +1,32 @@
+<!--{if isset($_news)}-->
+
+<ul class="f-news row"> 
+          <!--{loop $_news $k $v}--> 
+          <li class="col-md-6 col-sm-6 col-xs-6 full-xs">
+            <div class="f-news-item" style="padding: 0px;">
+              <div class="f-news-item-img"> <a href="$v['href']" title=""> <img src="<!--{loadImage $v['img'] crop 570 290}-->" class="img-responsive" alt="$v['title']" /> </a>
+
+              </div>
+              <div class="f-news-item-title">
+              
+                <h3> <a title="Title" href="$v['href']">$v['title']</a> </h3>
+              </div>
+            </div>
+
+            <div class="f-new-item-sum"><!--{cutString $v['short'] 0 200}--></div>
+          </li>  
+          <!--{/loop}-->
+           
+        </ul>
+
+
+ 
+<div class="clearfix"></div>
+<!--{temp news/news_pagination}-->
+<!--{else}-->
+<ul class="f-news-page">
+  <li class="f-news-page-item row">
+    {lang no_record_exists}
+  </li>
+</ul>
+<!--{/if}-->

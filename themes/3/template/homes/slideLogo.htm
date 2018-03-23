@@ -1,0 +1,15 @@
+<div class="row_logo_bottom">
+    <ul class="row">
+      <!--{loop $_slides $k $v}--> 
+          <!--{if !empty($v['image_slide'])}-->
+          <!--{eval $image_slide = $v['image_slide']}-->
+            <!--{loop $image_slide $key $val}--> 
+            <li class="col-md-2 col-xs-2">
+              <img src="{$val['thumb']}" class="img-responsive" alt="$v['title']" />
+              <!--<p class="flex-caption">$val['title']</p>-->
+            </li>
+          <!--{/loop}-->
+      <!--{/if}-->
+        <!--{/loop}-->  
+    </ul>
+</div> 

@@ -1,0 +1,20 @@
+<!--{loop $web['adv']['adv_3'] $k $v}-->
+<div>
+	<!--{if $v['type']=='image'}-->
+	<a class="adv-left" href="{$v['link_GA']}" title="{$v['title']}">
+		<img src="<!--{loadImage $v['img'] none 100 200}-->" alt="{$v['title']}"/>
+	</a>
+	<!--{elseif $v['type']=='flash'}-->
+		<a href="{$v['link_GA']}" title="{$v['title']}">
+			<object width="{$v['width']}" height="{$v['height']}" data="{$v['flash']}"></object>
+		</a>
+	<!--{elseif $v['type']=='text'}-->
+		<a href="{$v['link_GA']}" title="{$v['title']}">
+			<p>{$v['short']}</p>
+			<div>{$v['content']}</div>
+		</a>
+	<!--{else}-->
+		{$v['code_adv']}
+	<!--{/if}-->
+</div>
+<!--{/loop}-->

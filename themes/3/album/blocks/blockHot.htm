@@ -1,0 +1,17 @@
+ <div class="f-block">
+  <div class="f-block-title"> <i></i><span>$block['title']</span> </div>
+  <div class="f-block-body " >
+    <ul class="f-news-bl ">
+      <!--{loop $data $k $v}-->
+      <li>
+        <div class="f-news-bl-item ">
+          <div class="f-news-bl-item-img col-md-4 col-sm-4 col-xs-4"> <a href="{$v['link']}" title="{$v['title']}"> <img src="<!--{loadImage $v['avatar'] crop 100 100}-->" class="img-responsive" alt="{$v['title']}" /> </a> </div>
+          <div class="f-news-bl-item-title col-md-8 col-sm-8 col-xs-8">
+            <h3> <a title="{$v['title']}" href="{$v['link']}">$v['title']</a> </h3>
+          </div>
+        </div>
+      </li>
+      <!--{/loop}--> 
+    </ul>
+  </div>
+</div>

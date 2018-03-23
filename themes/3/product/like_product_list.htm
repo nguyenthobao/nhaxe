@@ -1,0 +1,66 @@
+<script type="text/javascript">
+    var urlNow=document.URL;
+</script>
+<script src="{$web['static_temp']}{$web['temp']}/statics/plugins/pjax/jquery.cookie.js"></script>
+<script src="{$web['static_temp']}{$web['temp']}/statics/plugins/pjax/jquery.pjax.js"></script>
+<link rel="stylesheet" type="text/css" href="{$web['static_temp']}{$web['temp']}/statics/plugins/magnific-popup/magnific-popup.css"/>
+<script src="{$web['static_temp']}{$web['temp']}/statics/plugins/magnific-popup/jquery.magnific-popup.js"></script>
+<!--Like Product-->
+<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/css/likeproduct.css"/>
+<script src="{$web['static_temp_mod']}/resource/js/likeproduct.js"></script>
+
+<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/css/toastr.css"/>
+<script src="{$web['static_temp_mod']}/resource/js/toastr.js"></script>
+<script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/productFast.js"></script>
+
+<div id="fast-container">
+<!--{temp product/breadcrumbs}-->
+<div class="f-ctn-center">
+	<div class="f-module-page">
+		<div class="f-module-page-title"> 
+			<i></i><span class="pull-left">{lang product_like}</span>
+         	<div class="f-product-chooseview"> 
+         		<a href="javascript:void()" id="grid"><span class="glyphicon glyphicon-th"></span></a> 
+         		<a href="javascript:void()" id="list"><span class="glyphicon glyphicon-th-list"></span></a> 
+         	</div>
+        </div>
+        <div class="f-module-page-body padding-10">
+        	<div class="clearfix"></div>
+			<div class="f-page-tab">
+				
+	            <div class="tab-content margin-top-10">
+	            	<!--{if !empty($_content)}-->
+	            	<div class="clearfix"></div>	
+		            	<ul class="f-product-viewid <!--{if $_page['display']=='list'}-->viewlist<!--{else}-->f-product row<!--{/if}-->">
+		            		<!--{temp product/productItem}-->
+		            	</ul>
+		            	<!--{temp product/pagination}-->
+		            <!--{else}-->
+		            	<center>{lang empty_product}</center>
+		            <!--{/if}-->
+	            	<div class="clearfix"></div>
+	            </div>
+			</div>
+        </div>
+	</div>
+</div>
+</div>
+<input type="hidden" id="params" value="{$_params}" />
+<div id="fast-dialog" class="fast-dialog zoom-anim-dialog mfp-hide">
+    <div id="fast-product-content">
+    </div>
+</div>
+
+<!--<script type="text/javascript">
+    $(document).ready(function() {
+        $('body').data('home_url', '{$web['home_url']}');
+        $('body').data('extension', '{$web['dotExtension']}');
+        Product.init();
+    });
+</script>-->
+<script type="text/javascript">
+ $(document).ready(function() {
+       Likeproduct.init();
+    });
+	
+</script>

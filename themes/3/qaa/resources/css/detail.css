@@ -1,0 +1,13 @@
+.media-left, .media-right, .media-body {
+  display: table-cell;
+  vertical-align: top;
+}
+.f-qa{
+    background: #ffffff;
+}
+.f-qaView-body-ul li:last-child {
+    border-bottom: 0;
+}
+#f5capt{
+    cursor: pointer
+} 

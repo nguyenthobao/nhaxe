@@ -1,0 +1,121 @@
+<script type="text/javascript">
+    var urlNow=document.URL;
+</script>
+<script src="{$web['static_temp']}{$web['temp']}/statics/plugins/pjax/jquery.cookie.js"></script>
+<script src="{$web['static_temp']}{$web['temp']}/statics/plugins/pjax/jquery.pjax.js"></script>
+<link rel="stylesheet" type="text/css" href="{$web['static_temp']}{$web['temp']}/statics/plugins/magnific-popup/magnific-popup.css"/>
+<script src="{$web['static_temp']}{$web['temp']}/statics/plugins/magnific-popup/jquery.magnific-popup.js"></script>
+<!--Like Product-->
+<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/css/likeproduct.css"/>
+<script src="{$web['static_temp_mod']}/resource/js/likeproduct.js"></script>
+<!--Toastr-->
+<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/css/toastr.css"/>
+<script src="{$web['static_temp_mod']}/resource/js/toastr.js"></script>
+<!--fillter-->
+<script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/productFast.js"></script>
+<script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/dealFillter.js"></script>
+
+
+<div id="fast-container">
+<!--{temp product/breadcrumbs}-->
+<div class="f-ctn-center">
+	<div class="f-module-page">
+        <div class="f-module-page-body ">
+        	<div class="f-module-page-title"> 
+	            <img src="http://gsmvungtau.com.vn/icon/65.png" />
+	            <span>Đấu giá</span>
+	        </div>
+			<div class="f-page-tab">
+				<div class="v2-filterpr">
+				    <div class="row">
+
+				    	<!--{if $_type!='brand'}-->
+			            		<div class="col-md-3  col-sm-3 col-xs-3">
+									<select name="sort_filter" id="sort_filter" class="form-control">
+										<!--{loop $_sort $k $v}-->
+										<option value="{$v['sort']}" <!--{if $v['active']==1}-->selected<!--{/if}-->>{lang {$v['sort']}}</option>
+										<!--{/loop}-->
+									</select>
+								</div>
+								<div class="col-md-3  col-sm-3 col-xs-3">
+									<select name="limit_filter" id="limit_filter" class="form-control">
+										<!--{loop $_limit $k $v}-->
+										<option value="{$v['limit']}" <!--{if $v['active']==1}-->selected<!--{/if}-->>{$v['limit']} {lang per_page}</option>
+										<!--{/loop}-->
+									</select>
+								</div>	
+								<div class="col-md-3  col-sm-3 col-xs-3">
+									<form id="product-search" action="/product-product-deal.html" method="get">
+										<input type="text"  value="<!--{if isset($_text_search) }-->{$_text_search}<!--{/if}-->" name="title" placeholder="{lang key_word}..." class="form-control form-filter BNC_txt_search">
+									</form>
+				                </div>
+				                <div class="col-md-1  col-sm-1 col-xs-1">
+				                    <button class="BNC-search-product btn btn-success">{lang search}</button>
+				                </div> 
+			         <!--{/if}-->
+			            	<div class="f-product-chooseview"> 
+	         		<a href="javascript:void()" id="grid" ><span class="glyphicon glyphicon-th"></span></a> 
+	         		<a href="javascript:void()" id="list" ><span class="glyphicon glyphicon-th-list"></span></a> 
+	         	</div>		
+				    </div>
+				</div>
+				<div class="clearfix"></div>
+	            <div class="tab-content margin-top-10">
+	            	<!--{if !empty($_product)}-->
+		            	<!--{eval $_content = $_product}-->
+		            			<!--{temp product/auctionItem}-->
+		            	<!--{if !empty($pagination)}-->
+		            		<!--{temp product/pagination}-->
+		            	<!--{/if}-->
+		            <!--{else}-->
+		            	<center>{lang empty_product}</center>
+		            <!--{/if}-->
+	            	<div class="clearfix"></div>
+	            </div>
+			</div>
+        </div>
+	</div>
+</div>
+</div>
+<input type="hidden" id="params" value="{$_params}" />
+
+<div id="fast-dialog" class="fast-dialog zoom-anim-dialog mfp-hide">
+    <div id="fast-product-content">
+    </div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/plugins/downtime/jquery.countdown.css">
+<script src="{$web['static_temp_mod']}/resource/plugins/downtime/jquery.plugin.min.js"></script>
+<script src="{$web['static_temp_mod']}/resource/plugins/downtime/jquery.countdown.min.js"></script>
+<script src="{$web['static_temp_mod']}/resource/plugins/downtime/jquery.countdown-vi.js"></script> 
+
+<!--<script type="text/javascript">
+    $(document).ready(function() {
+        $('body').data('home_url', '{$web['home_url']}');
+        $('body').data('extension', '{$web['dotExtension']}');
+        Product.init();
+    });
+</script>-->
+<script type="text/javascript">
+  function downTime(){
+  		var allDownTime=$('body').find('.BNC_value_downtime');
+        $.each(allDownTime, function(k, v) {
+            var id=$(this).attr('data-id');
+            var time=parseInt($(this).attr('data-time'));
+            var downTime = new Date(time*1000);
+            if(time!=0){
+                $('.BNC_down_time_'+id).countdown({until: downTime});
+            }else{
+                $('.BNC_down_time_'+id).html('Het han'); 
+            }
+        });
+  }
+  $(document).ready(function() {
+       Likeproduct.init();
+       dealFillter.init();
+       //Timedown
+       downTime();
+       
+    });
+	
+</script>

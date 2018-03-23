@@ -1,0 +1,118 @@
+.navCustom{
+	border-radius: 0px;
+  height: auto;
+  background-color: rgba(181, 196, 210, 0.02);
+  box-shadow: 1px 6px 10px rgba(218, 231, 244, 0.06);
+}
+.navCustom button{
+	  background-color: #3E80BF;
+	  border: rgba(78, 133, 186, 0.7) solid 1px;
+	  border-radius: 0px;
+	  width: 60px;
+}
+.navCustom button:hover{
+	   background-color: #1B4E79;
+  border: #1A3146 solid 1px;
+}
+.navCustom input{
+	    border-radius: 0px;
+}
+.navCustom select{
+      border-radius: 0px;
+}
+.navCustom .dropdown-menu{
+	border-radius: 0px;
+}
+
+.ulContent{
+	list-style: none;
+}
+.ulContent li{
+  overflow: hidden;
+  width: 160px;
+  height: 210px;
+  border: #B5C4D2 solid 1px;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 2px;
+  box-shadow: 1px 6px 10px rgba(181, 196, 210, 0.43);
+  position: relative;
+}
+
+.ulContent li img{
+  width: 154px;
+  height: 120px;
+  border: #B5C4D2 solid 1px;
+  border-radius: 1px;
+  
+}
+
+.ulContent li:hover{
+    box-shadow: 1px 6px 10px #908CB3;
+    transition: 0.6s;
+}
+
+.ulContent li .title{
+   margin: 5px;
+  text-align: left;
+  font-size: 14px;
+  color: #2F699E;
+  margin-bottom: 0px;
+}
+.ulContent li .price{
+   display: inline-block;	
+  font-weight: bold;
+  margin: 0px 5px 5px 5px;
+  text-align: left;
+  color: rgba(239, 49, 76, 0.89);
+}
+.ulContent li .percent{
+   display: inline-block;	
+   text-decoration: line-through;
+  
+}
+.ulContent li  button{
+	padding: 2px 14px;
+	  border-radius: 0px;
+}
+.ulContent li a{
+  text-decoration: none !important;
+}
+
+.ulContentLiHover{
+	-webkit-transition: top 0.6s; /* For Safari 3.1 to 6.0 */
+    transition: top 0.6s;
+    position: absolute;
+    width: 152px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.48);
+    top: -50px;
+    left: 0px;
+    margin: 3px;
+    height: 40px;
+    visibility: hidden;
+}
+.ulContentLiHoverLeft{
+  display: inline-block;
+  float: left;
+  margin-top: 10px;
+}
+.ulContentLiHoverRight{
+  display: inline-block;
+  float: left;
+  margin-top: 10px;
+}
+.ulContent li:hover .ulContentLiHover{
+   margin: 3px;
+  text-align: center;
+  font-size: 14px;
+  color: #2F699E;
+  top: 0px;
+  visibility: visible;
+  
+}
+.divPagination{
+	text-align: center;
+}
+

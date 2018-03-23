@@ -1,0 +1,78 @@
+<link rel="stylesheet" href="{$web['static_temp_mod']}/resource/css/question.css?rs={$_rs}">
+<div class="faq-wrap">
+    <!--{if isset($_breadcrumbs)}-->
+    <div class="breadcrumbs">
+        <ul style="list-style:none">
+            <!--{loop $_breadcrumbs $k $v}-->
+            <!--{if $v['separator']==true}-->
+                <li style="float:left;font-size:11px;color:#ccc"><a href="Javascript:;" style="font-size:11px;color:#333;padding-left:5px;padding-right:5px;"> » </a></li>
+            <!--{/if}-->
+            <li style="float:left"><a href="{$v['href']}">{$v['text']}</a></li>
+            <!--{/loop}-->
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+    <!--{/if}-->
+<form id="question_form" name="question_form" method="post" action="$_add_question_url">
+<h3>
+    {lang the_question_of}: {$_userName}
+</h3>
+<p class="no-margin">{lang titles_questions}:</p>
+<input type="text" name="title" class="form-control" placeholder="{lang titles_questions}" />
+<p class="no-margin">{lang content_questions}:</p>
+<textarea id="faq_editor" name="question_content"></textarea>
+<br />
+<p class="no-margin">{lang select_a_category}:</p>
+<input type="text" id="search" name="search" class="form-control no-margin" placeholder="{lang search_list}" />
+<!--{if !empty($_category) }-->
+<div id="cate_scroll">
+<!--{loop $_category $k $v}-->
+<p id="{$v['id']}"><input type="radio"<!--{if $_cate == $v['id']}--> checked="checked"<!--{/if}--> name="category_id" value="{$v['id']}" /> {$v['title']}</p>
+<!--{/loop}-->      
+</div>
+<!--{/if}-->
+<input type="hidden" name="captcha" id="cap" value="0" />
+<div>
+    <p class="no-margin">{lang enter_the_security_code}:</p>
+    <img id="capt_img" src="BNCGLOBAL['captcha']" /> <img title="{lang reload_security_code}" id="f5capt" src="{$web['static_temp_mod']}/resource/img/view-refresh-small.png" /> 
+    <div style="float: left; padding: 1px 5px 0 0; width: 25%;"><input type="text" class="form-control" id="captcha" value="" /></div>
+</div>
+<input id="submit" value="Gửi câu hỏi" type="submit" class="form-control sbt" />
+</form>
+</div>
+
+<script src="{$web['static_temp_mod']}/resource/assets/bootstrap/js/bootstrap.min.js"></script>
+<link href="{$web['static_temp_mod']}/resource/assets/bootstrap-dialog/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
+<script src="{$web['static_temp_mod']}/resource/assets/bootstrap-dialog/js/bootstrap-dialog.min.js"></script>
+
+<script src="{$web['static_temp_mod']}/resource/js/ckeditor/ckeditor.js" type="text/javascript"></script>
+<script src="{$web['static_temp_mod']}/resource/js/question.js?rs={$_rs}" type="text/javascript"></script>
+<script>
+
+    jQuery(document).ready(function() {
+var per = new Array();
+    per['alert'] = '{lang alert}';
+    per['please_enter_a_title_question'] = '{lang please_enter_a_title_question}';
+    per['please_enter_the_text_questions'] = '{lang please_enter_the_text_questions}';
+    per['please_select_the_category_that_question'] = '{lang please_select_the_category_that_question}';
+    per['please_enter_the_correct_security_code'] = '{lang please_enter_the_correct_security_code}';
+    per['load_cate_url'] = '$_load_cate_url';
+    per['check_captcha_url'] = '$_check_captcha_url';
+    
+    faq.init(per);
+    $("#question_form").submit(function(event) {
+    faq.valid(event,this,per);
+    event.preventDefault();
+    });
+    }); 
+</script>
+<!--{if !empty($_message)}-->
+<script>
+$("body").append('<div class="message" id="message">{$_message}</div>');
+setTimeout(function(){
+$('#message').fadeOut(3000, function(){
+    $(this).remove();
+});
+}, 3000);
+</script>
+<!--{/if}-->

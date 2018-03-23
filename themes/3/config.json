@@ -1,0 +1,54 @@
+{
+    "config": {
+        "author": "Nguyễn Bá Hưởng",
+        "positions": [{
+                "key": "adv_1",
+                "name": "Vị trí số 1"
+            }, {
+                "key": "adv_2",
+                "name": "Vị trí số 2"
+            }, {
+                "key": "adv_3",
+                "name": "Ảnh logo bên trái dưới footer"
+            }, {
+                "key": "adv_4",
+                "name": "Ảnh logo bên phải dưới footer"
+            }, {
+                "key": "adv_5",
+                "name": "Vị trí số 5"
+            }, {
+                "key": "adv_7",
+                "name": "quảng cáo background"
+            }, {
+                "key": "adv_8",
+                "name": "rich media"
+            }, {
+                "key": "adv_9",
+                "name": "Vị trí số 9"
+            }
+
+        ],
+        "blocks": [{
+            "key": "1",
+            "name": "Vị trí block trên"
+        }, {
+            "key": "2",
+            "name": "Vị trí block phải"
+        }, {
+            "key": "3",
+            "name": "Vị trí block dưới"
+        }, {
+            "key": "4",
+            "name": "Vị trí block trái"
+        }, {
+            "key": "5",
+            "name": "Vị trí block slider"
+        }, {
+            "key": "6",
+            "name": "Vị trí block tuy chon top"
+        }, {
+            "key": "7",
+            "name": "Vị trí block tuy chon bottom"
+        }]
+    }
+}

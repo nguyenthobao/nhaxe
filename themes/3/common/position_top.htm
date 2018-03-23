@@ -1,0 +1,26 @@
+<header>
+    <div class="container">
+        <div class="header-container">
+            <h1 class="header-logo">
+                <a href="{$web['home_url']}" title="Logo title" rel="nofollow">
+                    <!--{if $web['logo'] != null}-->
+                        <!--{if $web['logo']['is_swf']}-->
+                            <object width="{$web['logo']['width']}" height="{$web['logo']['height']}">
+                                <param value="transparent" name="wmode">
+                                <param value="{$web['static_upload']}{$web['logo']['img']}" name="movie">
+                                <embed width="{$web['logo']['width']}" height="{$web['logo']['height']}" wmode="transparent" src="{$web['static_upload']}{$web['logo']['img']}">
+                            </object>
+                        <!--{else}-->
+                            <img src="{$web['static_upload']}{$web['logo']['img']}" class="img-responsive logo"  alt="Logo"/>
+                        <!--{/if}-->
+                    <!--{else}-->
+                        <img src="$web['logo']['img']" class="img-responsive logo"  alt="Logo"/>
+                    <!--{/if}-->
+                </a>
+            </h1>
+            <div class="main-menu">
+                <!--{temp common/menu_top}-->
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,61 @@
+<div class="clearfix"></div>
+   
+   <div class="container">
+     <div class="v2-brand f-center-module">
+      <div class=" ">
+
+      <div class="v2-brand-title f-center-title"><h2><span>Thương hiệu nổi bật</span></h2></div>
+
+      <div class="v2-brand-center">
+        <div class="v2-brand-center-center">
+        <ul class="owl-carousel owl-theme" id="product-brand">
+        	<!--{if !empty($_home_brand)}-->
+              <!--{loop $_home_brand $k $v}-->
+              <!--{if $k<24}-->
+                <li class="item">
+                    <a href="{$v['link']}"><img src="<!--{loadImage $v['avatar'] none 90 45}-->"/></a>
+                </li>
+              <!--{/if}-->
+              <!--{/loop}-->
+          <!--{/if}-->
+           
+        </ul>
+        <div class="customNavigation"
+                        <a class="btn btn-left prev1"></a>
+                        <a class="btn btn-right next1"></a>
+                      </div>
+                        <script>
+                        $(document).ready(function() {
+
+                          var owl = $("#product-brand");
+
+                          owl.owlCarousel({
+
+                          items : 6, //10 items above 1000px browser width
+                          itemsDesktop : [1000,6], //5 items between 1000px and 901px
+                          itemsDesktopSmall : [900,6], // 3 items betweem 900px and 601px
+                          itemsTablet: [767,2], //2 items between 600 and 0;
+                          itemsMobile : [479,1], // itemsMobile disabled - inherit from itemsTablet option
+                          });
+
+                          // Custom Navigation Events
+                          $(".next1").click(function(){
+                            owl.trigger('owl.next');
+                          });
+                          $(".prev1").click(function(){
+                            owl.trigger('owl.prev');
+                          });
+
+
+                        });
+                      </script>
+        </div>
+      </div><!--end v2 brand center-->
+
+      </div>
+     </div><!--end v2tabhome-->
+   </div>
+
+<div class="clearfix"></div>
+
+ 

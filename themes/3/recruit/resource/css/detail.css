@@ -1,0 +1,18 @@
+.message{
+    position: fixed;
+    top: 0;
+    border: 1px solid;
+    margin: 10px auto;
+    padding:15px 0 15px 0;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    z-index: 130;
+    color: #4F8A10;
+    text-align: center;
+    background-color: #DFF2BF;
+    padding: 10px;
+    left: 0;
+    right: 0;
+    width: 90%;
+}
+

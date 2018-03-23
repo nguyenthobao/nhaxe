@@ -1,0 +1,13 @@
+ <!--{if isset($_breadcrumbs)}-->
+ <div class="productbreadcrumb">
+
+<ol class="breadcrumb">
+     <!--{loop $_breadcrumbs $k $v}-->
+        
+        <li ><a href="{$v['link']}">{$v['title']}</a> <i class="fa fa-caret-right"></i></li>
+         
+        <!--{/loop}-->
+   
+</ol>
+</div>
+    <!--{/if}-->

@@ -1,0 +1,41 @@
+<!--{loop $_item $k $v}-->
+<li class=" col-md-3  col-sm-3 col-xs-3" id="like-product-item-5851">
+    <div class="v2-pr-item">
+
+        <div class="v2-pr-item-img ">
+            <a href="{$v['link']}" title="{$v['name']}"><img alt="Test link url seo" src="<!--{loadImage $v['avatar'] resize 265 250}-->" id="f-pr-image-zoom-id-5851" class="img-responsive BNC-image-add-cart-5851"></a>
+
+        </div>
+
+            <div class="downtime BNC_down_time_{$v['id']}"></div>
+
+        <div class="v2-pr-item-boxdetail ">
+            <div class="v2-pr-item-price-gr">
+                <!--{if $v['price']!=0}-->
+                    <p class="v2-pr-item-price"><!--{formatNumber $v['price'] $_current }--></p>
+                <!--{else}-->
+                    <p class="v2-pr-item-price no-price">{lang contact}</p>
+                <!--{/if}-->
+
+                 <!--{if $v['price_market']!=0}-->
+                    <p class="v2-home-pr-item-price-old"><!--{formatNumber $v['price_market'] $_current }--></p>
+                <!--{/if}-->
+
+
+            </div>
+            <a class="v2-pr-item-name" href="{$v['link']}" title="{$v['name']}"><h2>{$v['name']}</h2></a>
+            <div class="v2-pr-item-action">
+                <a href="{$v['link']}" class="v2-pr-item-action-detail"><span class="glyphicon glyphicon-info-sign"></span> Chi tiết</a>
+                <button class="v2-pr-item-action-buy no-buy" disabled=""><span class="glyphicon glyphicon-shopping-cart"></span> Hết hàng</button>
+                <!--{if isset($_distance) || isset($_province)}-->
+	            		<button class="v2-pr-item-action-buy" style="background: rgb(97, 0, 255);width: auto;font-size:inherit;">
+            				<span class="glyphicon glyphicon-map-marker"></span> <!--{if isset($_distance)}-->{$v['distance']} Km<!--{elseif isset($_province)}-->{$v['province_name']}<!--{/if}-->
+            			</button>
+            	<!--{/if}-->
+                <input type="hidden" class="BNC_value_downtime" data-id="{$v['id']}" data-time="{$v['exp_time']}">
+
+            </div>
+        </div>
+    </div>
+</li>
+<!--{/loop}-->

@@ -1,0 +1,12 @@
+<li><!--{if $v['img']}--><img style="display:none" src="{$v['img']}" class="img-responsive" alt="{$v['title']}" /><!--{/if}-->
+	<!--{if $v['icon']}--><img style="display:none" src="{$v['icon']}" class="img-responsive" alt="{$v['title']}" /><!--{/if}-->
+	<!--{if $v['bg']}--><img style="display:none" src="{$v['bg']}" class="img-responsive" alt="{$v['title']}" /><!--{/if}-->
+	<a href="{$v['link']}">{$v['title']}</a>
+	<ul>
+		<!--{if sizeof($v[sub])>0 }-->
+			<!--{loop $v[sub] $k $v}-->
+			<!--{tempblock blocks/category_list_list}-->
+			<!--{/loop}-->
+		<!--{/if}-->
+	</ul>
+</li>

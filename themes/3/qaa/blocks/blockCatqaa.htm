@@ -1,0 +1,12 @@
+<div class="f-block">
+    <div class="f-block-title"><span>{$block['title']}</span> </div>
+    <div class="f-block-body">
+        <ul class="f-block-news-menu no-margin no-padding" style="">
+           <!--{loop $data $k $v}-->
+	            <li> 
+	            	<a href="{$v['link']}" title="{$v['title']}"><span>{$v['title']}</span></a>
+	            </li>
+           <!--{/loop}-->
+        </ul> 
+    </div>
+</div>

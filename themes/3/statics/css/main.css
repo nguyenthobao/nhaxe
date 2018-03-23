@@ -1,0 +1,839 @@
+body {
+    background-color: #f4f4f4;
+}
+header {
+    background-color: #FFFFFF;
+}
+a {
+     color: #000000;
+     text-decoration: none;
+}
+a:hover {
+    color: #ff5115;
+    text-decoration: none;
+}
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+.logo {
+    width: 107px;
+    height: 45px;
+}
+
+.header-container {
+    display: table;
+    height: 50px;
+    width: 100%;
+}
+
+.header-logo {
+    float: none;
+    display: table-cell;
+    padding-right: .625rem;
+    margin: 0;
+}
+
+.header-logo a{
+    float: left;
+    color: #f4f4f4;
+}
+
+.main-menu {
+    vertical-align: middle;
+}
+
+.mainmenu-level {
+    float: left;
+    height: 3.6875rem;
+    margin: 0 0 0 .625rem;
+    overflow: hidden;
+    text-align: right;
+}
+
+.mainmenu-level-item {
+    position: relative;
+    display: inline-block;
+    font-size: .875rem;
+    font-family: "Helvetica Neue",Roboto,Arial,sans-serif;
+    margin-left: 30px;
+    line-height: 3.6875rem;
+    transition: background-color .5s ease;
+}
+
+.mainmenu-level-item a {
+    font-size: 18px;
+    color: #000000;
+}
+.mainmenu-level-item a:hover {
+    text-decoration: none;
+    color: #ff5115;
+}
+
+.active a{
+    color: #ff5115;
+}
+
+@media screen and (min-width: 48em) {
+    .main-menu {
+        display: table-cell;
+    }
+}
+
+@media screen and (min-width: 60em) {
+    .mainmenu-level-item {
+        font-size: 1.125rem;
+    }
+}
+
+/* Add a gray background color and some padding to the footer */
+footer {
+    background-color: #252b36;;
+    padding: 25px;
+    color: #ffffff;
+}
+
+.title {
+    margin: 20px 0 20px 0;
+    background: #ff5115;
+}
+.sale-bar-title {
+    font-size: 3rem;
+    padding: 20px 0 0 0;
+    color: #fff;
+    margin: 0;
+    line-height: normal;
+    letter-spacing: -.02em;
+}
+.card-profile h3{
+    font-weight: bold;
+}
+
+.btn-oder {
+    background-color: #ffffff;
+    color: #ff5115;
+    font-size: 2rem;
+    padding: .5rem 1.875rem .5rem 1.875rem;
+    font-weight: 700;
+    border-radius: 6.25rem;
+    border: solid 2px #ff5115;
+}
+
+.btn-oder:hover {
+    background-color: #ff5115;
+    color: #ffffff;
+}
+
+.margin-item {
+    margin: 5px 0 10px 0;
+}
+
+.item {
+    background-color: #FFFFFF;
+    padding-bottom: 25px;
+}
+
+.box-news-title {
+    background: #f5f6f6;
+    padding: 20px 15px;
+}
+
+.box-news {
+    padding: 15px 0;
+}
+
+#carouselInformation {
+    position: relative;
+}
+
+#carouselInformation2 {
+    position: relative;
+}
+
+#carouselInformation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    color: #000;
+}
+
+#carouselInformation ul li .caption h4 {
+    color: #f04c23;
+    margin: 15px 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/*News*/
+.news-breadcrumb {
+    margin: 20px 0 0px 0;
+}
+
+.news-title {
+    margin: 0 0 20px 0;
+}
+.news-title h3{
+    color: #ff5115;
+
+}
+
+.news-date {
+    color: #B6B6B6;
+    font-size: 12px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+    overflow: hidden;
+    border-bottom: 1px solid #dcdcdc;
+    margin-bottom: 15px;
+}
+
+.news-content {
+    color: #404040;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    line-height: 21px;
+    padding: 10px;
+}
+
+#recent-news {
+    margin-top: 20px;
+}
+
+#cate-news {
+    margin-top: 20px;
+}
+
+/*Booking form*/
+#booking-form {
+    margin: 20px 0 20px 0;
+    border: 7px solid #010000;
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    margin-bottom: 30px;
+}
+
+#booking-form h3 {
+    padding: 0 0 10px 20px;
+    color: #ff5115;
+}
+
+#search-form {
+    background: #fff;
+    padding: 20px 25px 35px 25px;
+    position: relative;
+}
+
+.selectday {
+    font-size: 1.5rem !important;
+}
+
+.selected {
+    background-color: #ff5115;
+    color: #ffffff;
+}
+
+.chonchieu {
+    margin: 0px 0 10px 0px;
+}
+.chuyen {
+    margin-top: 30px;
+}
+
+.form-control{
+    margin-bottom: 10px;
+}
+
+.datepicker {
+    background: url(../images/ic-time.png) no-repeat right 5px center;
+    background-size: 20px;
+    padding-right: 30px;
+    font-weight: normal !important;
+}
+
+#search-btn {
+    height: 64px;
+    line-height: 64px;
+    padding: 0 36px 0 0;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    text-transform: uppercase;
+    border: 1px solid #ddd;
+    color: #000;
+    background: url(../images/btn-search.png) no-repeat right 20px center;
+}
+
+#select-trip {
+    background-color: #ffffff;
+}
+
+#trip-oneway {
+    padding: 20px 0 20px 20px;
+}
+
+#trip-round {
+    padding: 20px 0 20px 20px;
+}
+
+.chooseticket {
+    font-weight: 600;
+}
+
+.trip {
+    font-size: 18px;
+    color: #f04c23;
+    line-height: 27px;
+    margin-bottom: 0;
+}
+
+.scb-to {
+    color: #000;
+    font-size: 14px;
+    font-weight: normal;
+    display: inline-block;
+    text-transform: lowercase;
+    margin: 0 15px;
+}
+
+.oneway-info {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.fdate-highlight {
+    font-size: 14px;
+}
+
+.list-trip {
+    margin-top: 20px;
+}
+.table-hover > tbody > tr > td{
+    padding: 15px;
+}
+.table-hover > tbody > tr:hover {
+    background-color: #ff9d85;
+}
+
+.table-price {
+    color: #fe6715;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.trip-active {
+    background-color: #ff9d85;
+}
+
+#next-step {
+    padding: 10px;
+    height: inherit;
+    padding-right: 0;
+}
+
+.scrollDown {
+    clear: both;
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+    width: 1140px;
+}
+
+@media screen and (max-width: 768px) {
+    .scrollDown {
+        width: 720px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .scrollDown {
+        width: 395px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .scrollDown {
+        width: 345px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .scrollDown {
+        width: 290px;
+    }
+}
+
+#select-seat {
+    float: right;
+    margin: 0 10px 10px;
+    background: #f04c23;
+    padding: 0 30px;
+    height: 40px;
+    line-height: 40px;
+    color: #FFF;
+}
+
+#back {
+    float: right;
+    margin: 0 0 10px;
+    background: #FFF;
+    padding: 0 30px;
+    height: 40px;
+    line-height: 40px;
+    color: #000;
+    border: #000000 inset 1px;
+}
+
+.select-seat {
+    background-color: #ffffff;
+    padding: 0 0 10px 0;
+}
+
+.trip-info {
+    padding: 10px 0 10px 10px;
+    font-weight: 600;
+    color: #ff5115;
+    background: 0;
+    margin: 0 0 15px 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 7px;
+    line-height: 30px;
+}
+
+.select-seat ul {
+    width: 100%;
+    padding: 10px 0 20px 95px;
+    margin-bottom: 5px;
+    margin-left: 15px;
+    list-style: none;
+    display: inline-block;
+    background: url("../images/icon-bus.png") no-repeat 0px 10px;;
+}
+
+.select-seat ul li{
+    float: left;
+    width: 45%;
+    display: inline;
+    padding-bottom: 5px;
+}
+
+@media screen and (max-width: 460px){
+    .select-seat ul li{
+        width: 100%;
+    }
+}
+
+.customer-info {
+    background-color: #252b36;
+    padding-bottom: 10px;
+}
+
+.form-customer {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+.required {
+    color: red;
+}
+
+.form-customer label {
+    color: #666;
+}
+
+
+/*CSS seat*/
+
+.tachtang {
+    border-right: 1px solid #ccc;
+}
+
+.chonghe {
+    cursor: pointer;
+}
+.ghe-4{
+    width: 21% !important;
+    height: 40px;
+    overflow: hidden;
+    padding: 1px !important;
+}
+
+.ghe-4 > .ghedachon, .ghe-4 > .ghetrong, .ghe-4 > .ghedaban, .ghe-4 > .ghetreem, .ghe-4 > .driver {
+    background-size: 30px;
+}
+
+.ghe-5{
+    width: 20% !important;
+    height: 40px;
+    overflow: hidden;
+    padding: 1px !important;
+}
+
+.ghe-6 {
+    width: 16.66% !important;
+    height: 40px;
+    overflow: hidden;
+    padding: 1px !important;
+}
+
+.ghe-7 {
+    width: 14.28% !important;
+    height: 40px;
+    overflow: hidden;
+    padding: 1px !important;
+}
+
+.ghe-3 {
+    width: 33.33% !important;
+    height: 50px;
+    overflow: hidden;
+    padding: 1px !important;
+}
+
+.ghe-3 > .ghedachon, .ghe-3 > .ghetrong, .ghe-3 > .ghedaban, .ghe-3 > .ghetreem, .ghe-3 > .driver {
+    background-size: 40px;
+    height: 50px;
+}
+
+.ghe-2 {
+    width: 50% !important;
+    height: 70px;
+    overflow: hidden;
+    padding: 1px !important;
+}
+
+.ghe-2 > .ghedachon, .ghe-2 > .ghetrong, .ghe-2 > .ghedaban, .ghe-2 > .ghetreem, .ghe-2 > .driver {
+    background-size: 45px;
+    height: 70px;
+}
+
+.ghe-1 {
+    width: 100% !important;
+    height: 70px;
+    overflow: hidden;
+    padding: 1px !important;
+}
+
+.ghe-1 > .ghedachon, .ghe-1 > .ghetrong, .ghe-1 > .ghedaban, .ghe-1 > .ghetreem, .ghe-1 > .driver {
+    background-size: 45px;
+    height: 70px;
+    background-position-x: center;
+}
+
+.driver {
+    height: 45px;
+    /*width: 45px !important;*/
+    background: url("../images/steering-wheel.png") no-repeat 15px;
+    background-size: 25px;
+}
+
+.ghetrong {
+    height: 45px;
+    background: url("../images/seat-white-1.png") no-repeat 15px;
+    background-size: 25px;
+}
+
+.ghedachon {
+    height: 45px;
+    background: url("../images/seat-green-1.png") no-repeat 15px;
+    background-size: 25px;
+}
+
+.ghetreem {
+    height: 45px;
+    background: url("../images/seat-baby-1.png") no-repeat 15px;
+    background-size: 25px;
+}
+
+.ghedaban {
+    height: 45px;
+    background: url("../images/seat-gray-1.png") no-repeat 15px;
+    background-size: 25px;
+}
+
+.total-title {
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+.total-title h4{
+    color: #ff5115;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.seatlist, .price {
+    font-weight: 600;
+    color: #ff5115;
+    float: right;
+    font-size: 16px;
+}
+
+.seatlist {
+    width: inherit;
+    word-wrap: break-word;
+}
+
+.chuthich {
+    margin-left: 30px !important;
+    padding: 0 !important;
+    background: none !important;
+}
+
+.chuthich li {
+    width: 15% !important;
+}
+
+@media screen and (max-width: 425px){
+    .chuthich li {
+        width: 45% !important;
+    }
+}
+
+.total-inside {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 7px;
+    line-height: 30px;
+}
+
+.subtotal {
+    text-align: right;
+    color: #ddd;
+    font-size: 14px;
+    border-top: 1px solid #666;
+    padding-top: 10px;
+}
+
+.subtotal strong {
+    font-size: 16px;
+    color: #fe5815;
+}
+
+#total {
+    padding-top: 5px;
+    line-height: normal;
+    text-align: right;
+    font-size: 14px;
+    color: #ccc;
+    background: none;
+    position: relative;
+}
+
+#total strong{
+    font-size: 20px;
+    color: #fe5815;
+}
+
+.payment {
+    margin-top: 15px;
+    background-color: #f4f4f4;
+    margin-bottom: 10px;
+}
+
+.payment-dialog {
+    width: 110%;
+    padding: 0;
+    margin: 0 0 0 -15px;
+    background: #f04c23;
+    box-sizing: border-box;
+    border: 10px solid #f04c23;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 768px) and (min-width: 500px) {
+    .payment-dialog {
+        width: 105%;
+    }
+}
+
+.payment-dialog h3 {
+    background: url("https://anvui.vn/themes/interbusline/image/bus-icon.png") no-repeat left center;
+    background-size: 30px;
+    padding-left: 45px;
+    font-size: 18px;
+    line-height: 40px;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.payment-form {
+    padding: 10px 0 10px 10px;
+    background: #fff;
+    height: inherit;
+}
+
+/* The radio */
+.radio {
+
+    display: block;
+    position: relative;
+    padding-left: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.radio label {
+    padding-top: 5px;
+    padding-left: 30px;
+    margin-bottom: 10px;
+}
+
+/* Hide the browser's default radio button */
+.radio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkround {
+
+    position: absolute;
+    top: 6px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #fff ;
+    border-color: #f04c23;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 50%;
+}
+
+
+/* When the radio button is checked, add a blue background */
+.radio input:checked ~ .checkround {
+    background-color: #fff;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkround:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.radio input:checked ~ .checkround:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.radio .checkround:after {
+    left: 2px;
+    top: 2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background:#f04c23;
+
+
+}
+
+/* The check */
+.check {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    padding-right: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.check input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #fff ;
+    border-color:#f04c23;
+    border-style:solid;
+    border-width:2px;
+}
+
+
+
+/* When the checkbox is checked, add a blue background */
+.check input:checked ~ .checkmark {
+    background-color: #fff  ;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.check input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.check .checkmark:after {
+    left: 5px;
+    top: 1px;
+    width: 5px;
+    height: 10px;
+    border: solid ;
+    border-color:#f04c23;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.cust-btn{
+    margin-bottom: 10px;
+    background-color: #f04c23;
+    border-width: 2px;
+    border-color: #f04c23;
+    color: #fff;
+}
+.cust-btn:hover{
+
+    border-color: #f04c23;
+    background-color: #fff;
+    color: #f04c23;
+    border-radius: 20px;
+    transform-style: 2s;
+
+}
+
+#hoanthanhbtn {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 36px 0 0;
+    width: 90%;
+    text-align: center;
+    font-size: 20px;
+    text-transform: uppercase;
+    border: 1px solid #ddd;
+    color: #000;
+    background: url(../images/btn-search.png) no-repeat right 20px center;
+}

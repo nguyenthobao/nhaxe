@@ -1,0 +1,39 @@
+<div class="tab-contact-header thumbnail">  
+	<ul class="row">
+		<!--{eval $j = 0}-->
+		<!--{loop $content $k $v}-->
+		<!--{eval $j++}-->
+		<li class="col-md-4 col-xs-6">
+			<a id="tabc{$j}" <!--{if $j==1}-->class="active"<!--{/if}--> onclick="clickTabContact(tabc{$j},tabc{$j}_panel);" href="javascript:;">
+				<span class="glyphicon glyphicon-map-marker"></span> {$v['name']}
+			</a>
+		</li>
+		<!--{/loop}-->
+	</ul>
+</div>
+<div class="tab-contact-body">
+	<!--{eval $j = 0}-->
+	<!--{loop $content $k $v}-->
+	<!--{eval $j++}-->
+	<div id="tabc{$j}_panel" class="tab_contact_panel" <!--{if $j==1}-->style="display:block"<!--{/if}-->>
+		<ul>
+			<li class="row">
+				<div class="col-md-2 col-xs-4 text-right">Doanh nghiệp:</div>
+				<div class="col-md-9 col-xs-8">{$v['name']}</div>
+			</li>
+			<li class="row">
+				<div class="col-md-2 col-xs-4 text-right">Địa chỉ:</div>
+				<div class="col-md-9 col-xs-8">{$v['address']}</div>
+			</li>
+			<li class="row">
+				<div class="col-md-2 col-xs-4 text-right">Điện thoại:</div>
+				<div class="col-md-9 col-xs-8">{$v['phone']}</div>
+			</li>
+			<li class="row">
+				<div class="col-md-2 col-xs-4 text-right">Yahoo:</div>
+				<div class="col-md-9 col-xs-8">update...</div>
+			</li>
+		</ul>
+	</div>
+	<!--{/loop}-->
+</div>

@@ -1,0 +1,38 @@
+      <div class="f-block">
+        <div class="f-block-title"> <i></i><span>$block['title']</span> </div>
+        <div class="f-block-body padding-10" >
+          <ul class="f-news-bl v2-block-support">
+            <!--{loop $data $k $v}-->
+            <li>
+              <div class="f-news-bl-item row">
+                <div class="f-news-bl-item-img col-md-3 col-sm-3 col-xs-3"> 
+                  <!--{if !empty($v['setting']) && strpos($v['setting'], ','."5".',') !== false}-->
+                      <img src="{$v['thumb']}" class="img-responsive" />
+                   <!--{/if}-->
+                </div>
+
+                <div class="f-news-bl-item-title col-md-9 col-sm-9 col-xs-9">
+                  <h2> <a>$v['name_member']</a> </h2>
+                   <!--{if !empty($v['setting']) && strpos($v['setting'], ','."1".',') !== false}-->
+                      <p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px">Nhóm: {$v['room']}</p>
+                   <!--{/if}-->
+                   <div class="sp-chat">
+                    <!--{if !empty($v['setting']) && strpos($v['setting'], ','."2".',') !== false}-->
+                      <a href="tel:{$v['phone']}" title=" {$v['phone']}"><i class="fa fa-phone-square"></i></a>
+                   <!--{/if}-->
+                    <!--{if !empty($v['setting']) && strpos($v['setting'], ','."3".',') !== false}-->
+                     <a href="skype:{$v['skype']}?chat" title="chat skype"><i class="fa fa-skype"></i></a>
+                   <!--{/if}-->
+                    <!--{if !empty($v['setting']) && strpos($v['setting'], ','."4".',') !== false}-->
+                      <a href="{$v['yahoo']}" title="chat yahoo"><i class="fa fa-yahoo"></i></a>
+                   <!--{/if}-->
+                  </div>
+                  
+                  
+                </div>
+              </div>
+            </li>
+            <!--{/loop}--> 
+          </ul>
+        </div>
+      </div>

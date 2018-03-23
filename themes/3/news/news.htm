@@ -1,0 +1,49 @@
+<div class="clearfix"></div>
+<div class="productbreadcrumb">
+    <ol class="breadcrumb">
+       <!--{loop $_breadcrumbs $k $v}-->        
+       <li ><a href="{$v['href']}">{$v['text']}</a> <i class="fa fa-caret-right"></i></li>
+       <!--{/loop}-->
+   </ol>
+</div>
+<div class="clearfix"></div>
+<div clas="f-ctn-center">
+    <div class="f-module-page"> 
+    
+     <div class="f-module-page-title">
+            <h1><i><img src="<!--{if isset($_icon)}--> {$_icon} <!--{/if}-->" /></i>
+                <span><!--{if isset($_title) }--> {$_title} <!--{/if}--></span></h1>
+            </div>
+
+            
+            <div class="clearfix"></div>
+            <div class="f-module-page-body">    
+                <div class="clearfix"></div>
+                <div class="f-page-tab">
+                <!-- <ul class="nav-tabs">
+                    <li class="active"><a href="#f-pr-tab01" data-toggle="tab">Mới</a>
+                    </li>
+                    <li><a href="#f-pr-tab02" data-toggle="tab">Nổi bật</a>
+                    </li>
+                    <li><a href="#f-pr-tab03" data-toggle="tab">A-Z</a>
+                    </li>
+                </ul> -->
+                <div class="clearfix"></div>
+                <div class="tab-content margin-top-10">
+                    <div id="f-pr-tab01" class="tab-pane active">
+
+                        <!--{temp news/news_page_news_list}-->                        
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<script src="{$web['static_temp_mod']}/resource/js/news.js" type="text/javascript"></script>
+<script>
+$(document).ready(function() {
+    News.init();
+});
+</script>
