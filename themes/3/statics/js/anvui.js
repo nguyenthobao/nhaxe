@@ -170,37 +170,73 @@ $(document).ready(function () {
         if(isRound == 1) {
             if(routeBackId === 'undefined') {
                 $('#oneway').click();
-                alert('Chuyến không có khứ hồi');
+                $.alert({
+                    title: 'Cảnh báo!',
+                    type: 'red',
+                    typeAnimated: true,
+                    content: 'Chuyến không có khứ hồi',
+                });
                 return false;
             }
         }
 
 
         if (routeId === "") {
-            alert('Chưa chọn tuyến đường');
+            $.alert({
+                title: 'Cảnh báo!',
+                type: 'red',
+                typeAnimated: true,
+                content: 'Chưa chọn tuyến đường',
+            });
             return false;
         }
 
         if (startPoint === "") {
-            alert('Chưa chọn điếm đi');
+            $.alert({
+                title: 'Cảnh báo!',
+                type: 'red',
+                typeAnimated: true,
+                content: 'Chưa chọn điểm đi',
+            });
             return false;
         }
 
         if (endPoint === "") {
-            alert('Chưa chọn điếm đến');
+            $.alert({
+                title: 'Cảnh báo!',
+                type: 'red',
+                typeAnimated: true,
+                content: 'Chưa chọn điếm đến',
+            });
             return false;
         }
 
         if (depatureDate === "") {
-            alert('Chưa chọn ngày đi');
-            $('#depatureDate').datepicker('show');
+            $.alert({
+                title: 'Cảnh báo!',
+                type: 'red',
+                typeAnimated: true,
+                content: 'Chưa chọn ngày đi',
+                onClose: function () {
+                    $('#depatureDate').datepicker('show');
+                }
+            });
+
             return false;
         }
         //có khứ hồi
         if(isRound == 1) {
 
             if (returnDate === "") {
-                alert('Chưa chọn ngày về');
+                $.alert({
+                    title: 'Cảnh báo!',
+                    type: 'red',
+                    typeAnimated: true,
+                    content: 'Chưa chọn ngày về',
+                    onClose: function () {
+                        $('#returnDate').datepicker('show');
+                    }
+                });
                 return false;
             }
 
@@ -239,14 +275,24 @@ $(document).ready(function () {
         var isRound = $('#isRoundTrip').val();
 
         if(seatInfoOneway == undefined) {
-            alert('Chưa chọn chuyến đi');
+            $.alert({
+                title: 'Cảnh báo!',
+                type: 'red',
+                typeAnimated: true,
+                content: 'Chưa chọn chuyến đi',
+            });
             return false;
         }
 
         if(isRound == 1) {
 
             if(seatInfoReturn == undefined) {
-                alert('Chưa chọn chuyến về');
+                $.alert({
+                    title: 'Cảnh báo!',
+                    type: 'red',
+                    typeAnimated: true,
+                    content: 'Chưa chọn chuyến về',
+                });
                 return false;
             }
 
@@ -279,23 +325,49 @@ $(document).ready(function () {
         //CHuyen di
         var totalSeat = ghenguoilondi.length + ghetreemdi.length;
         if(totalSeat < 1) {
-            alert('Hãy chọn ít nhất 1 ghế đi');
+            $.alert({
+                title: 'Thông báo!',
+                type: 'orange',
+                typeAnimated: true,
+                content: 'Hãy chọn ít nhất 1 ghế đi',
+            });
             return false;
         }
 
         if(ghetreemdi.length > 0 && ghenguoilondi.length <1) {
-            alert('Phải có ít nhất 1 người lớn đi cùng trẻ em');
+            $.alert({
+                title: 'Thông báo!',
+                type: 'orange',
+                typeAnimated: true,
+                content: 'Phải có ít nhất 1 người lớn đi cùng trẻ em',
+            });
             return false;
         }
 
         if($('#fullname').val() == '') {
-            alert('Bạn chưa nhập tên');
-            $('#fullname').focus();
+            $.alert({
+                title: 'Cảnh báo!',
+                type: 'red',
+                typeAnimated: true,
+                content: 'Bạn chưa nhập tên',
+                onClose: function () {
+                    $('#fullname').focus();
+                }
+            });
+
             return false;
         }
 
         if($('#phoneNumber').val() == '') {
-            alert('Bạn chưa nhập số điện thoại');
+            $.alert({
+                title: 'Cảnh báo!',
+                type: 'red',
+                typeAnimated: true,
+                content: 'Bạn chưa nhập số điện thoại',
+                onClose: function () {
+                    $('#phoneNumber').focus();
+                }
+            });
             $('#phoneNumber').focus();
             return false;
         }
@@ -324,17 +396,32 @@ $(document).ready(function () {
             },
             success: function (data) {
                 if(data.code != 200) {
-                    alert("Đã có lỗi xảy ra, hãy đặt lại!");
+                    $.alert({
+                        title: 'Thông báo!',
+                        type: 'red',
+                        typeAnimated: true,
+                        content: 'Đã có lỗi xảy ra, vui lòng đặt lại!',
+                    });
                 } else {
 
                     if(isRound == 0) {
                         if(paymentType == 1) {
                             var url = 'https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo=' + data.results.ticketId + '&vpc_Amount=' + totalMoneyOneway * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web";
+                            $.dialog({
+                                title: 'Thông báo!',
+                                content: 'Hệ thống đang chuyển sang cổng thanh toán, vui lòng đợi trong giây lát',
+                                onClose: function (e) {
+                                    e.preventDefault();
+                                }
+                            });
                             setTimeout(function () {
                                 window.location.href = url
                             }, 3000);
                         } else {
-                            alert('Bạn đã đặt vé thành công');
+                            $.alert({
+                                title: 'Thông báo!',
+                                content: 'Bạn đã đặt vé thành công!',
+                            });
                         }
                     } else {
                         mave = data.results.ticketId;
@@ -353,12 +440,22 @@ $(document).ready(function () {
 
             var totalSeatReturn = ghenguoilonve.length + ghetreemve.length;
             if(totalSeatReturn < 1) {
-                alert('Hãy chọn ít nhất 1 ghế về');
+                $.alert({
+                    title: 'Thông báo!',
+                    type: 'orange',
+                    typeAnimated: true,
+                    content: 'Hãy chọn ít nhất 1 ghế về',
+                });
                 return false;
             }
 
             if(ghetreemve.length > 0 && ghenguoilonve.length <1) {
-                alert('Phải có ít nhất 1 người lớn đi cùng trẻ em');
+                $.alert({
+                    title: 'Thông báo!',
+                    type: 'orange',
+                    typeAnimated: true,
+                    content: 'Phải có ít nhất 1 người lớn đi cùng trẻ em',
+                });
                 return false;
             }
 
@@ -386,16 +483,31 @@ $(document).ready(function () {
                 },
                 success: function (data) {
                     if(data.code != 200) {
-                        alert("Đã có lỗi xảy ra, hãy đặt lại!");
+                        $.alert({
+                            title: 'Thông báo!',
+                            type: 'red',
+                            typeAnimated: true,
+                            content: 'Đã có lỗi xảy ra, vui lòng đặt lại!',
+                        });
                     } else {
                         mave = mave + "-" + data.results.ticketId;
                         if(paymentType == 1) {
                             var url = 'https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo=' + mave + '&vpc_Amount=' + totalMoney * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web&paymentCode=" + paymentCode;
+                            $.dialog({
+                                title: 'Thông báo!',
+                                content: 'Hệ thống đang chuyển sang cổng thanh toán, vui lòng đợi trong giây lát',
+                                onClose: function (e) {
+                                    e.preventDefault();
+                                }
+                            });
                             setTimeout(function () {
                                 window.location.href = url
                             }, 3000);
                         } else {
-                            alert('Bạn đã đặt vé thành công');
+                            $.alert({
+                                title: 'Thông báo!',
+                                content: 'Bạn đã đặt vé thành công!',
+                            });
                         }
 
                     }
