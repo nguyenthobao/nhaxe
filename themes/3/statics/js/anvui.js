@@ -641,7 +641,7 @@ function selectTripOneWay(trip) {
 
 //Hàm chọn trip và lấy thông tin trip chieu ve
 function selectTripRoundWay(trip) {
-    $('#list-roundway>tbody>tr').removeClass('trip-active');
+    $('#list-roundway>tr').removeClass('trip-active');
     $(trip).addClass('trip-active');
 
     tripIdReturn = $(trip).data('trip');
