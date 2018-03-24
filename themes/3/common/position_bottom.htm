@@ -14,15 +14,7 @@
         </a>
     </div>
     <!--/.Copyright -->
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('body').data('home_url', '{$web['home_url']}');
-            //$('body').data('page_url', '{$_B['curUrl']['fullLink']}');
-            $('body').data('extension', '{$web['dotExtension']}');
-            WebCommon.init();
-        });
 
-    </script>
 </footer>
 <!--{if $web['audio'] != null}-->
 <audio controls autoplay<!--{if $web['audio']['play_again'] == 1}--> loop<!--{/if}--> style="display:none">
