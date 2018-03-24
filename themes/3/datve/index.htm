@@ -242,7 +242,7 @@
                             <input type="radio" class="paymenttype" name="paymenttype" value="5">
                             <span class="checkround"></span>
                         </label>
-                        <label class="radio">Chuyển khoản
+                        <label class="radio" id="radiochuyenkhoan" style="display: none">Chuyển khoản
                             <input type="radio" class="paymenttype" name="paymenttype" value="6">
                             <span class="checkround"></span>
                         </label>
@@ -251,12 +251,51 @@
                         <button type="button" id="hoanthanhbtn" class="btn">Xác nhận đặt
                             vé
                         </button>
+                        <button type="button" style="display: none" id="btnchuyenkhoan" class="btn" data-toggle="modal" data-target="#chuyenkhoan">
+                            Thông tin chuyển khoản
+                        </button>
                     </center>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!--Modal-->
+<div class="modal fade" id="chuyenkhoan" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Thông tin chuyển khoản</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3>Nội dung: <i id="phone"></i> thanh toan ma ve <i id="ticketId"></i></h3>
+
+                <p><strong>Ngân hàng BIDV</strong></p>
+                <p>Chủ tài khoản: VŨ THANH HOÀI - Số tài khoản: 1601 0000 064 640</p>
+                <p>Chi nhánh: Ngân hàng BIDV Sở Giao dịch 3</p>
+
+                <p><strong>Ngân hàng TECHCOMBANK</strong></p>
+                <p>Chủ tài khoản: VŨ THANH HOÀI - Số tài khoản: 111 20032107 106</p>
+                <p>Chi nhánh: Ngân hàng TECHCOMBANK Hà Nội</p>
+
+                <p><strong>Ngân hàng VIETCOMBANK</strong></p>
+                <p>Chủ tài khoản: VŨ THANH HOÀI - Số tài khoản: 001 10037 90795</p>
+                <p>Chi nhánh: Ngân hàng VIETCOMBANK Sở Giao dịch</p>
+
+                <p><strong>Ngân hàng VIETCOMBANK - Số tài khoản: 150 2205 120668</strong></p>
+                <p>Chủ tài khoản: VŨ THANH HOÀI</p>
+                <p>Chi nhánh: Ngân hàng AGRIBANK CN Hoàn Kiếm HN</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Modal-->
 <script>
     $(document).ready(function() {
         $('html, body').animate({

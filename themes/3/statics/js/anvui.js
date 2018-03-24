@@ -56,6 +56,10 @@ $(document).ready(function () {
 
     routeId = getParameterByName('routeId');
 
+    if(companyId == 'TC1OHmbCcxRS') {
+        $('#radiochuyenkhoan').show();
+    }
+
     //Chỉ cho phép nhập số
     $('#phoneNumber').on('keypress keyup blur', function () {
         $(this).val($(this).val().replace(/[^\d].+/, ""));
@@ -95,8 +99,7 @@ $(document).ready(function () {
         hasScheduleOneway = false;
         hasScheduleReturn = false;
         routeBackId = $(this).find(':selected').data('routeback');
-        console.log(routeBackId);
-        getPoint($(this).val())
+        getPoint($(this).val());
     });
 
     // $('#depatureDate, #returnDate ').datepicker({
@@ -406,7 +409,14 @@ $(document).ready(function () {
 
                     if(isRound == 0) {
                         if(paymentType == 1) {
+
                             var url = 'https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo=' + data.results.ticketId + '&vpc_Amount=' + totalMoneyOneway * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web";
+
+                            //Fix cứng tạm thời cho pumpkinbuslines
+                            if(companyId == 'TC1OHmbCcxRS') {
+                                url = 'https://dobody-anvui.appspot.com/pumpkin/dopay?vpc_OrderInfo=' + data.results.ticketId + '&vpc_Amount=' + totalMoneyOneway * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web";
+                            }
+
                             $.dialog({
                                 title: 'Thông báo!',
                                 content: 'Hệ thống đang chuyển sang cổng thanh toán, vui lòng đợi trong giây lát',
@@ -415,12 +425,26 @@ $(document).ready(function () {
                                 }
                             });
                             setTimeout(function () {
-                                window.location.href = url
+                                window.location.href = url;
                             }, 3000);
+                        } else if(paymentType == 6) {
+                            $.alert({
+                                title: 'Thông báo!',
+                                type: 'green',
+                                typeAnimated: true,
+                                content: 'Đã đặt vé thành công!',
+                                onClose: function () {
+                                    $('#phone').html(phoneNumber);
+                                    $('#ticketId').html(data.results.ticketId);
+                                    $('#chuyenkhoan').modal('show');
+                                    $('#hoanthanhbtn').hide();
+                                    $('#btnchuyenkhoan').show();
+                                }
+                            });
                         } else {
                             $.alert({
                                 title: 'Thông báo!',
-                                content: 'Bạn đã đặt vé thành công!',
+                                content: 'Bạn đã đặt vé thành công! Vui lòng đến quầy thanh toán và nhận vé',
                             });
                         }
                     } else {
@@ -492,7 +516,14 @@ $(document).ready(function () {
                     } else {
                         mave = mave + "-" + data.results.ticketId;
                         if(paymentType == 1) {
+
                             var url = 'https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo=' + mave + '&vpc_Amount=' + totalMoney * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web&paymentCode=" + paymentCode;
+
+                            //Fix cứng tạm thời cho pumpkinbuslines
+                            if(companyId == 'TC1OHmbCcxRS') {
+                                url = 'https://dobody-anvui.appspot.com/pumpkin/dopay?vpc_OrderInfo=' + mave + '&vpc_Amount=' + totalMoney * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web&paymentCode=" + paymentCode;
+                            }
+
                             $.dialog({
                                 title: 'Thông báo!',
                                 content: 'Hệ thống đang chuyển sang cổng thanh toán, vui lòng đợi trong giây lát',
@@ -501,12 +532,12 @@ $(document).ready(function () {
                                 }
                             });
                             setTimeout(function () {
-                                window.location.href = url
+                                window.location.href = url;
                             }, 3000);
                         } else {
                             $.alert({
                                 title: 'Thông báo!',
-                                content: 'Bạn đã đặt vé thành công!',
+                                content: 'Bạn đã đặt vé thành công! Vui lòng đến quầy thanh toán và nhận vé',
                             });
                         }
 

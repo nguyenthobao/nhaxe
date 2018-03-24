@@ -5,8 +5,8 @@ header {
     background-color: #FFFFFF;
 }
 a {
-     color: #000000;
-     text-decoration: none;
+    color: #000000;
+    text-decoration: none;
 }
 a:hover {
     color: #ff5115;
@@ -19,6 +19,7 @@ a:hover {
 }
 
 .logo {
+    width: 107px;
     height: 45px;
 }
 
@@ -821,10 +822,9 @@ footer {
     color: #f04c23;
     border-radius: 20px;
     transform-style: 2s;
-
 }
 
-#hoanthanhbtn {
+#hoanthanhbtn, #btnchuyenkhoan{
     height: 50px;
     line-height: 50px;
     padding: 0 36px 0 0;
@@ -834,5 +834,8 @@ footer {
     text-transform: uppercase;
     border: 1px solid #ddd;
     color: #000;
-    background: url(../images/btn-search.png) no-repeat right 20px center;
+}
+
+#hoanthanhbtn {
+    background: url(../images/btn-search.png) right 20px center no-repeat;
 }
