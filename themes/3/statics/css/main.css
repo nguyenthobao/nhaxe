@@ -72,6 +72,24 @@ a:hover {
     color: #ff5115;
 }
 
+.footer-nav {
+    list-style: none;
+    width: 100%;
+    float: left;
+    padding-left: 22px;
+    padding-right: 22px;
+    margin-bottom: 0px;
+}
+
+.footer-nav a{
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.footer-nav a:hover{
+    color: #f04c23;;
+}
+
 .active a{
     color: #ff5115;
 }
