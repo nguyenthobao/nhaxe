@@ -97,12 +97,12 @@ footer {
 
 .title {
     margin: 20px 0 20px 0;
-    background: #ff5115;
+    /*background: #ff5115;*/
 }
 .sale-bar-title {
     font-size: 3rem;
     padding: 20px 0 0 0;
-    color: #fff;
+    /*color: #fff;*/
     margin: 0;
     line-height: normal;
     letter-spacing: -.02em;
@@ -130,9 +130,13 @@ footer {
     margin: 5px 0 10px 0;
 }
 
-.item {
+.item, .item-post {
     background-color: #FFFFFF;
     padding-bottom: 25px;
+}
+
+.item-post {
+    height: 450px;
 }
 
 .box-news-title {
