@@ -1,31 +1,22 @@
-<div class="clearfix"></div>
-
-    <div class="productbreadcrumb">
-
-<ol class="breadcrumb">
-     <!--{loop $_breadcrumbs $k $v}-->
-        
-        <li ><a href="{$v['href']}">{$v['text']}</a> <i class="fa fa-caret-right"></i></li>
-         
-        <!--{/loop}-->
-   
-</ol>
-</div>
-<div class="clearfix"></div>
-
-<div class="f-ctn-center">
-	<div class="f-module-page">
-		<div class="f-module-page-title"> <i></i><h1><span>{$_infoDetail['title']}</span></h1> </div>
-		<div class="f-module-page-body padding-10">
-			<div class="clearfix"></div>
-			<div class="f-news-view-page">
-				<div class="f-news-view-title">
-					<div class="f-news-date"> {lang date_posted} : {$_infoDetail['create_time']} </div>
-				</div>
+<div class="container bg-3">
+	<div class="news-breadcrumb">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<!--{loop $_breadcrumbs $k $v}-->
+				<li class="breadcrumb-item"><a href="{$v['href']}">{$v['text']}</a> <i class="fa fa-caret-right"></i></li>
+				<!--{/loop}-->
+			</ol>
+		</nav>
+	</div>
+	<div class="row">
+		<div class="news-title">
+			<h3>{$_infoDetail['title']}</h3>
+			<div class="news-date">
+				<div class="left"><i class="fa fa-clock-o"></i> {lang date_posted} : {$_infoDetail['create_time']}</div>
 			</div>
-			<div class="f-news-view-detail">
-					{$_infoDetail['details']}
-			</div> 
+		</div>
+		<div class="news-content">
+			{$_infoDetail['details']}
 		</div>
 		<div class="clearfix"></div>
 	</div>

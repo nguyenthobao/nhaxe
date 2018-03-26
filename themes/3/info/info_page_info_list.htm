@@ -1,25 +1,27 @@
 <!--{if isset($_info)}-->
-<ul class="f-news-page">
+<div class="info-list">
     <!--{loop $_info $k $v}-->
-        <li class="f-news-page-item row">
-            <div class="f-news-page-item-img col-md-2 col-sm-3 col-xs-12"> 
-                <a href="{$v['href']}" class="thumbnail" title=""> 
-                <img src="<!--{loadImage $v['thumb'] none null null}-->" class="img-responsive"  alt="{$v['title']}"/> </a> 
+    <div class="row">
+        <div class="col-md-2 col-sm-3 col-xs-12" style="margin-bottom: 20px;">
+            <a href="{$v['href']}" class="thumbnail">
+                <img src="<!--{loadImage $v['thumb'] none null null}-->" class="img-responsive" style="width:100%"
+                     alt="{$v['title']}">
+            </a>
+        </div>
+        <div class="col-md-10 col-sm-9 col-xs-12">
+            <h3 style="margin-top: 0px;"><a href="{$v['href']}" style="color: #ff5115;">{$v['title']}</a></h3>
+            <div class="caption">
+                {$v['short']}
             </div>
-            <div class="f-news-page-item-text col-md-10 col-sm-9 col-xs-12">
-                <h2 style="display:block;margin-bottom:10px;"><a href="{$v['href']}" title="">{$v['title']}</a></h2>
-                <div class="f-news-page-item-summary">{$v['short']}</div>
-                <div class="f-read-more pull-right">
-                    <a href="{$v['href']}"><span class="label label-info">{lang read_more}...</span></a>
-                </div>
+            <div class="pull-right">
+                <a href="{$v['href']}">
+                    <span class="label label-info">{lang read_more}...</span>
+                </a>
             </div>
-        </li>
+        </div>
+    </div>
     <!--{/loop}-->
-</ul>
+</div>
 <!--{else}-->
-<ul class="f-news-page">
-    <li class="f-news-page-item row">
-        {lang no_record_exists}
-    </li>
-</ul>
+{lang no_record_exists}
 <!--{/if}-->
