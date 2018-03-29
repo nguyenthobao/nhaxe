@@ -1,0 +1,36 @@
+<!--Kiểu list-->
+<!--{if $_kieuhienthidm == '1'}-->
+ <!--{if isset($_videolqtc)}-->
+                          <div class="f-page-split">
+                          <div class="f-page-split-title">{lang videolienquan}</div>
+                            <div class="f-page-split-body">
+                              <div class="clearfix"> </div>
+                                
+                                <ul class="f-video row">
+          
+           <!--{loop $_videolqtc $k $v}-->
+            <li class="col-md-3 col-sm-3 col-xs-3">
+              <div class="f-video-item">
+                <div class="f-video-item-img"> <a href="{$v['href']}" title="{$v['title']}"> <img src="{$v['thumb']}" class="img-responsive" alt="{$v['title']}"  />
+                  <div class="f-video-item-img-hover"></div>
+                  </a> </div>
+                <div class="f-video-item-title">
+                  <h2><a href="{$v['href']}" title="{$v['title']}"> <!--{cutString $v['title'] 0 25}--> </a></h2>
+                </div>
+              </div>
+            </li>
+            <!--{/loop}-->
+            
+          </ul>
+                                
+                                <div class="clearfix"></div>
+                            </div>
+                         </div>
+<!--{/if}-->  
+
+<!--{else}-->
+Tự trình bày kiểu slide
+<!--{/if}-->
+
+<!--Kiểu slide -->
+

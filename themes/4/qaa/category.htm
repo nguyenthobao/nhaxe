@@ -1,0 +1,94 @@
+<link rel="stylesheet" href="{$web['static_temp_mod']}/resource/css/home.css?rs={$_rs}">
+<div class="f-container bg-color-2 no-top-space" style="box-shadow:0 1px 3px #ddd; border-bottom:5px solid #f3f3f3;">
+    <!--{if isset($_breadcrumbs)}-->
+    <div class="breadcrumbs">
+        <ul style="list-style:none">
+            <!--{loop $_breadcrumbs $k $v}-->
+            <!--{if $v['separator']==true}-->
+                <li style="float:left;font-size:11px;color:#ccc"><a href="Javascript:;" style="font-size:11px;color:#333;padding-left:5px;padding-right:5px;"> » </a></li>
+            <!--{/if}-->
+            <li style="float:left"><a href="{$v['href']}">{$v['text']}</a></li>
+            <!--{/loop}-->
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+    <!--{/if}-->
+<div class="f-qa">
+    <!-- Doan nay la phan QA Moi nhat + danh muc + hot -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="f-qaList">
+                <div class="f-qaBox-title"><span class="glyphicon glyphicon-bullhorn"></span> {$_title}</div>
+                <!--{if !empty($_faq) }-->
+                <div class="f-qaList-body">
+                    <div class="f-qaList-sotr">
+                        {lang sort_by}: <a class="active" href="Javascript:;" data-type="new">{lang new}</a> | <a href="Javascript:;" data-type="unanswered">{lang unanswered}</a> | <a href="Javascript:;" data-type="answeredmore">{lang answer_more}</a> | <a href="Javascript:;" data-type="views">{lang view_more}</a><!-- | <a href="Javascript:;" data-type="useful">{lang useful}</a>-->
+                    </div>
+                    <input type="hidden" name="sort" value="new" />
+                    <input type="hidden" name="category" value="{$_category}" />
+                    
+                    <ul class="f-qaList-body-ul">
+                        <!--{loop $_faq $k $v}-->
+                        <li id="{$v['id']}">
+                            <div class="media">
+                              <a class="media-left" href="#">
+                                <img data-src="{$v['user_avatar']}" alt="{$v['user_name']}" <!--{if !empty($v['user_avatar']) }-->src="{$v['user_avatar']}"<!--{else}-->src="{$web['static_temp_mod']}/resource/img/d3a6dc47bd18ec9a49bb9e13c786fb2b.png"<!--{/if}--> data-holder-rendered="true" style="width: 64px; height: 64px;">
+                              </a>
+                              <div class="media-body">
+                                <h4 class="media-heading"><a class="qa-name" href="#" title="{$v['user_name']}">{$v['user_name']}</a> 
+                                <a class="qa-title" href="{$v['link']}" title="{$v['title']}">
+                                {$v['title']}</a></h4>
+                                <div class="qa-desp"> 
+                                {$v['question_content']}
+                                <p>(
+                                    <span>
+                                    <i class="glyphicon glyphicon-eye-open"></i> {$v['views']}
+                                    </span>
+                                    <span> 
+                                    <i class="glyphicon glyphicon-comment"></i> {$v['answer']} 
+                                    </span>
+                                )</p>
+                                
+                                </div> 
+                              </div>
+                            </div>
+                        </li>
+                        <!--{/loop}-->  
+                    </ul>
+                    
+                </div>
+                <!--{/if}-->
+            </div>
+        </div>
+        <!--{if !empty($_faq) }-->
+        <div class="col-md-12">
+        <div class="f-qaUpdate">
+            <a class="btn btn-success" title="{lang post_a_question}" href="{$_post_question_url}"><span class="glyphicon glyphicon-send"></span> {lang post_a_question}</a>
+        </div>
+        </div>
+        <!--{/if}-->
+    </div>
+
+ </div>
+ <script src="{$web['static_temp_mod']}/resource/js/jquery.slimscroll.min.js" type="text/javascript"></script> 
+ <script src="{$web['static_temp_mod']}/resource/js/category.js?rs={$_rs}" type="text/javascript"></script> 
+
+<script>
+    jQuery(document).ready(function() {
+var per = new Array();
+    per['load_faq_url'] = '$_load_faq_url';
+    per['search'] = '';
+    faq.init(per);
+    }); 
+</script>
+</div>
+<!--{if !empty($_message)}-->
+<script>
+$("body").append('<div class="message" id="message">{$_message}</div>');
+setTimeout(function(){
+$('#message').fadeOut(3000, function(){
+    $(this).remove();
+});
+}, 3000);
+</script>
+<!--{/if}-->

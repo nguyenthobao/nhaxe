@@ -1,0 +1,183 @@
+<link rel="stylesheet" href="{$web['static_temp']}/{$web['temp']}/statics/plugins/fancybox/jquery.fancybox.css" /> 
+<script src="{$web['static_temp']}/{$web['temp']}/statics/plugins/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+<script type="text/javascript" src="{$web['static_temp']}/{$web['temp']}/statics/plugins/elevatezoom/jquery.elevatezoom.js"></script>
+<link href="{$web['static_temp']}{$web['temp']}/statics/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" media="screen">
+<link href="{$web['static_temp']}{$web['temp']}/statics/plugins/owl-carousel/owl.theme.css" rel="stylesheet" media="screen">
+<script src="{$web['static_temp']}/{$web['temp']}/statics/plugins/owl-carousel/owl.carousel.js"></script> 
+
+<div class="f-product-view-info">
+	<div class="f-product-view-info-image col-md-5"> 
+		<style>
+			#f-pr-image-zoom-gallery .active img{
+				opacity: 1 !important;
+			}
+		</style>
+
+		<div class="f-pr-image-zoom"> 
+			<div   class="zoomWrapper">
+				<img id="f-pr-image-zoom-id" src="<!--{loadImage $_product['image'] resize 500 500}-->" data-zoom-image="<!--{loadImage $_product['image'] none null null}-->" class="img-responsive" alt="{$_product['name']}">
+			</div> 
+		</div>
+		<div class="f-pr-image-zoom-gallery">
+			<div id="slidezoompage" >
+				
+				<div id="f-pr-image-zoom-gallery" class="owl-carousel">
+
+				<!--{loop $_photo $k $v}-->
+							 
+							<div class="pr-carol-item"> 
+								<a href="javascript:;"   data-image="<!--{loadImage $v['image'] resize 500 500}-->" data-zoom-image="{BNCGLOBAL['upload_path']}{$v['image']}" title="{$v['att_title']}"> 
+									<img src="<!--{loadImage $v['image'] crop 62 62}-->"  alt="{$v['att_alt']}"   />
+								</a> 
+							</div>
+
+							<!--{/loop}-->
+					 
+				</div>
+
+				 <script type="text/javascript">
+				 	$(document).ready(function() {
+ 					//
+	 					$("#f-pr-image-zoom-id").elevateZoom(
+	 						{
+	 							gallery:'f-pr-image-zoom-gallery', 
+	 							cursor: 'pointer', 
+	 							galleryActiveClass: 'active', 
+	 							imageCrossfade: true, 
+	 							loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif',
+	 							scrollZoom : true,
+	 							easing : true
+	 						}); 
+	  					//
+	  					$("#f-pr-image-zoom-id").bind("click", function(e) { 
+	  						var ez = $('#f-pr-image-zoom-id').data('elevateZoom');	
+	  						$.fancybox(ez.getGalleryList()); 
+	  						return false; 
+	  					});  
+	  					//--------------
+	  					$("#f-pr-image-zoom-gallery").owlCarousel();
+ 
+					});
+				 </script>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		 
+	</div>
+
+	<div class="f-product-view-info-detail col-md-7">
+		<div class="f-product-view-name">
+			<h1><span>{$_product['name']}</span></h1>
+			<div class="f-pr-view-tool">
+				<ul class="no-margin no-padding">
+					<li><a href="javascript:;">Theo dõi</a></li>
+					<li><a href="javascript:;">So sánh</a></li>
+					<li>Lượt xem: {$_product['view']}</li>
+					<li>Ngày đăng: {$_product['time']}</li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="f-pr-view-info">
+			<ul class="no-margin no-padding">
+				<li class="key"><!--{if $_product['price_old'] != 0}-->Giá khuyến mãi<!--{else}-->Giá sản phẩm<!--{/if}--></li>
+				<li class="value">
+					<span class="price">{$_product['price']}</span>
+					<!--{if $_product['vat'] != ''}-->
+					<span class="vat">$_product['vat']</span>
+					<!--{/if}-->
+				</li>
+				<li class="clearfix"></li>
+				<!--{if $_product['price_old'] != 0}-->
+				<li class="key">Giá sản phẩm</li>
+				<li class="value"><span class="price">{$_product['price_old']}</span></li>
+				<li class="clearfix"></li>
+				<!--{/if}-->
+				<!--{if $_product['percent'] != 0}-->
+				<li class="key">Tiết kiệm</li>
+				<li class="value">{$_product['percent']}</li>
+				<li class="clearfix"></li>
+				<!--{/if}-->
+				<!--{if !empty($_product['code'])}-->
+				<li class="key">Mã sản phẩm</li>
+				<li class="value">{$_product['code']}</li>
+				<li class="clearfix"></li>
+				<!--{/if}-->
+				<!--{if !empty($_product['color'])}-->
+				<li class="key">Tên màu</li>
+				<li class="value">{$_product['color']['name']}</li>
+				<li class="clearfix"></li>
+				<!--{/if}-->
+			</ul>
+			<div class="clearfix"></div>
+		</div>
+		<div class="f-pr-view-choosegroup padding-10">
+			<ul class="no-margin no-padding">
+				<!--{if !empty($_group_color)}-->
+				<li class="key">Màu sắc</li>
+				<li class="value">
+					<ul class="color-choose no-margin no-padding">
+						<!--{loop $_group_color $k $v}-->
+						<li> 
+							<a href="{$v['link']}" title="{$v['name']}" data-id="{$v['id']}"><img src="<!--{loadImage $v['image'] resize 43 43}-->" alt="{$v['name']}" /> </a> 
+						</li>
+						<!--{/loop}-->
+					</ul>
+				</li>
+				<li class="clearfix"></li>
+				<!--{/if}-->
+				<!--{if !empty($_size)}-->
+				<li class="key">Kích cỡ</li>
+				<li class="value">
+					<ul class="size-choose no-margin no-padding">
+						<!--{loop $_size $k $v}-->
+						<li><a href="javascript:;" data-id="{$v['id']}">{$v['name']}</a></li>
+						<!--{/loop}-->
+					</ul>
+					<div class="clearfix"></div>
+				</li>
+				<li class="clearfix"></li>
+				<!--{/if}-->
+				<!--{if !empty($_shop)}-->
+				<li class="key">Cửa hàng</li>
+				<li class="value">
+					<label>
+						<select>
+							<option value="">Chọn cửa hàng</option>
+							<!--{loop $_shop $k $v}-->
+							<option value="{$v['id']}">{$v['name']}</option>
+							<!--{/loop}-->
+						</select>
+					</label>
+				</li>
+				<li class="clearfix"></li>
+				<!--{/if}-->
+				<!--{if $_product['quantity'] > 0 && $_product['select_shop'] == 1}-->
+				<li class="key">Số lượng mua</li>
+				<li class="value">
+					<label>
+						<select>
+							<!--{loopfor $i=1 $i<=$_product['quantity'] $i++}-->
+							<option value="{$i}">{$i}</option>
+							<!--{/loopfor}-->
+						</select>
+					</label>
+				</li>
+				<li class="clearfix"></li>
+				<!--{/if}-->
+			</ul>
+			<div class="clearfix"></div>
+			<!--{if $_product['quantity'] > 0 && $_product['show_cart'] == 1}-->
+				<a href="javascript:;" class="button-small" data-toggle="modal" data-target="#quickBuy">
+					<span class="glyphicon glyphicon-shopping-cart"></span> Mua ngay 
+				</a> 
+				<a href="javascript:;" class="button-small">
+					<span class="glyphicon glyphicon-plus-sign"></span> Thêm vào giỏ hàng
+				</a> 
+			<!--{elseif $_product['quantity'] == 0}-->
+				<span class="button-small">{lang no_sold}</span>
+			<!--{/if}-->
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</div>

@@ -1,0 +1,173 @@
+<style type="text/css">
+.compare > th:first-child {
+	width: 130px;
+}
+.compare > th {
+	width: 200px;
+}
+.listProductCompare > li{
+	list-style: none;
+  border-bottom: #0A8AC7 solid 1px;
+  cursor: pointer;
+}
+.listProductCompare > li:hover{
+	background: #F8F9FB;
+	image-resolution: 1;
+}
+.listProductCompare > li > img{
+	width: 50px;
+	height: 50px;
+}
+</style>
+<div class="f-page-split">
+	<div class="f-page-split-title">{lang label_compare}</div>
+	<div class="f-page-split-body">
+		<div class="f-product-view-other">
+			
+			<table class="table table-bordered">
+				<thead>
+					<tr class="compare">
+						<th>Tiêu chí</th>
+						<!--{loopfor $i=0 $i<$_count_product_compare $i++}-->
+						<!--{eval $count=$i+1}-->
+							<th>Sản phẩm {$count} <!--{if $_count_product_compare>1}--><button data-sort="{$i}" class="btn btn-sm btn-danger pull-right NXT_remove_compare"><i class="fa fa-times"></i></button><!--{/if}--></th>
+						<!--{/loopfor}-->
+						<!--{if $_count_product_compare<4}-->
+							<th rowspan="100" class="text-center">
+								<input type="text" class="form-control" name="searchCompare" placeholder="Tên sp cần so sánh" aria-describedby="start-date">
+							</th>
+						<!--{/if}-->
+					</tr>
+				</thead>
+				<tbody>					
+							<tr>
+								<td>Tên sản phẩm</td>
+								<!--{loopfor $i=0 $i<$_count_product_compare $i++}-->
+									<td>{$_compare[$i]['title']}</td>
+								<!--{/loopfor}-->
+								<!--{if $_count_product_compare<4}-->
+									<td rowspan="100">
+										<ul class="listProductCompare">
+										  	
+										</ul>
+									</td>
+								<!--{/if}-->
+							</tr>
+						
+							<tr>
+								<td>Ảnh đại diện</td>
+								<!--{loopfor $i=0 $i<$_count_product_compare $i++}-->
+									<td><img src="$_compare[$i]['avatar']"/></td>
+								<!--{/loopfor}-->
+							</tr>
+						
+							<tr>
+								<td>Giá</td>
+								<!--{loopfor $i=0 $i<$_count_product_compare $i++}-->
+									<!--{if $_compare[$i]['price']==0}-->
+										<td>Liên hệ</td>
+									<!--{else}-->
+										<td>{$_compare[$i]['price']}</td>
+									<!--{/if}-->
+								<!--{/loopfor}-->
+							</tr>
+						
+							<tr>
+								<td>Đánh giá</td>
+								<!--{loopfor $i=0 $i<$_count_product_compare $i++}-->
+									<td>
+										<!--{if $_compare[$i]['rate']!=0}-->
+											<!--{loopfor $j=0 $j<$_compare[$i]['rate'] $j++}-->
+												<i class="fa fa-star"></i>
+											<!--{/loopfor}-->
+											<!--{loopfor $jk=0 $jk<5-$_compare[$i]['rate'] $jk++}-->
+												<i class="fa fa-star-o"></i>
+											<!--{/loopfor}-->
+										<!--{else}-->
+											<!--{loopfor $j=0 $j<5 $j++}-->
+												<i class="fa fa-star-o"></i>
+											<!--{/loopfor}-->
+										<!--{/if}-->
+									</td>
+								<!--{/loopfor}-->
+							</tr>
+						<!--{loop $_properties_total $k $v}-->
+							<tr>
+								<td>{$v['title']}</td>
+								<!--{loopfor $i=0 $i<$_count_product_compare $i++}-->
+									<td>
+										<!--{eval $tmp_name=array()}-->
+										<!--{loop $_compare[$i]['properties'][$k]['sub'] $k2 $v2}-->
+										<!--{eval $tmp_name[]=$v2['name']}-->
+										<!--{/loop}-->
+										<!--{eval $tmp_ok=implode(',',$tmp_name)}-->
+										<!--{$tmp_ok}-->
+									</td>
+								<!--{/loopfor}-->
+							</tr>
+						<!--{/loop}-->
+				</tbody>
+			</table>
+			
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	$('#f-compare').remove();
+	
+	$('body').on('keyup', 'input[name="searchCompare"]', function(event) {
+		event.preventDefault();
+		var keyword=$(this).val();
+		if(keyword.trim()!=''){
+			var dataString={
+				'keyword':keyword
+			};
+			var urlSend='/product-ajaxProduct-ajaxSearchCompare.html';
+			var data=ajax_global(dataString,urlSend,'POST','json');
+			var htm='';
+			if(data.length!=0){
+				$.each(data, function(k, v) {
+					htm +='<li data-product="'+v.id+'" data-category="'+v.category+'"><img  class="imageWH" src="'+v.image+'">'+v.name+'</li>';
+				});	
+			}else{
+				htm +='<li style="pointer-events:none;">Không có sp phù hợp</li>';
+			}
+			
+			//$('.listProductCompare').slideUp();
+			$('.listProductCompare').html(htm);
+			//$('.listProductCompare').slideDown();
+		}
+	});
+	
+	$('body').on('click', '.listProductCompare > li', function(event) {
+		event.preventDefault();
+		var product_id=$(this).attr('data-product');
+		var category=$(this).attr('data-category');
+		var urlNow=document.URL;
+		var dataString={
+			'product_id':product_id,
+			'urlNow':urlNow,
+			'category':category,
+		};
+		var urlSend='/product-ajaxProduct-ajaxAddCompare.html';
+		var data=ajax_global(dataString,urlSend,'POST','json');
+		window.location.href=data.url;
+	});
+	
+	$('body').on('click', '.NXT_remove_compare', function(event) {
+		event.preventDefault();
+		var data_sort=$(this).attr('data-sort');
+		var urlNow=document.URL;
+		var dataString={
+			'data_sort':data_sort,
+			'urlNow':urlNow,
+		};
+		var urlSend='/product-ajaxProduct-ajaxRemoveCompare.html';
+		var data=ajax_global(dataString,urlSend,'POST','json');
+		window.location.href=data.url;
+	});
+	
+})
+</script>

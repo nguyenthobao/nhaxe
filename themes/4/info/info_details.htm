@@ -1,0 +1,23 @@
+<div class="container bg-3">
+	<div class="news-breadcrumb">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<!--{loop $_breadcrumbs $k $v}-->
+				<li class="breadcrumb-item"><a href="{$v['href']}">{$v['text']}</a> <i class="fa fa-caret-right"></i></li>
+				<!--{/loop}-->
+			</ol>
+		</nav>
+	</div>
+	<div class="row">
+		<div class="news-title">
+			<h3>{$_infoDetail['title']}</h3>
+			<div class="news-date">
+				<div class="left"><i class="fa fa-clock-o"></i> {lang date_posted} : {$_infoDetail['create_time']}</div>
+			</div>
+		</div>
+		<div class="news-content">
+			{$_infoDetail['details']}
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>

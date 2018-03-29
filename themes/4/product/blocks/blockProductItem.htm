@@ -1,0 +1,76 @@
+<div class="f-block">
+	<div class="f-block-title stlyeblocktitle" ><span>{$block['title']}</span></div>
+	<div class="f-block-body backgroundproduct"> 
+		<div class=" slide1" >
+			<div class="tab-sp productcommon" id="product">
+				<!--{eval $i = 0 }-->
+				<!--{loop $data $k $v}-->
+				<!--{if $i < 4}-->
+				<div class="item f-product-bl <!--{if $k==0}-->active<!--{/if}-->">
+					<div class="f-pr-bl-item row marginclear3">
+						<!--{if $v['price']['percent'] != 0}--><div class="f-pr-bl-item-saleof"><span>{$v['price']['percent']}</span></div><!--{/if}-->
+
+						<div class="col-lg-6 col-sm-6 col-md-6 paddingclear3">
+							<div class="f-pr-bl-item-img"> 
+								<a href="{$v['link']}" title="{$v['name']}"> <img alt="{$v['name']}" src="<!--{loadImage $v['image'] crop 216 162}-->" class="img-responsive"> </a> 
+							</div>
+						</div>
+
+						<div class="col-lg-6 col-sm-6 col-md-6 paddingclear3">		
+							<h3><a class="f-pr-bl-item-name" href="{$v['link']}" title="{$v['name']}">{$v['name']}</a></h3>
+							<div class="mota">
+								{$v['short_info']}
+							</div>
+							<div class="f-pr-bl-item-boxdetail">
+								<!--{if $v['price']['price']==0}-->
+									<p class="f-pr-bl-item-price">Liên hệ</p>
+								<!--{else}-->
+									<p class="f-pr-bl-item-price">{$v['price']['price']}</p>
+								<!--{/if}-->
+								<!--{if $v['price']['price_old'] != 0}--><p class="f-pr-bl-item-old-price">{$v['price']['price_old']}</p><!--{/if}-->
+							</div><!--end box detail-->
+						</div>
+						
+						<div class="v2-home-pr-item-action">
+							<a href="{$v['link']}" class="v2-home-pr-item-action-detail" ><span class="glyphicon glyphicon-info-sign"></span> {lang detailed}</a> 
+							<!--{if $v['quantity']!=0}-->
+								<a href="javascript:void(0)" class="BNC-add-cart v2-home-pr-item-action-buy " data-type="tab-home"  data-price="{$v['price']}" data-product="{$v['id']}" data-quantity="1" data-total-quantity="$v['quantity']"><span class="glyphicon glyphicon-shopping-cart"></span></a> 
+							<!--{else}-->
+								<a href="javascript:void(0)" class="BNC-cart-no-quantity v2-home-pr-item-action-buy no-buy" data-type="tab-home"  data-price="{$v['price']}" data-product="{$v['id']}" data-quantity="1" data-total-quantity="$v['quantity']"><span class="glyphicon glyphicon-shopping-cart"></span> </a> 
+							<!--{/if}-->	
+
+							<button class="compareicon btn btn-warning compare-ic BNC-compare"  data-product="{$v['id']}" data-category="{$category_array}" data-name="{$v['name']}"><i class="fa fa-cog"><span>Detail</span></i>
+							</button>
+
+							<!--{if ($v['is_like']!=2)}-->
+							<!--{if ($v['is_like']===0)}-->
+								<button class="btn btn-success like-product-{$v['id']} like-product" data-like="{$v['is_like']}" data-name="{$v['name']}" data-id="{$v['id']}" data-text-like="{lang like}" data-text-unlike="{lang unlike}"><i class="fa fa-thumbs-up"></i> <span id="text-like-{$v['id']}"> </span></button>
+								
+							<!--{else}-->	
+								<button class="btn btn-danger like-product-{$v['id']} like-product" data-like="{$v['is_like']}" data-name="{$v['name']}" data-id="{$v['id']}" data-text-like="{lang like}" data-text-unlike="{lang unlike}"><i class="fa fa-thumbs-down"></i> <span id="text-like-{$v['id']}"> </span></button>
+								
+							<!--{/if}-->
+						<!--{else}-->
+								<button class="btn btn-success like-product-{$v['id']} like-product"  data-like="{$v['is_like']}" data-name="{$v['name']}" data-id="{$v['id']}" data-login="{lang not_login} <br/><a class='btn btn-success' href='{$web['home_url']}/user-login{$web['dotExtension']}'>{lang login}</a>"><i class="fa fa-thumbs-up"></i> <span id="text-like-{$v['id']}"> </span></button>
+						<!--{/if}--> 
+							
+							
+						</div>
+					</div><!--end f britem-->
+				</div>
+				<!--{/if}-->
+              <!--{eval $i++}-->
+				<!--{/loop}-->
+			</div>
+<!-- 			<a class="left" href=".slide1" role="button" data-slide="prev">
+		        
+		        <span class="">Previous</span>
+		      </a>
+		      <a class="right" href=".slide1" role="button" data-slide="next">
+		        
+		        <span class="">Next</span>
+		      </a> -->
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,25 @@
+<!--{if isset($_video)}-->
+<ul class="f-video row">
+        <!--{loop $_video $k $v}-->
+            <li class="col-md-4  col-sm-4 col-xs-6 full-xs">
+              <div class="f-video-item">
+                <div class="f-video-item-img"> <a href="{$v['href']}" title="{$v['title']}"> <img src="<!--{loadImage $v['thumb'] crop 300 300}-->" class="img-responsive" alt="{$v['title']}"  />
+                  <div class="f-video-item-img-hover"></div>
+                  </a> </div>
+                <div class="f-video-item-title">
+                  <h3><a href="{$v['href']}" title="{$v['title']}"> <!--{cutString $v['title'] 0 25}--> </a></h3>
+                </div>
+              </div>
+            </li>
+            <!--{/loop}-->
+          </ul>
+  <!--{else}-->
+    <ul class="f-news-page">
+      <li class="f-news-page-item row">
+        {lang no_record_exists}
+      </li>
+    </ul>
+
+<!--{/if}-->   
+
+       

@@ -1,0 +1,181 @@
+<link rel="stylesheet" href="{$web['static_temp_mod']}/resource/css/detail.css?rs={$_rs}">
+<div class="f-qa">
+      <!--{if isset($_breadcrumbs)}-->
+   <div class="productbreadcrumb">
+
+<ol class="breadcrumb">
+     <!--{loop $_breadcrumbs $k $v}-->
+        
+        <li ><a href="{$v['href']}">{$v['text']}</a> <i class="fa fa-caret-right"></i></li>
+         
+        <!--{/loop}-->
+   
+</ol>
+</div>
+    <div class="clearfix"></div>
+    <!--{/if}-->
+    <div class="row">
+         
+        <div class="col-md-12">
+            
+            <div class="f-qaList">
+                <div class="f-qaBox-title"><span class="glyphicon glyphicon-book"></span> {$_title}</div>
+                <div class="f-qaView-body">
+                 <!--{if !empty($_id) }-->   
+                 <div class="f-qaView-question">
+                    <ul class="f-qaView-body-ul">
+                        
+                        <li>
+                            <div class="media">
+                              <a class="media-left" href="#">
+                                <img data-src="{$_user_avatar}" alt="{$_user_name}" <!--{if !empty($_user_avatar) }-->src="{$_user_avatar}"<!--{else}-->src="{$web['static_temp_mod']}/resource/img/d3a6dc47bd18ec9a49bb9e13c786fb2b.png"<!--{/if}--> data-holder-rendered="true" style="width: 64px; height: 64px;">
+                                <span class="qa-name">{$_user_name}</span> 
+                              </a>
+                              
+                              <div class="media-body">
+                                
+                                <div class="qa-desp">{$_question_content}</div>
+                                <div class=" row">
+                                    <div class="col-md-8">
+                                        <div class="qa-tool">
+                                            <a href="Javascript:;" datafld="question" data-id="{$_id}" data-type="like" id="like{$_id}question"><span class="glyphicon glyphicon-thumbs-up"></span> <span class="like">{$_like}</span> <b>({$_good})</b></a>
+                                            <a href="Javascript:;" datafld="question" data-id="{$_id}" data-type="unlike" id="unlike{$_id}question"><span class="glyphicon glyphicon-thumbs-down"></span> <span class="unlike">{$_unlike}</span> <b>({$_bad})</b></a>
+                                            | 
+                                            <a href="Javascript:;" datafld="question" data-id="{$_id}" data-type="denounce"><span class="glyphicon glyphicon-warning-sign"></span> <span class="denounce">{$_warning}</span></a>
+                                            
+                                            <a href="Javascript:;">{lang view}: {$_views}</a>
+                                            
+                                            <a href="Javascript:;">{lang answer}: {$_answer}</a>
+                                            
+                                        </div> 
+                                        <div class="qa-time">
+                                            {lang time}: {$_create_time}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="f-qa-answer-bt">
+                                            <a href="{$_url_answer_page}" class="showAsw btn btn-primary giveanswer"><span class="glyphicon glyphicon-send"></span> {lang answer} </a>                       
+                                        </div>             
+                                    </div>
+                                </div>
+                              </div>                           </div>
+                        </li>
+                        </ul>
+</div>
+<div class="f-qaBox-title-list"><h5><span class="glyphicon glyphicon-user"></span>  Danh sách trả lời </h5> </div>
+<div class="f-qaViewPage">
+<!--{if !empty($_answers) }-->
+<ul class="f-qaView-body-ul">
+<!--{loop $_answers $k $v}-->
+<li id="{$v['id']}">
+    <div class="media">
+      <a class="media-left" href="#">
+        <img data-src="{$v['user_avatar']}" alt="{$v['user_name']}" <!--{if !empty($v['user_avatar']) }-->src="{$v['user_avatar']}"<!--{else}-->src="{$web['static_temp_mod']}/resource/img/d3a6dc47bd18ec9a49bb9e13c786fb2b.png"<!--{/if}--> data-holder-rendered="true" style="width: 64px; height: 64px;">
+        <span class="qa-name">{$v['user_name']}</span> 
+      </a>
+      
+      <div class="media-body">
+        
+        <div class="qa-desp"> 
+            <!--{if !empty($v['cited_id']) }-->
+            <span style="font-size: 30px; float: left; margin-left: -10px">&#8220;</span>
+            <br />
+            <div class="qa-quote">
+            {$v['cited_text']}
+            </div>
+            <!--{/if}-->
+        {$v['answer_content']} 
+        </div>
+        
+        <div class="qa-tool">
+            <!--{if $_owner }-->
+            <a title="{lang chi_bau_mot_tra_loi}" href="Javascript:;" datafld="answer" data-id="{$v['id']}" data-type="useful" class="useful{$_id}"><span class="glyphicon glyphicon-ok"></span><span class="useful">{lang co_ich_voi_toi}</span></a>
+            <!--{/if}-->
+            <!--{if $v['useful'] }-->
+            <a href="Javascript:;" title="{lang chu_cau_hoi_cho_la_tot_nhat}"><img src="{$web['static_temp_mod']}/resource/img/icon-check.png" /></a>
+            <!--{/if}-->
+            <a href="Javascript:;" datafld="answer" data-id="{$v['id']}" data-type="like" id="like{$v['id']}answer"><span class="glyphicon glyphicon-thumbs-up"></span> <span class="like">{$v['like']}</span> <b>({$v['good']})</b></a>
+            <a href="Javascript:;" datafld="answer" data-id="{$v['id']}" data-type="unlike" id="unlike{$v['id']}answer"><span class="glyphicon glyphicon-thumbs-down"></span> <span class="unlike">{$v['unlike']}</span> <b>({$v['bad']})</b></a>
+            | 
+            <a href="Javascript:;" datafld="answer" data-id="{$v['id']}" data-type="denounce"><span class="glyphicon glyphicon-warning-sign"></span> <span class="denounce">{$v['warning']}</span></a>
+            |
+            <a href="{$v['cited_url']}"><span class="glyphicon glyphicon-comment"></span> {lang cited}</a>         
+        </div> 
+        <div class="qa-time">
+            {lang time}: {$v['create_time']}
+        </div>
+      </div>
+    </div>
+</li>
+<!--{/loop}-->  
+</ul>
+<!--{/if}-->
+                </div>
+                <!--{/if}-->
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+    <!-- Doan nay la QA theo tung danh muc -->
+</div>
+<script src="{$web['static_temp_mod']}/resource/assets/bootstrap/js/bootstrap.min.js"></script>
+<link href="{$web['static_temp_mod']}/resource/assets/bootstrap-dialog/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
+<script src="{$web['static_temp_mod']}/resource/assets/bootstrap-dialog/js/bootstrap-dialog.min.js"></script>
+
+<script src="{$web['static_temp_mod']}/resource/js/ckeditor/ckeditor.js" type="text/javascript"></script>
+<script src="{$web['static_temp_mod']}/resource/js/detail.js?rs={$_rs}" type="text/javascript"></script>
+<script>
+
+    jQuery(document).ready(function() {
+var per = new Array();
+    per['uid'] = '{$_uid}';
+    per['id_question'] = '{$_id}';
+    per['alert'] = '{lang alert}';
+    per['please_enter_a_name'] = '{lang please_enter_a_name}';
+    per['please_enter_text'] = '{lang please_enter_text}';
+    per['please_select_the_category_that_question'] = '{lang please_select_the_category_that_question}';
+    per['please_enter_the_correct_security_code'] = '{lang please_enter_the_correct_security_code}';
+    per['load_cate_url'] = '';
+    per['check_captcha_url'] = '{$_check_captcha_url}';
+    per['url_answer'] = '{$_url_answer}',
+    per['url'] = '{$_url}';
+    per['liked'] = '{lang liked}';
+    per['not_liked'] = '{lang not_liked}';
+    per['like'] = '{lang like}';
+    per['not_like'] = '{lang not_like}';
+    per['email_address_is_not_valid'] = '{lang email_address_is_not_valid}';
+    per['please_enter_a_valid_email_address'] = '{lang please_enter_a_valid_email_address}';
+    per['please_log_in_to_perform_this'] = '{lang please_log_in_to_perform_this}';
+    per['imgLoading'] = '{$web['static_temp_mod']}/resource/img/ajax-loader.gif';
+    per['imgCheck'] = '{$web['static_temp_mod']}/resource/img/icon-check.png';
+    per['useful_for_me'] = '{lang useful_for_me}';
+    per['The_question_choose_the_best_answer'] = '{lang The_question_choose_the_best_answer}';
+    
+    //
+    $("#submit-answer").click(function()
+    {
+    $("#ajaxform").submit();
+    });
+    //
+    per['ajaxElement'] = $('.qa-tool a');
+    faq.init(per);
+    faq.like(per);
+    $("#ajaxform").submit(function(event) {
+    $('#answer_editor').val(CKEDITOR.instances.answer_editor.getData());
+    faq.answer(event,this,per);
+    event.preventDefault();
+    });
+    }); 
+</script>
+<!--{if !empty($_message)}-->
+<script>
+$("body").append('<div class="message" id="message">{$_message}</div>');
+setTimeout(function(){
+$('#message').fadeOut(3000, function(){
+    $(this).remove();
+});
+}, 3000);
+</script>
+<!--{/if}-->

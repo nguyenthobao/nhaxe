@@ -1,0 +1,37 @@
+<div class="f-block">
+  <div class="f-block-title"><span>{$block['title']}</span></div>
+  <div class="f-block-body">
+  	<ul class="divUlSupport">
+	  	<!--{loop $block['data_custome'] $k $v}-->
+	  	    <li>
+	  	    	<span class="spanLiSupport">Nhân viên: {$k}<span>
+	  	    	<ul class="divUlSupport divUlSupportMagirn">
+			    	 <!--{loop $v $k_2 $v_2}-->
+			    	 	<li>
+			    	 		<!--{if $v_2['type']==1}-->
+			    	 			<a href="skype:{$v_2['nick']}?chat"><img src="{$v_2['image']}" style="width: 20px;height: 20px;"> Skype</a>
+			    	 		<!--{elseif $v_2['type']==2}-->
+			    	 			<a href="ymsgr:sendIM?{$v_2['nick']}"><img src="{$v_2['image']}" style="width: 20px;height: 20px;"> Yahoo</a>
+			    	 		<!--{elseif $v_2['type']==3}-->
+			    	 			<a href="tel:{$v_2['nick']}"><img src="{$v_2['image']}" style="width: 20px;height: 20px;"> {$v_2['nick']}</a>  
+			    	 		<!--{/if}-->
+			    	 	</li> 
+			    	 <!--{/loop}-->        
+	    	 	</ul>
+	    	</li>
+	    <!--{/loop}-->
+    </ul>
+  </div>
+</div>
+<style type="text/css">
+.divUlSupport{
+	list-style: none;
+}
+.spanLiSupport{
+	font-weight: bold;
+    color: #00AEEF;
+}
+.divUlSupportMagirn{
+	margin-left:10px;
+}
+</style>

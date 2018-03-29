@@ -1,0 +1,351 @@
+
+
+<div class="f-product-view-info row">
+	<div class="f-product-view-info-image col-md-5">
+		<style>
+			#f-pr-image-zoom-gallery .active img{
+				opacity: 1 !important;
+			}
+		</style>
+		<div class="f-pr-image-zoom">
+			<div   class="zoomWrapper">
+				<img id="f-pr-image-zoom-id" src="<!--{loadImage $_product['image'] resize 500 500}-->" data-zoom-image="<!--{loadImage $_product['image'] none null null}-->" class="img-responsive BNC-image-add-cart-{$_product['id']}" alt="{$_product['name']}">
+			</div>
+		</div>
+		 <div class="f-pr-image-zoom-gallery">
+			<div id="slidezoompage" >
+
+				<div id="f-pr-image-zoom-gallery" class="owl-carousel">
+
+				<!--{loop $_photo $k $v}-->
+
+							<div class="pr-carol-item">
+								<a href="javascript:;"   data-image="<!--{loadImage $v['image'] resize 500 500}-->" data-zoom-image="{BNCGLOBAL['upload_path']}{$v['image']}" title="{$v['att_title']}">
+									<img src="<!--{loadImage $v['image'] crop 62 62}-->"  alt="{$v['att_alt']}"   />
+								</a>
+							</div>
+
+				<!--{/loop}-->
+
+				</div>
+
+				 <script type="text/javascript">
+				 	$(document).ready(function() {
+ 					//
+	 					$("#f-pr-image-zoom-id").elevateZoom(
+	 						{
+	 							gallery:'f-pr-image-zoom-gallery',
+	 							cursor: 'pointer',
+	 							galleryActiveClass: 'active',
+	 							imageCrossfade: true,
+	 							loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif',
+	 							scrollZoom : true,
+	 							easing : true
+	 						});
+	  					//
+	  					$("#f-pr-image-zoom-id").bind("click", function(e) {
+	  						var ez = $('#f-pr-image-zoom-id').data('elevateZoom');
+	  						$.fancybox(ez.getGalleryList());
+	  						return false;
+	  					});
+	  					//--------------
+	  					$("#f-pr-image-zoom-gallery").owlCarousel();
+
+					});
+				 </script>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="f-product-view-info-detail col-md-7">
+		<div class="f-product-view-name">
+			<h1>
+				<span>{$_product['name']}</span>
+
+			</h1>
+			<br/>
+
+			<div class="v2-rating">
+				<div id="stars" data-text-login="{lang not_login_rate}" <!--{if !$_is_login}-->data-is-login="0" onclick="relogin()"<!--{/if}--> data-is-rater="<!--{if $_rate_user}-->1<!--{/if}-->" data-name="{$_product['name']}" data-id-product="{$_product['id']}" class="starrr" data-rating='{$_star_tb}' style="font-size: 12px;color: rgb(139, 139, 61);position: absolute;top: 5px;"></div>
+
+				<div style="margin-left: 63px;margin-top: -12px;">
+				<!--{if $_star_tb==0}-->
+						<span id="display-first-rating" style="font-size: 12px">{lang first_rate}</span>
+
+						<span id="display-total-rating" style="font-size: 12px">(<i class="fa fa-user"></i> <span id="rate" style="font-size: 12px;">{$_total_rate}</span>)</span>
+					<!--{else}-->
+						<span id="display-total-rating" style="font-size: 12px;">(<i class="fa fa-user"></i> <span id="rate" style="font-size: 12px;">{$_total_rate}</span>)</span>
+					<!--{/if}-->
+				</div>
+			</div>
+
+
+			<div class="f-pr-view-tool">
+				<ul class="no-margin no-padding">
+					<!--{if $_product['is_like']==1}-->
+						<li><a href="javascript:;" class="like-product like-product-{$_product['id']}" data-is-info-page="1" data-like="{$_product['is_like']}" data-name="{$_product['name']}" data-id="{$_product['id']}" data-text-like="{lang like}" data-text-unlike="{lang unlike}" data-login="{lang not_login} <br/><a class='btn btn-success' href='{$web['home_url']}/user-login{$web['dotExtension']}'>{lang login}</a>"><i class="fa fa-thumbs-o-down"></i> {lang unlike}</a></li>
+					<!--{elseif $_product['is_like']==0}-->
+						<li><a href="javascript:;" class="like-product like-product-{$_product['id']}" data-is-info-page="1" data-like="{$_product['is_like']}" data-name="{$_product['name']}" data-id="{$_product['id']}" data-text-like="{lang like}" data-text-unlike="{lang unlike}" data-login="{lang not_login} <br/><a class='btn btn-success' href='{$web['home_url']}/user-login{$web['dotExtension']}'>{lang login}</a>"><i class="fa fa-thumbs-o-up"></i> {lang like}</a></li>
+					<!--{else}-->
+						<li><a href="javascript:;" class="like-product like-product-{$_product['id']}" data-is-info-page="1" data-like="{$_product['is_like']}" data-name="{$_product['name']}" data-id="{$_product['id']}" data-text-like="{lang like}" data-text-unlike="{lang unlike}" data-login="{lang not_login} <br/><a class='btn btn-success' href='{$web['home_url']}/user-login{$web['dotExtension']}'>{lang login}</a>"><i class="fa fa-thumbs-o-up"></i> {lang like}</a></li>
+					<!--{/if}-->
+					<li style="display:none"><a href="javascript:;">{lang label_compare}</a></li>
+					<li>{lang label_view}: {$_product['view']}</li>
+					<li>{lang label_date_create}: {$_product['time']}</li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="f-pr-view-info">
+			<ul class="no-margin no-padding">
+				<li class="key"><!--{if $_product['price']['price_old'] != 0}-->{lang price_deals}<!--{else}-->{lang label_price}<!--{/if}--></li>
+				<li class="value">
+					<span class="price">{$_product['price']['price']}</span>
+					<!--{if $_product['vat'] != ''}-->
+					<span class="vat">$_product['vat']</span>
+					<!--{/if}-->
+				</li>
+				<li class="clearfix"></li>
+				<li class="key">{lang code_qr}</li>
+				<li class="value"><img src="{$_product['qr']}"></li>
+				<li class="clearfix"></li>
+				<!--{if $_product['price_old'] != 0}-->
+				<li class="key">{lang label_price}</li>
+				<li class="value"><span class="price">{$_product['price']['price']}</span></li>
+				<li class="clearfix"></li>
+				<!--{/if}-->
+				<!--{if $_product['percent'] != 0}-->
+				<li class="key">{lang saving}</li>
+				<li class="value">{$_product['price']['percent']}</li>
+				<li class="clearfix"></li>
+				<!--{/if}-->
+				<!--{if !empty($_product['code'])}-->
+				<li class="key">{lang label_product_model}</li>
+				<li class="value">{$_product['code']}</li>
+				<li class="clearfix"></li>
+				<!--{/if}-->
+
+				<!--{if !empty($_product['unit'])}-->
+					<li class="key">{lang unit}</li>
+					<li class="value">{$_product['unit']}</li>
+					<li class="clearfix"></li>
+				<!--{/if}-->
+				
+				<!--{if !empty($_product['color'])}-->
+				<li class="key">{lang color} ssssssssssssssssssssss</li>
+				<li class="value">
+					<!--{loop $_product['color'] $k_color $v_color}-->
+						<!--{if !empty($v_color['name'])}-->
+							{$v_color['name']} <span style="width: 23px;height: 10px;border: black solid 1px;background: {$v_color['code']};">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<!--{/if}-->
+					<!--{/loop}-->
+				</li>
+				<li class="clearfix"></li>
+				<!--{/if}-->
+
+				<!--{if !empty($_product['length_class']['w']) || !empty($_product['length_class']['h']) || !empty($_product['length_class']['l'])}-->
+					<li class="key">{lang label_size}</li>
+					<li class="value">
+						<!--{if !empty($_product['length_class']['w'])}-->
+							R{$_product['length_class']['w']}
+						<!--{/if}-->
+						<!--{if !empty($_product['length_class']['l'])}-->
+							x D{$_product['length_class']['l']}
+						<!--{/if}-->
+						<!--{if !empty($_product['length_class']['h'])}-->
+							x C{$_product['length_class']['h']} ($_product['length_class']['length_class']['name'])
+						<!--{/if}-->
+
+
+
+					</li>
+					<li class="clearfix"></li>
+				<!--{/if}-->
+
+
+				<!--{if !empty($_product['weigh_class']['w'])}-->
+				<li class="key">{lang weight}</li>
+				<li class="value">
+					$_product['weigh_class']['w'] $_product['weigh_class']['weigh_class']['name']
+				</li>
+				<li class="clearfix"></li>
+				<!--{/if}-->
+
+				<!--{if !empty($_product['other_info'])}-->
+					<!--{loop $_product['other_info'] $k_other_info $v_other_info}-->
+							<li class="key">{$v_other_info['title']}</li>
+							<li class="value">
+								{$v_other_info['content']}
+							</li>
+							<li class="clearfix"></li>
+					<!--{/loop}-->
+				<!--{/if}-->
+				<!--{if $_product['status_size'] == 1 && $_product['quantity'] > 0}-->
+				<!--{if !empty($_product['state'])}-->
+					<li class="key">{lang condition}</li>
+					<li class="value">
+
+						<!--{loop $_product['state'] $k_state $v_state}-->
+									<!--{if $v_state==1}-->
+										{lang highlights}
+									<!--{elseif $v_state==2}-->
+										{lang comming}
+									<!--{elseif $v_state==3}-->
+										{lang ordering}
+									<!--{elseif $v_state==4}-->
+										{lang every_old}
+									<!--{elseif $v_state==5}-->
+										{lang hethang}
+									<!--{/if}-->
+						<!--{/loop}-->
+
+					</li>
+					<li class="clearfix"></li>
+					<!--{/if}-->
+				<!--{/if}-->
+
+
+				<!--{if !empty($_product['brand'])}-->
+					<li class="key">{lang brand}</li>
+					<li class="value">
+						<!--{loop $_product['brand'] $k_brand $v_brand}-->
+									<a href="{$v_brand['link']}" class="brand">{$v_brand['name']}</a>
+						<!--{/loop}-->
+					</li>
+					<li class="clearfix"></li>
+				<!--{/if}-->
+
+			</ul>
+			<div class="clearfix"></div>
+		</div>
+		<!--{if $_product['status_size'] == 1 && $_product['quantity'] > 0}-->
+
+			<!--{if !empty($_shop)}-->
+
+			<div class="f-pr-view-choosesizeGroup padding-10">
+				<div class="dealer-tab" data-is-more="0" id="shop-content" style="<!--{if $_shop_count > 3}-->overflow: hidden;height: 120px;<!--{/if}-->">
+					<label>{lang label_shop_name}</label>
+					<ul class="v2-dealer">
+
+		            	<!--{loop $_shop $k $v}-->
+		            		<!--{if !empty($v['quantity'])}-->
+		        				<li>{lang product_ready} {$v['quantity']} sp - {lang phone}:{$v['phone']} - {$v['address']} - {$v['name']}</li>
+		        			<!--{/if}-->
+						<!--{/loop}-->
+					</ul>
+
+	            </div>
+	            <!--{if $_shop_count > 3}-->
+						<button class="btn" id="more-shop" style="margin:5px;">{lang view_more}</buton>
+				<!--{/if}-->
+	        </div>
+
+			<div class="f-pr-view-box-size" style="height: 100px;">
+				<span class="box-size-title">{lang select_size}</span>
+				<!--{loop $_shop_v2 $k $v}-->
+					<div data-name-size="{$v['name']}" <!--{if $k==0}-->style="border: 1px solid rgb(255, 0, 0);"<!--{/if}--> class="size">{$v['name']}</div>
+				<!--{/loop}-->
+
+				<div id="quantity">{lang label_quantity}
+				<!--{loop $_shop_v2 $k $v}-->
+					<select class="quantity" id="quantity-{$v['name']}" name="quantity" class="form-control" style="width: 100px;">
+						<!--{loopfor $i=1 $i<=$v['quantity'] $i++}-->
+					            <option value="{$i}">{$i}</option>
+					    <!--{/loopfor}-->
+					</select>
+				<!--{/loop}-->
+					<button class="add-cart button-small" data-size="{$v1['size_id']}" data-shop="1" data-product="{$_product['id']}">{lang label_add_to_cart}</button>
+				</div>
+			</div>
+			<!--{else}-->
+			 <label>{lang hethang}</label>
+			 <!--{/if}-->
+		<!--{else}-->
+			<!--{if !empty($_shop) && $_product['quantity'] > 0}-->
+			<div class="f-pr-view-choosesizeGroup padding-10">
+				<div class="dealer-tab" data-is-more="0" id="shop-content" style="<!--{if $_shop_count > 3}-->overflow: hidden;height: 120px;<!--{/if}-->">
+					<label>{lang label_shop_name}</label>
+					<ul class="v2-dealer">
+		            	<!--{loop $_shop $k $v}-->
+		            		<!--{if !empty($v['quantity'])}-->
+		        				<li>{lang product_ready} {$v['quantity']} sp - {lang phone}:{$v['phone']} - {$v['address']} - {$v['name']}</li>
+		        			<!--{/if}-->
+						<!--{/loop}-->
+					</ul>
+
+	            </div>
+	            <!--{if $_shop_count > 3}-->
+						<button class="btn" id="more-shop" style="margin:5px;">{lang view_more}</buton>
+				<!--{/if}-->
+	        </div>
+
+	        <!--{/if}-->
+	        <!--{if $_total_item_shop > 0}-->
+	        <div class="f-pr-view-box-size">
+				<span class="box-size-title">{lang label_quantity}</span>
+				<div class="select-shop" id="shop-1">
+					<!--{if $_total_item_shop > 0}-->
+                	<select>
+                		<!--{loopfor $i=1 $i<=$_total_item_shop $i++}-->
+                			<option value="{$i}">{$i}</option>
+                		<!--{/loopfor}-->
+                	</select>
+                	<!--{else}-->
+                	<span>{lang no_sold}</span>
+                	<!--{/if}-->
+				</div>
+			</div>
+			<!--{/if}-->
+		<!--{/if}-->
+		<!--{if !empty($_group_color)}-->
+		<div class="f-pr-view-chooseColorGroup padding-10">
+			<span class="box-size-title">{lang color}</span>
+		    <div class="clearfix"></div>
+		    <div class="size-option">
+		    	<ul>
+		        	<!--{loop $_group_color $k $v}-->
+		        	<li <!--{if $k==0}-->class="active"<!--{/if}-->>
+		            	<div class="row">
+		                	<div class="col-lg-2"><img src="<!--{loadImage $v['image'] resize 49 49}-->" class="img-responsive"></div>
+		                    <div class="col-lg-5"><a class="namecolor" href="{$v['link']}">{$v['name']}</a></div>
+		                    <div class="col-lg-3">
+		                    	<!--{if $v['price_old'] != 0}--><span class="csg-oldprice">{$v['price_old']}</span><!--{/if}-->
+		                    	<span class="csg-price">{$v['price']}</span>
+		                    </div>
+		                    <!--<div class="col-lg-1">
+		                    	<!--{if $v['quantity'] > 0}-->
+		                    	<select>
+		                    		<!--{loopfor $i=1 $i<=$v['quantity'] $i++}-->
+		                    		<option value="{$i}">{$i}</option>
+		                    		<!--{/loopfor}-->
+		                    	</select>
+		                    	<!--{else}-->
+		                    	<span>{lang no_sold}</span>
+		                    	<!--{/if}-->
+		                    </div>-->
+		                </div>
+		            </li>
+		            <!--{/loop}-->
+		        </ul>
+		    </div>
+		</div>
+		<!--{/if}-->
+        <!--{if $_product['quantity'] > 0 && $_product['show_cart'] == 1 && $_product['status_size'] != 1}-->
+        	<!--{if empty($_shop)}-->
+			<a href="javascript:;" class="button-small" data-toggle="modal" data-target="#quickBuy">
+				<span class="glyphicon glyphicon-shopping-cart"></span> {lang buy_now}
+			</a>
+			<!--{/if}-->
+			<a href="javascript:;" class="button-small" id="add-cart" data-product="{$_product['id']}">
+				<i class="fa fa-shopping-cart"></i> {lang label_add_to_cart}
+			</a>
+		<!--{elseif $_product['quantity'] == 0}-->
+			<label>{lang no_sold}</label>
+
+		<!--{/if}-->
+        <div class="clearfix"></div>
+	</div>
+	<div class="clearfix"></div>
+</div>
+
+

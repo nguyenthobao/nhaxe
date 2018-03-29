@@ -1,0 +1,67 @@
+<div class="container">
+<!--temp block/block_bottom_category_custom-->
+</div>
+
+<!--FOTER-->
+
+<div class="f-footer">
+  <div class="f-footer-content container">
+      <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-4">
+          
+           <div class="f-footer-info"> 
+
+
+      {$web['footer']} 
+      
+      
+      
+        </div> 
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-8">
+             <ul class="f-footer-nav  ">
+       bnc_position_block_3
+      <div class="clearfix"></div>
+    </ul>
+        </div>
+      </div>
+   
+      <div class="clearfix"></div>
+      <div class="copyright">
+        Thiêt kế bởi <a target="_blank" href="http://webbnc.net">Webbnc</a> Việt Nam
+      </div>
+      
+      
+  </div>
+</div>
+<div class="clearfix"></div>
+      
+<!--temphome common/ads_footer-->
+
+<!--{if $web['audio'] != null}-->  
+<audio controls autoplay<!--{if $web['audio']['play_again'] == 1}--> loop<!--{/if}--> style="display:none">
+    <source src="{$web['static_upload']}{$web['audio']['audio']}" type="audio/mpeg">  
+</audio> 
+<!--{/if}-->
+<!--{tempglobal product product/productCartMini}--> 
+<script type="text/javascript" src="{$web['static_temp_mod_product']}/resource/js/product.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('body').data('home_url', '{$web['home_url']}');
+        //$('body').data('page_url', '{$_B['curUrl']['fullLink']}');
+        $('body').data('extension', '{$web['dotExtension']}');
+        Product.init();
+        WebCommon.init();
+       // alert("-Golbal aler- "+$('body').data('home_url'));
+    });
+</script>
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WTGBK6"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WTGBK6');</script>
+<!-- End Google Tag Manager -->

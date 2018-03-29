@@ -1,0 +1,27 @@
+ 
+		<!--{if !empty($content_news)}-->
+		<ul class="f-news row">
+        	<!--{eval $i=0}-->
+			<!--{loop $content_news $k $v}-->
+            <!--{if $i < 2}--> 
+			<li class="col-md-6 col-sm-6 col-xs-6 full-xs">
+	            <div class="f-news-item">
+	              <div class="f-news-item-img"> <a href="$v['link']" title=""> <img src="<!--{loadImage $v['img'] crop 570 290}-->" class="img-responsive" alt="$v['title']" /> </a>
+
+	              </div>
+	              <div class="f-news-item-title">
+	              
+	                <h3> <a title="Title" href="$v['link']">$v['title']</a> </h3>
+	              </div>
+	            </div>
+
+	            <div class="f-new-item-sum"><!--{cutString $v['short'] 0 200}--></div>
+	          </li>
+            <!--{/if}-->
+       		<!--{eval $i++}-->
+			<!--{/loop}-->
+		</ul>
+		<!--{/if}-->
+		<div class="clearfix"></div>
+ 
+

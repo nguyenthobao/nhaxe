@@ -1,0 +1,27 @@
+<!--{if isset($_info)}-->
+<div class="info-list">
+    <!--{loop $_info $k $v}-->
+    <div class="row">
+        <div class="col-md-2 col-sm-3 col-xs-12" style="margin-bottom: 20px;">
+            <a href="{$v['href']}" class="thumbnail">
+                <img src="<!--{loadImage $v['thumb'] none null null}-->" class="img-responsive" style="width:100%"
+                     alt="{$v['title']}">
+            </a>
+        </div>
+        <div class="col-md-10 col-sm-9 col-xs-12">
+            <h3 style="margin-top: 0px;"><a href="{$v['href']}" style="color: #ff5115;">{$v['title']}</a></h3>
+            <div class="caption">
+                {$v['short']}
+            </div>
+            <div class="pull-right">
+                <a href="{$v['href']}">
+                    <span class="label label-info">{lang read_more}...</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--{/loop}-->
+</div>
+<!--{else}-->
+{lang no_record_exists}
+<!--{/if}-->

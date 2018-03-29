@@ -1,0 +1,141 @@
+<link rel="stylesheet" href="{$web['static_temp_mod']}/resources/css/album.css?rs={$_restmedia}">
+<div>
+    <!--{if isset($_breadcrumbs)}-->
+    <div class="clearfix"></div>
+    <div class="productbreadcrumb">
+    <ol class="breadcrumb">
+         <!--{loop $_breadcrumbs $k $v}-->           
+            <li ><a href="{$v['href']}">{$v['text']}</a> <i class="fa fa-caret-right"></i></li>           
+            <!--{/loop}-->      
+    </ol>
+    </div><!--end breakcrumb-->
+
+    <div class="clearfix"></div>
+    <!--{/if}-->
+    <div class="">
+        <div class="clearfix"></div>
+        <div class="f-module-page">
+           <div class="f-cate ">
+                <ul class="f-cate-ul no-margin no-padding">
+                    <!--{if isset($_cateList)}-->
+                        <!--{loop $_cateList $k $v}-->
+                        <li class="col-md-3" style="margin-bottom:5px">
+                        <h2>
+                            <a href="{$v['link']}" title="{$v['title']}"><span><!--{cutString $v['title'] 0 20}--></span></a>
+                            </h2>
+                        </li>
+                        <!--{/loop}-->
+                    <!--{/if}-->
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <!--{if !empty($_home_title) }-->
+            <div class="f-module-page-title"> 
+            <h1>
+                <span>{$_home_title}</span></h1>
+            </div>
+            <!--{else}-->
+            <div class="f-module-page-title">
+                <i></i><span>{lang module_name}</span>
+
+            </div>
+            <!--{/if}-->
+            <!--{if !empty($_home_description) }-->
+            <div class="f-module-page-desc" <!--{if !empty($_home_bg_image) }-->style="background-image:url({$_home_bg_image});display: inline-block;"<!--{/if}-->>
+                <div class="col-md-3 col-sm-3 col-xs 12 img auto-xs">
+                <img alt="album" class="img-thumbnail img-responsive" src="<!--{loadImage $_home_avatar resize 170 170}-->" onerror="this.onerror=null;this.src='<!--{loadImage $_no_img crop 170 170}-->'">
+                </div>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <p><!--{if isset($_home_description)}-->{$_home_description}<!--{/if}-->
+                </div>
+            </div><!--end modue page-->
+
+            <!--{/if}-->
+            
+            <div class="f-module-page-body">
+                <div class="clearfix"></div>
+                <hr />
+            <div class="row styleformcontrol">
+            <form method="get" action="">
+                <div class="col-md-3">
+                     
+                    <select class="form-control" name="sort">
+                        <option <!--{if !empty($_sort) && $_sort == 'new' }-->selected="selected" <!--{/if}-->value="new">{lang new}</option>
+                        <option <!--{if !empty($_sort) && $_sort == 'hot' }-->selected="selected" <!--{/if}-->value="hot">{lang hot}</option>
+                        <option <!--{if !empty($_sort) && $_sort == 'az' }-->selected="selected" <!--{/if}-->value="az">{lang a_z}</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" name="q" placeholder="{lang title}" class="form-control" value="<!--{if !empty($_search_string) }-->{$_search_string}<!--{/if}-->">
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control" name="limit" id="album_limit">
+                        <option value="{$_default_limit}" <!--{if !empty($_search_limit) && $_search_limit == $_default_limit }-->selected="selected"<!--{/if}-->>{lang show_number}</option>
+                        <option value="20" <!--{if !empty($_search_limit) && $_search_limit == 20 }-->selected="selected"<!--{/if}-->>20</option>
+                        <option value="30" <!--{if !empty($_search_limit) && $_search_limit == 30 }-->selected="selected"<!--{/if}-->>30</option>
+                        <option value="40" <!--{if !empty($_search_limit) && $_search_limit == 40 }-->selected="selected"<!--{/if}-->>40</option>
+                        <option value="50" <!--{if !empty($_search_limit) && $_search_limit == 50 }-->selected="selected"<!--{/if}-->>50</option>
+                        </select>
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-success" id="submitSearch">{lang search}</button>
+                </div>
+                
+            </form>
+            </div>
+            <hr />
+            <div class="clearfix"></div>
+                    <div class="tab-content margin-top-10">
+                        <div id="f-pr-tab01" class="tab-pane active">
+                            <!--{if isset($_albumList)}-->
+                            <ul class="f-album row {$_home_display_type}"><!--grid/list-->
+                                <!--{loop $_albumList $k $v}-->
+                                <li class=" col-md-4 col-sm-6 col-xs-6 full-xs">
+        <div class="f-album-item">
+                    <div class="f-album-item-img"> <a href="$v['link']" title="$v['title']"> <img src="<!--{loadImage $v['avatar'] crop 236 217}-->" class="img-responsive" alt="$v['title']" />
+                      <div class="f-album-item-img-hover"></div>
+                      </a> 
+
+                         <div class="iconalbum">
+                          
+                      </div><!--end icon album-->
+                  </div>
+
+                     
+                    <div class="f-album-item-title">
+                      <h3><a href="$v['link']" title="$v['title']"> $v['title']</a></h3>
+                    </div>
+                  </div>
+ 
+      </li>
+                                <!--{/loop}-->
+                            </ul>
+                            <!--{else}-->
+                              <p style="padding: 10px 0">{$_alert}</p>
+                            <!--{/if}-->
+                            <div class="clearfix"></div>
+                            <!--{temp album/_pagination}-->
+                            
+                        </div>
+
+                    </div>
+                        
+                    <div class="clearfix"></div>
+                </div>
+                
+                <!--####################################### END CENTER MODULE TAB PRODUCT HOT -->
+
+            </div>
+        </div>
+        <!--/-->
+
+    </div>
+<script src="{$web['static_temp_mod']}/resources/scripts/jquery.albumload.min.js?rs={$_restmedia}"></script>
+<script src="{$web['static_temp_mod']}/resources/scripts/album.js?rs={$_restmedia}" type="text/javascript"></script>
+<script>
+    jQuery(document).ready(function() {
+var per = new Array();
+
+    album.init(per);
+    }); 
+</script>

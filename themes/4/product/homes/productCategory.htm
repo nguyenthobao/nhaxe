@@ -1,0 +1,127 @@
+
+<!--Like Product-->
+<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/css/likeproduct.css"/>
+<script src="{$web['static_temp_mod']}/resource/js/likeproduct.js"></script>
+<script src="{$web['static_temp_mod']}/resource/js/homeProductCategory.js"></script>
+
+<script type="text/javascript">
+ function getRandomColor() {
+    var letters = '0333333333CBCDEC'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+    }
+</script>
+<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/css/toastr.css"/>
+<script src="{$web['static_temp_mod']}/resource/js/toastr.js"></script>
+<div class="sp">
+<!--{if !empty($_home_category)}-->
+<!--{eval $i=1}-->
+<!--{loop $_home_category $key $value}-->
+<div class="container">
+  <div class="f-center-module">
+      <div class="">
+          <div class="f-center-title f-center-title-cate">
+            <h2><a href="{$value['link']}"><span>{$value['name']}</span></a></h2>
+            <div class="commonprodut">
+                <a class="commonproductnewleft  prev-{$value['id']}"><i class="fa fa-angle-left"></i></a>
+                <a class="commonproductnewright next-{$value['id']}"><i class="fa fa-angle-right"></i></a>
+            </div>
+
+            <div class="iconcategory1">
+              <!--{if !empty($value['icon'])}-->
+              <img src="<!--{loadImage $value['icon'] crop 24 24}-->">
+              <!--{else}-->
+               <img src="{$web['static_temp']}{$web['temp']}/statics/imgs/default.png ">
+              <!--{/if}-->
+            </div> 
+
+            <ul class="v2-home-catepr-tabul ">
+                <!--{if !empty($value['sub'])}-->
+                    <!--{loop $value['sub'] $k $v}-->
+                     <li><a href="{$v['link']}" data-ajax="0" data-url="{$v['link']}" data-id="{$v['id']}" data-block="{$value['id']}" class="product-category">{$v['name']}</a></li>
+                    <!--{/loop}-->
+                <!--{/if}-->
+            </ul>
+          </div><!--center title-->         
+          <script type="text/javascript">
+              $(".setcolor{$i}").css("background",getRandomColor());
+              $(".setcolor{$i} li").click(function(){
+                  $(".setcolor{$i} li a").attr('class','');
+                  $(this).find('a').attr('class','active'); 
+              });      
+          </script>
+          
+      </div>
+      <!--{eval $i++}-->
+
+
+      <div class="v2-home-catepr-right">
+          <div class="left">
+
+
+              <div class="tab-content row">
+                  <!--{eval $_content = $value['tab_content']}-->
+                  <div id="product-content-{$value['id']}">
+                      <div class="v2-home-catepr-showul owl-carousel owl-theme" id="product-{$value['id']}">
+                          <!--{temphome homes/productItemCate}-->
+                      </div>
+                     
+                      <script>
+                      $(document).ready(function() {
+
+                        var owl = $("#product-{$value['id']}");
+
+                        owl.owlCarousel({
+
+                        items : 4, //10 items above 1000px browser width
+                        itemsDesktop : [1000,4], //5 items between 1000px and 901px
+                        itemsDesktopSmall : [900,3], // 3 items betweem 900px and 601px
+                        itemsTablet: [768,2], //2 items between 600 and 0;
+                        itemsMobile : [479,1] // itemsMobile disabled - inherit from itemsTablet option
+                        
+                        });
+
+                        // Custom Navigation Events
+                        $(".next-{$value['id']}").click(function(){
+                          owl.trigger('owl.next');
+                        });
+                        $(".prev-{$value['id']}").click(function(){
+                          owl.trigger('owl.prev');
+                        });
+
+
+                      });
+                    </script>
+                  </div>  
+              </div>
+          </div>
+          <div class="right" style="">
+              <div class="v2-home-catepr-right-icon">
+                  
+              </div>
+              <div class="v2-home-catepr-right-bg">
+                  <a href="{$value['link']}">
+                  </a>
+              </div>
+          </div>
+          <div class="clearfix"></div>
+      </div>
+  </div>
+</div>
+
+<div class="clearfix"></div>
+<!--{/loop}-->
+<!--{/if}-->
+
+<script type="text/javascript">
+   $(document).ready(function() {
+       Likeproduct.init();
+       HomeProductCategory.init();
+    });
+</script>
+</div>
+
+<div class="clearfix"></div>

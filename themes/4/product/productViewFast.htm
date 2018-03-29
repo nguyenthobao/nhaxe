@@ -1,0 +1,328 @@
+
+ <div class="q-body v2-quickview">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="image">
+                        <div class="main-image">
+                            <img  class="fancybox-thumb BNC-image-add-cart-{$_content['product']['id']}" rel="fancybox-thumb" src="<!--{loadImage $_content['product']['image'] resize 300 400}-->"/>
+                        </div>
+                         <div class="q-thumb-image">
+                         	<div class="row">
+                        	<!--{loop $_content['photo'] $k_photo $v_photo}--> 
+                        		<a class="col-md-2 fancybox-thumb" rel="fancybox-thumb" href="<!--{loadImage $v_photo['image'] resize 300 400}-->" title="{$_content['product']['name']}"> <img style="width: 60px;" src="<!--{loadImage $v_photo['image'] resize 300 400}-->" alt="{$_content['product']['name']}" /> </a>
+                        	<!--{/loop}-->
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="details">
+                        <div class="panel panel-default v2qv-bo">
+                            <div class="panel-body ">
+                                <h2 class="v2qv-name">{$_content['product']['name']}</h2> 
+                               
+                                <div class="riopanel r-mg-t-10 v2qv-view"> {lang label_view}: {$_content['product']['view']} | {lang label_date_create}: {$_content['product']['time']}</div>
+                                <div class="row">
+                                	<div class="col-md-9">
+                                <div class="info r-mg-t-10">
+                                    <ul style="overflow: hidden;">
+                                        <li class="row"> 
+                                        	<span class="col-md-4 r-label">{lang label_price}</span> 
+                                        	<!--{if $_content['product']['price']['price']==0}-->
+                                        		<span class="col-md-8 r-price no-price">{lang contact}</span>
+                                        	<!--{else}-->
+                                        		<span class="col-md-8 r-price">{$_content['product']['price']['price']}</span>
+                                        	<!--{/if}-->
+                                        </li>
+                                        <!--{if !empty($_content['product']['price']['percent']) && $_content['product']['price']['percent']!='0%' }--> 
+	                                        <li class="row"> 
+	                                        	<span class="col-md-4 r-label">Giá cũ</span> 
+	                                        	
+	                                        		<span class="col-md-8 r-price old_price"><STRIKE>{$_content['product']['price']['price_old']}</STRIKE> </span>	
+	                                        			
+	                                        	
+	                                        </li>
+	                                        <li class="row"> 
+	                                        	<span class="col-md-4 r-label">Giảm</span> 
+	                                        	
+	                                        		<span class="col-md-8 r-price percent">{$_content['product']['price']['percent']}</span>
+	                                        </li>
+                                       <!--{/if}-->
+                                        
+                                        <!--{if is_array($_content['color'])}--> 
+	                                        <li class="row"> 
+	                                        	<span class="col-md-4 r-label">Màu</span> 
+	                                        	<span class="col-md-8"></span>	
+	                                        		<!--{loop $_content['color'] $k_color $v_color}-->
+														<!--{if !empty($v_color['name'])}-->
+															{$v_color['name']} <span style="width: 23px;height: 10px;border: black solid 1px;background: {$v_color['code']};">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+														<!--{/if}-->
+													<!--{/loop}-->
+	                                        </li>
+                                       	<!--{/if}-->
+
+                                        <!--{if !empty($_content['product']['code'])}--><li class="row"> <span class="col-md-4 r-label">{lang label_product_model}</span> <span class="col-md-8 r-code">{$_content['product']['code']}</span> </li><!--{/if}-->
+                                        <!--{if $_content['product']['quantity']}-->
+	                                        <!--{if !empty($_content['shop_v2'])}-->
+		                                        <li class="row "> 
+			                                        	<span class="col-md-4 r-label">{lang label_size}</span> 
+			                                        	<span class="col-md-8 r-size">
+						                                	<!--{loop $_content['shop_v2'] $k_size $v_size}-->
+						                                		<!--{if !empty($v_size['name'])}-->
+						                                			<a class="li_size BNC-size" data-id-product="{$_content['product']['id']}" data-name-size="{$v_size['name']}">{$v_size['name']}</a>
+						                                		<!--{/if}-->
+						                                	<!--{/loop}-->
+						                            </span> 
+						                        </li>
+					                        <!--{/if}-->
+	                                        <li class="row"><span class="col-md-4 r-label">{lang label_quantity}</span> 
+	                                        	<span class="col-md-8 r-quantity">
+	                                        	 <!--{if !empty($_content['shop_v2'])}-->
+	                                        		<!--{loop $_content['shop_v2'] $k_size $v_size}-->
+	                                        			<!--{if !empty($v_size['name'])}-->
+						                                	 <select <!--{if $_content['count_size']!=1}-->style="display:none;"<!--{/if}--> class="BNC-quantity-select-$v_size['name']-{$_content['product']['id']} BNC-quantity-{$_content['product']['id']}">
+						                                		<!--{loopfor $i=1 $i<=$v_size['quantity'] $i++}-->
+						                                			<option value="{$i}" <!--{if $i==1}-->selected<!--{/if}-->>{$i}</option>
+						                                		<!--{/loopfor}--> 
+						                                	 </select>
+						                                <!--{/if}-->
+					                                <!--{/loop}-->
+					                             <!--{else}-->
+					                                	 <select class="BNC-quantity-{$_content['product']['id']} BNC-quantity-select-$v_size['name']-{$_content['product']['id']}" data-show="1">
+					                                		<!--{loopfor $i=1 $i<=$_content['product']['quantity'] $i++}-->
+					                                			<option value="{$i}" <!--{if $i==1}-->selected<!--{/if}-->>{$i}</option>
+					                                		<!--{/loopfor}--> 
+					                                	 </select>
+					                              <!--{/if}-->
+	                                        	</span> 
+	                                        </li>
+	                                        <hr/>
+	                                        <li>
+												
+	                                        	<!--{if $_content['count_size']==1 || $_content['count_size']==0}-->
+	                                        		<button  class="BNC-add-cart BNC-add-cart-{$_content['product']['id']} btn btn-sm btn-success"  data-size="<!--{if $_content['count_size']==1}-->{$_content['shop_v2'][0]['name']}<!--{/if}-->" data-shop="1" data-product="{$_content['product']['id']}">{lang label_add_to_cart}</button>
+					                             <!--{else}-->
+					                             	<button  class="BNC-add-cart BNC-add-cart-{$_content['product']['id']} btn btn-sm btn-success" disabled  data-size="M" data-shop="1" data-product="{$_content['product']['id']}">{lang label_add_to_cart}</button>
+					                             <!--{/if}-->
+		                                        
+												<a class="btn btn-sm btn-info BNC_detailed" href="{$_content['product']['link']}">{lang detailed}</a>	
+											
+	                                        </li>
+	                                        
+                                        	<!--{else}-->
+                                        	<li>
+                                        		<label>{lang hethang}</label>
+                                        		<a class="btn btn-sm btn-info BNC_detailed" href="{$_content['product']['link']}" target="_self">{lang detailed}</a>
+                                        	</li>
+                                        <!--{/if}-->
+                                			
+                                    </ul>
+                                </div>
+                                </div>
+                                <div class="col-md-3">
+
+	                                        <img class="qr-img-v" src="{$_content['product']['qr']}">	
+	                                   
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="q-tab-other">
+                                    <div role="tabpanel">
+                                        <!-- Nav tabs -->
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li role="presentation" class="active"><a href="#cungdm" aria-controls="cungdm" role="tab" data-toggle="tab">{lang related_category}</a> </li>
+                                            <li role="presentation"><a href="#lienquan" aria-controls="lienquan" role="tab" data-toggle="tab">{lang related_select}</a> </li>
+                                        </ul>
+                                        <!-- Tab panes -->
+                                        <div class="tab-content q-tab-other-ct">
+                                            <div role="tabpanel" class="tab-pane active" id="cungdm">
+                                                <ul class="row">
+                                                	<!--{loop $_content['related'][0]['content'] $k_related0 $v_related0}-->
+	                                                    <li class="col-md-2">
+	                                                        <a href="{$v_related0['link']}" title="{$v_related0['name']}"><img src="<!--{loadImage $v_related0['image'] crop 60 70}-->" alt="{$v_related0['name']}"></a>
+	                                                    </li>
+	                                                <!--{/loop}-->
+                                                </ul>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane" id="lienquan">
+                                            		<ul class="row">
+                                            		<!--{if !empty($_content['related'][1]['content'])}-->
+													    <!--{loop $_content['related'][1]['content'] $k_related1 $v_related1}-->
+		                                                    <li class="col-md-2">
+		                                                        <a href="{$v_related1['link']}" title="{$v_related1['name']}"><img src="<!--{loadImage $v_related1['image'] crop 60 70}-->" alt="{$v_related1['name']}"></a>
+		                                                    </li>
+		                                                <!--{/loop}-->
+		                                            <!--{else}-->
+		                                            	Không có sản phẩm nào
+		                                            <!--{/if}-->
+	                                            </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<style type="text/css">
+	/* Styles for dialog window */
+#fast-dialog {
+	background: #FFF;
+padding: 15px;
+text-align: left;
+max-width: 900px;
+max-height: 600px;
+min-height: 400px;
+margin: 40px auto;
+position: relative;
+border: 3px solid #ECECEC;
+box-shadow: 0 0 9px rgba(0, 0, 0, 0.72);
+border-radius: 4px;
+}
+
+
+/**
+ * Fade-zoom animation for first dialog
+ */
+
+/* start state */
+.my-mfp-zoom-in .zoom-anim-dialog {
+	opacity: 0;
+
+	-webkit-transition: all 0.2s ease-in-out; 
+	-moz-transition: all 0.2s ease-in-out; 
+	-o-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out; 
+
+
+
+	-webkit-transform: scale(0.8); 
+	-moz-transform: scale(0.8); 
+	-ms-transform: scale(0.8); 
+	-o-transform: scale(0.8); 
+	transform: scale(0.8); 
+}
+
+/* animate in */
+.my-mfp-zoom-in.mfp-ready .zoom-anim-dialog {
+	opacity: 1;
+
+	-webkit-transform: scale(1); 
+	-moz-transform: scale(1); 
+	-ms-transform: scale(1); 
+	-o-transform: scale(1); 
+	transform: scale(1); 
+}
+
+/* animate out */
+.my-mfp-zoom-in.mfp-removing .zoom-anim-dialog {
+	-webkit-transform: scale(0.8); 
+	-moz-transform: scale(0.8); 
+	-ms-transform: scale(0.8); 
+	-o-transform: scale(0.8); 
+	transform: scale(0.8); 
+
+	opacity: 0;
+}
+
+/* Dark overlay, start state */
+.my-mfp-zoom-in.mfp-bg {
+	opacity: 0;
+	-webkit-transition: opacity 0.3s ease-out; 
+	-moz-transition: opacity 0.3s ease-out; 
+	-o-transition: opacity 0.3s ease-out; 
+	transition: opacity 0.3s ease-out;
+}
+/* animate in */
+.my-mfp-zoom-in.mfp-ready.mfp-bg {
+	opacity: 0.8;
+}
+/* animate out */
+.my-mfp-zoom-in.mfp-removing.mfp-bg {
+	opacity: 0;
+}
+
+
+
+/**
+ * Fade-move animation for second dialog
+ */
+
+/* at start */
+.my-mfp-slide-bottom .zoom-anim-dialog {
+	opacity: 0;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	-o-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+
+	-webkit-transform: translateY(-20px) perspective( 600px ) rotateX( 10deg );
+	-moz-transform: translateY(-20px) perspective( 600px ) rotateX( 10deg );
+	-ms-transform: translateY(-20px) perspective( 600px ) rotateX( 10deg );
+	-o-transform: translateY(-20px) perspective( 600px ) rotateX( 10deg );
+	transform: translateY(-20px) perspective( 600px ) rotateX( 10deg );
+
+}
+
+/* animate in */
+.my-mfp-slide-bottom.mfp-ready .zoom-anim-dialog {
+	opacity: 1;
+	-webkit-transform: translateY(0) perspective( 600px ) rotateX( 0 ); 
+	-moz-transform: translateY(0) perspective( 600px ) rotateX( 0 ); 
+	-ms-transform: translateY(0) perspective( 600px ) rotateX( 0 ); 
+	-o-transform: translateY(0) perspective( 600px ) rotateX( 0 ); 
+	transform: translateY(0) perspective( 600px ) rotateX( 0 ); 
+}
+
+/* animate out */
+.my-mfp-slide-bottom.mfp-removing .zoom-anim-dialog {
+	opacity: 0;
+
+	-webkit-transform: translateY(-10px) perspective( 600px ) rotateX( 10deg ); 
+	-moz-transform: translateY(-10px) perspective( 600px ) rotateX( 10deg ); 
+	-ms-transform: translateY(-10px) perspective( 600px ) rotateX( 10deg ); 
+	-o-transform: translateY(-10px) perspective( 600px ) rotateX( 10deg ); 
+	transform: translateY(-10px) perspective( 600px ) rotateX( 10deg ); 
+}
+
+/* Dark overlay, start state */
+.my-mfp-slide-bottom.mfp-bg {
+	opacity: 0;
+
+	-webkit-transition: opacity 0.3s ease-out; 
+	-moz-transition: opacity 0.3s ease-out; 
+	-o-transition: opacity 0.3s ease-out; 
+	transition: opacity 0.3s ease-out;
+}
+/* animate in */
+.my-mfp-slide-bottom.mfp-ready.mfp-bg {
+	opacity: 0.8;
+}
+/* animate out */
+.my-mfp-slide-bottom.mfp-removing.mfp-bg {
+	opacity: 0;
+}
+.li_size{
+
+    border: rgb(66, 87, 106) solid 1px;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    text-align: -webkit-center;
+    display: -webkit-inline-box;
+
+}
+.li_size:hover{
+	border: rgb(231, 0, 0) solid 1px;
+}
+.li_size:focus{
+	border: rgb(231, 0, 0) solid 1px;
+}
+
+</style>

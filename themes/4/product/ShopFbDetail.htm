@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en"> 
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<title>Template default</title>
+		<!-- Bootstrap -->
+		<link href="https://dev3.webbnc.vn/modules/product/themes/ShopFB/css/bootstrap.css" rel="stylesheet">
+		<link href="https://dev3.webbnc.vn/modules/product/themes/ShopFB/css/style.css" rel="stylesheet">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<base href="{$_home_url}" ext="{$_dotExtension}">
+	</head>
+	<body>
+		<script type="text/javascript">
+		window.fbAsyncInit = function() {
+			FB.Canvas.setSize( {height: 1100} );
+		}
+		</script>
+		<style type="text/css">
+			.bold{
+				font-weight: bold;
+			}
+			.pad1{
+				padding: 1px;
+			}
+			.priceOld{
+				text-decoration: line-through;
+			}
+			.margin10{
+				margin: 10px;
+			}
+			.cart{
+				position: absolute;
+				  left: 560px;
+				  top: 15px;
+				  cursor: pointer;
+			}
+			.related{
+				list-style: none;
+			}
+			.related li{
+				margin-left: -40px;
+			}
+			.related li img{
+				width: 70px;
+				height: 70px;
+			}
+			.related .title{
+			  margin-left: 81px;
+			  font-weight: bold;
+			  margin-top: -67px;
+			}
+			.related .price{
+			   margin-bottom: 34px;
+			  margin-left: 81px;
+			  font-weight: bold;
+			  color: #F00;
+			}
+		</style>
+		
+		<div class="navbar navbar-default navCustom" role="navigation">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							</button>
+							
+						</div>
+						<div class="collapse navbar-collapse navbar-ex1-collapse">
+							<div class="col-sm-9 col-md-9">
+								<form class="navbar-form" role="search" action="{$_home_url}/product-shopfb-shop.html" method="get" id="search-form" name="search-form">
+									<div class="btn-group pull-left col-sm-4 col-md-4" >
+										 <select name="category" class="form-control col-sm-4 col-md-4">
+										 		<option value="all" <!--{if $_search['category']=='all'}-->selected<!--{/if}--> >Danh mục</option>
+										 	<!--{loop $_category $k $v}-->
+										 		<option value="{$v['id']}" <!--{if $_search['category']==$v['id']}-->selected<!--{/if}--> >{$v['line']}{$v['name']}</option>
+										 	<!--{/loop}-->
+										  </select>
+									</div>
+									<div class="input-group col-sm-8 col-md-8">
+										<input type="text" class="form-control" placeholder="Nhập từ khóa..." id="title" name="title" value="<!--{if $_search['title']!=''}-->{$_search['title']}<!--{/if}-->">
+										<div class="input-group-btn">
+											<button type="submit" class="btn btn-success btnCustom"><span class="glyphicon glyphicon-search"></span></button>
+										</div>
+									</div>
+									<input name="signed_request" type="hidden" value="{$_signed_request}">
+								</form>
+								<span class="badge glyphicon glyphicon-shopping-cart cart "> <span class="number">{BNCGLOBAL['cartMini']['count']}</span></span>
+							</div>
+							
+						</div>
+					</div>
+		
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					
+					<div class="content">
+				
+						
+						<div class="row">
+							<div class="col-sm-6 col-md-6">
+								<div id="myCarousel" class="carousel slide" data-ride="carousel">
+									<!-- Indicators -->
+									<ol class="carousel-indicators">
+										<!--{loop $_product['photo'] $k $v}-->
+											<li data-target="#myCarousel" data-slide-to="{$k}" <!--{if $k==0}-->class="active"<!--{/if}--> ></li>
+										<!--{/loop}-->
+									</ol>
+									<!-- Wrapper for slides -->
+									<div class="carousel-inner" role="listbox">
+										<!--{loop $_product['photo'] $k $v}-->
+											<div class="item <!--{if $k==0}-->active<!--{/if}-->">
+												<img src="<!--{loadImage $v['image'] crop 574 373}-->" alt="{$v['att_alt']}">
+											</div>
+										<!--{/loop}-->
+									</div>
+									<!-- Left and right controls -->
+									<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+										<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+										<span class="sr-only">Previous</span>
+									</a>
+									<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+										<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+										<span class="sr-only">Next</span>
+									</a>
+								</div>
+								<!-- Wrapper for slides -->
+							</div>
+							<div class="col-sm-6 col-md-6">
+								<div class="col-sm-5 col-md-5 bold pad1">Tên sản phẩm:</div>
+								<div class="col-sm-7 col-md-7 pad1">{$_product['product']['name']}</div>
+								
+								<div class="col-sm-5 col-md-5 bold pad1">Giá sản phẩm:</div>
+								<div class="col-sm-7 col-md-7 pad1 bold text-danger">{$_product['product']['price']['price']}</div>
+								
+								<!--{if isset($_product['product']['price']['price_old']) && $_product['product']['price_old']!=0}-->
+									<div class="col-sm-5 col-md-5 bold pad1 ">Giá cũ:</div>
+									<div class="col-sm-7 col-md-7 pad1 priceOld">{$_product['product']['price']['price_old']}</div>
+								<!--{/if}-->
+								
+								
+								<!--{if isset($_product['product']['price']['percent']) && $_product['product']['percent']!=0}-->
+									<div class="col-sm-5 col-md-5 bold pad1">Khuyến mại:</div>
+									<div class="col-sm-7 col-md-7 pad1 text-danger">{$_product['product']['price']['percent']}</div>
+								<!--{/if}-->
+								
+								
+								<!--{if isset($_product['product']['code']) && $_product['product']['code']!=''}-->
+									<div class="col-sm-5 col-md-5 bold pad1">Mã sản phẩm:</div>
+									<div class="col-sm-7 col-md-7 pad1">{$_product['product']['code']}</div>
+								<!--{/if}-->
+								
+								<!--{if $_product['product']['quantity']==0}-->
+									<button disabled="disabled" class="btn btn-block btn-danger btn-sm">Hết hàng</button>
+									
+								<!--{else}-->
+									<button class="btn btn-block btn-success btn-sm add-cart" data-id-product="{$_product['product']['id']}"><span class="glyphicon glyphicon-shopping-cart"></span> Thêm vào giỏ hàng</button>
+								<!--{/if}-->
+							</div>
+							
+						</div>
+						<!--sp-->
+						<div class="clearfix"></div>
+						<div class="margin10"></div>
+						
+						<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+							<!--{loop $_product['tab'] $k $v}-->
+								<li <!--{if $k==0}-->class="active"<!--{/if}-->><a href="#tab_{$k}" data-toggle="tab">{$v['title']}</a></li>
+							<!--{/loop}-->
+						</ul>
+						<div id="my-tab-content" class="tab-content">
+							<!--{loop $_product['tab'] $k $v}-->
+									<div class="tab-pane <!--{if $k==0}-->active<!--{/if}-->" id="tab_{$k}">
+										{$v['content']}
+									</div>
+								
+							<!--{/loop}-->
+						</div>
+						
+						<div class="clearfix"></div>
+						<div class="margin10"></div>
+						<div class="row">
+							<!--{loop $_product['related'] $k $v}-->
+								<div class="col-sm-6  col-md-6">
+									<div class="panel panel-default">
+										<div class="panel-heading">{$v['title']}</div>
+										<div class="panel-body">
+											<ul class="related">
+												<!--{loop $v['content'] $k2 $v2}-->
+													<li>
+														<img src="<!--{loadImage $v2['image'] resize 70 70}-->">
+														<div class="title"><a href="{$v2['link']}">{$v2['name']}</a></div>
+														<div class="price">{$v2['price']}</div>
+													</li>
+												<!--{/loop}-->
+											</ul>
+										</div>
+									</div>
+								</div>
+								
+							<!--{/loop}-->
+						</div>
+					</div>
+					
+					<div class="col-sm-1 col-md-2"></div>
+					
+					
+				</div>
+			</div>
+			
+			<!-- Modal -->
+			<div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="cart">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">{lang cart}</h4>
+			      </div>
+			      <div class="modal-body">
+			       <!--{if BNCGLOBAL['cartMini']['show_cart'] == 1}-->
+								<!--{if !empty(BNCGLOBAL['cartMini']) && !empty(BNCGLOBAL['cartMini']['content'])}-->
+									<table class="table">
+									    <tbody>
+									    	<!--{loop BNCGLOBAL['cartMini']['content'] $k $v}-->
+									    		 <tr>
+											        <td><a href="{$v['link']}">{$v['name']}</a></td>
+											        <td>x{$v['quantity']}</td>
+											        <td>{$v['price']}</td>
+											        <td><i class="removeCartItem glyphicon glyphicon-trash" data-product="{$v['id']}" data-size="{$v['idSize']}"></i></td>
+											      </tr>
+									    	<!--{/loop}-->
+									       <tr>
+									       	 <td></td>
+									         <td></td>
+									         <td></td>
+									       	 <td><b>{lang label_total}:</b><b>{BNCGLOBAL['cartMini']['total']}</b></td>
+									      </tr>
+									    </tbody>
+									  </table>
+								<!--{else}-->
+										<li style="list-style: none;text-align: center;">{lang no_product_in_cart}</li>
+									<!--{/if}-->
+					<!--{/if}-->
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Đóng</button>
+			        <button type="button" class="btn btn-success payment" data-href="{BNCGLOBAL['cartMini']['payment_url']}"><span class="glyphicon glyphicon-ok"></span> {lang tienhanhdathang}</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="https://dev3.webbnc.vn/modules/product/themes/ShopFB/js/bootstrap.min.js"></script>
+		<script>
+		$(document).ready(function(){
+			$('[data-toggle="tooltip"]').tooltip();
+			$('body').on('click', '.add-cart', function(event) {
+				event.preventDefault();
+				var total=$('.cart .number').text();
+				total=parseInt(total)+1;
+				$('.cart .number').text(total);
+				//
+				$.ajax({
+					url: $('base').attr('href')+'/product-ajaxCart-ajaxAddCart'+$('base').attr('ext'),
+					type: 'POST',
+					dataType: 'html',
+					data: {
+						idProduct: $(this).attr('data-id-product'),
+						quantity:1
+					},
+				})
+				.success(function(res) {
+					$('body').append(res);
+				});
+				
+			});
+			$('body').on('click', '.cart', function(event) {
+				event.preventDefault();
+				$('#cart').modal('show'); 
+				
+			});
+			
+			$('body').on('click', '.removeCartItem', function(event) {
+				event.preventDefault();
+				$.ajax({
+					url: $('base').attr('href')+'/product-ajaxCart-ajaxRemoveCart'+$('base').attr('ext'),
+					type: 'POST',
+					dataType: 'html',
+					data: {
+						idProduct: $(this).attr('data-product'),
+						quantity:$(this).attr('data-size')
+					},
+				})
+				.success(function(res) {
+					$(this).parents('tr').remove();
+					window.location.reload();
+				});
+			});
+			  $(".payment").on("click",function(){
+			  	 $.ajax({
+			  	 	url: $('base').attr('href')+'/product-ajaxCart-ajaxSaveCart'+$('base').attr('ext'),
+			  	 	type: 'POST',
+			  	 	dataType: 'json',
+			  	 	data: {param1: 'value1'},
+			  	 })
+			  	 .success(function() {
+			  	 	
+			  	 });
+			  	 window.open($(this).attr('data-href'),'_blank');
+		         return false;
+		     });
+		});
+		</script>
+	</body>
+</html>

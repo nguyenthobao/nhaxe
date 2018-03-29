@@ -1,0 +1,25 @@
+<div class="row">
+<!--{if isset($_news)}-->
+
+<!--{loop $_news $k $v}-->
+<div class="col-md-6 item-post">
+    <div class="thumbnail">
+        <a href="$v['href']">
+            <img src="<!--{loadImage $v['img'] crop 570 290}-->" class="img-responsive" style="width:100%" alt="Image">
+        </a>
+    </div>
+    <div class="caption">
+        <a href="$v['href']">
+            <h3>$v['title']</h3>
+        </a>
+
+        <p><!--{cutString $v['short'] 0 200}--></p>
+    </div>
+</div>
+<!--{/loop}-->
+    <div class="clearfix"></div>
+    <!--{temp news/news_pagination}-->
+<!--{else}-->
+{lang no_record_exists}
+<!--{/if}-->
+</div>

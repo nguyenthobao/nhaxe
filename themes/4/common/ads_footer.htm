@@ -1,0 +1,43 @@
+
+<div id="footer-wrap">
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('body').on('click', '#copy_right_button', function(event) {
+			event.preventDefault();
+			var is_show=$(this).attr('is_show');
+			
+			if(is_show==0 || is_show==undefined){
+				$('#nxt_footer_content').animate({height:'100%'},300);
+				$(this).attr('is_show',1);
+				  $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+				  $(this).html('&xoplus;');
+			}else{
+				$('#nxt_footer_content').animate({height:0},300);
+				$(this).attr('is_show',0);
+				$(this).html('&xotime;');
+			}
+		});		
+	});
+	</script>
+	<div id="nxt_footer_content" style="height: 0px; left: 0px; top: 0px; width: 100%;">
+		<div class="nxt_content_signup">
+			<h2 class="headline" style="font-family: arial">Hãy tạo một website cho riêng bạn</h2>
+			<div class="description">Hãy tạo một website cho riêng bạn<a class="thin-underline" href="http://dev3.webbnc.vn/" target="_blank" rel="nofollow"> Tìm hiểu thêm.</a></div>
+			<form id="nxt_footer_signup" method="POST" action="#" class="wsite-footer">
+				<div class="input-wrapper no-left-margin">
+					<input type="text" id="weebly-name" class="input-field" name="name" placeholder="Tên website">
+				</div>
+				<div class="input-wrapper">
+					<input type="text" class="input-field" name="email" placeholder="Email">
+				</div>
+				<div class="input-wrapper password-wrapper">
+					<input type="password" id="weebly-new-password" class="input-field" name="password" placeholder="Mật khẩu">
+				</div>
+				<div class="input-wrapper button-wrapper">
+					<button id="signup-button" class="btn">Đăng kí</button>
+					
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

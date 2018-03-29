@@ -1,0 +1,19 @@
+<li>	
+		<!--{if !empty($v['sub'])}-->
+		<div class="background-option-1">
+        <!--{if $v['avatar']}--><img src="<!--{loadImage $v['avatar'] crop 235 461}-->" width="" height="" class="img-responsive" alt="{$v['name']}" /><!--{/if}-->
+        </div>
+        <!--{/if}-->
+        
+        <!--{if $v['icon']}--><img style="" src="<!--{loadImage $v['icon'] none 55 52}-->" class="img-responsive iconstyle" alt="{$v['name']}" /><!--{/if}-->
+        <!--{if $v['background']}--><img style="display:none" src="<!--{loadImage $v['background'] resize 32 32}-->" class="img-responsive" alt="{$v['name']}" /><!--{/if}-->
+	<a href="{$v['link']}" title="{$v['name']}"></i> {$v['name']}</a>
+	<!--{if !empty($v['sub'])}-->
+	<ul>
+		<!--{loop $v[sub] $k $v}-->
+		<!--{tempblock blocks/blockCategoryItem}-->
+		<!--{/loop}-->
+	</ul>
+	<!--{/if}-->
+   
+</li>

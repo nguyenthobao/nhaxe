@@ -1,0 +1,22 @@
+<!--{if !empty($_newsItem)}-->
+<ul class="f-news row">
+	<!--{loop $_newsItem $k $v}--> 
+	<li class=" col-md-3 col-sm-6 col-xs-6 full-xs">
+		<div class="f-news-item">
+			<div class="f-news-item-img"> <a href="$v['link']" title=""> <img src="<!--{loadImage $v['img'] crop 331 184}-->" class="img-responsive" alt="$v['title']" /> </a> 
+
+			<div class="wrapnewitem">
+                    
+                    </div><!--end wrapnewitem-->
+                    
+			</div>
+			<div class="f-news-item-title">
+				<h3> <a title="Title" href="$v['link']">$v['title']</a> </h3>
+				<div class="f-new-item-sum"><!--{cutString $v['short'] 0 200}--> </div>
+			</div>
+		</div>
+	</li>
+	<!--{/loop}-->
+</ul>
+<!--{/if}-->
+<div class="clearfix"></div>

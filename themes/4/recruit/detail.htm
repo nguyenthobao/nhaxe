@@ -1,0 +1,315 @@
+<link rel="stylesheet" href="{$web['static_temp_mod']}/resource/css/detail.css?rs={$_rs}">
+<div class="f-module-page">
+<!--{if isset($_breadcrumbs)}-->
+    <div class="productbreadcrumb">
+
+<ol class="breadcrumb">
+     <!--{loop $_breadcrumbs $k $v}-->
+        
+        <li ><a href="{$v['href']}">{$v['text']}</a></li>
+         
+        <!--{/loop}-->
+   
+</ol>
+</div>
+    <div class="clearfix"></div>
+    <!--{/if}-->
+    <div class="f-module-page-title">
+    <i></i><span>{$_title}</span>
+    </div>
+    <div class="f-module-page-body padding-10">
+
+       <!--{if isset($_SESSION['error_submit'])}-->
+        <div class="alert alert-danger">
+            <button class="close" data-close="alert"></button>
+            {show_ss error_submit} sdflshljf
+        </div>
+        <!--{/if}--> 
+        <!--{if isset($_SESSION['success'])}-->
+        <div class="alert alert-success">
+            <button class="close" data-close="alert"></button>
+            {show_ss success} sdfsdfsd
+        </div>
+        <!--{/if}--> 
+
+
+        <div class="clearfix"></div>
+        <div class="f-cate " >
+
+            <!--{if isset($_jobCate)}-->
+                    <ul class="f-cate-ul no-margin no-padding">
+                        <!--{loop $_jobCate $k $v}-->
+                        <li class="col-md-3">
+                            <a href="{$v['link']}"><span>{$v['job']}</span></a>
+                        </li>
+                        <!--{/loop}-->
+                    </ul>
+             <!--{/if}-->
+             <div class="clearfix"></div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="f-recr-view">
+            <div class="table-responsive">
+                <table class="table table-bordered  ">
+                    <tr>
+                        <th colspan="2">{lang thong_tin_tuyen_dung}<span class="pull-right">{lang ngay_dang}: {$_post_time} | {lang ma_tuyen_dung}: {$_code_recruit}</span></th>
+
+                    </tr>
+                    <tr>
+                        <td class="col-md-3">{lang vi_tri_tuyen_dung}</td>
+                        <td>{$_title}</td>
+                    </tr>
+                    <tr>
+                        <td>{lang nganh_nghe}</td>
+                        <td>{$_job}</td>
+                    </tr>
+                    <tr>
+                        <td>{lang chuc_vu}</td>
+                        <td>{$_position}</td>
+                    </tr>
+                    <tr>
+                        <td>{lang loai_hinh}</td>
+                        <td>{$_work_type}</td>
+                    </tr>
+                    <tr>
+                        <td>{lang dia_diem_lam_viec}</td>
+                        <td>{$_work_location}</td>
+                    </tr>
+                    <tr>
+                        <td>{lang so_luong_can_tuyen}</td>
+                        <td>{$_quantity}</td>
+                    </tr>
+                    <tr>
+                        <td>{lang muc_luong}</td>
+                        <td>{$_wage}</td>
+                    </tr>
+                    <tr>
+                        <td>{lang mo_ta_cong_viec}</td>
+                        <td>{$_job_description}</td>
+                    </tr>
+                    <tr>
+                        <td>{lang quyen_loi}</td>
+                        <td>{$_benefit_description}</td>
+                    </tr>
+                    <tr>
+                        <td>{lang kinh_nghiem}</td>
+                        <td>{$_experience}</td>
+                    </tr>
+                    <tr>
+                        <td>{lang trinh_do}</td>
+                        <td>{$_level_require}</td>
+                    </tr>
+                    <tr>
+                        <td>{lang yeu_cau_khac}</td>
+                        <td>{$_other_require}</td>
+                    </tr>
+                    <tr>
+                        <td>{lang ho_so_gom}</td>
+                        <td>{$_profile}</td>
+                    </tr>
+                    <tr>
+                        <td>{lang han_nop}</td>
+                        <td>{$_deadline}</td>
+                    </tr>
+                </table>
+            </div>
+            <!--{if !empty($_company_title)}-->
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>{lang information_recruit}</th>
+                    </tr>
+                    <tr>
+                        <td class="col-md-3"><img src="<!--{loadImage $_logo crop 332 258}-->" /></td>
+                        <td>
+                        <table class="table">
+                            <tr>
+                                <td class="col-md-4" style="border-top: none">{lang ten_cty}</td>
+                                <td style="border-top: none">{$_company_title}</td>
+                            </tr>
+                            <tr>
+                                <td>{lang dia_chi}</td>
+                                <td>{$_recruit_location}</td>
+                            </tr>
+                            <tr>
+                                <td>{lang website}</td>
+                                <td><a href="{$_recruit_website}">{$_recruit_website}</a></td>
+                            </tr>
+                            <tr>
+                                <td>{lang dien_thoai}</td>
+                                <td>{$_recruit_phone}</td>
+                            </tr>
+                            <tr>
+                                <td>{lang mo_ta_cty}</td>
+                                <td>{$_recruit_descript}</td>
+                            </tr>
+                        </table></td>
+                    </tr>
+                </table>
+            </div>
+            <!--{/if}-->
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>{lang thong_tin_lien_he}</th>
+                    </tr>
+                    <tr>
+                        <td class="col-md-3">{lang nguoi_lien_he}</td>
+                        <td>{$_contact_name}</td>
+                    </tr>
+                    <tr>
+                        <td>{lang dien_thoai_lh}</td>
+                        <td>{$_contact_phone}</td>
+                    </tr>
+                    <tr>
+                        <td>{lang email_lh}</td>
+                        <td>{$_contact_email}</td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-3">{lang hinh_thuc_lh}</td>
+                        <td>{$_contact_form}
+                        <div class="pull-right">
+                            <a  class="app-job-bt btn btn-success">{lang nop_ho_so}</a>
+                        </div>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+            <form id="recruit_form" action="{$_post_profile_url}" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id_recruit" value="{$_id}" />
+            <div class="apply-jod" style="display:none">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{lang gui_cv_toi_ntd}</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="form-group">
+                            <label class="control-label" for="textinput">{lang chon_file}</label>
+
+                            <input id="filebutton" name="filebutton" class="input-file" type="file">
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="textinput">{lang mo_ta_ngan}</label>
+                            <textarea class="form-control" id="contents_description" name="contents_description"></textarea>
+                            
+                              
+                             
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class=" control-label" for="textinput">{lang ten_nguoi_gui}</label>
+
+                                    <input id="name" name="name" type="text" placeholder="" class="form-control input-md">
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label class=" control-label" for="textinput">{lang so_dien_thoai}</label>
+
+                                    <input id="phone" name="phone" type="text" placeholder="" class="form-control input-md">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class=" control-label" for="textinput">{lang tieu_de}</label>
+
+                                    <input id="title" name="title" type="text" placeholder="" class="form-control input-md">
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label class=" control-label" for="textinput">{lang email_nguoi_gui}</label>
+
+                                    <input id="email" name="email" type="text" placeholder="" class="form-control input-md">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class=" control-label" for="textinput">{lang captcha}</label>
+
+                                    <input type="hidden" name="captcha" id="cap" value="0" />
+<div>
+    <img id="capt_img" src="BNCGLOBAL['captcha']" /> <img title="{lang tai_lai_ma_bao_ve}" id="f5capt" src="{$web['static_temp_mod']}/resource/img/view-refresh-small.png" /> 
+    <div style="float: left; padding: 1px 5px 0 0; width: 30%;"><input type="text" class="form-control" id="captcha" value="" /></div>
+</div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <br/>
+                                    <button type="submit" class="btn btn-success">
+                                        {lang gui_ho_so}
+                                    </button>
+                                    <a href="{$_url_cancel}" class="btn btn-danger">
+                                        {lang huy}
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+<script src="{$web['static_temp_mod']}/resource/assets/bootstrap/js/bootstrap.min.js"></script>
+<link href="{$web['static_temp_mod']}/resource/assets/bootstrap-dialog/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
+<script src="{$web['static_temp_mod']}/resource/assets/bootstrap-dialog/js/bootstrap-dialog.min.js"></script>
+<script src="{$web['static_temp_mod']}/resource/js/recruit.js?rs={$_rs}" type="text/javascript"></script>
+<script>
+    jQuery(document).ready(function() {
+var per = new Array();
+    per['alert'] = '{lang alert}';
+    per['vui_long_nhap_ten'] = '{lang vui_long_nhap_ten}';
+    per['vui_long_nhap_tieu_de'] = '{lang vui_long_nhap_tieu_de}';
+    per['vui_long_nhap_sdt'] = '{lang vui_long_nhap_sdt}';
+    per['vui_long_nhap_email'] = '{lang vui_long_nhap_email}';
+    per['vui_long_nhap_dung_captcha'] = '{lang vui_long_nhap_dung_captcha}';
+    per['vui_long_nhap_tu_khoa'] = '{lang vui_long_nhap_tu_khoa}';
+    per['vui_long_chon_file'] = '{lang vui_long_chon_file}';
+    per['file_khong_hop_le'] = '{lang file_khong_hop_le}';
+    per['vui_long_ta_ve_ban'] = '{lang vui_long_ta_ve_ban}';
+    per['dia_chi_email_khong_hop_le'] = '{lang dia_chi_email_khong_hop_le}';
+    per['load_cate_url'] = '$_load_cate_url';
+    per['check_captcha_url'] = '$_check_captcha_url';
+    
+    recruit.init(per);
+    $("#recruit_form").submit(function(event) {
+    recruit.valid(event,this,per);
+    event.preventDefault();
+    });
+    }); 
+</script>
+<!--{if !empty($_message)}-->
+<script>
+$("body").append('<div class="message" id="message">{$_message}</div>');
+setTimeout(function(){
+$('#message').fadeOut(3000, function(){
+    $(this).remove();
+});
+}, 3000);
+</script>
+<!--{/if}-->

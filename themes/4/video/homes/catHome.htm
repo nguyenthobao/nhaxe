@@ -1,0 +1,58 @@
+ 
+<!--{if !empty($_home_cat)}-->
+	<!--{loop $_home_cat $key $value}-->
+		<!--{if !empty($value['content_video'])}-->
+		<div class="container">
+			<div class="f-center-module tab-hot">
+				<div class="f-center-title "> 
+					<h2><span class="first">{$value['title']}</span></h2>		
+					<!--{if !empty($value['sub'])}-->
+					<ul class="f-pr-tab-home-cate nav-tabs">
+			            <!--{eval $i = 1}--> 
+			            <!--{loop $value['sub'] $k $v}-->
+			            	<li>		            		
+			            		<a href="#f-pr-cate01-tab0{$i}" data-toggle="tab" id="{$v['id']}" data-id="{$web['home_url']}" class="videotab">{$v['title']}</a>
+			            	</li>
+			            <!--{eval $i++}-->
+			            <!--{/loop}--> 
+					</ul>
+					<!--{/if}-->
+				</div>
+				<div class="f-center-body">
+					<div class="clearfix"></div>
+					<div class="tab-content">
+						<!--{eval $content_video = $value['content_video']}-->
+						<!--{temphome homes/videoItem}-->
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<!--{/if}-->
+	<!--{/loop}-->
+<!--{/if}-->
+
+<script src="{$web['static_temp_mod']}/resource/js/jsajax.js" type="text/javascript"></script>
+
+<script>
+$(document).ready(function() {
+   jsajax.init();
+});
+</script>
+<style type="text/css">
+.loadding
+{
+	height: 150px;
+	width: 100%;
+	position: relative;
+}
+.loadding img
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+</style>

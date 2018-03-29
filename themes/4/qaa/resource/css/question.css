@@ -1,0 +1,59 @@
+.form-control{
+    margin-bottom: 10px;
+}
+.sbt{
+    font-weight: bold;
+    width: 150px;
+    float: right;
+    margin-top: 10px;
+}
+.sbt:hover{
+    background: #66afe9;
+    color: #ffffff;
+}
+#cate_scroll{
+    height:200px;
+    border:1px solid #cccccc;
+    border-top: 0;
+    overflow-y:scroll;
+    padding: 5px;
+    background: #ffffff;
+    margin-bottom: 10px;
+}
+.cate-title-choose{
+    background: #ffffff;
+    font-weight: bold;
+    padding: 5px; 
+}
+.no-margin{
+    margin: 0;
+}
+padding{
+    padding: 0;
+}
+.faq-wrap{
+    background: #ffffff;
+    padding: 5px;
+    display: inline-block;
+    width: 100%;
+}
+#f5capt{
+    cursor: pointer
+}
+.message{
+    position: fixed;
+    top: 0;
+    border: 1px solid;
+    margin: 10px auto;
+    padding:15px 0 15px 0;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    z-index: 130;
+    color: #4F8A10;
+    text-align: center;
+    background-color: #DFF2BF;
+    padding: 10px;
+    left: 0;
+    right: 0;
+    width: 90%;
+}

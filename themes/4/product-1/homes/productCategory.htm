@@ -1,0 +1,94 @@
+
+<!--Like Product-->
+<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/css/likeproduct.css"/>
+<script src="{$web['static_temp_mod']}/resource/js/likeproduct.js"></script>
+<script src="{$web['static_temp_mod']}/resource/js/homeProductCategory.js"></script>
+
+<script type="text/javascript">
+ function getRandomColor() {
+                        var letters = '0333333333CBCDEC'.split('');
+                        var color = '#';
+                        for (var i = 0; i < 6; i++ ) {
+                            color += letters[Math.floor(Math.random() * 16)];
+                        }
+                        return color;
+                }
+</script>
+<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/css/toastr.css"/>
+<script src="{$web['static_temp_mod']}/resource/js/toastr.js"></script>
+
+<!--{if !empty($_home_category)}-->
+<!--{eval $i=1}-->
+<!--{loop $_home_category $key $value}-->
+<div class="clearfix"></div>
+<div class="v2-home-catepr">
+     <div class="col-md-6 col-sm-6 col-xs-6 v2-home-catepr-left"> 
+         <div class="v2-home-catepr-left-mn">
+
+             <div class="v2-home-catepr-title setcolor{$i}"><i class="{$i}">{$i}F</i> <a href="{$value['link']}"><span>{$value['name']}</span></a></div>
+
+        <div class="v2-home-catepr-3tab setcolor{$i}">
+            <ul>
+                 <!--{if !empty($value['tab_title'])}-->
+                    <!--{eval $j=0}-->
+                    <!--{loop $value['tab_title'] $k $v}-->
+                        <!--{if $j<3}-->
+                        <li >
+                            <a  href="javascript:;" data-id="{$value['id']}" data-block="{$value['id']}" data-type="{$v['name']}" class="product-category-tab <!--{if $k==0}-->active<!--{/if}-->">{$v['title']}</a>
+                        </li>
+                        <!--{/if}-->
+                    <!--{eval $j++}-->
+                    <!--{/loop}-->
+                <!--{/if}-->
+ 
+            </ul>
+        </div> 
+        <script type="text/javascript">
+
+                $(".setcolor{$i}").css("background",getRandomColor());
+                $(".setcolor{$i} li").click(function(){
+                    $(".setcolor{$i} li a").attr('class','');
+                    $(this).find('a').attr('class','active'); 
+                });
+                 
+             </script>
+        <ul class="v2-home-catepr-tabul nav-tabs">
+          
+            <!--{if !empty($value['sub'])}-->
+                <!--{loop $value['sub'] $k $v}-->
+                 <li><a href="{$v['link']}" data-ajax="1" data-url="{$v['link']}" data-id="{$v['id']}" data-block="{$value['id']}" class="product-category">{$v['name']}</a></li>
+                <!--{/loop}-->
+            <!--{/if}-->
+        </ul>
+
+         </div>
+
+         <div class="v2-home-catepr-left-bg">
+            <a href="{$value['link']}">
+             <img src="<!--{loadImage $value['background'] crop 370 440}-->"> 
+            </a>
+         </div>
+         <div class="clearfix"></div>
+    <!--{eval $i++}-->
+    </div>
+    <div class=" col-md-6 col-sm-6 col-xs-6 v2-home-catepr-right">
+        
+        <div class="tab-content">
+            <!--{eval $_content = $value['tab_content']}-->
+            <ul class="v2-home-catepr-showul" id="product-content-{$value['id']}">
+                <!--{temphome homes/productItemCate}-->
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<!--{/loop}-->
+<!--{/if}-->
+
+<script type="text/javascript">
+   $(document).ready(function() {
+       Likeproduct.init();
+       HomeProductCategory.init();
+    });
+</script>

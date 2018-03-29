@@ -1,0 +1,37 @@
+.media-left, .media-right, .media-body {
+  display: table-cell;
+  vertical-align: top;
+}
+.media-left, .media > .pull-left {
+  padding-right: 10px;
+}
+.f-qaList-body-ul li:last-child {
+    border-bottom: 0;
+} 
+.category-list{
+    max-height:290px;
+}
+.main-list{
+    max-height:600px;
+}
+.f-qaList-sotr .active{
+    color: #0069a3;
+    outline: 0;
+}
+.message{
+    position: fixed;
+    top: 0;
+    border: 1px solid;
+    margin: 10px auto;
+    padding:15px 0 15px 0;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    z-index: 130;
+    color: #4F8A10;
+    text-align: center;
+    background-color: #DFF2BF;
+    padding: 10px;
+    left: 0;
+    right: 0;
+    width: 90%;
+}

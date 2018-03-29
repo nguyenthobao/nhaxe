@@ -1,0 +1,16 @@
+.list{
+    margin-bottom: 15px;
+    border-bottom: 1px solid #f1f1f1;
+}
+.address{
+    margin-bottom: 5px;
+}
+.list p{
+    margin-bottom: 2px;
+}
+.bg_map{
+    margin-top: -30px;
+}
+.list span{
+    color: red;
+}

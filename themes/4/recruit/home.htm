@@ -1,0 +1,126 @@
+<div class="f-module-page">
+    <!--{if isset($_breadcrumbs)}-->
+    <div class="productbreadcrumb">
+        <ol class="breadcrumb">
+         <!--{loop $_breadcrumbs $k $v}-->
+         <li ><a href="{$v['href']}">{$v['text']}</a></li>
+         <!--{/loop}-->
+     </ol>
+ </div>
+ <div class="clearfix"></div>
+ <!--{/if}-->
+ <!--{if !empty($_home_title) }-->
+ <div class="f-module-page-title"> 
+    <h1><i><img src="<!--{loadImage $_home_icon crop 50 50}-->" onerror="this.onerror=null;this.src='<!--{loadImage $_no_img crop 50 50}-->'" /></i>
+        <span>{$_home_title}</span></h1>
+    </div>
+    <!--{else}-->
+    <div class="f-module-page-title">
+        <i></i><span>{lang module_name}</span>
+
+    </div>
+    <!--{/if}-->
+    <!--{if !empty($_home_description) }-->
+    <div class="f-module-page-desc" <!--{if !empty($_home_bg_image) }-->style="background-image:url({$_home_bg_image});display: inline-block;"<!--{/if}-->>
+        <div class="col-md-3 img">
+            <img class="img-thumbnail img-responsive" src="<!--{loadImage $_home_avatar resize 170 170}-->" onerror="this.onerror=null;this.src='<!--{loadImage $_no_img crop 170 170}-->'">
+        </div>
+        <div class="col-md-9">
+            <p><!--{if isset($_home_description)}-->{$_home_description}<!--{/if}-->
+            </div>
+        </div>
+        <!--{/if}-->
+        <div class="f-module-page-body padding-10">
+            <div class="clearfix"></div>
+            <div class="f-cate"  >
+                <!--{if isset($_job)}-->
+                <ul class="f-cate-ul no-margin no-padding">
+                    <!--{loop $_job $k $v}-->
+                    <li class="col-md-2">
+                        <a href="{$v['link']}"><span>{$v['job']}</span></a>
+                    </li>
+                    <!--{/loop}-->
+                </ul>
+                <div class="clearfix"></div>
+                <!--{/if}-->
+            </div>
+            <div class="clearfix"></div>
+            <div class="f-page-tab">
+                <hr />
+                <div class="row">
+                    <form method="get" action="{$_home}">
+                        <div class="col-md-3">
+
+                            <select class="form-control" name="sort">
+                                <option <!--{if !empty($_sort) && $_sort == 'new' }-->selected="selected" <!--{/if}-->value="new">{lang moi}</option>
+                                <option <!--{if !empty($_sort) && $_sort == 'hot' }-->selected="selected" <!--{/if}-->value="hot">{lang noi_bat}</option>
+                                <option <!--{if !empty($_sort) && $_sort == 'az' }-->selected="selected" <!--{/if}-->value="az">{lang a_den_z}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="q" placeholder="{lang tieu_de}" class="form-control" value="<!--{if !empty($_search_string) }-->{$_search_string}<!--{/if}-->">
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" name="limit">
+                                <option value="{$_default_limit}" <!--{if !empty($_search_limit) && $_search_limit == $_default_limit }-->selected="selected"<!--{/if}-->>{lang show_number}</option>
+                                <option value="20" <!--{if !empty($_search_limit) && $_search_limit == 20 }-->selected="selected"<!--{/if}-->>20</option>
+                                <option value="30" <!--{if !empty($_search_limit) && $_search_limit == 30 }-->selected="selected"<!--{/if}-->>30</option>
+                                <option value="40" <!--{if !empty($_search_limit) && $_search_limit == 40 }-->selected="selected"<!--{/if}-->>40</option>
+                                <option value="50" <!--{if !empty($_search_limit) && $_search_limit == 50 }-->selected="selected"<!--{/if}-->>50</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-success">{lang search}</button>
+                        </div>
+                    </form>
+                </div>
+                <hr />
+                <div class="clearfix"></div>
+                <div class="tab-content margin-top-10">
+                    <!--{if isset($_recruitList)}-->
+                    <div id="f-recr-tab01" class="tab-pane active">
+                        <div class="f-recr-content">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <tr>
+                                        <th>STT</th>
+                                        <th style= "text-align:center">{lang ten_cong_viec}</th>
+                                        <th style= "text-align:center">{lang muc_luong_nhan}</th>
+                                        <th style= "text-align:center">{lang han_nop_ho_so}</th>
+                                        <th style= "text-align:center">{lang noi_lam_viec}</th>
+                                    </tr>
+                                    <!--{loop $_recruitList $k $v}-->
+                                    <!--{eval $k=$k+1}-->
+                                    <tr>
+                                        <td>{$k}</td>
+                                        <td width ="150"><a href="{$v['link']}" title="{$v['title']}">{$v['title']}</a></td>
+                                        <td width ="120">{$v['wage']}</td>
+                                        <td width = "120">{$v['deadline']}</td>
+                                        <td>{$v['work_location']}</td>
+                                    </tr>
+                                    <!--{/loop}-->
+                                </table>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!--{temp recruit/_pagination}-->
+                    </div>
+                    <!--{else}-->
+                    <p style="padding: 10px 0">{$_alert}</p>
+                    <!--{/if}-->
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!--######### END CENTER MODULE TAB PRODUCT HOT #########-->
+        </div>
+    </div>
+    <script>
+    var per = new Array();
+    per['vui_long_nhap_tu_khoa'] = '{lang vui_long_nhap_tu_khoa}';
+    </script>
+    <script src="{$web['static_temp_mod']}/resource/js/recruit.js" type="text/javascript"></script>
+    <script>
+    jQuery(document).ready(function() {
+        recruit.init(per);
+    }); 
+    </script>

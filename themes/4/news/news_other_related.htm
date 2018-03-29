@@ -1,0 +1,28 @@
+<!--Kiểu slide-->
+<!--{if $_newsOther[$k]['news'] != null}-->
+<!--{if $_newsOther[$k]['show_type'] == 'list'}-->
+<div class="f-page-split-title">{lang related_news}</div>
+<div class="f-page-split-body">
+  <div class="clearfix"> </div>
+    <ul class="f-news-other no-margin no-padding">
+
+    	<!--{if isset($_newsOther[$k][news])}-->
+    	<!--{loop $_newsOther[$k][news] $n $bh}-->
+    	<li>
+          <h3>
+              <a href="{$bh['href']}">
+                <!--{if isset($bh['thumb'])}--><img src="{$bh['thumb']}" alt="{$bh['title']}" title="{$bh['title']}" /><!--{/if}-->
+                <span class="glyphicon glyphicon-th-large small"></span> {$bh['title']} </a>
+           </h3>
+        </li>
+    	<!--{/loop}-->
+    	<!--{/if}-->
+    </ul>
+    <div class="clearfix"></div>
+</div>
+<!--{elseif $_newsOther[$k]['show_type'] == 'slide'}-->
+Tự trình bày kiểu slide
+<!--{/if}-->
+<!--{/if}-->
+<!--Kiểu list -->
+

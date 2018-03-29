@@ -1,0 +1,183 @@
+<div class="f-ctn-center col-md-12 col-xs-12 col-sm-12 ">
+	<p class="pull-left visible-xs ">
+		<button type="button" class="btn btn-primary btn-xs " data-toggle="offcanvas">Ẩn / Hiện tiện ích BLOCK</button>
+	</p>
+
+	<script type="text/javascript">
+	var urlOr='{$_url_or}';
+	</script>
+	<script src="{$web['static_temp_mod']}/resource/js/jquery.cookie.js"></script>
+	<script src="http://demo.bncgroup.vn/themes/1/statics/plugins/pjax/jquery.pjax.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://demo.bncgroup.vn/themes/1/statics/plugins/magnific-popup/magnific-popup.css">
+	<script src="http://demo.bncgroup.vn/themes/1/statics/plugins/magnific-popup/jquery.magnific-popup.js"></script>
+
+	<!--Like Product-->
+	<link rel="stylesheet" type="text/css" href="http://demo.bncgroup.vn/modules/product/themes/resource/css/likeproduct.css">
+
+
+
+
+
+	<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/js/downtime/jquery.countdown.css">
+	<script src="{$web['static_temp_mod']}/resource/js/downtime/jquery.plugin.min.js"></script>
+	<script src="{$web['static_temp_mod']}/resource/js/downtime/jquery.countdown.min.js"></script>
+	<script src="{$web['static_temp_mod']}/resource/js/downtime/jquery.countdown-vi.js"></script>
+	<script src="{$web['static_temp_mod']}/resource/js/global.js"></script>
+	<script src="{$web['static_temp_mod']}/resource/js/deal.js"></script>
+	<div id="fast-container">
+		<div class="productbreadcrumb">
+			<ol class="breadcrumb">
+				<li><a href="http://demo.bncgroup.vn">Trang chủ</a></li>
+				<li><a href="http://demo.bncgroup.vn/product.html">Deal</a></li>
+			</ol>
+		</div>
+		<input id="BNC_current_url" type="hidden" value="http://demo.bncgroup.vn/product.html">
+		<div class="f-ctn-center">
+			<div class="f-module-page">
+				<div class="f-module-page-body ">
+					<div class="f-module-page-title">
+						<img src="https://wrappedcafe.files.wordpress.com/2013/09/hot-deal.jpg?w=50&h=50">
+						<span>Deal</span>
+					</div>
+					<div class="f-cate">
+						<ul class="f-cate-ul no-margin no-padding">
+							<!--{loop $_category $k $v}-->
+							<li class="col-md-3  col-sm-3 col-xs-3">
+								<img src="<!--{loadImage $v['icon'] crop 30 30}-->" alt="{$v['title']}">
+								<a href="{$v['link']}"><span>{$v['title']}</span></a>
+							</li>
+							<!--{/loop}-->
+							<script type="text/javascript">
+							if('<li><input type="checkbox"  value="2977"><span>Điện thoại, viễn thông</span></a></li><li><input type="checkbox"  value="93"><span>Nội thất, Ngoại thất</span></a></li><li><input type="checkbox"  value="84"><span>Khuyến mại mới</span></a></li><li><input type="checkbox"  value="57"><span>Đồ gia dụng - sinh hoạt</span></a></li><li><input type="checkbox"  value="56"><span>Nội thất - văn phòng</span></a></li><li><input type="checkbox"  value="55"><span>Hoa - Quà tặng</span></a></li><li><input type="checkbox"  value="53"><span>Mỹ phẩm</span></a></li><li><input type="checkbox"  value="1846"><span>Mặt hàng khác</span></a></li><li><input type="checkbox"  value="54"><span>Điện tử - Điện máy</span></a></li><li><input type="checkbox"  value="1585"><span>Chân dung đẹp</span></a></li><li><input type="checkbox"  value="1586"><span>Ăn sáng</span></a></li><li><input type="checkbox"  value="1587"><span>Văn phòng phẩm</span></a></li><li><input type="checkbox"  value="1462"><span>Bánh sinh nhật</span></a></li><li><input type="checkbox"  value="60"><span>Mẹ và Bé</span></a></li><li><input type="checkbox"  value="1588"><span>Test danh mục mobile</span></a></li><li><input type="checkbox"  value="92"><span>Sức khỏe, Sắc đẹp</span></a></li><li><input type="checkbox"  value="91"><span>Sách, Văn phòng phẩm</span></a></li><li><input type="checkbox"  value="90"><span>Đồ dùng sinh hoạt</span></a></li><li><input type="checkbox"  value="89"><span>Hàng tiêu dùng</span></a></li><li><input type="checkbox"  value="87"><span>Điện thoại , Viễn thông</span></a></li><li><input type="checkbox"  value="86"><span>Máy tính , Linh kiện</span></a></li><li><input type="checkbox"  value="34"><span>Ô tô -  xe máy</span></a></li><li><input type="checkbox"  value="122"><span>Thời trang</span></a></li><li><input type="checkbox"  value="59"><span>Dịch vụ - Du lịch - Khách sạn</span></a></li><li><input type="checkbox"  value="58"><span>Thủ công - Mỹ nghệ</span></a></li>'==''){
+							$('.category_filter, .f-cate').remove();
+							}else{
+								$('.category_filter').html('<span>Category</span><ul id="search-category"><li><input type="checkbox"  value="2977"><span>Điện thoại, viễn thông</span></a></li><li><input type="checkbox"  value="93"><span>Nội thất, Ngoại thất</span></a></li><li><input type="checkbox"  value="84"><span>Khuyến mại mới</span></a></li><li><input type="checkbox"  value="57"><span>Đồ gia dụng - sinh hoạt</span></a></li><li><input type="checkbox"  value="56"><span>Nội thất - văn phòng</span></a></li><li><input type="checkbox"  value="55"><span>Hoa - Quà tặng</span></a></li><li><input type="checkbox"  value="53"><span>Mỹ phẩm</span></a></li><li><input type="checkbox"  value="1846"><span>Mặt hàng khác</span></a></li><li><input type="checkbox"  value="54"><span>Điện tử - Điện máy</span></a></li><li><input type="checkbox"  value="1585"><span>Chân dung đẹp</span></a></li><li><input type="checkbox"  value="1586"><span>Ăn sáng</span></a></li><li><input type="checkbox"  value="1587"><span>Văn phòng phẩm</span></a></li><li><input type="checkbox"  value="1462"><span>Bánh sinh nhật</span></a></li><li><input type="checkbox"  value="60"><span>Mẹ và Bé</span></a></li><li><input type="checkbox"  value="1588"><span>Test danh mục mobile</span></a></li><li><input type="checkbox"  value="92"><span>Sức khỏe, Sắc đẹp</span></a></li><li><input type="checkbox"  value="91"><span>Sách, Văn phòng phẩm</span></a></li><li><input type="checkbox"  value="90"><span>Đồ dùng sinh hoạt</span></a></li><li><input type="checkbox"  value="89"><span>Hàng tiêu dùng</span></a></li><li><input type="checkbox"  value="87"><span>Điện thoại , Viễn thông</span></a></li><li><input type="checkbox"  value="86"><span>Máy tính , Linh kiện</span></a></li><li><input type="checkbox"  value="34"><span>Ô tô -  xe máy</span></a></li><li><input type="checkbox"  value="122"><span>Thời trang</span></a></li><li><input type="checkbox"  value="59"><span>Dịch vụ - Du lịch - Khách sạn</span></a></li><li><input type="checkbox"  value="58"><span>Thủ công - Mỹ nghệ</span></a></li></ul><i class="fa fa-chevron-down fa-chevron-up BNC_showhide"></i>');
+							}
+							</script>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+					<div class="f-page-tab">
+						<div class="v2-filterpr">
+							<div class="row">
+								<div class="col-md-2  col-sm-2 col-xs-2">
+									<select name="sort_filter_deal" id="sort_filter_deal" class="form-control">
+										<option value="last" <!--{if !empty($_search['sort']) && $_search['sort']=='last'}-->selected<!--{/if}-->>Sản phẩm mới nhất</option>
+										<option value="early" <!--{if !empty($_search['sort']) && $_search['sort']=='early'}-->selected<!--{/if}-->>Sản phẩm cũ nhất</option>
+										<option value="best_selling" <!--{if !empty($_search['sort']) && $_search['sort']=='best_selling'}-->selected<!--{/if}-->>Sản phẩm bán chạy</option>
+										<option value="view" <!--{if !empty($_search['sort']) && $_search['sort']=='view'}-->selected<!--{/if}-->>Sản phẩm xem nhiều</option>
+										<option value="hight_to_low" <!--{if !empty($_search['sort']) && $_search['sort']=='hight_to_low'}-->selected<!--{/if}-->>Giá từ cao đến thấp</option>
+										<option value="low_to_hight" <!--{if !empty($_search['sort']) && $_search['sort']=='low_to_hight'}-->selected<!--{/if}-->>Giá từ thấp đến cao</option>
+										<option value="a_z" <!--{if !empty($_search['sort']) && $_search['sort']=='a_z'}-->selected<!--{/if}-->>Sắp xếp theo tên từ A - Z</option>
+										<option value="z_a"  <!--{if !empty($_search['sort']) && $_search['sort']=='z_a'}-->selected<!--{/if}-->>Sắp xếp theo tên từ Z - A</option>
+									</select>
+								</div>
+								<div class="col-md-2  col-sm-2 col-xs-2">
+									<select name="limit_filter_deal" id="limit_filter_deal" class="form-control">
+										<!--{loopfor $i=12 $i<=30 $i++}-->
+											<option value="{$i}" <!--{if !empty($_search['limit']) && $_search['limit']==$i}-->selected<!--{/if}--> >{$i} sản phẩm mỗi trang</option>
+										<!--{/loopfor}-->
+									</select>
+								</div>
+
+								<div class="col-md-2  col-sm-2 col-xs-2">
+									<select name="category_filter_deal" id="category_filter_deal" class="form-control">
+										<option value="0">--Danh muc--</option>
+										<!--{loop $_category $k $v}-->
+											<option value="{$v['id']}" <!--{if !empty($_search['category']) && $v['id']==$_search['category']}-->selected<!--{/if}--> >{$v['title']}</option>
+										<!--{/loop}-->
+									</select>
+								</div>
+
+								<div class="col-md-2  col-sm-2 col-xs-2">
+									<select name="type_filter_deal" id="type_filter_deal" class="form-control">
+										<option value="0" selected>--Kiểu deal--</option>
+										<!--{loop $_type $k $v}-->
+											<option value="{$v['id']}" <!--{if !empty($_search['type']) && $v['id']==$_search['type']}-->selected<!--{/if}--> >{$v['name']}</option>
+										<!--{/loop}-->
+									</select>
+								</div>
+
+								<div class="col-md-1  col-sm-1 col-xs-1">
+									<select name="method_filter_deal" id="method_filter_deal" class="form-control">
+										<option value="0" selected>--Phương thức giao hàng--</option>
+										<!--{loop $_method $k $v}-->
+											<option value="{$k}" <!--{if !empty($_search['method']) && $k==$_search['method']}-->selected<!--{/if}-->>{$v}</option>
+										<!--{/loop}-->
+									</select>
+								</div>
+
+								<div class="col-md-2 col-sm-2 col-xs-2">
+									<form id="product-search" action="http://dev3.webbnc.vn/demo/product.html" method="get">
+										<input type="text" value="<!--{if !empty($_search['keyword'])}-->{$_search['keyword']}<!--{/if}-->" name="title" placeholder="Tiêu đề..." class="form-control form-filter BNC_txt_search">
+									</form>
+								</div>
+								<div class="col-md-1  col-sm-1 col-xs-1">
+									<button class="BNC-search-deal btn btn-success">Tìm kiếm</button>
+								</div>
+								<div class="f-product-chooseview">
+									<a href="javascript:void()" id="grid"><span class="glyphicon glyphicon-th"></span></a>
+									<a href="javascript:void()" id="list"><span class="glyphicon glyphicon-th-list"></span></a>
+								</div>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+						<div class="tab-content margin-top-10">
+							<!--{if !empty($_item)}-->
+							<ul class="f-product-viewid f-product row">
+								<!--{temp deal/deal_item}-->
+							</ul>
+							<div class="clearfix"></div>
+							<!--{if !empty($_pagination)}-->
+							<!--{temp deal/pagination}-->
+							<!--{/if}-->
+							<!--{else}-->
+							Không có sản phẩm nào !
+							<!--{/if}-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="params" value="{$_params}">
+
+	<div id="fast-dialog" class="fast-dialog zoom-anim-dialog mfp-hide">
+		<div id="fast-product-content">
+		</div>
+	</div>
+	<!--MODAL-->
+	<div class="modal fade BNC_modal_select_pro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm" style="max-width: 300px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="exampleModalLabel">Chọn tỉnh thành</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="recipient-name" class="control-label">Tỉnh thành:</label>
+						<select name="select_province" class="form-control">
+							<option value="all">Tất cả</option>
+							<option value="near">Gần tôi</option>
+							<!--{loop $_address $k $v}-->
+							<option value="{$k}">{$v['province']}</option>
+							<!--{/loop}-->
+						</select>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success BNC_select_province" data-dismiss="modal">Chọn</button>
+					<button type="button" class="btn btn-default BNC_select_province_close" data-dismiss="modal">Đóng</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+		Deal.init();
+	});
+
+	</script>
+</div>

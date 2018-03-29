@@ -1,0 +1,53 @@
+<script src="{$web['static_temp']}{$web['temp']}/statics/plugins/pjax/jquery.cookie.js"></script>
+<script src="{$web['static_temp']}{$web['temp']}/statics/plugins/pjax/jquery.pjax.js"></script>
+<link rel="stylesheet" type="text/css" href="{$web['static_temp']}{$web['temp']}/statics/plugins/magnific-popup/magnific-popup.css"/>
+<script src="{$web['static_temp']}{$web['temp']}/statics/plugins/magnific-popup/jquery.magnific-popup.js"></script>
+<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/css/quickview.css"/>
+<style type="text/css">
+	.info-address{
+		padding-left: 100px;
+	}
+	.col-hd1{
+		text-align: right;
+	}
+	.hd1{
+		margin-top: 1%;
+	}
+</style>
+
+<div id="fast-container">
+	<!--{temp product/breadcrumbs}-->
+	<div class="f-ctn-center">
+		<div class="f-module-page">
+			<div class="f-module-page-title"> 
+				<span class="pull-left">{lang address_manager}</span>
+			</div>
+			<div class="f-module-page-body padding-10">
+				<a href="{$_url}/product-userManager-addAddress.html" class="btn btn-success float-right"><span class="glyphicon glyphicon-plus-sign"></span> {lang action_addnew}</a>
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th width="50" class="text-center">{lang label_stt}</th>
+							<th class="text-center">{lang label_info}</th>
+							<th class="text-center">{lang label_action}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!--{if !empty($_address)}-->
+						<!--{loop $_address $k $v}-->
+						<!--{temp product/address_item}-->
+						<!--{/loop}-->
+						<!--{/if}-->
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="{$web['static_temp_mod']}/resource/js/addressmanager.js"></script>
+<script>
+	$(document).ready(function(){
+		Address.init();
+	});
+</script>
+

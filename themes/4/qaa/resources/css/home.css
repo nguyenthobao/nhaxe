@@ -1,0 +1,20 @@
+.media-left, .media-right, .media-body {
+  display: table-cell;
+  vertical-align: top;
+}
+.media-left, .media > .pull-left {
+  padding-right: 10px;
+}
+.f-qaList-body-ul li:last-child {
+    border-bottom: 0;
+} 
+.category-list{
+    height:290px;
+}
+.main-list{
+    height:600px;
+}
+.f-qaList-sotr .active{
+    color: #0069a3;
+    outline: 0;
+}

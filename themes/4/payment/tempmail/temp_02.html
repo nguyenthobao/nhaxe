@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title></title>
+		<link rel="stylesheet" href="">
+	</head>
+	<body>
+		<div style="margin:0px;padding:0px;background:#cccccc;font-family:Arial;font-size:12px">
+			<div style="border-radius:6px;width:598px;margin:0 auto;padding:15px 0px;background:#ffffff;color:#4d4d4d">
+				<div style="padding:5px 30px 15px 20px">
+					<table width="100%" cellpadding="0" cellspacing="0" border="0">
+						<tbody><tr>
+							<td><a href="{home_url}" target="_blank"><img src="{logo}" width="192px" height="41px"></a></td>
+						</tr>
+					</tbody></table>
+				</div>
+				<div style="width:546px;margin:0px auto;border:4px solid #02acea">
+					<div style="padding:20px">
+						<p style="padding:4px 0px 10px 0px;margin:0px">Kính chào <b>{name},</b></p>
+						<p style="padding:1px 0px 15px 0px;margin:0px">Đơn hàng của bạn đang được tiếp nhận và đang trong quá trình xử lý.</p>
+						<table width="100%" cellpadding="5" cellspacing="0" border="0" style="color:#6d6d6d">
+							<tbody>
+								<tr>
+									<td width="140px" style="border-top:1px solid #dceff5"><b>•&nbsp;Mã đơn hàng:</b></td>
+									<td style="border-top:1px solid #dceff5;color:#494949">{invoice}</td>
+								</tr>
+								<tr>
+									<td style="border-top:1px solid #dceff5"><b>•&nbsp;Trạng thái đơn hàng:</b></td>
+									<td style="border-top:1px solid #dceff5"><b style="color:#f53030">Đặt hàng thành công</b></td>
+								</tr>
+								<tr>
+									<td style="border-top:1px solid #dceff5"><b>•&nbsp;Thời gian giao dịch:</b></td>
+									<td style="border-top:1px solid #dceff5;color:#494949">{create_time}</td>
+								</tr>
+								<tr>
+									<td style="border-top:1px solid #dceff5"><b>•&nbsp;Hình thức thanh toán:</b></td>
+									<td style="border-top:1px solid #dceff5;color:#494949">{paymethod}</td>
+								</tr>
+						</tbody>
+					</table>
+						
+						<table width="100%" cellpadding="6" cellspacing="0" border="0" style="border:1px solid #dee2e3;margin-top:18px;color:#4d4d4d">
+							<tbody>
+								<tr bgcolor="#dceff5" style="font-weight:bold">
+									<td align="center">Ảnh</td>
+									<td align="center">Tên sản phẩm</td>
+									<td align="center">Số lượng</td>
+									<td align="center">Đơn giá</td>
+									<td align="center">Thành tiền</td>
+								</tr>
+								{list_product}
+								
+								<td colspan="4" align="right" style="border-top:1px dotted #dee2e3">
+									<p style="padding:3px 0px;margin:0px">Ưu đãi</p>
+								</td>
+								<td align="right" style="border-top:1px dotted #dee2e3">
+									<p style="padding:3px 0px;margin:0px">{special}</p>
+								</td>
+						</tr>
+						<tr>
+							<td colspan="4" align="right" style="border-top:1px dotted #dee2e3">
+								<p style="padding:3px 0px;margin:0px">Phí giao hàng</p>
+							</td>
+							<td align="right" style="border-top:1px dotted #dee2e3">
+								<p style="padding:3px 0px;margin:0px">{shipfee}</p>
+							</td>
+						</tr>
+						
+						<td colspan="4" align="right" style="border-top:1px dotted #dee2e3">
+							<p style="padding:3px 0px;margin:0px">Tổng giá trị đơn hàng</p> 
+						</td>
+						<td align="right" style="border-top:1px dotted #dee2e3">
+							<p style="padding:3px 0px;margin:0px"><b style="color:#f53030">{total}</b></p>
+						</td>
+					
+				</tbody>
+			</table>
+					<div align="center" style="margin-top:10px"></div>
+				</div>
+				<table cellpadding="10" width="100%" cellspacing="0" border="0" style="padding-left:15px;border-top:1px solid #dee2e3;background:#f6f6f6">
+					<tbody><tr>
+						<td valign="top" width="110px"><b style="color:#333333">Liên hệ người bán:</b></td>
+						<td>
+							<p style="padding:0px;margin:0px"><b><a href="{home_url}" style="color:#02acea" target="_blank">{business}</a></b></p>
+							<p style="padding:5px 0px 0px 0px;margin:0px"><img style="display:inline-block;margin-top:2px;vertical-align:text-top" src="http://static.vatgia.com/images/emt_icon_email_address.png" class="CToWUd">&nbsp;{address}</p>
+							<p style="padding:5px 0px 0px 0px;margin:0px"><img style="display:inline-block;margin-top:2px;vertical-align:text-top" src="http://static.vatgia.com/images/emt_icon_email_phone.png" class="CToWUd">&nbsp;{phone}</p>
+						</td>
+					</tr>
+				</tbody></table>
+			</div>
+			<div style="border-bottom:1px dotted #dee2e3;font-style:italic;color:#555555;width:554px;margin:0px auto;padding:15px 0px">
+				<div style="padding-bottom:8px">Nếu công ty {business} không liên lạc lại với quý khách hàng, quý khách hàng nên chủ động liên lạc với Công ty theo địa chỉ bên trên.</div>
+			</div>
+			<div align="center" style="padding-top:10px"><b>Cảm ơn quý khách đã mua sắm tại <a href="{home_url}" style="color:#494949;text-decoration:none" target="_blank">BNCVN.VN</a></b>!</div>
+		</div>
+		</div>
+	</body>
+</html>

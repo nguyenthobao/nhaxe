@@ -1,0 +1,76 @@
+<div class="f-block blocknoibat1">
+	<div class="f-block-title stlyeblocktitle"><span>{$block['title']}</span></div>
+	<div class="f-block-body"> 
+		<div class=" slide1" >
+			<div class="tab-sp ">
+				<!--{eval $i = 1 }-->
+				<!--{loop $data $k $v}-->
+				<!--{if $i < 4}-->
+				<h3 class="headerbar"><span>$i</span><a class="f-pr-bl-item-name" href="{$v['link']}" title="{$v['name']}">{$v['name']}</a>
+				</h3>
+
+				<div class="item submenu  f-product-bl <!--{if $k==0}-->active<!--{/if}-->">
+					<div class="f-pr-bl-item">
+						<!--{if $v['price']['percent'] != 0}--><div class="f-pr-bl-item-saleof"><span>{$v['price']['percent']}</span></div><!--{/if}-->
+						<div class="f-pr-bl-item-img"> 
+							<a href="{$v['link']}" title="{$v['name']}"> <img alt="{$v['name']}" src="<!--{loadImage $v['image'] crop 216 162}-->" class="img-responsive"> </a> 
+						</div>
+						
+						<div class="mota">
+							{$v['short_info']}
+						</div>
+						<div class="f-pr-bl-item-boxdetail">
+							<!--{if $v['price']['price']==0}-->
+								<p class="f-pr-bl-item-price">Liên hệ</p>
+							<!--{else}-->
+								<p class="f-pr-bl-item-price">{$v['price']['price']}</p>
+							<!--{/if}-->
+							<!--{if $v['price']['price_old'] != 0}--><p class="f-pr-bl-item-old-price">{$v['price']['price_old']}</p><!--{/if}-->
+						</div>
+						
+					</div>
+				</div><!--end item fproduct-->
+				<!--{/if}-->
+              <!--{eval $i++}-->
+				<!--{/loop}-->
+			</div>
+<!-- 			<a class="left" href=".slide1" role="button" data-slide="prev">
+		        
+		        <span class="">Previous</span>
+		      </a>
+		      <a class="right" href=".slide1" role="button" data-slide="next">
+		        
+		        <span class="">Next</span>
+		      </a> -->
+		</div>
+	</div>
+</div>
+
+<div class="clearfix"></div>
+
+<script type="text/javascript" src="{$web['static_temp']}/{$web['temp']}/statics/plugins/ddaccordion/ddaccordion.js"></script>
+<script type="text/javascript">
+
+ddaccordion.init({
+	headerclass: "headerbar", //Shared CSS class name of headers group
+	contentclass: "submenu", //Shared CSS class name of contents group
+	revealtype: "click", //Reveal content when user clicks or onmouseover the header? Valid value: "click", "clickgo", or "mouseover"
+	mouseoverdelay: 200, //if revealtype="mouseover", set delay in milliseconds before header expands onMouseover
+	collapseprev: true, //Collapse previous content (so only one open at any time)? true/false
+	defaultexpanded: [0], //index of content(s) open by default [index1, index2, etc] [] denotes no content
+	onemustopen: true, //Specify whether at least one header should be open always (so never all headers closed)
+	animatedefault: false, //Should contents open by default be animated into view?
+	persiststate: true, //persist state of opened contents within browser session?
+	toggleclass: ["", "selected"], //Two CSS classes to be applied to the header when it's collapsed and expanded, respectively ["class1", "class2"]
+	togglehtml: ["", "", ""], //Additional HTML added to the header when it's collapsed and expanded, respectively  ["position", "html1", "html2"] (see docs)
+	animatespeed: "normal", //speed of animation: integer in milliseconds (ie: 200), or keywords "fast", "normal", or "slow"
+	oninit:function(headers, expandedindices){ //custom code to run when headers have initalized
+		//do nothing
+	},
+	onopenclose:function(header, index, state, isuseractivated){ //custom code to run whenever a header is opened or closed
+		//do nothing
+	}
+})
+
+</script>
+

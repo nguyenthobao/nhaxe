@@ -1,0 +1,107 @@
+<div class="container bg-3">
+    <div class="news-breadcrumb">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <!--{loop $_breadcrumbs $k $v}-->
+                <li class="breadcrumb-item"><a href="{$v['href']}">{$v['text']}</a> <i class="fa fa-caret-right"></i></li>
+                <!--{/loop}-->
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="news-title">
+            <h3>{$_newsDetail['title']}</h3>
+            <div class="news-date">
+                <div class="left"><i class="fa fa-clock-o"></i> {lang date_posted} : {$_newsDetail['create_time']}</div>
+            </div>
+        </div>
+        <div class="news-content">
+            {$_newsDetail['details']}
+            <div class="button-facebook">
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <!--Tin tuc cung danh muc-->
+        <!--{if isset($_newsOther['news'])}-->
+        <div id="cate-news">
+            <h3 class="box-news-title clearfix">{lang related_news}</h3>
+            <div class="box-news clearfix">
+                <div class="carousel slide" id="carouselInformation">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="row">
+                                <ul class="thumbnails clearfix">
+                                    <!--{loop $_newsOther['news'] $k $v}-->
+                                    <li class="col-sm-3">
+                                        <div class="fff">
+                                            <div class="thumbnail">
+                                                <a href="{$v['href']}">
+                                                    <img alt="{$v['title']}"
+                                                         src="{$v['img']}">
+                                                </a>
+                                            </div>
+
+                                            <div class="caption">
+                                                <a href="{$v['href']}">
+                                                    <h4>{$v['title']}</h4>
+                                                </a>
+
+                                                <p><!--{cutString $v['short'] 0 100}--></p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!--{/loop}-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <!--{/if}-->
+        <!--Ket thuc Tin tuc cung danh muc-->
+        <div class="clearfix"></div>
+        <!--Tin tuc lien quan-->
+        <!--{if isset($_newsRelated['newsr'])}-->
+        <div id="recent-news">
+            <h3 class="box-news-title clearfix">{lang related_news}</h3>
+            <div class="box-news clearfix">
+                <div class="carousel slide" id="carouselInformation2">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="row">
+                                <ul class="thumbnails clearfix">
+                                    <!--{loop $_newsRelated['news'] $k $v}-->
+                                    <li class="col-sm-3">
+                                        <div class="fff">
+                                            <div class="thumbnail">
+                                                <a href="{$v['href']}">
+                                                    <img alt="{$v['title']}"
+                                                         src="{$v['img']}">
+                                                </a>
+                                            </div>
+
+                                            <div class="caption">
+                                                <a href="{$v['href']}">
+                                                    <h4>{$v['title']}</h4>
+                                                </a>
+
+                                                <p><!--{cutString $v['short'] 0 100}--></p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!--{/loop}-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <!--{/if}-->
+        <!--Ket thuc Tin tuc lien quan-->
+    </div>
+</div>

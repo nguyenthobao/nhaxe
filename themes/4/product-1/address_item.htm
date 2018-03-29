@@ -1,0 +1,44 @@
+<tr key = "{$k}">
+	<td class="stt">{$v['stt']}</td>
+	<td>
+		<div class="row hd1">
+			<div class="col-md-12">
+				<div class="col-md-3 col-hd1">{lang name}</div>
+				<div class="col-md-9">{$v['name']}</div>
+			</div>
+		</div>
+		<div class="row hd1">
+			<div class="col-md-12">
+				<div class="col-md-3 col-hd1">{lang email}</div>
+				<div class="col-md-9">{$v['email']}</div>
+			</div>
+		</div>
+		<div class="row hd1">
+			<div class="col-md-12">
+				<div class="col-md-3 col-hd1">{lang phone}</div>
+				<div class="col-md-9">{$v['phone']}</div>
+			</div>
+		</div>
+		<div class="row hd1">
+			<div class="col-md-12">
+				<div class="col-md-3 col-hd1">{lang province}</div>
+				<div class="col-md-9">{$v['cityname']}</div>
+			</div>
+		</div>
+		<div class="row hd1">
+			<div class="col-md-12">
+				<div class="col-md-3 col-hd1">{lang district}</div>
+				<div class="col-md-9">{$v['districtname']}</div>
+			</div>
+		</div>
+		<div class="row hd1">
+			<div class="col-md-12">
+				<div class="col-md-3 col-hd1">{lang address}</div>
+				<div class="col-md-9">{$v['address']}</div>
+			</div>
+		</div>
+	</td>
+	<td width = "100" class="text-center">
+		<a href ="{$_url}/product-userManager-addressEdit-{$v['stt']}.html" class= "edit-info custom-action-orange" title= "Sửa"><span class="glyphicon glyphicon-pencil"></span></a>
+		<a href="javascript:void(0);" class = "delete-info custom-action "><span class="glyphicon glyphicon-trash" title= "Xóa"></span></a>
+</tr>

@@ -1,0 +1,11 @@
+<div class="breadcrumbs">
+    <ul style="list-style:none">
+        <!--{loop $_breadcrumbs $k $v}-->
+	        <li style="float:left"><a href="{$v['link']}">{$v['title']}</a></li>
+	        <!--{if $k < count($_breadcrumbs)-1}-->
+	        <li style="float:left"><span style="display:block; color:#333; margin:0px 5px">»</span></li>
+	        <!--{/if}-->
+        <!--{/loop}-->
+    </ul>
+    <div class="clearfix"></div>
+</div>

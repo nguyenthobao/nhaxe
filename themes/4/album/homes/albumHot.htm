@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="f-center-module tab-hot">
+     <div class="f-center-title ">
+      <ul class="f-video-tab-home" class="nav-tabs ">
+        <li class="active"><a href="#f-video-tab01" data-toggle="tab">Album Hot</a></li>
+        
+      </ul>
+    </div>
+   
+    <div class="f-center-body">
+      <ul class="f-album row">
+        <!--{eval $i=0}-->
+        <!--{loop $_album $k $v}-->
+        <!--{if $i < 4}--> 
+        <li class="col-lg-3 col-md-3 col-sm-3 col-xs-6 full-xs">
+          <div class="f-album-item">
+                      <div class="f-album-item-img"> <a href="$v['link']" title="$v['title']"> <img src="<!--{loadImage $v['avatar'] crop 331 184}-->" class="img-responsive" alt="$v['title']" />
+                        <div class="f-album-item-img-hover"></div>
+                        </a> </div>
+                      <div class="f-album-item-title">
+                        <h3><a href="$v['link']" title="$v['title']"> $v['title']</a></h3>
+                      </div>
+                    </div>
+   
+        </li>
+        <!--{/if}-->
+        <!--{eval $i++}-->
+        <!--{/loop}-->  
+         
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+
+
+ 

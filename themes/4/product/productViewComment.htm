@@ -1,0 +1,33 @@
+<!--{if $_product['show_comment'] == 1}-->
+<div class="f-product-view-comment">
+    <div class="f-product-comment-tab-header" style="margin-bottom:10px">
+        <ul id="f-pr-page-view-tabcomentid" class="no-margin no-padding nav-tabs row">
+            <li class="active"><a href="#f-pr-cm-view-01" data-toggle="tab">{lang label_comment_via_facebook}</a></li>
+            <li class=""><a href="#f-pr-cm-view-02" data-toggle="tab">{lang label_comment_via_google}</a></li>
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+    <div class="f-product-comment-tab-body tab-content">
+        <div id="f-pr-cm-view-01" class="tab-pane fade active in">
+            <div id="fb-root"></div>
+            <script>(function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.0";
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+            <div class="fb-comments" data-href="{$_product['link']}" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
+        </div>
+        <div id="f-pr-cm-view-02" class="tab-pane fade">
+            <script src="https://apis.google.com/js/plusone.js"></script>
+            <div class="g-comments"
+                data-view_type="FILTERED_POSTMOD"
+                data-first_party_property="BLOGGER"
+                data-width="828"
+                data-href="{$_product['link']}">
+            </div>
+        </div>
+    </div>
+</div>
+<!--{/if}-->

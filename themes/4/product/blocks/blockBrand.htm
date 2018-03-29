@@ -1,0 +1,25 @@
+<div class="f-block thuonghieu">
+	<div class="f-block-title"><span>{$block['title']}</span></div>
+	<div class="f-block-body"> 
+		 	<div class="v2-block-brand">
+		 		<ul>
+		 			<!--{eval $i = 0 }--> 
+				<!--{loop $data $k $v}-->
+				<!--{if $i < 8}-->
+				<li>
+					 <a href="{$v['link']}" class="brimg" title="{$v['name']}"> <img alt="{$v['name']}" src="<!--{loadImage $v['avatar'] resize 95 51}-->" class="img-responsive"> </a> 
+						 
+						 
+							<a class="brname" href="{$v['link']}" title="{$v['name']}"><h2>{$v['name']}</h2></a>
+						 
+				 
+				</li>
+					<!--{/if}-->
+	              <!--{eval $i++}-->
+				<!--{/loop}-->
+
+			</ul>
+			<div class="clearfix"></div>
+			 </div>
+	</div>
+</div>	 

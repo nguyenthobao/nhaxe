@@ -1,0 +1,39 @@
+ 
+
+	<!--{loop $value_2['content'] $k $v}-->
+	<li class=" ">
+		<div class="v2-home-pr-item">
+			<a data-pjax="#fast-container" data-href="#fast-dialog" href="{$v['link']}" data-product-id="{$v['id']}" class="quickview nbh-popup-with-move-anim v2-home-pr-item-action-viewq" >{lang viewfast}</a> 
+			<div class="v2-home-pr-item-compare"><i class="fa fa-exchange"></i> <span></span></div>
+			<!--{if $v['price']['percent'] > 0}-->
+            <div class="v2-home-pr-item-saleof"><i class="fa fa-angle-double-down"></i> <span>{$v['price']['percent']}</span></div><!--{/if}-->
+			<div class="v2-home-pr-item-img"> 
+				<a href="{$v['link']}" title="{$v['name']}"><img alt="{$v['name']}" id="f-pr-image-zoom-id-tab-home-{$v['id']}" src="<!--{loadImage $v['image'] resize 204 200}-->"  class="BNC-image-add-cart-{$v['id']}"/></a> 
+			</div>
+			<div class="v2-home-pr-item-boxdetail">
+				<div class="v2-home-pr-item-price-gr">
+					<!--{if $v['price']['price']==0}-->
+						<p class="v2-home-pr-item-price no-price">{lang contact}</p>
+					<!--{else}-->
+						<p class="v2-home-pr-item-price">{$v['price']['price']}</p>
+					<!--{/if}-->
+
+				<!--{if $v['price']['price_old'] != 0}--><p class="v2-home-pr-item-price-old">{$v['price']['price_old']}</p><!--{/if}-->
+				</div>
+				<a class="v2-home-pr-item-name" href="{$v['link']}" title="{$v['name']}"><h2>{$v['name']}</h2></a>
+				
+				<div class="v2-home-pr-item-action"> 
+					
+					<a href="{$v['link']}" class="v2-home-pr-item-action-detail" ><span class="glyphicon glyphicon-info-sign"></span> {lang detailed}</a> 
+					<!--{if $v['quantity']!=0}-->
+						<a href="javascript:void(0)" class="BNC-add-cart v2-home-pr-item-action-buy " data-type="tab-home"  data-price="{$v['price']}" data-product="{$v['id']}" data-quantity="1" data-total-quantity="$v['quantity']"><span class="glyphicon glyphicon-shopping-cart"></span> {lang quickbuy}</a> 
+					<!--{else}-->
+						<a href="javascript:void(0)" class="BNC-cart-no-quantity v2-home-pr-item-action-buy no-buy" data-type="tab-home"  data-price="{$v['price']}" data-product="{$v['id']}" data-quantity="1" data-total-quantity="$v['quantity']"><span class="glyphicon glyphicon-shopping-cart"></span> {lang hethang}</a> 
+					<!--{/if}-->	
+				</div>
+			</div>
+		</div>
+	</li>
+	<!--{/loop}-->
+
+

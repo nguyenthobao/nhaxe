@@ -1,0 +1,34 @@
+<footer class="page-footer font-small unique-color-dark pt-0">
+
+    <!--Menu footer-->
+    <div class="container">
+        <ul class="footer-nav row">
+            <!--{loop $menu['bottom'] $k $v}-->
+            <!--{temp common/menu_bottom_list}-->
+            <!--{/loop}-->
+        </ul>
+        <hr class="col-md-12">
+    </div>
+    <!--End Menu footer-->
+
+    <!--Footer Links-->
+    <div class="container mt-5 mb-4 text-md-left">
+        {$web['footer']}
+    </div>
+    <!--/.Footer Links-->
+
+    <!-- Copyright-->
+    <div class="footer-copyright py-3 text-center">
+        © 2018 Copyright:
+        <a href="https://anvui.vn" style="color: #ffffff">
+            <strong> An vui</strong>
+        </a>
+    </div>
+    <!--/.Copyright -->
+
+</footer>
+<!--{if $web['audio'] != null}-->
+<audio controls autoplay<!--{if $web['audio']['play_again'] == 1}--> loop<!--{/if}--> style="display:none">
+<source src="{$web['static_upload']}{$web['audio']['audio']}" type="audio/mpeg">
+</audio>
+<!--{/if}-->

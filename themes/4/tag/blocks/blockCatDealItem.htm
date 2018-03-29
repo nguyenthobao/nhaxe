@@ -1,0 +1,13 @@
+<li>
+	<!--{if $v['avatar']}--><img style="display:none" src="<!--{loadImage $v['avatar'] resize 32 32}-->" class="img-responsive" alt="{$v['title']}" /><!--{/if}-->
+	<!--{if $v['icon']}--><img style="display:none" src="<!--{loadImage $v['icon'] resize 32 32}-->" class="img-responsive" alt="{$v['title']}" /><!--{/if}-->
+	<!--{if $v['background']}--><img style="display:none" src="<!--{loadImage $v['background'] resize 32 32}-->" class="img-responsive" alt="{$v['title']}" /><!--{/if}-->
+	<a href="{$v['link']}" title="{$v['title']}">{$v['title']}</a>
+	<!--{if !empty($v['sub'])}-->
+	<ul>
+		<!--{loop $v[sub] $k $v}-->
+		<!--{tempblock blocks/blockCatDealItem}-->
+		<!--{/loop}-->
+	</ul>
+	<!--{/if}-->
+</li>

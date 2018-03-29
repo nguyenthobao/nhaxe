@@ -1,0 +1,59 @@
+
+<script type="text/javascript">
+    var urlNow=document.URL;
+</script>
+<link rel="stylesheet" type="text/css" href="{$web['static_temp_mod']}/resource/css/BNCcart.css"/>
+
+<script src="{$web['static_temp']}{$web['temp']}/statics/plugins/pjax/jquery.cookie.js"></script>
+<script src="{$web['static_temp']}{$web['temp']}/statics/plugins/pjax/jquery.pjax.js"></script>
+<link rel="stylesheet" type="text/css" href="{$web['static_temp']}{$web['temp']}/statics/plugins/magnific-popup/magnific-popup.css"/>
+<script src="{$web['static_temp']}{$web['temp']}/statics/plugins/magnific-popup/jquery.magnific-popup.js"></script>
+<script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/productFast.js"></script>
+
+<div id="fast-container">
+</div>
+<!--{if !empty($_home_tab)}-->
+<div class="v2-tabhome">
+    <div class="v2-tabhome-title ">
+        <div class="v2-tabhome-name">
+            <p></p>
+            <p></p>
+            <span>{lang product}</span>
+        </div>
+        <ul id="f-pr-tab-home" class="nav-tabs v2-tab-home-ul">
+            <!--{loop $_home_tab $key $value}-->
+               
+                    <li class="<!--{if $key==0}-->active<!--{/if}-->"><a href="#f-pr-tab0{$key}" data-toggle="tab">{$value['title']}</a></li>
+                
+            <!--{/loop}--> 
+        </ul>
+    </div>
+    <div class="f-center-body">
+        <div class="clearfix"></div>
+        <div class="tab-content padding-10">
+            <!--{loop $_home_tab $key_2 $value_2}-->                       
+                    <div id="f-pr-tab0{$key_2}" class="tab-pane <!--{if $key_2==0}-->active<!--{/if}--> v2-tabhome-product">
+                        <ul class="owl-carousel{$key_2} owl-theme">
+                        <!--{temphome homes/productItem}--> 
+                        </ul>                      
+                    </div>
+                    
+                    <script type="text/javascript">
+                            $(".owl-carousel{$key_2}").owlCarousel();
+                        </script>
+            <!--{/loop}-->
+        <div class="clearfix"></div>
+
+
+    </div>
+    </div>
+</div>
+<!--{/if}-->
+
+<div id="fast-dialog" class="zoom-anim-dialog mfp-hide">
+    <div id="fast-product-content">
+    </div>
+</div>
+   
+     
+

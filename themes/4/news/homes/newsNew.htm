@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="box-news-title clearfix">
+    <h3>{lang news_new}</h3>
+  </div>
+
+  <div class="box-news clearfix">
+    <div class="carousel slide" id="carouselInformation">
+      <div class="carousel-inner">
+        <div class="item active">
+          <div class="row">
+            <ul class="thumbnails clearfix">
+              <!--{eval $i=0}-->
+              <!--{loop $_news $k $v}-->
+              <!--{if $i < 4}-->
+              <li class="col-sm-3">
+                <div class="fff">
+                  <div class="thumbnail">
+                    <a href="$v['link']">
+                      <img alt="$v['title']"
+                           src="<!--{loadImage $v['img'] crop 570 290}-->">
+                    </a>
+                  </div>
+
+                  <div class="caption">
+                    <a href="$v['link']">
+                      <h4>$v['title']</h4>
+                    </a>
+
+                    <p><!--{cutString $v['short'] 0 100}--></p>
+                  </div>
+                </div>
+              </li>
+              <!--{/if}-->
+              <!--{eval $i++}-->
+              <!--{/loop}-->
+            </ul>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>
+
+</div>

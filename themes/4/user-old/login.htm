@@ -1,0 +1,93 @@
+<style type="text/css">
+.login input{
+	max-width: 350px;
+}
+</style>
+
+<div class=" login">
+	<!--{if isset($_error)}-->
+	<div class="alert alert-danger" role="alert">$_error</div>
+	<!--{/if}-->
+
+	<div class="row">
+		<div class="col-md-6">
+			<div class="v2-login">
+
+				<form action="$_common['action_login']" method="POST" />
+				<h3>{lang login}</h3>
+				<div class="input-group"> 
+				  <input type="text" class="form-control" id ="txtname" name="email" value ="$_post['email']" placeholder="{lang email_username}">
+				  <div class="warning" id="nameError"  style="display:none" ><span style="color: red;">{lang name_null}</span></div>
+				</div> 
+				<br />
+				<div class="input-group"> 
+				  <input type="password" class="form-control" id="txtpassword" name="password" value="$_post['password']" placeholder="{lang password}">
+				  <div class="warning" id="passwordError"  style="display:none" ><span style="color: red;">{lang password_null}</span></div>
+				</div> 
+				<br />
+				<!-- Standard button -->
+				<button type="submit" class="btn btn-primary">{lang login_submit}</button>
+			</form>
+			</div>
+		</div>
+		<div class="col-md-6">
+				<div class="v2-reg">
+					<form action="$_common['action_regis']" method="POST" />
+		<h3>{lang regis}</h3>
+		
+		<div class="input-group"> 
+		  <input type="text" class="form-control email" id="email" name="email" value ="$_post['email']" placeholder="{lang email}">
+		    <div class="warning" id="emailNull"  style="display:none" ><span style="color: red;">{lang email_null}</span>
+		    	</div>
+         	<div class="warning" id="emailError"  style="display:none" ><span style="color: red;">{lang email_error}</span></div>
+		</div> 
+		<br />
+		<div class="input-group"> 
+		  <input type="text" class="form-control name" id="name" name="username" value ="$_post['username']" placeholder="{lang username}">
+		  <div class="warning name_Error" id="name_Error"  style="display:none" ><span style="color: red;">{lang name_null}</span></div>
+
+		</div> 
+		<br />
+		<div class="input-group"> 
+		  <input type="password" class="form-control" id = "password" name="password" value ="$_post['password']" placeholder="{lang password}">
+		  <div class="warning" id="password_Error"  style="display:none" ><span style="color: red;">{lang password_null}</span></div>
+		  <div class="warning" id="password_short"  style="display:none" ><span style="color: red;">{lang password_short}</span>
+		  </div>
+
+		</div> 
+		<br />
+		<div class="input-group"> 
+		  <input type="password" class="form-control" id = "repassword" name="repassword" value ="$_post['repassword']" placeholder="{lang repass}">
+		  <div class="warning" id="repasswordError"  style="display:none" ><span style="color: red;">{lang repassword_null}</span></div>
+		  <div class="warning" id="changepasswordError"  style="display:none" ><span style="color: red;">{lang newsRepassword_null}</span></div>
+
+		</div>
+
+		<div class="form-group check_capcha" <!--{if isset($_check_captcha_url)}-->check_capcha= "{$_check_captcha_url}"<!--{/if}--> >
+	                <input type="hidden" name="captcha" id="cap_md" value="0" />
+	                <div style="float: left; padding: 1px 5px 0 0; width: 40%;"><input type="text" placeholder="{lang captcha}"class="form-control" id="captcha_cha" value="" /></div>
+	                <span>
+	                    <img id="capt_img_ct" src="BNCGLOBAL['captcha']" /> <img title="{lang tai_lai_ma_bao_ve}" id="f5capt_cha" src="{$web['static_temp_mod']}/resource/img/view-refresh-small.png" /> 
+	                    
+	                    <div class="warning" id="capchaError"  style="display:none" ><span style="color: red;">{lang capcha_null}</span></div>
+	              </span>
+	            </div>  
+		<br />
+		<!-- Standard button -->
+		<button type="submit" class="btn btn-success">{lang regis_submit}</button>
+	</form>
+				</div>
+		</div>
+	</div>
+	
+ 
+</div>
+<script src="{$web['static_temp_mod']}/resource/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="{$web['static_temp_mod']}/resource/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/login.js"></script>
+        
+<script>
+$(document).ready(function() {
+   Login.init();
+});
+</script>

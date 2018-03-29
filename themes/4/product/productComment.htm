@@ -1,0 +1,56 @@
+<style type="text/css">
+.row_btn_reply
+{
+	width: 100% !important;
+	clear: both;
+}
+.vi_pham
+{
+	width: 30px;
+	float: left;
+	padding-top: 5px;
+}
+.vi_pham img:hover
+{
+	cursor: pointer;
+}
+</style>
+<div class="box_comment_detail" style="display: table; width: 100%; border: 1px solid #F1F1F1;">
+<div class="row_comment">
+	<div class="portlet light bordered">
+		<div class="portlet-body form">
+			<!--{if isset($_comment)}-->
+			<!--{eval $i = 1}-->
+			<!--{loop $_comment $k $v}-->
+				<!--{temp product/productItemComment}-->			
+			<!--{eval $i++}-->
+			<!--{/loop}-->
+			<!--{/if}-->
+			<div class="formReply" id="RootFormReply">
+				<div class="form-group">
+					<div class="col-md-5 row_input_title">
+						<input type="text" class="form-control" id="name_cmt" name="name_cmt" value="" placeholder="Họ và tên..." data-error="{lang title_error}">
+						<input type="text" class="form-control" id="email_cmt" name="email_cmt" value="" placeholder="Email..." data-error="{lang title_error}" style="margin-top: 25px;">
+					</div>
+					<div class="col-md-7">
+						<div class="text_aria">
+							<textarea id="comment" class="form-control " minlength="5" rows="4" name="comment" placeholder="Comment..."></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-1">
+						<button class="BNC-comment-product btn btn-success" style="margin-top: 20px;">Gửi đi</button>
+						<input type="hidden" name="id_product" id="id_product" value="{$_product['id']}" />						
+						<input type="hidden" name="id_parent" id="id_parent" value="0" />
+						<input type="hidden" name="username" id="username" value="{$_username}" />
+						<input type="hidden" name="email_user" id="email_user" value="{$_email_user}" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+<script type="text/javascript" src="{$web['static_temp_mod']}/resource/js/comment.js"></script>
