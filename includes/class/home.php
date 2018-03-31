@@ -35,5 +35,4 @@ class HomeGlobal{
 		global $_B;
 		return loadImage($img,$op,$width,$height);
 	}
-
 }

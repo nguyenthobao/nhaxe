@@ -1,26 +1,47 @@
 <header>
-    <div class="container">
-        <div class="header-container">
-            <h1 class="header-logo">
-                <a href="{$web['home_url']}" title="Logo title" rel="nofollow">
-                    <!--{if $web['logo'] != null}-->
-                        <!--{if $web['logo']['is_swf']}-->
+    <div class="container-fluid">
+        <div class="container header-logo">
+            <div class="row header-container">
+                <h1 class="header-logo col-md-2">
+                    <a href="{$web['home_url']}">
+                        <!--{if $web['logo'] != null}-->
+                            <!--{if $web['logo']['is_swf']}-->
                             <object width="{$web['logo']['width']}" height="{$web['logo']['height']}">
                                 <param value="transparent" name="wmode">
                                 <param value="{$web['static_upload']}{$web['logo']['img']}" name="movie">
                                 <embed width="{$web['logo']['width']}" height="{$web['logo']['height']}" wmode="transparent" src="{$web['static_upload']}{$web['logo']['img']}">
                             </object>
+                            <!--{else}-->
+                            <img src="{$web['static_upload']}{$web['logo']['img']}" class="logo" alt="An Vui">
+                            <!--{/if}-->
                         <!--{else}-->
-                            <img src="{$web['static_upload']}{$web['logo']['img']}" class="img-responsive logo"  alt="Logo"/>
-                        <!--{/if}-->
-                    <!--{else}-->
                         <img src="$web['logo']['img']" class="img-responsive logo"  alt="Logo"/>
-                    <!--{/if}-->
-                </a>
-            </h1>
-            <div class="main-menu">
-                <!--{temp common/menu_top}-->
+                        <!--{/if}-->
+                    </a>
+                </h1>
+                <div class="col-md-5 company-name">
+                    <h2><strong>$data['head']['ogsite_name']</strong></h2>
+                    <h3>PHUC XUYEN LIMITED COMPANY</h3>
+                </div>
+                <div class="col-md-5">
+                    <div class="col-md-12 lang">
+                        <a href="#"><img src="{$web['static_temp']}/{$web['temp']}/statics/images/en-icon.png" class="img-responsive pull-right cus-icon"
+                                         alt="VN Icon" id="en"></a>
+                        <a href="#"><img src="{$web['static_temp']}/{$web['temp']}/statics/images/vn-icon.png" class="img-responsive pull-right cus-icon"
+                                         alt="VN Icon" id="vn"></a>
+                    </div>
+                    <div class="col-md-12 search">
+                        <form action="/news.html">
+                            <input type="text" class="search-input" name="title" placeholder="Tìm kiếm...">
+                        </form>
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
+    <div class="container-fluid menu">
+        <div class="main-menu">
+            <!--{temp common/menu_top}-->
         </div>
     </div>
 </header>

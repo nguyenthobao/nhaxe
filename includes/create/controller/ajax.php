@@ -11,7 +11,7 @@
     ini_set('display_startup_errors', 1);
 // $action = $_B['r']->get_string('action','POST');
 $action = $_B['r']->get_string('action');
-$actions = array('copyall','registeranvui','login','copyweb','createweb','checktenrg','checkemail','chooseTheme','chooseThemeFirst','copywebmaster');
+$actions = array('copyall','registeranvui','resendCode','verifyPhone','login','copyweb','createweb','checktenrg','checkemail','chooseTheme','chooseThemeFirst','copywebmaster');
 if(!in_array($action, $actions)){
 	$action = 'createweb';
 }

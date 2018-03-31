@@ -54,10 +54,36 @@ $(document).ready(function () {
 
     companyId = $("base").attr("id");
 
-    routeId = getParameterByName('routeId');
-
     if(companyId == 'TC1OHmbCcxRS') {
         $('#radiochuyenkhoan').show();
+    }
+
+    //Lấy dữ liệu từ url
+    routeId = getParameterByName('routeId');
+    startPoint = getParameterByName('startPoint');
+    endPoint = getParameterByName('endPoint');
+    depatureDate = getParameterByName('depatureDate');
+    returnDate = getParameterByName('returnDate');
+    routeBackId = getParameterByName('routeBackId');
+
+    if(routeId != null && startPoint != null && endPoint != null && depatureDate != null) {
+        console.log(returnDate);
+        $('#routeId').val(routeId).change();
+        $('#startPoint').val(startPoint).change();
+        $('#endPoint').val(endPoint).change();
+        $('#depatureDate').val(depatureDate);
+
+        if(routeBackId != null && returnDate != null) {
+            setTimeout(function () {
+                $('#roundtrip').click();
+                $('#returnDate').val(returnDate);
+                getSchedule(endPoint, startPoint, returnDate, routeBackId, true);
+            }, 1000);
+        }
+
+        setTimeout(function () {
+            $('#search-btn').click();
+        }, 3000);
     }
 
     //Chỉ cho phép nhập số
@@ -99,10 +125,9 @@ $(document).ready(function () {
         hasScheduleOneway = false;
         hasScheduleReturn = false;
         routeBackId = $(this).find(':selected').data('routeback');
-        getPoint($(this).val());
+        getPoint($(this).val())
     });
 
-    // $('#depatureDate, #returnDate ').datepicker({
     $('#depatureDate').datepicker({
         dateFormat: 'dd/mm/yy',
         defaultDate: "+0d",
@@ -313,6 +338,42 @@ $(document).ready(function () {
         $('#select-seat-oneway').show();
         $('#back-step2').show();
     });
+    
+    //Kiểm tra khuyến mại
+    $('#checkPromotion').click(function () {
+        var promotionCode = $('#promotionCode').val();
+        // if()
+        $(this).prop('disabled', true);
+        $.ajax({
+            type: 'POST',
+            url: 'https://dobody-anvui.appspot.com/web_promotion/check',
+            beforeSend: function(request) {
+                request.setRequestHeader("DOBODY6969", 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2IjowLCJkIjp7InVpZCI6IkFETTExMDk3Nzg4NTI0MTQ2MjIiLCJmdWxsTmFtZSI6IkFkbWluIHdlYiIsImF2YXRhciI6Imh0dHBzOi8vc3RvcmFnZS5nb29nbGVhcGlzLmNvbS9kb2JvZHktZ29ub3cuYXBwc3BvdC5jb20vZGVmYXVsdC9pbWdwc2hfZnVsbHNpemUucG5nIn0sImlhdCI6MTQ5MjQ5MjA3NX0.PLipjLQLBZ-vfIWOFw1QAcGLPAXxAjpy4pRTPUozBpw');
+            },
+            data: {
+                timeZone: 7,
+                promotionCode: promotionCode,
+                companyId: companyId
+            },
+            success: function (data) {
+                console.log(data);
+                $('#promotionCode').prop('readonly', true);
+                $('#checkPromotion').prop('disabled', false);
+                $('#checkPromotion').text('X');
+                $('#checkPromotion').removeClass('btn-info');
+                $('#checkPromotion').addClass('btn-danger');
+            },
+            error: function () {
+                $.alert({
+                    title: 'Cảnh báo!',
+                    type: 'red',
+                    typeAnimated: true,
+                    content: 'Mã khuyến mại không tồn tại',
+                });
+                $('#checkPromotion').prop('disabled', false);
+            }
+        });
+    });
 
     //Xác nhận đặt vé
     $('#hoanthanhbtn').click(function () {
@@ -390,6 +451,7 @@ $(document).ready(function () {
                 'getInTimePlan': intimeOneway,
                 'originalTicketPrice': totalMoneyOneway,
                 'paymentTicketPrice': totalMoneyOneway,
+                'agencyPrice': totalMoney/2,
                 'paymentType': paymentType,
                 'paidMoney': 0,
                 'tripId': tripIdOneway,
@@ -409,14 +471,7 @@ $(document).ready(function () {
 
                     if(isRound == 0) {
                         if(paymentType == 1) {
-
                             var url = 'https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo=' + data.results.ticketId + '&vpc_Amount=' + totalMoneyOneway * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web";
-
-                            //Fix cứng tạm thời cho pumpkinbuslines
-                            if(companyId == 'TC1OHmbCcxRS') {
-                                url = 'https://dobody-anvui.appspot.com/pumpkin/dopay?vpc_OrderInfo=' + data.results.ticketId + '&vpc_Amount=' + totalMoneyOneway * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web";
-                            }
-
                             $.dialog({
                                 title: 'Thông báo!',
                                 content: 'Hệ thống đang chuyển sang cổng thanh toán, vui lòng đợi trong giây lát',
@@ -433,7 +488,7 @@ $(document).ready(function () {
                                 type: 'green',
                                 typeAnimated: true,
                                 content: 'Đã đặt vé thành công!',
-                                onClose: function () {
+                                onClose: function (e) {
                                     $('#phone').html(phoneNumber);
                                     $('#ticketId').html(data.results.ticketId);
                                     $('#chuyenkhoan').modal('show');
@@ -444,7 +499,7 @@ $(document).ready(function () {
                         } else {
                             $.alert({
                                 title: 'Thông báo!',
-                                content: 'Bạn đã đặt vé thành công! Vui lòng đến quầy thanh toán và nhận vé',
+                                content: 'Bạn đã đặt vé thành công!',
                             });
                         }
                     } else {
@@ -498,6 +553,7 @@ $(document).ready(function () {
                     'getInTimePlan': intimeReturn,
                     'originalTicketPrice': totalMoneyReturn,
                     'paymentTicketPrice': totalMoneyReturn,
+                    'agencyPrice': totalMoney/2,
                     'paymentType': paymentType,
                     'paidMoney': 0,
                     'tripId': tripIdReturn,
@@ -516,14 +572,7 @@ $(document).ready(function () {
                     } else {
                         mave = mave + "-" + data.results.ticketId;
                         if(paymentType == 1) {
-
                             var url = 'https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo=' + mave + '&vpc_Amount=' + totalMoney * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web&paymentCode=" + paymentCode;
-
-                            //Fix cứng tạm thời cho pumpkinbuslines
-                            if(companyId == 'TC1OHmbCcxRS') {
-                                url = 'https://dobody-anvui.appspot.com/pumpkin/dopay?vpc_OrderInfo=' + mave + '&vpc_Amount=' + totalMoney * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web&paymentCode=" + paymentCode;
-                            }
-
                             $.dialog({
                                 title: 'Thông báo!',
                                 content: 'Hệ thống đang chuyển sang cổng thanh toán, vui lòng đợi trong giây lát',
@@ -537,7 +586,7 @@ $(document).ready(function () {
                         } else {
                             $.alert({
                                 title: 'Thông báo!',
-                                content: 'Bạn đã đặt vé thành công! Vui lòng đến quầy thanh toán và nhận vé',
+                                content: 'Bạn đã đặt vé thành công!',
                             });
                         }
 

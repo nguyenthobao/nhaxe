@@ -16,13 +16,17 @@ $_L['title_heading'] = 'Tin tức';
 
 $_L['notfound_data'] = 'Không có dữ liệu !';
 $_L['news_new']      = 'Tin tức mới';
-$_L['news_hot']      = 'Tin tức HOT';
+$_L['news_hot']      = 'Tin tức nổi bật';
 $_L['news_vip']      = 'Tin tức VIP';
+$_L['news_travel']   = 'Tour du lịch phổ biến';
 
 $_L['news_new_1'] = 'Tin Mới';
 
 $_L['news_hot_1'] = 'Tin HOT';
 $_L['news_az']    = 'A-Z';
+
+
+$_L['booking']    = 'Đặt vé trực tuyến';
 
 $_L['search']           = 'Tìm kiếm';
 $_L['title_news']       = 'Tiêu đề';

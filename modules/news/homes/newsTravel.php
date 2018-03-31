@@ -45,7 +45,6 @@ class BlockHome extends \HomeGlobal
         $config = $this->getConfig();
         $this->limit = $config['quantity_new'];
         $data['news'] = $this->getNewTravel();
-//        var_dump($data['news']);
         $data['news'] = $this->ModifyNew($data['news']);
 
         $this->returnData = $data;
@@ -64,6 +63,10 @@ class BlockHome extends \HomeGlobal
             } else {
                 $data[$key]['link'] = $this->linkUrl($this->mod, 'detail', 'view', $parent_id . '_' . $value['id'], $value['alias']);
             }
+
+            $data[$key]['original_price'] = number_format($data[$key]['original_price']);
+            $data[$key]['sale_price'] = number_format($data[$key]['sale_price']);
+
             $data[$key]['thumb'] = $this->loadImage($value['img'], 'resize', 200, 180);
             $data[$key]['create_time'] = date("H:i:s d-m-Y", $value['create_time']);
         }

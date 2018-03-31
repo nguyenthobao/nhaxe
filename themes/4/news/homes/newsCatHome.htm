@@ -1,51 +1,41 @@
-
-<div class="container">
 <!--{if !empty($_home_cat)}-->
-	<!--{loop $_home_cat $key $value}-->
-		<!--{if !empty($value['content_news'])}-->
-		<div class="f-center-module catetintuc">
-			<div class="f-center-title f-center-title-cate-new">				
-				<ul class="f-pr-tab-home-cate  stylenavtabs">
-					<li>
-						<h2>		            		
-		            		<a href="#f-news-cat-home{$key}0" data-toggle="tab"  data-id="{$value['id']}"  class="parent_tab">{$value['title']}
-		            		</a>
-	            		</h2>
-	            	</li>
-	            	<!--{if !empty($value['sub'])}-->
-			            <!--{eval $i = 1}--> 
-			            <!--{loop $value['sub'] $k $v}-->
-			            	<li>		            		
-			            		<h2><a href="#f-news-cat-home{$key}{$v['id']}" data-toggle="tab" data-id="{$v['id']}" data-id-parent="{$key}"  data-url="{$web['home_url']}"  class="newstab">{$v['title']}</a></h2>
-			            	</li>
-			            <!--{eval $i++}-->
-			            <!--{/loop}-->
-	            	<!--{/if}-->
-				</ul>
-			</div>
-			<div class="f-center-body">
-				<div class="clearfix"></div>
-				<div class="tab-content">
-					<!--{eval $content_news = $value['content_news']}-->
-					<div id="f-news-cat-home{$key}0" class="tab-pane active"> 
-						<!--{temphome homes/newsItem}-->
-					</div>
-					<!--{if !empty($value['sub'])}-->
-			            <!--{eval $i = 1}--> 
-			            <!--{loop $value['sub'] $k $v}-->
-			            	<div id="f-news-cat-home{$key}{$v['id']}" class="tab-pane"> 
-								Loading...
-							</div> 
-			            <!--{eval $i++}-->
-			            <!--{/loop}--> 
-	            	<!--{/if}-->
-				</div>
-				<div class="clearfix"></div>
-			</div>
+<div class="row">
+	<div class="col-md-8" style="margin-bottom: 30px;">
+		<div class="title">
+			<h3>{$_home_cat[0]['title']}</h3>
 		</div>
-		<!--{/if}-->
-	<!--{/loop}-->
+		<div class="owl-carousel owl-theme bus-list">
+			<!--{loop $_home_cat[0]['content_news'] $k $v}-->
+			<div class="item-bus">
+				<a href="$v['link']">
+					<img src="<!--{loadImage $v['img'] resize 570 290}-->" style="height: 220px;" class="img-thumbnail" alt="$v['title']">
+					<h5>$v['title']</h5>
+				</a>
+			</div>
+			<!--{/loop}-->
+		</div>
+	</div>
+	<div class="col-md-4" style="margin-bottom: 30px;">
+		<div class="title">
+			<h3>{$_home_cat[1]['title']}</h3>
+		</div>
+		<div class="travel">
+		<!--{loop $_home_cat[1]['content_news'] $k $v}-->
+			<div class="row item">
+				<a href="$v['link']">
+					<div class="col-md-5">
+						<img src="<!--{loadImage $v['img'] crop 570 290}-->" class="img-thumbnail" alt="$v['title']">
+					</div>
+					<div class="col-md-7">
+						<p>$v['title']</p>
+					</div>
+				</a>
+			</div>
+		<!--{/loop}-->
+		</div>
+	</div>
+</div>
+
 <!--{/if}-->
-</div><!--end container-->
 
 

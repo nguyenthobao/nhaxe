@@ -425,6 +425,27 @@ position: absolute;
                               </div>
                             </form>
                          </div>
+                        <!--Modal verify-->
+                            <div class="modal fade" id="verifyModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="vefifyLabel">
+                                <div class="modal-dialog modal-sm" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="vefifyLabel">Xác thực số điện thoại</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="form-inline">
+                                                <input type="text" id="verifyCode" placeholder="Nhập mã xác thực" class="form-control">
+                                                <button type="button" class="btn btn-primary" id="resendCode">Gửi lại</button>
+                                            </form>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" id="verify" class="btn btn-default">Xác thực</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <!--End Modal verify-->
                          <script type="text/javascript">
                          
                          
@@ -487,6 +508,8 @@ position: absolute;
     }
     $('#errormes').hide();
     $('#loading').show();
+
+    // $('#verifyModal').modal('show');
     $.ajax({
             url: '<?=$_B['create_home']?>?mod=ajax',
             type: 'POST',
@@ -507,8 +530,13 @@ position: absolute;
                      $('#loading').hide();
                   }
                   else
-                  { 
-                    window.location.href = '<?=$_B['create_home']?>?step=2'; 
+                  {
+                    //window.location.href = '<?//=$_B['create_home']?>//?step=2';
+                      $('#verifyModal').modal('show');
+                      alert('Hệ thống sẽ gủi mã xác thực trong ít phút')
+                      setTimeout(function () {
+                          $(this).prop('disabled', false);
+                      }, 60000);
                   }
               // if(data.status){
               //     window.setTimeout(function(){
@@ -526,7 +554,54 @@ position: absolute;
         });
 
   });
+  
+  $('#verify').click(function () {
+      $.ajax({
+          url: '<?=$_B['create_home']?>?mod=ajax',
+          type: 'POST',
+          data: {
+              action:'verifyPhone',
+              phoneNumber: $('#phoneNumber').val(),
+              otpCode: $('#verifyCode').val(),
+          },
+          success: function(data){
+              if(!data.status){
+                  alert(data.message);
+              } else {
+                  window.location.href = '<?=$_B['create_home']?>?step=2';
+              }
+          },
+          error: function () {
+              alert('Có lỗi xảy ra, hãy thử lại!');
+          }
+      });
+  });
 
+  $('#resendCode').click(function () {
+      $(this).prop('disabled', true);
+      $.ajax({
+          url: '<?=$_B['create_home']?>?mod=ajax',
+          type: 'POST',
+          data: {
+              action:'resendCode',
+              phoneNumber: $('#phoneNumber').val(),
+          },
+          success: function(data){
+              if(!data.status){
+                  alert(data.message);
+                  $(this).prop('disabled', false);
+              } else {
+                  alert(data.message);
+                  setTimeout(function () {
+                      $(this).prop('disabled', false);
+                  }, 5*60000);
+              }
+          },
+          error: function () {
+              alert('Có lỗi xảy ra, hãy thử lại!');
+          }
+      });
+  })
 
 
 });

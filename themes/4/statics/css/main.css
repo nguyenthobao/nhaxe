@@ -2,53 +2,60 @@ body {
     background-color: #f4f4f4;
 }
 header {
-    background-color: #FFFFFF;
-}
-a {
-    color: #000000;
-    text-decoration: none;
+    background-color: #c1112c;
 }
 a:hover {
-    color: #ff5115;
     text-decoration: none;
 }
-/* Remove the navbar's default margin-bottom and rounded borders */
-.navbar {
-    margin-bottom: 0;
-    border-radius: 0;
-}
-
 .logo {
-    width: 107px;
-    height: 45px;
-}
-
-.header-container {
-    display: table;
-    height: 50px;
-    width: 100%;
+    max-width: 200px;
+    height: 110px;
 }
 
 .header-logo {
-    float: none;
-    display: table-cell;
-    padding-right: .625rem;
-    margin: 0;
+    padding: 0;
 }
 
-.header-logo a{
-    float: left;
-    color: #f4f4f4;
+.header-container {
+    margin-top: -10px;
+}
+
+.company-name {
+    text-align: center;
+    margin-top: 25px;
+    color: #ff0;
+}
+
+.lang {
+    float: right;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.lang img {
+    margin-left: 20px;
+}
+
+.search-input {
+    margin-top: 20px;
+    float: right;
+    width: 55%;
+    height: 35px;
+}
+
+.menu {
+    height: 55px;
+    background-color: #ff0;
 }
 
 .main-menu {
     vertical-align: middle;
 }
 
-.mainmenu-level {
+.main-menu-level {
     float: left;
     height: 3.6875rem;
-    margin: 0 0 0 .625rem;
+    margin: .625rem 0 0 .625rem;
     overflow: hidden;
     text-align: right;
 }
@@ -60,16 +67,188 @@ a:hover {
     font-family: "Helvetica Neue",Roboto,Arial,sans-serif;
     margin-left: 30px;
     line-height: 3.6875rem;
+    text-transform: uppercase;
+    font-weight: 700;
     transition: background-color .5s ease;
 }
 
-.mainmenu-level-item a {
-    font-size: 18px;
-    color: #000000;
-}
-.mainmenu-level-item a:hover {
+.main-menu-level a {
+    color: #032060;
     text-decoration: none;
-    color: #ff5115;
+}
+
+.main-menu-level a:hover {
+    color: #c1112c;
+}
+
+.title {
+    width: fit-content;
+    border-bottom: #1E88E5 solid 1px;
+}
+
+.title h3 {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.hot-news, .route-list, .bus-list {
+    margin-top: 30px;
+}
+
+.route-list {
+    border: 7px solid #010000;
+}
+
+.item {
+    margin-top: 5px;
+}
+
+.title-item {
+    padding: 10px;
+    position: absolute;
+    left: 10%;
+    right: 8%;
+    top: 20%;
+}
+
+.title-item a{
+    color: #fff;
+    font-weight: 600;
+    line-height: 1.76em;
+    text-shadow: 2px 2px 4px #000;
+}
+
+.title-item a:hover {
+    color: #E11428;
+}
+
+.route-item {
+    margin-bottom: 10px;
+    height: 112px;
+}
+
+.bg-3 {
+    margin-bottom: 20px;
+}
+
+a {
+    color: #032060;
+}
+
+a:hover {
+    color: #c1112c;
+}
+
+.carousel-item > div {
+    float: left;
+}
+.carousel-by-item [class*="cloneditem-"] {
+    display: none;
+}
+
+.item-bus {
+    height: 320px;
+    text-align: center;
+    padding: 5px;
+    background-color: #fff;
+    border: #ffffff outset .5px;
+    box-shadow: 3px 0px #ffffff;
+}
+
+.item-bus a{
+    color: #252b36;
+}
+
+.item-bus a:hover{
+    color: #c1112c;
+}
+
+.item-bus h5 {
+    margin-top: 15px;
+    font-weight: 700;
+}
+
+.owl-prev {
+    position: absolute;
+    top: 12%;
+    left: -25px;
+}
+
+.owl-nav span {
+    font-size: 30px;
+}
+
+.owl-next {
+    position: absolute;
+    top: 12%;
+    right: -25px;
+}
+
+.travel-list, .travel {
+    margin-top: 30px;
+}
+
+.travel-detail{
+    margin-top: 20px;
+}
+.travel-detail h5{
+    color: #252b36;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.promotion {
+    position: absolute;
+    top: 10%;
+    left: 7%;
+    background: #EF5350;
+    color: #fff;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.new {
+    background: #E53935;
+}
+
+.travel-detail h5:hover{
+    color: #c1112c;
+}
+
+.old-price {
+    color: #9E9E9E;
+    text-decoration: line-through;
+    font-size: 12px;
+}
+
+.current-price {
+    font-weight: 700;
+    /*margin-left: -30px;*/
+}
+
+.plant {
+    list-style: none;
+}
+
+.plant li {
+    margin-bottom: 10px;
+    margin-left: -25px;
+}
+
+.plant li span {
+    color: #9E9E9E;
+}
+
+.item-post {
+    height: 450px;
+}
+
+.item-travel {
+    padding-top: 15px;
+    background-color: #fff;
+    border: black outset .5px;
+    box-shadow: 5px 5px #888888;
+    height: 450px;
 }
 
 .footer-nav {
@@ -87,83 +266,7 @@ a:hover {
 }
 
 .footer-nav a:hover{
-    color: #f04c23;;
-}
-
-.active a{
-    color: #ff5115;
-}
-
-@media screen and (min-width: 48em) {
-    .main-menu {
-        display: table-cell;
-    }
-}
-
-@media screen and (min-width: 60em) {
-    .mainmenu-level-item {
-        font-size: 1.125rem;
-    }
-}
-
-/* Add a gray background color and some padding to the footer */
-footer {
-    background-color: #252b36;;
-    padding: 25px;
-    color: #ffffff;
-}
-
-.title {
-    margin: 20px 0 20px 0;
-    /*background: #ff5115;*/
-}
-.sale-bar-title {
-    font-size: 3rem;
-    padding: 20px 0 0 0;
-    /*color: #fff;*/
-    margin: 0;
-    line-height: normal;
-    letter-spacing: -.02em;
-}
-.card-profile h3{
-    font-weight: bold;
-}
-
-.btn-oder {
-    background-color: #ffffff;
-    color: #ff5115;
-    font-size: 2rem;
-    padding: .5rem 1.875rem .5rem 1.875rem;
-    font-weight: 700;
-    border-radius: 6.25rem;
-    border: solid 2px #ff5115;
-}
-
-.btn-oder:hover {
-    background-color: #ff5115;
-    color: #ffffff;
-}
-
-.margin-item {
-    margin: 5px 0 10px 0;
-}
-
-.item, .item-post {
-    background-color: #FFFFFF;
-    padding-bottom: 25px;
-}
-
-.item-post {
-    height: 450px;
-}
-
-.box-news-title {
-    background: #f5f6f6;
-    padding: 20px 15px;
-}
-
-.box-news {
-    padding: 15px 0;
+    color: #c1112c;
 }
 
 #carouselInformation {
@@ -183,49 +286,49 @@ footer {
 }
 
 #carouselInformation ul li .caption h4 {
-    color: #f04c23;
+    color: #c1112c;
     margin: 15px 0;
     font-size: 16px;
     font-weight: bold;
 }
 
-/*News*/
-.news-breadcrumb {
-    margin: 20px 0 0px 0;
+@media screen and (min-width: 48em) {
+    .main-menu {
+        display: table-cell;
+    }
 }
 
-.news-title {
-    margin: 0 0 20px 0;
-}
-.news-title h3{
-    color: #ff5115;
-
+@media screen and (min-width: 60em) {
+    .mainmenu-level-item {
+        font-size: 1.5rem;
+    }
 }
 
-.news-date {
-    color: #B6B6B6;
-    font-size: 12px;
-    padding-bottom: 4px;
-    padding-left: 10px;
-    overflow: hidden;
-    border-bottom: 1px solid #dcdcdc;
-    margin-bottom: 15px;
+/* Add a gray background color and some padding to the footer */
+footer {
+    background-color: #252b36;;
+    padding: 25px;
+    color: #ffffff;
 }
 
-.news-content {
-    color: #404040;
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    line-height: 21px;
-    padding: 10px;
+
+.btn-oder {
+    background-color: #ffffff;
+    color: #c1112c;
+    font-size: 2rem;
+    padding: .5rem 1.875rem .5rem 1.875rem;
+    font-weight: 700;
+    border-radius: 6.25rem;
+    border: solid 2px #c1112c;
 }
 
-#recent-news {
-    margin-top: 20px;
+.btn-oder:hover {
+    background-color: #c1112c;
+    color: #ffffff;
 }
 
-#cate-news {
-    margin-top: 20px;
+.margin-item {
+    margin: 5px 0 10px 0;
 }
 
 /*Booking form*/
@@ -240,7 +343,7 @@ footer {
 
 #booking-form h3 {
     padding: 0 0 10px 20px;
-    color: #ff5115;
+    color: #c1112c;
 }
 
 #search-form {
@@ -254,7 +357,7 @@ footer {
 }
 
 .selected {
-    background-color: #ff5115;
+    background-color: #c1112c;
     color: #ffffff;
 }
 
@@ -285,8 +388,8 @@ footer {
     font-size: 20px;
     text-transform: uppercase;
     border: 1px solid #ddd;
-    color: #000;
-    background: url(../images/btn-search.png) no-repeat right 20px center;
+    color: #fff;
+    background: #c1112c url(../images/btn-search.png) no-repeat right 20px center;
 }
 
 #select-trip {
@@ -307,7 +410,7 @@ footer {
 
 .trip {
     font-size: 18px;
-    color: #f04c23;
+    color: #c1112c;
     line-height: 27px;
     margin-bottom: 0;
 }
@@ -341,7 +444,7 @@ footer {
 }
 
 .table-price {
-    color: #fe6715;
+    color: #c1112c;
     font-size: 20px;
     font-weight: 600;
 }
@@ -391,7 +494,7 @@ footer {
 #select-seat {
     float: right;
     margin: 0 10px 10px;
-    background: #f04c23;
+    background: #c1112c;
     padding: 0 30px;
     height: 40px;
     line-height: 40px;
@@ -417,7 +520,7 @@ footer {
 .trip-info {
     padding: 10px 0 10px 10px;
     font-weight: 600;
-    color: #ff5115;
+    color: #c1112c;
     background: 0;
     margin: 0 0 15px 0;
     border-bottom: 1px solid #ddd;
@@ -582,7 +685,7 @@ footer {
 }
 
 .total-title h4{
-    color: #ff5115;
+    color: #c1112c;
     text-transform: uppercase;
     font-size: 15px;
     font-weight: 600;
@@ -590,7 +693,7 @@ footer {
 
 .seatlist, .price {
     font-weight: 600;
-    color: #ff5115;
+    color: #c1112c;
     float: right;
     font-size: 16px;
 }
@@ -632,7 +735,7 @@ footer {
 
 .subtotal strong {
     font-size: 16px;
-    color: #fe5815;
+    color: #c1112c;
 }
 
 #total {
@@ -647,7 +750,7 @@ footer {
 
 #total strong{
     font-size: 20px;
-    color: #fe5815;
+    color: #c1112c;
 }
 
 .payment {
@@ -660,9 +763,9 @@ footer {
     width: 110%;
     padding: 0;
     margin: 0 0 0 -15px;
-    background: #f04c23;
+    background: #c1112c;
     box-sizing: border-box;
-    border: 10px solid #f04c23;
+    border: 10px solid #c1112c;
     border-radius: 5px;
 }
 
@@ -726,7 +829,7 @@ footer {
     height: 20px;
     width: 20px;
     background-color: #fff ;
-    border-color: #f04c23;
+    border-color: #c1112c;
     border-style:solid;
     border-width:2px;
     border-radius: 50%;
@@ -757,7 +860,7 @@ footer {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background:#f04c23;
+    background:#c1112c;
 
 
 }
@@ -792,7 +895,7 @@ footer {
     height: 18px;
     width: 18px;
     background-color: #fff ;
-    border-color:#f04c23;
+    border-color:#c1112c;
     border-style:solid;
     border-width:2px;
 }
@@ -823,7 +926,7 @@ footer {
     width: 5px;
     height: 10px;
     border: solid ;
-    border-color:#f04c23;
+    border-color:#c1112c;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
@@ -832,16 +935,16 @@ footer {
 
 .cust-btn{
     margin-bottom: 10px;
-    background-color: #f04c23;
+    background-color: #c1112c;
     border-width: 2px;
-    border-color: #f04c23;
+    border-color: #c1112c;
     color: #fff;
 }
 .cust-btn:hover{
 
-    border-color: #f04c23;
+    border-color: #c1112c;
     background-color: #fff;
-    color: #f04c23;
+    color: #c1112c;
     border-radius: 20px;
     transform-style: 2s;
 }
@@ -855,9 +958,10 @@ footer {
     font-size: 20px;
     text-transform: uppercase;
     border: 1px solid #ddd;
-    color: #000;
+    color: #fff;
+    background-color: #c1112c;
 }
 
-#hoanthanhbtn {
-    background: url(../images/btn-search.png) right 20px center no-repeat;
-}
+/*#hoanthanhbtn {*/
+    /*background: url(../images/btn-search.png) right 20px center no-repeat;*/
+/*}*/

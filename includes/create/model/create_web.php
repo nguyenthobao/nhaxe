@@ -141,6 +141,41 @@ class CreateWeb {
             return array('status' => false,'message'=>'Số điện thoại đã được đăng ký, hãy chọn số khác');
         } 
     }
+
+    //Hàm gửi lại mã xác thực
+    public function resendCode() {
+        $d['stateCode'] = "84";
+        $d['phoneNumber'] = $this->r->get_string('phoneNumber', 'POST');
+
+        $rt = $this->PostAnvui('https://dobody-anvui.appspot.com/user/sendverify',$d);
+        if($rt['code'] == 200 ){
+            $data['status']  = true;
+            $data['message'] = 'Hệ thống sẽ gửi lại mã xác nhận';
+        } else {
+            $data['status']  = false;
+            $data['message'] = 'Có lỗi xảy ra, hãy thử lại!';
+        }
+
+        return $data;
+    }
+
+    //Xác thực số điện thoại
+    public function verifyPhone() {
+        $d['stateCode'] = "84";
+        $d['phoneNumber'] = $this->r->get_string('phoneNumber', 'POST');
+        $d['otpCode'] = $this->r->get_string('otpCode', 'POST');
+        $rt = $this->PostAnvui('https://dobody-anvui.appspot.com/user/verifyphonenumber',$d);
+        if($rt['code'] == 200 ){
+            $data['status']  = true;
+            $data['message'] = 'Xác thực thành công';
+        } else {
+            $data['status']  = false;
+            $data['message'] = 'Mã xác thực không chính xác!';
+        }
+
+        return $data;
+    }
+
     /**
      * @return mixed
      */

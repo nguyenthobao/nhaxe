@@ -1,36 +1,11 @@
-<div class="container bg-3 text-center">
-	<div class="title">
-		<h2 class="sale-bar-title">Đặt vé trực tuyến</h2><br>
-	</div>
-	<div class="row">
-		{loop $_chuyen $k $v}
-		<div class="col-sm-4 margin-item">
-			<div class="item">
-				<a href="$v['link']" title="$v['routeName']">
-					{if $v['listImages'][0] != "0" && isset($v['listImages'][0])}
-
-					<img src="$v['listImages'][0]" class="img-responsive" alt="$v['routeName']" alt="$v['routeName']" style="opacity: .5; height: 220px; width: 100%;" />
-
-					{else}
-
-					<img src="{$web['static_temp']}/{$web['temp']}/statics/images/bottom%20-%20sin.jpg" class="img-responsive" alt="$v['routeName']" style="opacity: .5; height: 220px; width: 100%;" />
-
-					{/if}
-
-					<div class="card-profile">
-						<h3>$v['routeName']</h3>
-						<p class="card-content">Giá từ $v['price']</p>
-						<a href="$v['link']" title="$v['routeName']" class="btn btn-oder">Đặt vé</a>
-					</div>
-				</a>
-			</div>
-		</div>
-		{/loop}
-	</div>
+<div class="container bg-3">
+    bnc_position_home
 </div>
-<!--NEWS-->
-bnc_position_home
+
+
 <script>
+    var routeBackId;
+    var isRound;
     $(document).ready(function () {
         var isMobile = {
             Android: function() {
@@ -71,5 +46,245 @@ bnc_position_home
         {
             window.location.href = urlIOs;
         }
+
+
+        // JS dat ve
+        companyId = $("base").attr("id");
+
+        //Lấy ajax thông tin chuyến
+        $.ajax({
+            type: "POST",
+            url: "https://anvui.vn/chuyenAV",
+            data: {
+                idAV: companyId
+            },
+            success: function (result) {
+                if(result.chuyen.length < 1) {
+                    alert('Nhà xe hiện chưa có tuyến');
+                    return;
+                }
+                $.each(result.chuyen, function (key, item) {
+                    $('#routeId').append('<option value="' + item.routeId + '" data-routeback="' + item.routeBack + '">' + item.routeName + '</option>');
+                });
+
+                //Lấy thông tin điểm đầu cuối tren url, neu khong co thi lay chuyen dau tien
+
+                $('#routeId').val(result.chuyen[0].routeId).change();
+            }
+        });
+
+        //Sự kiện thay đổi route
+        $('#routeId').change(function () {
+            routeBackId = $(this).find(':selected').data('routeback');
+            getPoint($(this).val());
+        });
+
+        $('#depatureDate').datepicker({
+            dateFormat: 'dd/mm/yy',
+            defaultDate: "+0d",
+            minDate: 0,
+            onSelect: function (dateStr) {
+                startPoint = $('#startPoint').val();
+                endPoint = $('#endPoint').val();
+                routeId = $('#routeId').val();
+                changeDate(dateStr);
+            }
+        });
+
+        $('#returnDate').datepicker({
+            dateFormat: 'dd/mm/yy',
+            defaultDate: "+0d",
+            minDate: 0,
+        });
+
+        //Tìm chuyến
+        $('#search-btn').click(function () {
+            depatureDate = $('#depatureDate').val();
+            returnDate = $('#returnDate').val();
+            routeId = $('#routeId').val();
+            startPoint = $('#startPoint').val();
+            endPoint = $('#endPoint').val();
+
+
+
+            var routeName = $('#routeId').find('option:selected').text();
+
+            $('.start').html(routeName.split("-")[0]);
+            $('.end').html(routeName.split("-")[1]);
+            $('.startDate').html($('#depatureDate').val());
+            $('.startDateReturn').html($('#returnDate').val());
+            $('.routeName').html(routeName);
+            $('.routeNameReturn').html(routeName.split("-")[1] + " - " + routeName.split("-")[0]);
+
+            if(isRound == 1) {
+                if(routeBackId === 'undefined') {
+                    $('#oneway').click();
+                    $.alert({
+                        title: 'Cảnh báo!',
+                        type: 'red',
+                        typeAnimated: true,
+                        content: 'Chuyến không có khứ hồi',
+                    });
+                    return false;
+                }
+                $('#routeBackId').val(routeBackId);
+            } else {
+                $('#routeBackId').val('');
+            }
+
+
+            if (routeId === "") {
+                $.alert({
+                    title: 'Cảnh báo!',
+                    type: 'red',
+                    typeAnimated: true,
+                    content: 'Chưa chọn tuyến đường',
+                });
+                return false;
+            }
+
+            if (startPoint === "") {
+                $.alert({
+                    title: 'Cảnh báo!',
+                    type: 'red',
+                    typeAnimated: true,
+                    content: 'Chưa chọn điểm đi',
+                });
+                return false;
+            }
+
+            if (endPoint === "") {
+                $.alert({
+                    title: 'Cảnh báo!',
+                    type: 'red',
+                    typeAnimated: true,
+                    content: 'Chưa chọn điếm đến',
+                });
+                return false;
+            }
+
+            if (depatureDate === "") {
+                $.alert({
+                    title: 'Cảnh báo!',
+                    type: 'red',
+                    typeAnimated: true,
+                    content: 'Chưa chọn ngày đi',
+                    onClose: function () {
+                        $('#depatureDate').datepicker('show');
+                    }
+                });
+
+                return false;
+            }
+
+            //có khứ hồi
+            if(isRound == 1) {
+
+                if (returnDate === "") {
+                    $.alert({
+                        title: 'Cảnh báo!',
+                        type: 'red',
+                        typeAnimated: true,
+                        content: 'Chưa chọn ngày về',
+                        onClose: function () {
+                            $('#returnDate').datepicker('show');
+                        }
+                    });
+                    return false;
+                }
+
+                $('.endDate').html($('#returnDate').val());
+
+                $('#trip-round').show();
+                $('#total-round').show();
+
+            }
+
+            $('#trip-oneway').show();
+            $('#next-step').show();
+            $('#booking-form').hide();
+
+        });
+
+        //chọn khứ hồi
+        $('#roundtrip').click(function () {
+            isRound = 1;
+            $('.selectday').removeClass('selected');
+            $(this).addClass('selected');
+            $('#returnDate').prop('disabled', false);
+            changeDate($('#depatureDate').val());
+        });
+
+        //chọn một chiều
+        $('#oneway').click(function () {
+            isRound = 0;
+            $('.selectday').removeClass('selected');
+            $(this).addClass('selected');
+            $('#returnDate').val('');
+            $('#returnDate').prop('disabled', true);
+        });
     });
+
+    function changeDate(dateStr) {
+        if(dateStr === '') {
+            return;
+        }
+        var date_Str = '';
+        for (var i = 0; i < 10; i++) {
+
+            if (i == 1 || i == 0) {
+                date_Str += dateStr.charAt(i + 3);
+            } else if (i == 3 || i == 4) {
+                date_Str += dateStr.charAt(i - 3);
+            }
+            else date_Str += dateStr.charAt(i);
+        }
+        if(isRound == 1) {
+            $('#returnDate').datepicker("option", {
+                minDate: new Date(date_Str)
+            });
+            $('#returnDate').val(dateStr);
+        }
+    }
+
+    //Lấy ajax điểm đầu điểm cuối
+    function getPoint(routeId) {
+        $('#startPoint').html('<option value="">Điểm đi</option>');
+        $('#endPoint').html('<option value="">Điểm đến</option>');
+
+        $.ajax({
+            type: "POST",
+            url: "https://anvui.vn/pointNX",
+            data: {
+                routeId: routeId
+            },
+            success: function (result) {
+
+                // routeBackId = result.routeBack;
+
+                //lấy thông tin điểm đầu
+                $.each(result.a1, function (key, item) {
+                    $('#startPoint').append('<option value="' + item.pointId + '">' + item.pointName + '</option>');
+                });
+                $('#startPoint').val(result.a1[0].pointId).change();
+
+                //lấy thông tin điểm cuối
+                $.each(result.a2, function (key, item) {
+                    $('#endPoint').append('<option value="' + item.pointId + '">' + item.pointName + '</option>');
+                });
+                $('#endPoint').val(result.a2[0].pointId).change();
+            }
+        });
+    }
+
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
 </script>

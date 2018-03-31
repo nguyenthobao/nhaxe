@@ -1,32 +1,94 @@
-<div class="backgroundnew">
-  <div class="container">
-    <div class="f-center-module">
-      <div class="f-center-title"> <i></i><span>{lang news_new}</span> </div>
-      <div class="f-center-body">
-        <ul class="f-news row">
-          <!--{eval $i=0}-->
-          <!--{loop $_news $k $v}-->
-          <!--{if $i < 2}--> 
-          <li class="col-md-6 col-sm-6 col-xs-6 full-xs">
-            <div class="f-news-item">
-              <div class="f-news-item-img"> <a href="$v['link']" title=""> <img src="<!--{loadImage $v['img'] crop 570 290}-->" class="img-responsive" alt="$v['title']" /> </a>
-
-              </div>
-              <div class="f-news-item-title">
-                
-                <h3> <a title="Title" href="$v['link']">$v['title']</a> </h3>
-              </div>
+<div class="row">
+    <div class="col-md-8" style="margin-bottom: 30px;">
+        <div class="title">
+            <h3>{lang news_hot}</h3>
+        </div>
+        <div class="hot-news">
+            <div class="col-md-6">
+                <div class="image-news">
+                    <a href="$_news[0]['link']">
+                        <img src="<!--{loadImage $_news[0]['img'] resize 570 290}-->" class="img-thumbnail" alt="$_news[0]['title']">
+                    </a>
+                </div>
+                <div class="content">
+                    <h4>
+                        <a href="$_news[0]['link']">$_news[0]['title']</a>
+                    </h4>
+                    <div class="description">
+                        <!--{cutString $_news[0]['short'] 0 200}-->
+                    </div>
+                </div>
             </div>
-
-            <div class="f-new-item-sum"><!--{cutString $v['short'] 0 200}--></div>
-          </li>
-          <!--{/if}-->
-          <!--{eval $i++}-->
-          <!--{/loop}-->
-           
-        </ul>
-        <div class="clearfix"></div>
-      </div>
+            <div class="col-md-6">
+                <!--{eval $i=0}-->
+                <!--{loop $_news $k $v}-->
+                    <!--{if $i > 0 && $i < 6}-->
+                    <div class="row item">
+                        <a href="$v['link']">
+                            <div class="col-md-6">
+                                <img src="<!--{loadImage $v['img'] crop 570 290}-->" class="img-thumbnail" alt="$v['title']">
+                            </div>
+                            <div class="col-md-6">
+                                <p>$v['title']</p>
+                            </div>
+                        </a>
+                    </div>
+                    <!--{/if}-->
+                <!--{eval $i++}-->
+                <!--{/loop}-->
+            </div>
+        </div>
     </div>
-  </div>
+    <div class="col-md-4" style="margin-bottom: 30px;">
+        <div class="title">
+            <h3>{lang booking}</h3>
+        </div>
+        <div class="route-list">
+            <form action="dat-ve" id="search-form">
+                <div class="row chonchieu">
+                    <button type="button" class="btn btn-oder selectday selected" id="oneway">Một chiều</button>
+                    <button type="button" class="btn btn-oder selectday" id="roundtrip">Khứ hồi</button>
+                </div>
+                <div class="row" style="margin-bottom: -15px;">
+                    <div class="clearfix">
+                        <div class="col-md-12">
+                            <label for="routeId">Chuyến</label>
+                            <select class="form-control" name="routeId" id="routeId">
+                                <option value="">Chọn chuyến</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="startPoint">Điểm đi</label>
+                            <select class="form-control" name="startPoint" id="startPoint">
+                                <option value="">Điểm đi</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="endPoint">Điểm đến</label>
+                            <select class="form-control" name="endPoint" id="endPoint">
+                                <option value="">Điểm đến</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="clearfix">
+                        <div class="col-md-12">
+                            <label for="depatureDate">Ngày đi</label>
+                            <input type="text" class="form-control datepicker" name="depatureDate" id="depatureDate" readonly>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="depatureDate">Ngày về</label>
+                            <input type="text" class="form-control datepicker" name="returnDate" id="returnDate" readonly>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="hidden" id="routeBackId" name="routeBackId">
+                            <button type="submit" class="btn" id="search-btn">TÌM CHUYẾN XE</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
 </div>

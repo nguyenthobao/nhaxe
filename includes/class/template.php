@@ -310,7 +310,7 @@ class Template {
             exit("Template file : $tplfile Not found or have no access!");
         }
 
-        // var_dump($data['head']['link']);
+//        echo "<pre>"; var_dump($data); echo "</pre>";
         $template = preg_replace('/<meta name="keywords" content="(.*)">/', '<meta name="keywords" content="$data[\'head\'][\'keywords\']">', $template);
         $template = preg_replace('/<head>/', '<head><link rel="canonical" href="$data[\'head\'][\'link\']">', $template);
         //$template = preg_replace('/\$\_([^GET][a-zA_Z0-9\_\-]+)/i', '$data[\'content\'][\'\\1\']', $template);
@@ -990,6 +990,7 @@ class Template {
         $blockObj->where('status', 1);
         $blockObj->orderBy('sort', 'ASC');
         $listBlocks = $blockObj->get(null, null, 'module_str,file,title');
+//        var_dump($listBlocks);
         foreach ($listBlocks as $k => $v) {
             $this->loadHome($v);
         }
