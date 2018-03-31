@@ -7,6 +7,11 @@
     var routeBackId;
     var isRound;
     $(document).ready(function () {
+
+        $('html, body').animate({
+            scrollTop: $(".bg-3").offset().top
+        },1000);
+
         var isMobile = {
             Android: function() {
                 return navigator.userAgent.match(/Android/i);
