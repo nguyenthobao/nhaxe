@@ -8,7 +8,7 @@
 			<!--{loop $_home_cat[0]['content_news'] $k $v}-->
 			<div class="item-bus">
 				<a href="$v['link']">
-					<img src="<!--{loadImage $v['img'] resize 570 290}-->" style="height: 220px;" class="img-thumbnail" alt="$v['title']">
+					<img src="<!--{loadImage $v['img'] resize 570 290}-->" class="img-responsive" alt="$v['title']">
 					<h5>$v['title']</h5>
 				</a>
 			</div>
@@ -21,10 +21,10 @@
 		</div>
 		<div class="travel">
 		<!--{loop $_home_cat[1]['content_news'] $k $v}-->
-			<div class="row item">
+			<div class="row item" style="margin-top: 10px;">
 				<a href="$v['link']">
 					<div class="col-md-5">
-						<img src="<!--{loadImage $v['img'] crop 570 290}-->" class="img-thumbnail" alt="$v['title']">
+						<img src="<!--{loadImage $v['img'] crop 570 290}-->" class="img-responsive" alt="$v['title']">
 					</div>
 					<div class="col-md-7">
 						<p>$v['title']</p>
@@ -35,7 +35,13 @@
 		</div>
 	</div>
 </div>
-
+<style>
+	.travel {
+		overflow-y: auto;
+		overflow-x: hidden;
+		height: 220px;
+	}
+</style>
 <!--{/if}-->
 
 

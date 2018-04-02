@@ -73,7 +73,7 @@ $(document).ready(function () {
         $('#endPoint').val(endPoint).change();
         $('#depatureDate').val(depatureDate);
 
-        if(routeBackId != null && returnDate != null) {
+        if(routeBackId != '' && returnDate != '') {
             setTimeout(function () {
                 $('#roundtrip').click();
                 $('#returnDate').val(returnDate);

@@ -27,7 +27,9 @@
             <div class="col-md-8 padding-news">
                 <div class="image-news">
                     <a href="$_news[0]['link']">
-                        <img src="<!--{loadImage $_news[0]['img'] resize 570 290}-->" class="img-thumbnail" alt="$_news[0]['title']">
+                        <img src="<!--{loadImage $_news[0]['img'] resize 570 290}-->" class="img-responsive" style="    height: 385px;
+    padding-right: 10px;
+    padding-top: 5px;" alt="$_news[0]['title']">
                     </a>
                 </div>
                 <div class="content">
@@ -46,7 +48,7 @@
                     <div class="row item" style="max-height: 78px">
                         <a href="$v['link']">
                             <div class="col-md-6 padding-item">
-                                <img src="<!--{loadImage $v['img'] crop 570 290}-->" class="img-thumbnail" alt="$v['title']">
+                                <img src="<!--{loadImage $v['img'] crop 570 290}-->" class="img-responsive" alt="$v['title']">
                             </div>
                             <div class="col-md-6 padding-item">
                                 <p style="font-size: 12px">$v['title']</p>
@@ -72,9 +74,9 @@
                 <div class="row" style="margin-bottom: -15px;">
                     <div class="clearfix">
                         <div class="col-md-12">
-                            <label for="routeId">Chuyến</label>
+                            <label for="routeId">Tuyến</label>
                             <select class="form-control" name="routeId" id="routeId">
-                                <option value="">Chọn chuyến</option>
+                                <option value="">Chọn tuyến</option>
                             </select>
                         </div>
                         <div class="col-md-12">

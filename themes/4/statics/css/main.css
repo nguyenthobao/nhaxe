@@ -149,7 +149,7 @@ a:hover {
 }
 
 .item-bus {
-    height: 320px;
+    height: 220px;
     text-align: center;
     padding: 5px;
     background-color: #fff;
@@ -208,6 +208,10 @@ a:hover {
     color: #fff;
     font-weight: bold;
     padding: 5px;
+}
+
+#list-roundway tr, #list-oneway tr {
+    cursor: pointer;
 }
 
 .new {
