@@ -1,0 +1,59 @@
+
+<!-- {if !empty($_news)} -->
+<div class="row">
+    <div class="col-md-12" style="margin-bottom: 30px;">
+        <div class="title">
+            <h3>{lang news_travel}</h3>
+        </div>
+        <div class="owl-carousel owl-theme travel-list">
+            <!--{loop $_news $k $v}-->
+            <div class="col-md-9 item-travel">
+                <a href="$v['link']">
+                    <div class="image">
+                        <img src="$v['thumb']" class="img-thumbnail" style="height: 170px;" alt="$v['title']">
+                        <div class="promotion">
+                            $v['label_name']
+                        </div>
+                    </div>
+                    <div class="travel-detail">
+                        <h5>$v['title']</h5>
+                        <div class="row">
+                            {if empty($v['sale_price']) && !empty($v['original_price'])}
+                            <div class="col-md-12">
+                                <p class="current-price">$v['original_price'] VND</p>
+                            </div>
+                            {elseif !empty($v['sale_price']) && !empty($v['original_price'])}
+                            <div class="col-md-6">
+                                <p class="old-price">$v['original_price'] VND</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="current-price">$v['sale_price'] VND</p>
+                            </div>
+                            {else}
+                            <div class="col-md-12">
+                                <p style="    text-align: center;
+                                        font-weight: bold;
+                                        font-size: x-large;
+                                        color: red;">Liên hệ</p>
+                            </div>
+                            {/if}
+                        </div>
+                        <ul class="plant">
+                            {if !empty($v['description1'])}
+                            <li><i class="fa fa-clock-o"></i> <span>$v['description1']</span></li>
+                            {/if}
+                            {if !empty($v['description2'])}
+                            <li><i class="fa fa-calendar"></i> <span>$v['description2']</span></li>
+                            {/if}
+                            {if !empty($v['description3'])}
+                            <li><i class="fa fa-plane "></i> <span>$v['description3']</span></li>
+                            {/if}
+                        </ul>
+                    </div>
+                </a>
+            </div>
+            <!--{/loop}-->
+        </div>
+    </div>
+</div>
+<!--{/if}-->
