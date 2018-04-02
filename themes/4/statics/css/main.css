@@ -2,7 +2,8 @@ body {
     background-color: #f4f4f4;
 }
 header {
-    background-color: #c1112c;
+    /*background-color: #c1112c;*/
+    background: url("../images/header.jpg") no-repeat;
 }
 a:hover {
     text-decoration: none;
@@ -24,7 +25,7 @@ a:hover {
     text-align: center;
     margin-top: 25px;
     padding-left: 0px;
-    color: #ff0;
+    color: #c1112c;
 }
 
 .lang {
@@ -97,7 +98,7 @@ a:hover {
 }
 
 .route-list {
-    border: 7px solid #010000;
+    border: 5px solid #c1112c;
 }
 
 .item {
@@ -202,6 +203,7 @@ a:hover {
     position: absolute;
     top: 5%;
     left: 2%;
+    width: 97.5%;
     background: #EF5350;
     color: #fff;
     font-weight: bold;
@@ -342,7 +344,7 @@ footer {
 /*Booking form*/
 #booking-form {
     margin: 20px 0 20px 0;
-    border: 7px solid #010000;
+    border: 5px solid #c1112c;
     position: relative;
     z-index: 1;
     background: #fff;
