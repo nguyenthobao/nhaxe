@@ -65,25 +65,23 @@ $(document).ready(function () {
     depatureDate = getParameterByName('depatureDate');
     returnDate = getParameterByName('returnDate');
     routeBackId = getParameterByName('routeBackId');
+    routeName = getParameterByName('routeName');
 
-    if(routeId != null && startPoint != null && endPoint != null && depatureDate != null) {
-        console.log(returnDate);
-        $('#routeId').val(routeId).change();
-        $('#startPoint').val(startPoint).change();
-        $('#endPoint').val(endPoint).change();
-        $('#depatureDate').val(depatureDate);
-
-        if(routeBackId != '' && returnDate != '') {
-            setTimeout(function () {
-                $('#roundtrip').click();
-                $('#returnDate').val(returnDate);
-                getSchedule(endPoint, startPoint, returnDate, routeBackId, true);
-            }, 1000);
+    if(startPoint != null && endPoint != null && depatureDate != null) {
+        isRound = 0;
+        console.log(routeName);
+        $('.start').html(routeName.split("-")[0]);
+        $('.end').html(routeName.split("-")[1]);
+        getSchedule(startPoint, endPoint, depatureDate, routeId, false);
+        $('#trip-oneway').show();
+        if(returnDate != '' && routeBackId != '') {
+            isRound = 1;
+            getSchedule(endPoint, startPoint, returnDate, routeBackId, true);
+            $('#trip-round').show();
         }
-
-        setTimeout(function () {
-            $('#search-btn').click();
-        }, 3000);
+        $('#booking-form').hide();
+        $('#next-step').show();
+        $('#back').hide();
     }
 
     //Chỉ cho phép nhập số

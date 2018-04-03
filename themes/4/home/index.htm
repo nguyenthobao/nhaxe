@@ -12,6 +12,8 @@
     var isRound;
     $(document).ready(function () {
 
+        $('#depatureDate').val($.format.date(new Date() ,"dd/MM/yyyy"));
+
         $('html, body').animate({
             scrollTop: $(".bg-3").offset().top
         },1000);
@@ -85,6 +87,7 @@
         //Sự kiện thay đổi route
         $('#routeId').change(function () {
             routeBackId = $(this).find(':selected').data('routeback');
+            $('#routeName').val($(this).find(':selected').text());
             getPoint($(this).val());
         });
 

@@ -465,6 +465,8 @@ footer {
 
 .trip-active {
     background-color: #ff9d85;
+    font-weight: bold;
+    color: #020202;
 }
 
 #next-step {
