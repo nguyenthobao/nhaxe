@@ -51,6 +51,7 @@ var hasScheduleOneway = false;
 var hasScheduleReturn = false;
 
 $(document).ready(function () {
+    $('#next-step').removeClass('scrollDown');
 
     companyId = $("base").attr("id");
 
@@ -170,7 +171,7 @@ $(document).ready(function () {
         $('#returnDate').prop('disabled', true);
     });
 
-    //Giữ nút thanh toán đi theo chuột
+    // Giữ nút thanh toán đi theo chuột
     $(window).scroll(function () {
         searchScroll();
     });
@@ -632,10 +633,12 @@ function generatePaymentCode() {
 }
 
 //Fixed nut thanh toan
-function searchScroll(hasParent) {
-    var heightScroll = $(document).height() - $(window).height() - 350;
+function searchScroll() {
+    var heightScroll = $(document).height() - $(window).height() - 400;
 
     var scrollTop = jQuery(window).scrollTop();
+    console.log('scrollTop', scrollTop);
+    console.log('heightScroll', heightScroll);
     if (scrollTop >= heightScroll) {
         $('#next-step').removeClass('scrollDown');
     }
