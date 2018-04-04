@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-lg">
+    <button class="btn btn-nav" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fa fa-list"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+        <!--{eval $i = 0 }-->
+        <!--{loop $menu['top'] $k $v}-->
+
+            <!--{if $i < 9}-->
+            <li class="nav-item">
+                <a class="nav-link" href="{$v['link']}" title="{$v['namemenu']}">{$v['namemenu']}</a>
+            </li>
+            <!--{/if}-->
+
+        <!--{eval $i++}-->
+        <!--{/loop}-->
+        </ul>
+    </div>
+</nav>

@@ -42,25 +42,25 @@
         var companyId = '$_anvuiId';
         var urlAndroid = '';
         var urlIOs = '';
-        if(companyId == 'TC03013FPyeySDW')
+        if(companyId == 'TC03h1IzK1jParS')
         {
-            urlAndroid = 'https://play.google.com/store/apps/details?id=vn.anvui.saonghe';
-            urlIOs = 'https://itunes.apple.com/vn/app/sao-ngh%E1%BB%87-mua-v%C3%A9-xe-online/id1356662997?l=vi&mt=8';
+            urlAndroid = 'https://play.google.com/store/apps/details?id=vn.anvui.phucxuyen';
+            urlIOs = 'https://itunes.apple.com/app/id1364355888';
         }
 
-        if(isMobile.any() == 'Android' && urlAndroid != '')
-        {
-            window.location.href = urlAndroid;
+        if(isMobile.any() != null) {
+            if(isMobile.any()[0] == 'Android' && urlAndroid != '')
+            {
+                window.location.href = urlAndroid;
+            }
+
+            if((isMobile.any()[0] == 'iPhone' || isMobile.any()[0] == 'iPad' || isMobile.any()[0] == 'iPod') && urlIOs != '')
+            {
+                window.location.href = urlIOs;
+            }
         }
 
-        if((isMobile.any() == 'iPhone' || isMobile.any() == 'iPad' || isMobile.any() == 'iPod') && urlIOs != '')
-        {
-            window.location.href = urlIOs;
-        }
 
-
-        // JS dat ve
-        companyId = $("base").attr("id");
 
         //Lấy ajax thông tin chuyến
         $.ajax({

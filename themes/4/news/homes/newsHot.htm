@@ -1,12 +1,12 @@
 <style>
     .padding-news {
         padding-left: 0;
-        padding-right: 5px;
+        padding-right: 0px;
         width: 63%;
     }
 
     .padding-news-item {
-        padding-left: 0;
+        /*padding-left: 0;*/
         padding-right: 0;
         width: 37%;
     }
@@ -27,7 +27,7 @@
             <div class="col-md-8 padding-news">
                 <div class="image-news">
                     <a href="$_news[0]['link']">
-                        <img src="<!--{loadImage $_news[0]['img'] resize 570 290}-->" class="img-responsive" style="    height: 385px;
+                        <img src="<!--{loadImage $_news[0]['img'] resize 570 290}-->" class="img-responsive" style="    height: 340px;
     padding-right: 10px;
     padding-top: 5px;" alt="$_news[0]['title']">
                     </a>
@@ -37,7 +37,7 @@
                         <a href="$_news[0]['link']">$_news[0]['title']</a>
                     </h3>
                     <div class="description">
-                        <!--{cutString $_news[0]['short'] 0 200}-->
+                        <!--{cutString $_news[0]['short'] 0 400}-->
                     </div>
                 </div>
             </div>
