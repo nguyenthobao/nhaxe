@@ -52,6 +52,7 @@ var hasScheduleReturn = false;
 
 $(document).ready(function () {
     $('#next-step').removeClass('scrollDown');
+    $('#depatureDate').val($.format.date(new Date() ,"dd/MM/yyyy"));
 
     companyId = $("base").attr("id");
 
