@@ -671,12 +671,12 @@ function selectTripOneWay(trip) {
         //Theo số tầng
         for (var floor = 1; floor < data.seatMap.numberOfFloors + 1; floor++) {
             if(floor == 1){
-                html += '<div class="col-md-6 tachtang">';
+                html += '<div class="col-md-6 col-sm-12 col-xs-12 tachtang">';
             } else {
-                html += '<div class="col-md-6">';
+                html += '<div class="col-md-6 col-sm-12 col-xs-12">';
             }
 
-            html += '<div class="col-md-12 text-center"><strong>Tầng ' + floor + '</strong></div>';
+            html += '<div class="col-md-12 col-sm-12 col-xs-12 text-center"><strong>Tầng ' + floor + '</strong></div>';
 
             //Theo hàng
             for (var row = 1; row < data.seatMap.numberOfRows + 1; row++) {
@@ -695,20 +695,20 @@ function selectTripOneWay(trip) {
                             coghe = true;
                             //Type = 2 là tài
                             if (val['seatType'] == 2) {
-                                html += '<div class="col-md-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe driver"></div></div>';
+                                html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe driver"></div></div>';
                             } else if(val['seatType'] == 1 || val['seatType'] == 5 || val['seatType'] == 6) { // Lần lượt là cửa cửa, Wc, phụ
-                                html += '<div class="col-md-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe"></div></div>';
+                                html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe"></div></div>';
                             } else if((val['seatStatus'] == 2 && val['overTime'] < Date.now() && val['overTime'] != 0) || val['seatStatus'] == 1) {
-                                html += '<div class="col-md-2 ghe-' + data.seatMap.numberOfColumns + '">' +
+                                html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '">' +
                                     '<div class="chonghe ghetrong" id="chonghe_' + id1 + '" onclick="chonghe(\'' + id + '\')" data-over="' + val['overTime'] + '">' +
                                     '</div></div>';
                             } else {
-                                html += '<div class="col-md-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe ghedaban"></div></div>';
+                                html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe ghedaban"></div></div>';
                             }
                         }
                     });
                     if (!coghe) {
-                        html += '<div class="col-md-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe"></div></div>';
+                        html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe"></div></div>';
                     }
                 }
             }
@@ -743,12 +743,12 @@ function selectTripRoundWay(trip) {
         //Theo số tầng
         for (var floor = 1; floor < data.seatMap.numberOfFloors + 1; floor++) {
             if(floor == 1){
-                html += '<div class="col-md-6 tachtang">';
+                html += '<div class="col-md-6 col-sm-12 col-xs-12 tachtang">';
             } else {
-                html += '<div class="col-md-6">';
+                html += '<div class="col-md-6 col-sm-12 col-xs-12">';
             }
 
-            html += '<div class="col-md-12 text-center"><strong>Tầng ' + floor + '</strong></div>';
+            html += '<div class="col-md-12 col-sm-12 col-xs-12 text-center"><strong>Tầng ' + floor + '</strong></div>';
 
             //Theo hàng
             for (var row = 1; row < data.seatMap.numberOfRows + 1; row++) {
@@ -767,20 +767,20 @@ function selectTripRoundWay(trip) {
                             coghe = true;
                             //Type = 2 là tài
                             if (val['seatType'] == 2) {
-                                html += '<div class="col-md-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe driver"></div></div>';
+                                html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe driver"></div></div>';
                             } else if(val['seatType'] == 1 || val['seatType'] == 5 || val['seatType'] == 6) { // Lần lượt là cửa cửa, Wc, phụ
-                                html += '<div class="col-md-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe"></div></div>';
+                                html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe"></div></div>';
                             } else if((val['seatStatus'] == 2 && val['overTime'] < Date.now() && val['overTime'] != 0) || val['seatStatus'] == 1) {
-                                html += '<div class="col-md-2 ghe-' + data.seatMap.numberOfColumns + '">' +
+                                html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '">' +
                                     '<div class="chonghe ghetrong" id="chongheve_' + id1 + '" onclick="chongheve(\'' + id + '\')" data-over="' + val['overTime'] + '">' +
                                     '</div></div>';
                             } else {
-                                html += '<div class="col-md-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe ghedaban"></div></div>';
+                                html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe ghedaban"></div></div>';
                             }
                         }
                     });
                     if (!coghe) {
-                        html += '<div class="col-md-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe"></div></div>';
+                        html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe"></div></div>';
                     }
                 }
             }

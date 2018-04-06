@@ -189,6 +189,10 @@ footer {
     font-weight: bold;
 }
 
+#list-roundway tr, #list-oneway tr {
+    cursor: pointer;
+}
+
 /*News*/
 .news-breadcrumb {
     margin: 20px 0 0px 0;
@@ -348,6 +352,8 @@ footer {
 
 .trip-active {
     background-color: #ff9d85;
+    font-weight: bold;
+    color: #020202;
 }
 
 #next-step {
