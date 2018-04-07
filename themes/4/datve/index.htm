@@ -151,6 +151,10 @@
                         <label for="phoneNumber">Ghi chú</label>
                         <textarea placeholder="Các yêu cầu đặc biệt không thể được đảm bảo nhưng nhà xe sẽ cố gắng hết sức để đáp ứng yêu cầu của bạn" name="note" class="form-control" id="note" rows="3"></textarea>
                     </div>
+                    <div class="col-md-8">
+                        <input autocomplete="off" class="col-md-5 form-control" id="promotionCode" style="width: auto;" type="text" placeholder="Mã khuyến mại">
+                        <button type="button" class="btn btn-info col-md-3" id="checkPromotion">Kiểm tra</button>
+                    </div>
                 </div>
             </div>
             <div class="select-seat">
@@ -217,6 +221,14 @@
                 <div class="subtotal">
                     Tổng tiền lượt về<br>
                     <strong id="totalMoneyReturn">0 VND</strong>
+                </div>
+            </div>
+            <div id="promotion" style="display: none">
+                <h4>Khuyến mãi</h4>
+                <div class="promotion-div row">
+                    <div class="col-md-12">
+                        Giảm giá: <span class="price" id="promotionPrice"></span>
+                    </div>
                 </div>
             </div>
             <div id="total">

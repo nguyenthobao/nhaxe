@@ -39,6 +39,10 @@ var inPointReturn;
 var offPointOneway;
 var offPointReturn;
 
+var promotionMoney = 0;
+var promotionPercent = 0;
+var isPromotion = false;
+
 //Biến check ghế trẻ em đi tăng giảm
 var checkBabyOnewayLength = 0;
 //Biến check ghế người lớn đi tăng giảm
@@ -106,7 +110,6 @@ $(document).ready(function () {
         getPoint($(this).val());
     });
 
-    // $('#depatureDate, #returnDate ').datepicker({
     $('#depatureDate').datepicker({
         dateFormat: 'dd/mm/yy',
         defaultDate: "+0d",
@@ -151,7 +154,7 @@ $(document).ready(function () {
         $('#returnDate').prop('disabled', true);
     });
 
-    //Giữ nút thanh toán đi theo chuột
+    // Giữ nút thanh toán đi theo chuột
     $(window).scroll(function () {
         searchScroll();
     });
@@ -318,6 +321,87 @@ $(document).ready(function () {
         $('#back-step2').show();
     });
 
+    $('#checkPromotion').click(function () {
+        if($('#promotionCode').val() == '') {
+            $.alert({
+                title: 'Cảnh báo!',
+                type: 'red',
+                typeAnimated: true,
+                content: 'Bạn chưa nhập mã khuyến mại',
+            });
+            return false;
+        }
+
+        if(!isPromotion) {
+            var promotionCode = $('#promotionCode').val();
+            $(this).prop('disabled', true);
+            $.ajax({
+                type: 'POST',
+                url: 'https://dobody-anvui.appspot.com/web_promotion/check',
+                beforeSend: function(request) {
+                    request.setRequestHeader("DOBODY6969", 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2IjowLCJkIjp7InVpZCI6IkFETTExMDk3Nzg4NTI0MTQ2MjIiLCJmdWxsTmFtZSI6IkFkbWluIHdlYiIsImF2YXRhciI6Imh0dHBzOi8vc3RvcmFnZS5nb29nbGVhcGlzLmNvbS9kb2JvZHktZ29ub3cuYXBwc3BvdC5jb20vZGVmYXVsdC9pbWdwc2hfZnVsbHNpemUucG5nIn0sImlhdCI6MTQ5MjQ5MjA3NX0.PLipjLQLBZ-vfIWOFw1QAcGLPAXxAjpy4pRTPUozBpw');
+                },
+                data: {
+                    timeZone: 7,
+                    promotionCode: promotionCode,
+                    companyId: companyId
+                },
+                success: function (data) {
+                    promotionPercent = data.results.result.percent;
+                    promotionMoney = data.results.result.price;
+                    $('#promotionCode').prop('readonly', true);
+                    $('#checkPromotion').prop('disabled', false);
+
+                    $('#promotion').show();
+                    if(promotionMoney > 0) {
+                        $('#promotionPrice').text(promotionMoney.format()+' VND');
+                    } else if(promotionPercent > 0) {
+                        $('#promotionPrice').text(promotionPercent*100+' %');
+                    }
+
+
+                    $('#checkPromotion').text('X');
+                    $('#checkPromotion').removeClass('btn-info');
+                    $('#checkPromotion').addClass('btn-danger');
+
+                    if(totalMoney > 0) {
+                        if(promotionMoney > 0) {
+                            $('#totalMoney').text((totalMoney - promotionMoney).format()+' VND');
+                        } else if (promotionPercent > 0) {
+                            $('#totalMoney').text((totalMoney - totalMoney*promotionPercent).format()+' VND');
+                        }
+                    }
+                    isPromotion = true;
+
+                },
+                error: function () {
+                    $.alert({
+                        title: 'Cảnh báo!',
+                        type: 'red',
+                        typeAnimated: true,
+                        content: 'Mã khuyến mại không tồn tại',
+                    });
+                    $('#checkPromotion').prop('disabled', false);
+                }
+            });
+        } else {
+            $('#checkPromotion').text('Kiểm tra');
+            $('#checkPromotion').removeClass('btn-danger');
+            $('#checkPromotion').addClass('btn-info');
+            $('#promotionCode').val('');
+            $('#promotion').hide();
+            $('#promotionCode').prop('readonly', false);
+
+            promotionPercent = 0;
+            promotionMoney = 0;
+            if(totalMoney > 0) {
+                $('#totalMoney').text(totalMoney.format()+' VND');
+            }
+            isPromotion = false;
+        }
+
+    });
+
     //Xác nhận đặt vé
     $('#hoanthanhbtn').click(function () {
         var mave;
@@ -379,47 +463,58 @@ $(document).ready(function () {
             return false;
         }
 
-        $.ajax({
-            type: 'POST',
-            url: 'http://demo.nhaxe.vn/dat-ve?sub=order',
-            data: {
-                'listSeatId': JSON.stringify(seatOneway),
-                'fullName': fullName,
-                'phoneNumber': phoneNumber,
-                'email': email,
-                'getInPointId': inPointOneway,
-                'startDate': startDateOneway,
-                'getOffPointId': offPointOneway,
-                'scheduleId': scheduleIdOneway,
-                'getInTimePlan': intimeOneway,
-                'originalTicketPrice': totalMoneyOneway,
-                'paymentTicketPrice': totalMoneyOneway,
-                'agencyPrice': totalMoney/2,
-                'paymentType': paymentType,
-                'paidMoney': 0,
-                'tripId': tripIdOneway,
-                'numberOfAdults': ghenguoilondi.length,
-                'numberOfChildren': ghetreemdi.length,
-                'note' : note
-            },
-            success: function (data) {
-                if(data.code != 200) {
-                    $.alert({
-                        title: 'Thông báo!',
-                        type: 'red',
-                        typeAnimated: true,
-                        content: 'Đã có lỗi xảy ra, vui lòng đặt lại!',
-                    });
-                } else {
+        //THanh toan ve 1 chieu
+        if(isRound == 0){
 
-                    if(isRound == 0) {
+            if(promotionMoney > 0) {
+                totalMoneyAfter = totalMoney - promotionMoney;
+            } else if(promotionPercent > 0) {
+                totalMoneyAfter = totalMoney - totalMoney*promotionPercent;
+            } else {
+                totalMoneyAfter = totalMoney;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: 'http://demo.nhaxe.vn/dat-ve?sub=order',
+                data: {
+                    'listSeatId': JSON.stringify(seatOneway),
+                    'fullName': fullName,
+                    'phoneNumber': phoneNumber,
+                    'email': email,
+                    'getInPointId': inPointOneway,
+                    'startDate': startDateOneway,
+                    'getOffPointId': offPointOneway,
+                    'scheduleId': scheduleIdOneway,
+                    'getInTimePlan': intimeOneway,
+                    'originalTicketPrice': totalMoney,
+                    'paymentTicketPrice': totalMoneyAfter,
+                    'agencyPrice': totalMoneyAfter,
+                    'paymentType': paymentType,
+                    'paidMoney': 0,
+                    'tripId': tripIdOneway,
+                    'numberOfAdults': ghenguoilondi.length,
+                    'numberOfChildren': ghetreemdi.length,
+                    'promotionId': $('#promotionCode').val(),
+                    'note' : note
+                },
+                success: function (data) {
+                    if(data.code != 200) {
+                        $.alert({
+                            title: 'Thông báo!',
+                            type: 'red',
+                            typeAnimated: true,
+                            content: 'Đã có lỗi xảy ra, vui lòng đặt lại!',
+                        });
+                    } else {
+                        //thanh toan truc tuyen
                         if(paymentType == 1) {
 
-                            var url = 'https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo=' + data.results.ticketId + '&vpc_Amount=' + totalMoneyOneway * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web";
+                            var url = 'https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo=' + data.results.ticketId + '&vpc_Amount=' + totalMoneyAfter * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web";
 
                             //Fix cứng tạm thời cho pumpkinbuslines
                             if(companyId == 'TC1OHmbCcxRS') {
-                                url = 'https://dobody-anvui.appspot.com/pumpkin/dopay?vpc_OrderInfo=' + data.results.ticketId + '&vpc_Amount=' + totalMoneyOneway * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web";
+                                var url = 'https://dobody-anvui.appspot.com/pumpkin/dopay?vpc_OrderInfo=' + data.results.ticketId + '&vpc_Amount=' + totalMoneyAfter * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web";
                             }
 
                             $.dialog({
@@ -452,21 +547,13 @@ $(document).ready(function () {
                                 content: 'Bạn đã đặt vé thành công! Vui lòng đến quầy thanh toán và nhận vé',
                             });
                         }
-                    } else {
-                        mave = data.results.ticketId;
                     }
-
                 }
-            }
-        });
-
-        //Chuyen ve
-        if(isRound == 1) {
-
+            });
+        }
+        else //Thanh toan ve khu hoi
+        {
             var seatReturn = ghenguoilonve.concat(ghetreemve);
-
-            var paymentCode = generatePaymentCode();
-
             var totalSeatReturn = ghenguoilonve.length + ghetreemve.length;
             if(totalSeatReturn < 1) {
                 $.alert({
@@ -488,28 +575,42 @@ $(document).ready(function () {
                 return false;
             }
 
+            if(promotionMoney > 0) {
+                totalMoneyOneAfter = totalMoneyOneway - promotionMoney;
+                totalMoneyReturnAfter = totalMoneyReturn - promotionMoney;
+            } else if(promotionPercent > 0) {
+                totalMoneyOneAfter = totalMoneyOneway - totalMoneyOneway*promotionPercent;
+                totalMoneyReturnAfter = totalMoneyReturn - totalMoneyReturn*promotionPercent;
+            } else {
+                totalMoneyOneAfter = totalMoneyOneway;
+                totalMoneyReturnAfter = totalMoneyReturn;
+            }
+            var paymentCode = generatePaymentCode();
+
             $.ajax({
                 type: 'POST',
                 url: 'http://demo.nhaxe.vn/dat-ve?sub=order',
                 data: {
-                    'listSeatId': JSON.stringify(seatReturn),
+                    'listSeatId': JSON.stringify(seatOneway),
                     'fullName': fullName,
                     'phoneNumber': phoneNumber,
                     'email': email,
-                    'getInPointId': inPointReturn,
-                    'startDate': startDateReturn,
-                    'getOffPointId': offPointReturn,
-                    'scheduleId': scheduleIdReturn,
-                    'getInTimePlan': intimeReturn,
-                    'originalTicketPrice': totalMoneyReturn,
-                    'paymentTicketPrice': totalMoneyReturn,
-                    'agencyPrice': totalMoney/2,
+                    'getInPointId': inPointOneway,
+                    'startDate': startDateOneway,
+                    'getOffPointId': offPointOneway,
+                    'scheduleId': scheduleIdOneway,
+                    'getInTimePlan': intimeOneway,
+                    'originalTicketPrice': totalMoneyOneway,
+                    'paymentTicketPrice': totalMoneyOneAfter,
+                    'agencyPrice': totalMoneyOneAfter,
                     'paymentType': paymentType,
                     'paidMoney': 0,
-                    'tripId': tripIdReturn,
-                    'note': note,
-                    'numberOfAdults': ghenguoilonve.length,
-                    'numberOfChildren': ghetreemve.length,
+                    'tripId': tripIdOneway,
+                    'numberOfAdults': ghenguoilondi.length,
+                    'numberOfChildren': ghetreemdi.length,
+                    'promotionId': $('#promotionCode').val(),
+                    'note' : note,
+                    'paymentCode': paymentCode
                 },
                 success: function (data) {
                     if(data.code != 200) {
@@ -520,32 +621,71 @@ $(document).ready(function () {
                             content: 'Đã có lỗi xảy ra, vui lòng đặt lại!',
                         });
                     } else {
-                        mave = mave + "-" + data.results.ticketId;
-                        if(paymentType == 1) {
+                        mave = data.results.ticketId;
 
-                            var url = 'https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo=' + mave + '&vpc_Amount=' + totalMoney * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web&paymentCode=" + paymentCode;
+                        $.ajax({
+                            type: 'POST',
+                            url: 'http://demo.nhaxe.vn/dat-ve?sub=order',
+                            data: {
+                                'listSeatId': JSON.stringify(seatReturn),
+                                'fullName': fullName,
+                                'phoneNumber': phoneNumber,
+                                'email': email,
+                                'getInPointId': inPointReturn,
+                                'startDate': startDateReturn,
+                                'getOffPointId': offPointReturn,
+                                'scheduleId': scheduleIdReturn,
+                                'getInTimePlan': intimeReturn,
+                                'originalTicketPrice': totalMoneyReturn,
+                                'paymentTicketPrice': totalMoneyReturnAfter,
+                                'agencyPrice': totalMoneyReturnAfter,
+                                'paymentType': paymentType,
+                                'paidMoney': 0,
+                                'tripId': tripIdReturn,
+                                'promotionId': $('#promotionCode').val(),
+                                'note' : note,
+                                'paymentCode': paymentCode,
+                                'numberOfAdults': ghenguoilonve.length,
+                                'numberOfChildren': ghetreemve.length
+                            },
+                            success: function (data) {
+                                if(data.code != 200) {
+                                    $.alert({
+                                        title: 'Thông báo!',
+                                        type: 'red',
+                                        typeAnimated: true,
+                                        content: 'Đã có lỗi xảy ra, vui lòng đặt lại!'
+                                    });
+                                } else {
+                                    mave = mave + "-" + data.results.ticketId;
+                                    if(paymentType == 1) {
+                                        totalMoney = totalMoneyOneAfter + totalMoneyReturnAfter;
+                                        var url = 'https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo=' + mave + '&vpc_Amount=' + totalMoney * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web&paymentCode=" + paymentCode;
 
-                            //Fix cứng tạm thời cho pumpkinbuslines
-                            if(companyId == 'TC1OHmbCcxRS') {
-                                url = 'https://dobody-anvui.appspot.com/pumpkin/dopay?vpc_OrderInfo=' + mave + '&vpc_Amount=' + totalMoney * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web&paymentCode=" + paymentCode;
-                            }
+                                        //Fix cứng tạm thời cho pumpkinbuslines
+                                        if(companyId == 'TC1OHmbCcxRS') {
+                                            url = 'https://dobody-anvui.appspot.com/pumpkin/dopay?vpc_OrderInfo=' + mave + '&vpc_Amount=' + totalMoney * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web&paymentCode=" + paymentCode;
+                                        }
+                                        $.dialog({
+                                            title: 'Thông báo!',
+                                            content: 'Hệ thống đang chuyển sang cổng thanh toán, vui lòng đợi trong giây lát',
+                                            onClose: function (e) {
+                                                e.preventDefault();
+                                            }
+                                        });
+                                        setTimeout(function () {
+                                            window.location.href = url
+                                        }, 3000);
+                                    } else {
+                                        $.alert({
+                                            title: 'Thông báo!',
+                                            content: 'Bạn đã đặt vé thành công!'
+                                        });
+                                    }
 
-                            $.dialog({
-                                title: 'Thông báo!',
-                                content: 'Hệ thống đang chuyển sang cổng thanh toán, vui lòng đợi trong giây lát',
-                                onClose: function (e) {
-                                    e.preventDefault();
                                 }
-                            });
-                            setTimeout(function () {
-                                window.location.href = url;
-                            }, 3000);
-                        } else {
-                            $.alert({
-                                title: 'Thông báo!',
-                                content: 'Bạn đã đặt vé thành công! Vui lòng đến quầy thanh toán và nhận vé',
-                            });
-                        }
+                            }
+                        });
 
                     }
                 }
@@ -898,7 +1038,13 @@ function xacnhan(seat, isBaby, isBack) {
 
     //Tổng tiền 2 chiều
     totalMoney = totalMoneyOneway + totalMoneyReturn;
-    $('#totalMoney').text(totalMoney.format());
+    if(promotionMoney > 0) {
+        $('#totalMoney').text((totalMoney - promotionMoney).format()+' VND');
+    } else if(promotionPercent > 0) {
+        $('#totalMoney').text((totalMoney - totalMoney*promotionPercent).format()+' VND');
+    } else {
+        $('#totalMoney').text(totalMoney.format()+' VND');
+    }
 }
 
 

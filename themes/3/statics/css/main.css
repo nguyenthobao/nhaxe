@@ -867,3 +867,18 @@ footer {
 #hoanthanhbtn {
     background: url(../images/btn-search.png) right 20px center no-repeat;
 }
+
+#promotion {
+    font-size: 14px;
+    color: #ccc;
+}
+#promotion h4 {
+    color: #ff5115;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
+}
+.promotion-div {
+    padding-bottom: 7px;
+    line-height: 30px;
+}

@@ -1017,3 +1017,18 @@ footer {
 .navbar-nav>li>a:hover {
     color: #c1112c;
 }
+
+#promotion {
+    font-size: 14px;
+    color: #ccc;
+}
+#promotion h4 {
+    color: #c1112c;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
+}
+.promotion-div {
+    padding-bottom: 7px;
+    line-height: 30px;
+}
