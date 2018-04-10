@@ -75,7 +75,6 @@ $(document).ready(function () {
 
     if(startPoint != null && endPoint != null && depatureDate != null) {
         isRound = 0;
-        console.log(routeName);
         $('.start').html(routeName.split("-")[0]);
         $('.end').html(routeName.split("-")[1]);
         getSchedule(startPoint, endPoint, depatureDate, routeId, false);
@@ -541,7 +540,7 @@ $(document).ready(function () {
                                 }
                             });
                             setTimeout(function () {
-                                window.location.href = url
+                                window.location.href = url;
                             }, 3000);
                         } else if(paymentType == 6) {
                             $.alert({
@@ -560,7 +559,10 @@ $(document).ready(function () {
                         } else {
                             $.alert({
                                 title: 'Thông báo!',
-                                content: 'Bạn đã đặt vé thành công!'
+                                content: 'Bạn đã đặt vé thành công! Vui lòng đến quầy thanh toán và nhận vé',
+                                onClose: function () {
+                                    window.location.href = '/dat-ve';
+                                }
                             });
                         }
                     }
@@ -685,12 +687,15 @@ $(document).ready(function () {
                                             }
                                         });
                                         setTimeout(function () {
-                                            window.location.href = url
+                                            window.location.href = url;
                                         }, 3000);
                                     } else {
                                         $.alert({
                                             title: 'Thông báo!',
-                                            content: 'Bạn đã đặt vé thành công!'
+                                            content: 'Bạn đã đặt vé thành công! Vui lòng đến quầy thanh toán và nhận vé',
+                                            onClose: function () {
+                                                window.location.href = '/dat-ve';
+                                            }
                                         });
                                     }
 
@@ -746,8 +751,6 @@ function searchScroll() {
     var heightScroll = $(document).height() - $(window).height() - 400;
 
     var scrollTop = jQuery(window).scrollTop();
-    console.log('scrollTop', scrollTop);
-    console.log('heightScroll', heightScroll);
     if (scrollTop >= heightScroll) {
         $('#next-step').removeClass('scrollDown');
     }
@@ -796,6 +799,23 @@ function selectTripOneWay(trip) {
                     $.each(data.seatMap.seatList, function (index, val) {
                         var id = val['seatId'];
                         var id1 = id.replace(',', '_');
+
+                        var ticketStatus = 1;
+
+                        if(val['listTicketId'].length > 0) {
+                            var lastTicketId =val['listTicketId'][val['listTicketCode'].length - 1];
+                        }
+
+                        if(typeof lastTicketId !== 'undefined' && typeof val['ticketInfo'] !== 'undefined') {
+                            ticketStatus = val['ticketInfo'][lastTicketId]['ticketStatus'];
+                        } else {
+                            ticketStatus = val['seatStatus'];
+                        }
+
+                        /*console.log(val['seatId'],ticketStatus);
+                        console.log(val['seatId'],val['overTime']);
+                        console.log(val['seatId'],((ticketStatus == 2 && (val['overTime'] > Date.now() || val['overTime'] == 0)) || ticketStatus == 7));*/
+
                         iddd = floor + ' ' + row + ' ' + column;
                         if(val['floor'] != floor || val['row'] != row || val['column'] != column) {
                             // coghe = false;
@@ -806,12 +826,12 @@ function selectTripOneWay(trip) {
                                 html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe driver"></div></div>';
                             } else if(val['seatType'] == 1 || val['seatType'] == 5 || val['seatType'] == 6) { // Lần lượt là cửa cửa, Wc, phụ
                                 html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe"></div></div>';
-                            } else if((val['seatStatus'] == 2 && val['overTime'] < Date.now() && val['overTime'] != 0) || val['seatStatus'] == 1) {
+                            } else if((ticketStatus == 2 && (val['overTime'] > Date.now() || val['overTime'] == 0)) || ticketStatus == 7) {
+                                html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe ghedaban"></div></div>';
+                            } else {
                                 html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '">' +
                                     '<div class="chonghe ghetrong" id="chonghe_' + id1 + '" onclick="chonghe(\'' + id + '\')" data-over="' + val['overTime'] + '">' +
                                     '</div></div>';
-                            } else {
-                                html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe ghedaban"></div></div>';
                             }
                         }
                     });
