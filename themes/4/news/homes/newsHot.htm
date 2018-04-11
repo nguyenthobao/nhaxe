@@ -20,8 +20,9 @@
 </style>
 <div class="row">
     <div class="col-md-8" style="margin-bottom: 30px;">
-        <div class="title">
-            <h3>{lang news_hot}</h3>
+        <div class="">
+            <h3><img src="{$web['static_temp']}{$web['temp']}/statics/images/news.png" style="width: 40px; height: 40px; margin-right: 10px;" alt="">
+                <span class="title">{lang news_hot}</span></h3>
         </div>
         <div class="hot-news">
             <div class="col-md-8 padding-news">
@@ -62,8 +63,9 @@
         </div>
     </div>
     <div class="col-md-4" style="margin-bottom: 30px;">
-        <div class="title">
-            <h3>{lang booking}</h3>
+        <div class="">
+            <h3><img src="{$web['static_temp']}{$web['temp']}/statics/images/booking.png" style="width: 45px; height: 45px; margin-right: 10px;" alt="">
+                <span class="title">{lang booking}</span></h3>
         </div>
         <div class="route-list">
             <form action="dat-ve" id="search-form">
@@ -74,19 +76,19 @@
                 <div class="row" style="margin-bottom: -15px;">
                     <div class="clearfix">
                         <div class="col-md-12">
-                            <label for="routeId">Tuyến</label>
+                            <label for="routeId" class="label-cus">Tuyến</label>
                             <select class="form-control" name="routeId" id="routeId">
                                 <option value="">Chọn tuyến</option>
                             </select>
                         </div>
                         <div class="col-md-12">
-                            <label for="startPoint">Điểm đi</label>
+                            <label for="startPoint" class="label-cus">Điểm đi</label>
                             <select class="form-control" name="startPoint" id="startPoint">
                                 <option value="">Điểm đi</option>
                             </select>
                         </div>
                         <div class="col-md-12">
-                            <label for="endPoint">Điểm đến</label>
+                            <label for="endPoint" class="label-cus">Điểm đến</label>
                             <select class="form-control" name="endPoint" id="endPoint">
                                 <option value="">Điểm đến</option>
                             </select>
@@ -95,11 +97,11 @@
 
                     <div class="clearfix">
                         <div class="col-md-12">
-                            <label for="depatureDate">Ngày đi</label>
+                            <label for="depatureDate" class="label-cus">Ngày đi</label>
                             <input type="text" class="form-control datepicker" name="depatureDate" id="depatureDate" readonly>
                         </div>
                         <div class="col-md-12">
-                            <label for="depatureDate">Ngày về</label>
+                            <label for="depatureDate" class="label-cus">Ngày về</label>
                             <input type="text" class="form-control datepicker" name="returnDate" id="returnDate" readonly>
                         </div>
                         <div class="col-md-12">

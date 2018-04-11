@@ -178,6 +178,7 @@ $(document).ready(function () {
     // Giữ nút thanh toán đi theo chuột
     $(window).scroll(function () {
         searchScroll();
+        paymentScroll();
     });
 
     //Tìm chuyến
@@ -748,7 +749,7 @@ function generatePaymentCode() {
 
 //Fixed nut thanh toan
 function searchScroll() {
-    var heightScroll = $(document).height() - $(window).height() - 400;
+    var heightScroll = $(document).height() - $(window).height() - 430;
 
     var scrollTop = jQuery(window).scrollTop();
     if (scrollTop >= heightScroll) {
@@ -759,9 +760,22 @@ function searchScroll() {
     }
 }
 
+//Fix thanh toan di theo scroll
+function paymentScroll() {
+    var heightScroll = $(document).height() - $(window).height() - 430;
+
+    var scrollTop = jQuery(window).scrollTop();
+    if(scrollTop > 125 && scrollTop <= 665 ) {
+        $('.payment-info').addClass('scrollInfo');
+    } else {
+        $('.payment-info').removeClass('scrollInfo');
+    }
+}
+
 
 //Hàm chọn trip và lấy thông tin trip chieu di
 function selectTripOneWay(trip) {
+    
     $('#list-oneway>tr').removeClass('trip-active');
     $(trip).addClass('trip-active');
 
@@ -846,6 +860,11 @@ function selectTripOneWay(trip) {
         $('#seatMapOneWay').html(html);
 
     });
+
+    //event double click
+    $(trip).dblclick(function () {
+        $('#select-seat').click();
+    });
 }
 
 
@@ -917,6 +936,11 @@ function selectTripRoundWay(trip) {
         }
         $('#seatMapRound').html(html);
 
+    });
+
+    //event double click
+    $(trip).dblclick(function () {
+        $('#select-seat').click();
     });
 }
 

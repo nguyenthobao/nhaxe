@@ -1,3 +1,9 @@
+<style>
+    body {
+        background: url("https://sonycenter.sony.com.vn/Data/Sites/1/media/vinh-ha-long_schk/halong-2.jpg");
+        background-size: auto 100%;
+    }
+</style>
 <div class="container bg-3">
     <div id="booking-form" style="display: block">
         <h3><i class="fa fa-bus fa-5"></i> Đặt vé online</h3>
@@ -9,19 +15,19 @@
             <div class="row chuyen">
                 <div class="clearfix">
                     <div class="col-md-4">
-                        <label for="routeId">Tuyến</label>
+                        <label for="routeId" class="label-cus">Tuyến</label>
                         <select class="form-control" name="routeId" id="routeId">
                             <option value="">Chọn tuyến</option>
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <label for="startPoint">Điểm đi</label>
+                        <label for="startPoint" class="label-cus">Điểm đi</label>
                         <select class="form-control" name="startPoint" id="startPoint">
                             <option value="">Điểm đi</option>
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <label for="endPoint">Điểm đến</label>
+                        <label for="endPoint" class="label-cus">Điểm đến</label>
                         <select class="form-control" name="endPoint" id="endPoint">
                             <option value="">Điểm đến</option>
                         </select>
@@ -30,11 +36,11 @@
 
                 <div class="clearfix" style="margin-top: 10px">
                     <div class="col-md-4">
-                        <label for="depatureDate">Ngày đi</label>
+                        <label for="depatureDate" class="label-cus">Ngày đi</label>
                         <input type="text" class="form-control datepicker" name="depatureDate" id="depatureDate" readonly>
                     </div>
                     <div class="col-md-4">
-                        <label for="depatureDate">Ngày về</label>
+                        <label for="depatureDate" class="label-cus">Ngày về</label>
                         <input type="text" class="form-control datepicker" name="returnDate" id="returnDate" readonly>
                     </div>
                     <div class="col-md-4">
@@ -185,91 +191,94 @@
 
             </div>
         </div>
-        <div class="customer-info col-md-4">
-            <h4 class="trip-info" style="text-transform: uppercase; padding-left: 0px;">Chi tiết giá vé</h4>
-            <div class="total-title">
-                <h4>Lượt đi</h4>
-                <div class="total-inside row">
-                    <div class="col-md-12">
-                        Ghế đã chọn: <span class="seatlist" id="ghedi"></span> <br>
+        <div class="col-md-4 payment-info">
+            <div class="col-md-12 customer-info">
+                <h4 class="trip-info" style="text-transform: uppercase; padding-left: 0px;">Chi tiết giá vé</h4>
+                <div class="total-title">
+                    <h4>Lượt đi</h4>
+                    <div class="total-inside row">
+                        <div class="col-md-12">
+                            Ghế đã chọn: <span class="seatlist" id="ghedi"></span> <br>
+                        </div>
+                        <div class="col-md-12">
+                            Giá người lớn: <span class="price" id="adultMoneyOneway">0 VND</span> <br>
+                        </div>
+                        <div class="col-md-12">
+                            Giá trẻ em: <span class="price" id="babyMoneyOneWay">0 VND</span> <br>
+                        </div>
                     </div>
-                    <div class="col-md-12">
-                        Giá người lớn: <span class="price" id="adultMoneyOneway">0 VND</span> <br>
-                    </div>
-                    <div class="col-md-12">
-                        Giá trẻ em: <span class="price" id="babyMoneyOneWay">0 VND</span> <br>
+                    <div class="subtotal">
+                        Tổng tiền lượt đi<br>
+                        <strong id="totalMoneyOneway">0 VND</strong>
                     </div>
                 </div>
-                <div class="subtotal">
-                    Tổng tiền lượt đi<br>
-                    <strong id="totalMoneyOneway">0 VND</strong>
+                <div class="total-title" id="total-round" style="display:none;">
+                    <h4>Lượt về</h4>
+                    <div class="total-inside row">
+                        <div class="col-md-12">
+                            Ghế đã chọn: <span class="seatlist" id="gheve"></span> <br>
+                        </div>
+                        <div class="col-md-12">
+                            Giá người lớn: <span class="price" id="adultMoneyReturn">0 VND</span> <br>
+                        </div>
+                        <div class="col-md-12">
+                            Giá trẻ em: <span class="price" id="babyMoneyReturn">0 VND</span> <br>
+                        </div>
+                    </div>
+                    <div class="subtotal">
+                        Tổng tiền lượt về<br>
+                        <strong id="totalMoneyReturn">0 VND</strong>
+                    </div>
+                </div>
+                <div id="promotion" style="display: none">
+                    <h4>Khuyến mãi</h4>
+                    <div class="promotion-div row">
+                        <div class="col-md-12">
+                            Giảm giá: <span class="price" id="promotionPrice"></span>
+                        </div>
+                    </div>
+                </div>
+                <div id="total">
+                    Tổng tiền<br>
+                    <strong id="totalMoney">0 VND</strong>
                 </div>
             </div>
-            <div class="total-title" id="total-round" style="display:none;">
-                <h4>Lượt về</h4>
-                <div class="total-inside row">
-                    <div class="col-md-12">
-                        Ghế đã chọn: <span class="seatlist" id="gheve"></span> <br>
-                    </div>
-                    <div class="col-md-12">
-                        Giá người lớn: <span class="price" id="adultMoneyReturn">0 VND</span> <br>
-                    </div>
-                    <div class="col-md-12">
-                        Giá trẻ em: <span class="price" id="babyMoneyReturn">0 VND</span> <br>
-                    </div>
-                </div>
-                <div class="subtotal">
-                    Tổng tiền lượt về<br>
-                    <strong id="totalMoneyReturn">0 VND</strong>
-                </div>
-            </div>
-            <div id="promotion" style="display: none">
-                <h4>Khuyến mãi</h4>
-                <div class="promotion-div row">
-                    <div class="col-md-12">
-                        Giảm giá: <span class="price" id="promotionPrice"></span>
-                    </div>
-                </div>
-            </div>
-            <div id="total">
-                Tổng tiền<br>
-                <strong id="totalMoney">0 VND</strong>
-            </div>
-        </div>
-        <div class="col-md-4 payment">
-            <div class="col-md-12 payment-dialog">
-                <h3>Thanh toán</h3>
-                <div class="payment-form">
-                    <div class="radio">
-                        <label class="radio">Thanh toán bằng thẻ nội địa
-                            <input type="radio" checked="checked" class="paymenttype" name="paymenttype" value="1">
-                            <span class="checkround"></span>
-                        </label>
+            <div class="col-md-12 payment">
+                <div class="col-md-12 payment-dialog">
+                    <h3>Thanh toán</h3>
+                    <div class="payment-form">
+                        <div class="radio">
+                            <label class="radio">Thanh toán bằng thẻ nội địa
+                                <input type="radio" checked="checked" class="paymenttype" name="paymenttype" value="1">
+                                <span class="checkround"></span>
+                            </label>
 
-                        <!--<label class="radio">Thanh toán bằng thẻ quốc tế-->
-                        <!--<input type="radio" class="paymenttype" name="paymenttype" value="2">-->
-                        <!--<span class="checkround"></span>-->
-                        <!--</label>-->
-                        <label class="radio">Thanh toán tại quầy
-                            <input type="radio" class="paymenttype" name="paymenttype" value="5">
-                            <span class="checkround"></span>
-                        </label>
-                        <label class="radio" id="radiochuyenkhoan" style="display: none">Chuyển khoản
-                            <input type="radio" class="paymenttype" name="paymenttype" value="6">
-                            <span class="checkround"></span>
-                        </label>
+                            <!--<label class="radio">Thanh toán bằng thẻ quốc tế-->
+                            <!--<input type="radio" class="paymenttype" name="paymenttype" value="2">-->
+                            <!--<span class="checkround"></span>-->
+                            <!--</label>-->
+                            <label class="radio">Thanh toán tại quầy
+                                <input type="radio" class="paymenttype" name="paymenttype" value="5">
+                                <span class="checkround"></span>
+                            </label>
+                            <label class="radio" id="radiochuyenkhoan" style="display: none">Chuyển khoản
+                                <input type="radio" class="paymenttype" name="paymenttype" value="6">
+                                <span class="checkround"></span>
+                            </label>
+                        </div>
+                        <center>
+                            <button type="button" id="hoanthanhbtn" class="btn">Xác nhận đặt
+                                vé
+                            </button>
+                            <button type="button" style="display: none" id="btnchuyenkhoan" class="btn" data-toggle="modal" data-target="#chuyenkhoan">
+                                Thông tin chuyển khoản
+                            </button>
+                        </center>
                     </div>
-                    <center>
-                        <button type="button" id="hoanthanhbtn" class="btn">Xác nhận đặt
-                            vé
-                        </button>
-                        <button type="button" style="display: none" id="btnchuyenkhoan" class="btn" data-toggle="modal" data-target="#chuyenkhoan">
-                            Thông tin chuyển khoản
-                        </button>
-                    </center>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 <!--Modal-->
