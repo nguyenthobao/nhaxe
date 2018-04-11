@@ -765,11 +765,22 @@ function paymentScroll() {
     var heightScroll = $(document).height() - $(window).height() - 430;
 
     var scrollTop = jQuery(window).scrollTop();
-    if(scrollTop > 125 && scrollTop <= 665 ) {
-        $('.payment-info').addClass('scrollInfo');
-    } else {
-        $('.payment-info').removeClass('scrollInfo');
+    if(isRound == 0) {
+        if(scrollTop > 170 && scrollTop <= 666) {
+            $('.payment-info').removeAttr( 'style' );
+            $('.payment-info').addClass('scrollInfo');
+            $('.payment-info').css('top',  '10px');
+        } else if(scrollTop > 666) {
+            $('.payment-info').removeAttr( 'style' );
+            $('.payment-info').css('bottom',  (scrollTop - 600) +'px');
+        } else {
+            $('.payment-info').removeClass('scrollInfo');
+            $('.payment-info').removeAttr( 'style' );
+        }
     }
+
+    console.log('heightScroll', heightScroll);
+    console.log('scrollTop', scrollTop);
 }
 
 
