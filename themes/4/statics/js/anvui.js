@@ -190,14 +190,15 @@ $(document).ready(function () {
         startPoint = $('#startPoint').val();
         endPoint = $('#endPoint').val();
 
-        var routeName = $('#routeId').find('option:selected').text();
+        var startText = $('#startPoint').find('option:selected').text();
+        var endText = $('#endPoint').find('option:selected').text();
 
-        $('.start').html(routeName.split("-")[0]);
-        $('.end').html(routeName.split("-")[1]);
+        $('.start').html(startText);
+        $('.end').html(endText);
         $('.startDate').html($('#depatureDate').val());
         $('.startDateReturn').html($('#returnDate').val());
-        $('.routeName').html(routeName);
-        $('.routeNameReturn').html(routeName.split("-")[1] + " - " + routeName.split("-")[0]);
+        $('.routeName').html(startText + " - " + endText);
+        $('.routeNameReturn').html(endText + " - " + startText);
 
         if(isRound == 1) {
             if(routeBackId === 'undefined') {
