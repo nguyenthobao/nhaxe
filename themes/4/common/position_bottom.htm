@@ -1,13 +1,25 @@
 <footer class="page-footer font-small unique-color-dark pt-0">
 
     <!--Menu footer-->
-    <div class="container">
-        <ul class="footer-nav row">
-            <!--{loop $menu['bottom'] $k $v}-->
-            <!--{temp common/menu_bottom_list}-->
-            <!--{/loop}-->
-        </ul>
-        <hr class="col-md-12">
+    <style>
+        .cus-menu-footer {
+            background-color: #d32f2f;
+            margin-left: -25px;
+            margin-right: -25px;
+            padding-top: 25px;
+            padding-bottom: 10px;
+            margin-top: -25px;
+            margin-bottom: 10px;
+        }
+    </style>
+    <div class="container-fluid cus-menu-footer">
+        <div class="container">
+            <ul class="footer-nav row">
+                <!--{loop $menu['bottom'] $k $v}-->
+                <!--{temp common/menu_bottom_list}-->
+                <!--{/loop}-->
+            </ul>
+        </div>
     </div>
     <!--End Menu footer-->
 
@@ -15,6 +27,7 @@
     <div class="container mt-5 mb-4 text-md-left">
         {$web['footer']}
     </div>
+
     <!--/.Footer Links-->
 
     <!-- Copyright-->
