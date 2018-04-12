@@ -65,11 +65,10 @@ a:hover {
 }
 
 .main-menu-level {
-    float: left;
     height: 3.6875rem;
-    margin: 5px 0 0 15px;
     overflow: hidden;
-    text-align: right;
+    float: none;
+    margin: 0 auto;
 }
 
 .mainmenu-level-item {
@@ -89,9 +88,9 @@ a:hover {
     text-decoration: none;
 }
 
-/*.main-menu-level a:hover {
-    color: #c1112c;
-}*/
+.main-menu-level a:hover {
+    color: #ffff00;
+}
 
 .title {
     font-size: 20px;
@@ -511,10 +510,9 @@ footer {
     clear: both;
     position: fixed;
     /*top: 10px;*/
-    right: 100px;
+    right: 25px;
     /*bottom: 0;*/
     z-index: 10;
-    width: 380px;
 }
 
 @media screen and (max-width: 768px) {
