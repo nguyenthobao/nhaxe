@@ -9,4 +9,16 @@
     <!--{eval $i++}-->
     <!--{/loop}-->
 </ul>
+<script>
+    $(document).ready(function () {
+        $('.mainmenu-level-item').on('mouseenter',function () {
+            $('.dropdown-menu-item').hide();
+            $(this).children('.dropdown-menu-item').show();
+        });
+
+        $('.dropdown-menu-item').on('mouseleave',function () {
+            $('.dropdown-menu-item').hide();
+        });
+    });
+</script>
 

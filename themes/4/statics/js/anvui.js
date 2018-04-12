@@ -766,13 +766,13 @@ function paymentScroll() {
 
     var scrollTop = jQuery(window).scrollTop();
     if(isRound == 0) {
-        if(scrollTop > 170 && scrollTop <= 666) {
+        if(scrollTop > 170 && scrollTop <= 640) {
             $('.payment-info').removeAttr( 'style' );
             $('.payment-info').addClass('scrollInfo');
             $('.payment-info').css('top',  '10px');
-        } else if(scrollTop > 666) {
+        } else if(scrollTop > 640) {
             $('.payment-info').removeAttr( 'style' );
-            $('.payment-info').css('bottom',  (scrollTop - 600) +'px');
+            $('.payment-info').css('bottom',  (scrollTop - 450) +'px');
         } else {
             $('.payment-info').removeClass('scrollInfo');
             $('.payment-info').removeAttr( 'style' );
