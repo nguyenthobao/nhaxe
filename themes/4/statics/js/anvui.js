@@ -71,12 +71,15 @@ $(document).ready(function () {
     depatureDate = getParameterByName('depatureDate');
     returnDate = getParameterByName('returnDate');
     routeBackId = getParameterByName('routeBackId');
-    routeName = getParameterByName('routeName');
+    startText = getParameterByName('startText');
+    endText = getParameterByName('endText');
 
     if(startPoint != null && endPoint != null && depatureDate != null) {
         isRound = 0;
-        $('.start').html(routeName.split("-")[0]);
-        $('.end').html(routeName.split("-")[1]);
+        $('.start').html(startText);
+        $('.end').html(endText);
+        $('.routeName').html(startText + " - " + endText);
+        $('.routeNameReturn').html(endText + " - " + startText);
         getSchedule(startPoint, endPoint, depatureDate, routeId, false);
         $('#trip-oneway').show();
         if(returnDate != '' && routeBackId != '') {

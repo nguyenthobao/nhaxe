@@ -86,8 +86,14 @@
 
         //Sự kiện thay đổi route
         $('#routeId').change(function () {
+            $('#search-btn').prop('disabled', true);
             routeBackId = $(this).find(':selected').data('routeback');
-            $('#routeName').val($(this).find(':selected').text());
+            setTimeout(function () {
+                $('#startText').val($('#startPoint').find(':selected').text());
+                $('#endText').val($('#endPoint').find(':selected').text());
+                $('#search-btn').prop('disabled', false);
+            }, 1500);
+
             getPoint($(this).val());
         });
 
