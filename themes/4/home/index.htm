@@ -55,7 +55,7 @@
             type: 'POST',
             url: 'https://dobody-anvui.appspot.com/point/get_province_district',
             dataType: "json",
-            data: JSON.stringify({companyId: companyId}),
+            data: JSON.stringify({companyId: '$_anvuiId'}),
             success: function (data) {
                 provinceData = data.results.result;
                 $.each(provinceData, function (index, val) {
@@ -190,9 +190,6 @@
             defaultDate: "+0d",
             minDate: 0,
             onSelect: function (dateStr) {
-                startPoint = $('#startPoint').val();
-                endPoint = $('#endPoint').val();
-                routeId = $('#routeId').val();
                 changeDate(dateStr);
             }
         });

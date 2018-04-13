@@ -192,9 +192,6 @@ $(document).ready(function () {
         defaultDate: "+0d",
         minDate: 0,
         onSelect: function (dateStr) {
-            startPoint = $('#startPoint').val();
-            endPoint = $('#endPoint').val();
-            routeId = $('#routeId').val();
             // getSchedule(startPoint, endPoint, dateStr, routeId, false);
             changeDate(dateStr);
         }
