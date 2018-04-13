@@ -38,7 +38,7 @@
                         <a href="$_news[0]['link']">$_news[0]['title']</a>
                     </h3>
                     <div class="description">
-                        <!--{cutString $_news[0]['short'] 0 400}-->
+                        <!--{cutString $_news[0]['short'] 0 250}-->
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                                 <img src="<!--{loadImage $v['img'] crop 570 290}-->" class="img-responsive" alt="$v['title']">
                             </div>
                             <div class="col-md-6 padding-item">
-                                <p style="font-size: 12px">$v['title']</p>
+                                <p style="font-size: 12px"><!--{cutString $v['title'] 0 50}--></p>
                             </div>
                         </a>
                     </div>
@@ -76,22 +76,12 @@
                 <div class="row" style="margin-bottom: -15px;">
                     <div class="clearfix">
                         <div class="col-md-12">
-                            <label for="routeId" class="label-cus">Tuyến</label>
-                            <select class="form-control" name="routeId" id="routeId">
-                                <option value="">Chọn tuyến</option>
-                            </select>
-                        </div>
-                        <div class="col-md-12">
                             <label for="startPoint" class="label-cus">Điểm đi</label>
-                            <select class="form-control" name="startPoint" id="startPoint">
-                                <option value="">Điểm đi</option>
-                            </select>
+                            <input type="text" class="form-control" name="startPoint" id="startPoint" readonly>
                         </div>
                         <div class="col-md-12">
                             <label for="endPoint" class="label-cus">Điểm đến</label>
-                            <select class="form-control" name="endPoint" id="endPoint">
-                                <option value="">Điểm đến</option>
-                            </select>
+                            <input type="text" class="form-control" name="endPoint" id="endPoint" readonly>
                         </div>
                     </div>
 
@@ -105,9 +95,8 @@
                             <input type="text" class="form-control datepicker" name="returnDate" id="returnDate" readonly>
                         </div>
                         <div class="col-md-12">
-                            <input type="hidden" id="routeBackId" name="routeBackId">
-                            <input type="hidden" id="startText" name="startText">
-                            <input type="hidden" id="endText" name="endText">
+                            <input type="hidden" id="startId" name="startId">
+                            <input type="hidden" id="endId" name="endId">
                             <button type="submit" class="btn" id="search-btn">TÌM CHUYẾN XE</button>
                         </div>
                     </div>

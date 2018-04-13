@@ -51,8 +51,8 @@ var checkAdultOnewayLength = 0;
 var checkBabyReturnLength = 0;
 var checkAdultReturnLength = 0;
 
-var hasScheduleOneway = false;
-var hasScheduleReturn = false;
+var provinceData;
+var district;
 
 $(document).ready(function () {
     $('#next-step').removeClass('scrollDown');
@@ -64,33 +64,120 @@ $(document).ready(function () {
         $('#radiochuyenkhoan').show();
     }
 
-    //Lấy dữ liệu từ url
-    routeId = getParameterByName('routeId');
-    startPoint = getParameterByName('startPoint');
-    endPoint = getParameterByName('endPoint');
+    //Lấy dữ liệu từ url, dư liệu lấy start và end đặc biệt
+    startPoint = getParameterByName('startId');
+    endPoint = getParameterByName('endId');
     depatureDate = getParameterByName('depatureDate');
     returnDate = getParameterByName('returnDate');
-    routeBackId = getParameterByName('routeBackId');
-    startText = getParameterByName('startText');
-    endText = getParameterByName('endText');
+    startText = getParameterByName('startPoint');
+    endText = getParameterByName('endPoint');
 
     if(startPoint != null && endPoint != null && depatureDate != null) {
         isRound = 0;
+        $('#loading').show();
         $('.start').html(startText);
         $('.end').html(endText);
         $('.routeName').html(startText + " - " + endText);
         $('.routeNameReturn').html(endText + " - " + startText);
-        getSchedule(startPoint, endPoint, depatureDate, routeId, false);
+        getSchedule(startPoint, endPoint, depatureDate, false);
         $('#trip-oneway').show();
-        if(returnDate != '' && routeBackId != '') {
+        if(returnDate != '') {
             isRound = 1;
-            getSchedule(endPoint, startPoint, returnDate, routeBackId, true);
+            getSchedule(endPoint, startPoint, returnDate, true);
             $('#trip-round').show();
         }
         $('#booking-form').hide();
-        $('#next-step').show();
+        // $('#next-step').show();
         $('#back').hide();
     }
+
+    $('#startPoint').click(function () {
+        $('#typePoint').val(1);
+        $('#choosePoint').modal('show');
+    });
+
+    $('#endPoint').click(function () {
+        $('#typePoint').val(2);
+        $('#choosePoint').modal('show');
+    });
+
+    //Lay danh sach tinh thanh
+    $.ajax({
+        type: 'POST',
+        url: 'https://dobody-anvui.appspot.com/point/get_province_district',
+        dataType: "json",
+        data: JSON.stringify({companyId: companyId}),
+        success: function (data) {
+            provinceData = data.results.result;
+            $.each(provinceData, function (index, val) {
+                $('#provideId').append("<option value='" + val.id + "'>" + val.provinceName + "</option>");
+            });
+        }
+    });
+
+    $("#provideId").change(function() {
+        var proviceId = $(this).val();
+
+        $('#districtId').html('<option value="">Chọn quận huyện</option>');
+
+        if(proviceId !== '') {
+            district = provinceData.filter(function(val) {
+                return val.id === proviceId;
+            });
+
+            if($('#typePoint').val() == 1) {
+                startPoint = proviceId;
+                $('#startPoint').val(district[0].unitName + " " + district[0].provinceName);
+            } else {
+                endPoint = proviceId;
+                $('#endPoint').val(district[0].unitName + " " + district[0].provinceName);
+            }
+
+            $.each(district[0].listDistrict, function (index, val) {
+                $('#districtId').append("<option value='" + val.districtId + "'>" + val.districtName + "</option>");
+            });
+            $('.selectDistrict').show();
+        } else {
+            $('.selectDistrict').hide();
+
+            if($('#typePoint').val() == 1) {
+                startPoint = '';
+                $('#startPoint').val('');
+            } else {
+                endPoint = '';
+                $('#endPoint').val('');
+            }
+        }
+    });
+
+    $("#districtId").change(function() {
+        var districtId = $(this).val();
+        if(districtId !== '') {
+            var districtDetail = district[0].listDistrict.filter(function(val) {
+                return val.districtId === districtId;
+            });
+            if($('#typePoint').val() == 1) {
+                startPoint = districtId;
+                $('#startPoint').val(districtDetail[0].unitName + " " + districtDetail[0].districtName + ", " + district[0].provinceName);
+            } else {
+                endPoint = districtId;
+                $('#endPoint').val(districtDetail[0].unitName + " " + districtDetail[0].districtName + ", " + district[0].provinceName);
+            }
+
+            $('#choosePoint').modal('hide');
+        } else {
+            if($('#typePoint').val() == 1) {
+                startPoint = district[0].id;
+                $('#startPoint').val(district[0].unitName + " " + district[0].provinceName);
+            } else {
+                endPoint = district[0].id;
+                $('#endPoint').val(district[0].unitName + " " + district[0].provinceName);
+            }
+
+        }
+
+    });
+
 
     //Chỉ cho phép nhập số
     $('#phoneNumber').on('keypress keyup blur', function () {
@@ -98,40 +185,6 @@ $(document).ready(function () {
         if ((event.which < 48 || event.which > 57)) {
             event.preventDefault();
         }
-    });
-
-    //Lấy ajax thông tin chuyến
-    $.ajax({
-        type: "POST",
-        url: "https://anvui.vn/chuyenAV",
-        data: {
-            idAV: companyId
-        },
-        success: function (result) {
-            if(result.chuyen.length < 1) {
-                alert('Nhà xe hiện chưa có tuyến');
-                return;
-            }
-            $.each(result.chuyen, function (key, item) {
-                $('#routeId').append('<option value="' + item.routeId + '" data-routeback="' + item.routeBack + '">' + item.routeName + '</option>');
-            });
-
-            //Lấy thông tin điểm đầu cuối tren url, neu khong co thi lay chuyen dau tien
-            if(routeId != null){
-                $('#routeId').val(routeId).change();
-            } else {
-                $('#routeId').val(result.chuyen[0].routeId).change();
-            }
-
-        }
-    });
-
-    //Sự kiện thay đổi route
-    $('#routeId').change(function () {
-        hasScheduleOneway = false;
-        hasScheduleReturn = false;
-        routeBackId = $(this).find(':selected').data('routeback');
-        getPoint($(this).val())
     });
 
     $('#depatureDate').datepicker({
@@ -142,7 +195,7 @@ $(document).ready(function () {
             startPoint = $('#startPoint').val();
             endPoint = $('#endPoint').val();
             routeId = $('#routeId').val();
-            getSchedule(startPoint, endPoint, dateStr, routeId, false);
+            // getSchedule(startPoint, endPoint, dateStr, routeId, false);
             changeDate(dateStr);
         }
     });
@@ -152,7 +205,7 @@ $(document).ready(function () {
         defaultDate: "+0d",
         minDate: 0,
         onSelect: function (dateStr) {
-            getSchedule(endPoint, startPoint, dateStr, routeBackId, true);
+            // getSchedule(endPoint, startPoint, dateStr, true);
         }
     });
 
@@ -189,12 +242,10 @@ $(document).ready(function () {
         isRound = $('#isRoundTrip').val();
         depatureDate = $('#depatureDate').val();
         returnDate = $('#returnDate').val();
-        routeId = $('#routeId').val();
-        startPoint = $('#startPoint').val();
-        endPoint = $('#endPoint').val();
 
-        var startText = $('#startPoint').find('option:selected').text();
-        var endText = $('#endPoint').find('option:selected').text();
+
+        var startText = $('#startPoint').val();
+        var endText = $('#endPoint').val();
 
         $('.start').html(startText);
         $('.end').html(endText);
@@ -203,31 +254,7 @@ $(document).ready(function () {
         $('.routeName').html(startText + " - " + endText);
         $('.routeNameReturn').html(endText + " - " + startText);
 
-        if(isRound == 1) {
-            if(routeBackId === 'undefined') {
-                $('#oneway').click();
-                $.alert({
-                    title: 'Cảnh báo!',
-                    type: 'red',
-                    typeAnimated: true,
-                    content: 'Chuyến không có khứ hồi',
-                });
-                return false;
-            }
-        }
-
-
-        if (routeId === "") {
-            $.alert({
-                title: 'Cảnh báo!',
-                type: 'red',
-                typeAnimated: true,
-                content: 'Chưa chọn tuyến đường',
-            });
-            return false;
-        }
-
-        if (startPoint === "") {
+        if (startPoint === "" || startPoint === null) {
             $.alert({
                 title: 'Cảnh báo!',
                 type: 'red',
@@ -237,12 +264,22 @@ $(document).ready(function () {
             return false;
         }
 
-        if (endPoint === "") {
+        if (endPoint === "" || endPoint === null) {
             $.alert({
                 title: 'Cảnh báo!',
                 type: 'red',
                 typeAnimated: true,
                 content: 'Chưa chọn điếm đến',
+            });
+            return false;
+        }
+
+        if(startPoint == endPoint) {
+            $.alert({
+                title: 'Cảnh báo!',
+                type: 'red',
+                typeAnimated: true,
+                content: 'Điểm đi điểm đến giống nhau',
             });
             return false;
         }
@@ -260,6 +297,7 @@ $(document).ready(function () {
 
             return false;
         }
+        $('#loading').show();
         //có khứ hồi
         if(isRound == 1) {
 
@@ -278,22 +316,11 @@ $(document).ready(function () {
 
             $('.endDate').html($('#returnDate').val());
 
-            $('#trip-round').show();
-            $('#total-round').show();
-            if(!hasScheduleReturn){
-                getSchedule(endPoint, startPoint, returnDate, routeBackId, true);
-            }
+            getSchedule(endPoint, startPoint, returnDate, true);
 
         }
 
-        $('#trip-oneway').show();
-        $('#next-step').show();
-        $('#booking-form').hide();
-
-        if(!hasScheduleOneway) {
-            getSchedule(startPoint, endPoint, depatureDate, routeId, false);
-        }
-
+        getSchedule(startPoint, endPoint, depatureDate, false);
     });
 
     //Quay lại chọn tuyến
@@ -717,36 +744,6 @@ $(document).ready(function () {
     });
 });
 
-//Lấy ajax điểm đầu điểm cuối
-function getPoint(routeId) {
-    $('#startPoint').html('<option value="">Điểm đi</option>');
-    $('#endPoint').html('<option value="">Điểm đến</option>');
-
-    $.ajax({
-        type: "POST",
-        url: "https://anvui.vn/pointNX",
-        data: {
-            routeId: routeId
-        },
-        success: function (result) {
-
-            // routeBackId = result.routeBack;
-
-            //lấy thông tin điểm đầu
-            $.each(result.a1, function (key, item) {
-                $('#startPoint').append('<option value="' + item.pointId + '">' + item.pointName + '</option>');
-            });
-            $('#startPoint').val(result.a1[0].pointId).change();
-
-            //lấy thông tin điểm cuối
-            $.each(result.a2, function (key, item) {
-                $('#endPoint').append('<option value="' + item.pointId + '">' + item.pointName + '</option>');
-            });
-            $('#endPoint').val(result.a2[0].pointId).change();
-        }
-    });
-}
-
 function generatePaymentCode() {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Date.now();
 }
@@ -782,9 +779,6 @@ function paymentScroll() {
             $('.payment-info').removeAttr( 'style' );
         }
     }
-
-    console.log('heightScroll', heightScroll);
-    console.log('scrollTop', scrollTop);
 }
 
 
@@ -1152,30 +1146,47 @@ function changeDate(dateStr) {
         $('#returnDate').datepicker("option", {
             minDate: new Date(date_Str)
         });
-        getSchedule(endPoint, startPoint, dateStr, routeBackId, true);
+        // getSchedule(endPoint, startPoint, dateStr, true);
         $('#returnDate').val(dateStr);
     }
 }
 
 //Lấy danh sách các giờ chạy
-function getSchedule(startPoint, endPoint, date, routeId, isBack) {
+function getSchedule(startPoint, endPoint, date, isBack) {
     var dateAr = date.split('/');
     var newDate = dateAr[0] + '-' + dateAr[1] + '-' + dateAr[2];
+        $('#list-oneway').html('');
+        $('#list-roundway').html('');
     $.ajax({
         type: "POST",
-        url: "https://anvui.vn/listSchedule",
+        url: "https://anvui.vn/listSchedule2",
         data: {
             startPoint: startPoint,
             endPoint: endPoint,
-            timeStart: newDate,
-            routeId: routeId
+            date: newDate,
+            companyId: companyId,
+            page: 0,
+            count: 1000,
         },
         success: function (result) {
-            if(!isBack) {
-                $('#list-oneway').html('');
+            $('#loading').hide();
+
+            if(result.toString() !== '') {
+                if(isRound == 1) {
+                    $('#trip-round').show();
+                    $('#total-round').show();
+                }
+                $('#trip-oneway').show();
+                $('#next-step').show();
+                $('#booking-form').hide();
             } else {
-                // $('#list-oneway').html('');
-                $('#list-roundway').html('');
+                $.alert({
+                    title: 'Thông báo!',
+                    type: 'red',
+                    typeAnimated: true,
+                    content: 'Không có chuyến nào!'
+                });
+                return false;
             }
 
 
@@ -1201,7 +1212,8 @@ function getSchedule(startPoint, endPoint, date, routeId, isBack) {
                         'data-schedule="' + item.scheduleId + '" ' +
                         'data-price="' + item.ticketPrice + '">';
                 }
-                schedule += '<td>' + item.routeName + '</td>';
+                schedule += '<td>' + item.getInPointName +' đến '+ item.getOffPointName + '</td>';
+                schedule += '<td><strong>'+ item.seatMap.vehicleTypeName +'</strong></td>';
                 schedule += '<td><strong>'+ item.startTime +'</strong></td>';
                 schedule += '<td><strong>'+ getFormattedDate(item.getOffTime) +'</strong></td>';
                 schedule += '<td><strong>'+ item.totalEmptySeat +'</strong></td>';
@@ -1209,10 +1221,8 @@ function getSchedule(startPoint, endPoint, date, routeId, isBack) {
                 schedule += '</tr>';
                 if(isBack) {
                     $('#list-roundway').append(schedule);
-                    hasScheduleReturn = true;
                 } else {
                     $('#list-oneway').append(schedule);
-                    hasScheduleReturn = false;
                 }
             });
         }

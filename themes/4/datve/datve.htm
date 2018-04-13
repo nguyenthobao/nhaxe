@@ -4,7 +4,38 @@
         background: url("{$web['static_temp']}{$web['temp']}/statics/images/halong-2.jpg");
         background-size: auto 100%;
     }
+
+    .loader {
+        top: 50%;
+        left: 50%;
+        border: 16px solid #f3f3f3;
+        border-top: 16px solid #3498db;
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+        position: absolute;
+    }
+
+    #loading {
+        padding-top: 150px;
+        top: 0;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+        background-color: rgba(0, 0, 0, 0.5);
+        text-align: center;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
 </style>
+<div id="loading" style="display: none;">
+    <div class="loader"></div>
+</div>
 <div class="container bg-3">
     <div id="booking-form" style="display: block">
         <h3><i class="fa fa-bus fa-5"></i> Đặt vé online</h3>
@@ -15,23 +46,13 @@
             </div>
             <div class="row chuyen">
                 <div class="clearfix">
-                    <div class="col-md-4">
-                        <label for="routeId" class="label-cus">Tuyến</label>
-                        <select class="form-control" name="routeId" id="routeId">
-                            <option value="">Chọn tuyến</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <label for="startPoint" class="label-cus">Điểm đi</label>
-                        <select class="form-control" name="startPoint" id="startPoint">
-                            <option value="">Điểm đi</option>
-                        </select>
+                        <input type="text" class="form-control" name="startPoint" id="startPoint" readonly>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <label for="endPoint" class="label-cus">Điểm đến</label>
-                        <select class="form-control" name="endPoint" id="endPoint">
-                            <option value="">Điểm đến</option>
-                        </select>
+                        <input type="text" class="form-control" name="endPoint" id="endPoint" readonly>
                     </div>
                 </div>
 
@@ -72,6 +93,7 @@
                     <thead>
                     <tr>
                         <th>Chuyến xe</th>
+                        <th>Loại xe</th>
                         <th>Khởi hành</th>
                         <th>Đến</th>
                         <th>Ghế trống</th>
@@ -101,6 +123,7 @@
                     <thead>
                     <tr>
                         <th>Chuyến xe</th>
+                        <th>Loại xe</th>
                         <th>Khởi hành</th>
                         <th>Đến</th>
                         <th>Ghế trống</th>
@@ -318,11 +341,53 @@
     </div>
 </div>
 <!--End Modal-->
+
+<!--Modal chon tinh thanh-->
+<div class="modal fade" id="choosePoint" tabindex="-1" role="dialog" aria-labelledby="chooseLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="chooseLabel">Chọn tỉnh thành</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <style>
+                .selectDistrict {
+                    margin-top: 20px;
+                }
+            </style>
+            <div class="modal-body row">
+                <div class="col-md-12">
+                    <select class="form-control select2" name="provideId" id="provideId">
+                        <option value="">Chọn tỉnh thành</option>
+                    </select>
+                </div>
+                <div class="col-md-12 selectDistrict" style="display: none">
+                    <select class="form-control select2" name="districtId" id="districtId">
+                        <option value="">Chọn quận huyện</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="typePoint">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="{$web['static_temp']}/{$web['temp']}/statics/js/anvui.js?v=1.4"></script>
 <script>
     $(document).ready(function() {
         $('html, body').animate({
             scrollTop: $("#booking-form").offset().top
         },1000);
+
+        $('.select2').select2({
+            dropdownParent: $('#choosePoint'),
+            width: '100%',
+            height: '40px'
+        });
     });
 </script>
