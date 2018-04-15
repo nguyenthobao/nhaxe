@@ -74,9 +74,11 @@ $(document).ready(function () {
 
     if(startPoint != null && endPoint != null && depatureDate != null) {
         isRound = 0;
+        $('#booking-form').hide();
         $('#loading').show();
         $('.start').html(startText);
         $('.end').html(endText);
+        $('.startDate').html(depatureDate);
         $('.routeName').html(startText + " - " + endText);
         $('.routeNameReturn').html(endText + " - " + startText);
         getSchedule(startPoint, endPoint, depatureDate, false);
@@ -84,9 +86,11 @@ $(document).ready(function () {
         if(returnDate != '') {
             isRound = 1;
             getSchedule(endPoint, startPoint, returnDate, true);
+            $('.startDateReturn').html(returnDate);
             $('#trip-round').show();
+            $('.select-seat-round').show();
         }
-        $('#booking-form').hide();
+
         // $('#next-step').show();
         $('#back').hide();
     }
@@ -332,7 +336,8 @@ $(document).ready(function () {
     //Chuyển sang chọn ghế
     $('#select-seat').click(function () {
 
-        var isRound = $('#isRoundTrip').val();
+        // if(isRound)
+        // var isRound = $('#isRoundTrip').val();
 
         if(seatInfoOneway == undefined) {
             $.alert({
