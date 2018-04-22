@@ -108,7 +108,7 @@ $(document).ready(function () {
     //Lay danh sach tinh thanh
     $.ajax({
         type: 'POST',
-        url: 'https://dobody-anvui.appspot.com/point/get_province_district',
+        url: 'https://dobody-anvui.appspot.com/point/get_province_and_point',
         dataType: "json",
         data: JSON.stringify({companyId: companyId}),
         success: function (data) {
@@ -122,7 +122,7 @@ $(document).ready(function () {
     $("#provideId").change(function() {
         var proviceId = $(this).val();
 
-        $('#districtId').html('<option value="">Chọn quận huyện</option>');
+        $('#districtId').html('<option value="">Chọn điểm</option>');
 
         if(proviceId !== '') {
             district = provinceData.filter(function(val) {
@@ -162,10 +162,10 @@ $(document).ready(function () {
             });
             if($('#typePoint').val() == 1) {
                 startPoint = districtId;
-                $('#startPoint').val(districtDetail[0].unitName + " " + districtDetail[0].districtName + ", " + district[0].provinceName);
+                $('#startPoint').val(districtDetail[0].districtName + ", " + district[0].provinceName);
             } else {
                 endPoint = districtId;
-                $('#endPoint').val(districtDetail[0].unitName + " " + districtDetail[0].districtName + ", " + district[0].provinceName);
+                $('#endPoint').val(districtDetail[0].districtName + ", " + district[0].provinceName);
             }
 
             $('#choosePoint').modal('hide');
