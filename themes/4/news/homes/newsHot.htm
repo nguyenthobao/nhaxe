@@ -44,24 +44,25 @@
             </div>
             <style>
                 .news-img {
-                    height: 70px;
+                    height: 80px;
                 }
 
                 .item-news {
                     margin: 5px 0 5px 0;
+                    height: 90px;
                 }
             </style>
             <div class="col-md-4 padding-news-item">
                 <!--{eval $i=0}-->
                 <!--{loop $_news $k $v}-->
-                    <!--{if $i > 0 && $i <= 6}-->
+                    <!--{if $i > 0 && $i <= 5}-->
                     <div class="row item-news">
                         <a href="$v['link']">
                             <div class="col-md-6 padding-item">
                                 <img src="<!--{loadImage $v['img'] crop 570 290}-->" class="img-responsive news-img" alt="$v['title']">
                             </div>
                             <div class="col-md-6 padding-item">
-                                <p style="font-size: 12px;margin-top: 10%;"><!--{cutString $v['title'] 0 40}--></p>
+                                <p style="font-size: 12px;margin-top: 0;"><!--{$v['title']}--></p>
                             </div>
                         </a>
                     </div>
