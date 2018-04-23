@@ -344,7 +344,8 @@ $(document).ready(function () {
                 data: {
                     timeZone: 7,
                     promotionCode: promotionCode,
-                    companyId: companyId
+                    companyId: companyId,
+                    getInTimePlan: intimeOneway,
                 },
                 success: function (data) {
                     promotionPercent = data.results.result.percent;
