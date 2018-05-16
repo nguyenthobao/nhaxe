@@ -799,84 +799,99 @@ function selectTripOneWay(trip) {
     ticketPriceOneway = $(trip).data('price');
     ticketRatioOneway = $(trip).data('ratio');
     startDateOneway = $(trip).data('startdate');
+    tripStatus = $(trip).data('tripstatus');
     $('.intime').html(getFormattedDate(intimeOneway, 'time'));
 
-    //chọn trip
-    $.getJSON("http://demo.nhaxe.vn/dat-ve?tripId=" + tripIdOneway + '&scheduleId=' + scheduleIdOneway, function (data) {
+    if(tripStatus == 2) {
+        $.alert({
+            title: 'Cảnh báo!',
+            type: 'red',
+            typeAnimated: true,
+            content: 'Chuyến đã xuất bến',
+        });
 
-        var html = '';
-        //Theo số tầng
-        for (var floor = 1; floor < data.seatMap.numberOfFloors + 1; floor++) {
-            if(floor == 1){
-                html += '<div class="col-md-6 col-sm-12 col-xs-12 tachtang">';
-            } else {
-                html += '<div class="col-md-6 col-sm-12 col-xs-12">';
-            }
+        $('#select-seat').prop('disabled', true);
 
-            html += '<div class="col-md-12 col-sm-12 col-xs-12 text-center"><strong>Tầng ' + floor + '</strong></div>';
+        return;
+    } else {
+        $('#select-seat').prop('disabled', false);
+        //chọn trip
+        $.getJSON("http://demo.nhaxe.vn/dat-ve?tripId=" + tripIdOneway + '&scheduleId=' + scheduleIdOneway, function (data) {
 
-            //Theo hàng
-            for (var row = 1; row < data.seatMap.numberOfRows + 1; row++) {
-                //Theo cột
-                for (var column = 1; column < data.seatMap.numberOfColumns + 1; column++) {
-                    coghe = false;
-                    iddd = '';
-                    seatInfoOneway = data.seatMap.seatList;// lay du lieu seatMap
-                    $.each(data.seatMap.seatList, function (index, val) {
-                        var id = val['seatId'];
-                        var id1 = id.replace(',', '_');
+            var html = '';
+            //Theo số tầng
+            for (var floor = 1; floor < data.seatMap.numberOfFloors + 1; floor++) {
+                if(floor == 1){
+                    html += '<div class="col-md-6 col-sm-12 col-xs-12 tachtang">';
+                } else {
+                    html += '<div class="col-md-6 col-sm-12 col-xs-12">';
+                }
 
-                        var ticketStatus = 1;
+                html += '<div class="col-md-12 col-sm-12 col-xs-12 text-center"><strong>Tầng ' + floor + '</strong></div>';
 
-                        if(val['listTicketId'].length > 0) {
-                            var lastTicketId =val['listTicketId'][val['listTicketCode'].length - 1];
-                        }
+                //Theo hàng
+                for (var row = 1; row < data.seatMap.numberOfRows + 1; row++) {
+                    //Theo cột
+                    for (var column = 1; column < data.seatMap.numberOfColumns + 1; column++) {
+                        coghe = false;
+                        iddd = '';
+                        seatInfoOneway = data.seatMap.seatList;// lay du lieu seatMap
+                        $.each(data.seatMap.seatList, function (index, val) {
+                            var id = val['seatId'];
+                            var id1 = id.replace(',', '_');
 
-                        if(typeof lastTicketId !== 'undefined' && typeof val['ticketInfo'] !== 'undefined') {
-                            ticketStatus = val['ticketInfo'][lastTicketId]['ticketStatus'];
-                        } else {
-                            ticketStatus = val['seatStatus'];
-                        }
+                            var ticketStatus = 1;
 
-                        /*console.log(val['seatId'],ticketStatus);
-                        console.log(val['seatId'],val['overTime']);
-                        console.log(val['seatId'],((ticketStatus == 2 && (val['overTime'] > Date.now() || val['overTime'] == 0)) || ticketStatus == 7));*/
-
-                        iddd = floor + ' ' + row + ' ' + column;
-                        if(val['floor'] != floor || val['row'] != row || val['column'] != column) {
-                            // coghe = false;
-                        } else {
-                            coghe = true;
-                            //Type = 2 là tài
-                            if (val['seatType'] == 2) {
-                                html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe driver"></div></div>';
-                            } else if(val['seatType'] == 1 || val['seatType'] == 5 || val['seatType'] == 6) { // Lần lượt là cửa cửa, Wc, phụ
-                                html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe"></div></div>';
-                            } else if((ticketStatus == 2 && (val['overTime'] > Date.now() || val['overTime'] == 0)) || ticketStatus == 7 || ticketStatus == 3 || ticketStatus == 4 || ticketStatus == 5) {
-                                html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe ghedaban"></div></div>';
-                            } else {
-                                html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '">' +
-                                    '<div class="chonghe ghetrong" id="chonghe_' + id1 + '" onclick="chonghe(\'' + id + '\')" data-over="' + val['overTime'] + '">' +
-                                    '</div></div>';
+                            if(val['listTicketId'].length > 0) {
+                                var lastTicketId =val['listTicketId'][val['listTicketCode'].length - 1];
                             }
+
+                            if(typeof lastTicketId !== 'undefined' && typeof val['ticketInfo'] !== 'undefined') {
+                                ticketStatus = val['ticketInfo'][lastTicketId]['ticketStatus'];
+                            } else {
+                                ticketStatus = val['seatStatus'];
+                            }
+
+                            /*console.log(val['seatId'],ticketStatus);
+                            console.log(val['seatId'],val['overTime']);
+                            console.log(val['seatId'],((ticketStatus == 2 && (val['overTime'] > Date.now() || val['overTime'] == 0)) || ticketStatus == 7));*/
+
+                            iddd = floor + ' ' + row + ' ' + column;
+                            if(val['floor'] != floor || val['row'] != row || val['column'] != column) {
+                                // coghe = false;
+                            } else {
+                                coghe = true;
+                                //Type = 2 là tài
+                                if (val['seatType'] == 2) {
+                                    html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe driver"></div></div>';
+                                } else if(val['seatType'] == 1 || val['seatType'] == 5 || val['seatType'] == 6) { // Lần lượt là cửa cửa, Wc, phụ
+                                    html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe"></div></div>';
+                                } else if((ticketStatus == 2 && (val['overTime'] > Date.now() || val['overTime'] == 0)) || ticketStatus == 7 || ticketStatus == 3 || ticketStatus == 4 || ticketStatus == 5) {
+                                    html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe ghedaban"></div></div>';
+                                } else {
+                                    html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '">' +
+                                        '<div class="chonghe ghetrong" id="chonghe_' + id1 + '" onclick="chonghe(\'' + id + '\')" data-over="' + val['overTime'] + '">' +
+                                        '</div></div>';
+                                }
+                            }
+                        });
+                        if (!coghe) {
+                            html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe"></div></div>';
                         }
-                    });
-                    if (!coghe) {
-                        html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe"></div></div>';
                     }
                 }
+
+                html += '</div>';
             }
+            $('#seatMapOneWay').html(html);
 
-            html += '</div>';
-        }
-        $('#seatMapOneWay').html(html);
+        });
 
-    });
-
-    //event double click
-    $(trip).dblclick(function () {
-        $('#select-seat').click();
-    });
+        //event double click
+        $(trip).dblclick(function () {
+            $('#select-seat').click();
+        });
+    }
 }
 
 
@@ -893,81 +908,95 @@ function selectTripRoundWay(trip) {
     inPointReturn = $(trip).data('getinpoint');
     offPointReturn = $(trip).data('getoffpoint');
     startDateReturn = $(trip).data('startdate');
+    tripStatus = $(trip).data('tripstatus');
     $('.intimeReturn').html(getFormattedDate(intimeReturn, 'time'));
 
-    //chon trip
-    $.getJSON("http://demo.nhaxe.vn/dat-ve?tripId=" + tripIdReturn + '&scheduleId=' + scheduleIdReturn, function (data) {
+    if(tripStatus == 2) {
+        $.alert({
+            title: 'Cảnh báo!',
+            type: 'red',
+            typeAnimated: true,
+            content: 'Chuyến đã xuất bến',
+        });
 
-        var html = '';
-        //Theo số tầng
-        for (var floor = 1; floor < data.seatMap.numberOfFloors + 1; floor++) {
-            if(floor == 1){
-                html += '<div class="col-md-6 col-sm-12 col-xs-12 tachtang">';
-            } else {
-                html += '<div class="col-md-6 col-sm-12 col-xs-12">';
-            }
+        $('#select-seat').prop('disabled', true);
+        return;
+    } else {
+        $('#select-seat').prop('disabled', false);
+        //chon trip
+        $.getJSON("http://demo.nhaxe.vn/dat-ve?tripId=" + tripIdReturn + '&scheduleId=' + scheduleIdReturn, function (data) {
 
-            html += '<div class="col-md-12 col-sm-12 col-xs-12 text-center"><strong>Tầng ' + floor + '</strong></div>';
+            var html = '';
+            //Theo số tầng
+            for (var floor = 1; floor < data.seatMap.numberOfFloors + 1; floor++) {
+                if(floor == 1){
+                    html += '<div class="col-md-6 col-sm-12 col-xs-12 tachtang">';
+                } else {
+                    html += '<div class="col-md-6 col-sm-12 col-xs-12">';
+                }
 
-            //Theo hàng
-            for (var row = 1; row < data.seatMap.numberOfRows + 1; row++) {
-                //Theo cột
-                for (var column = 1; column < data.seatMap.numberOfColumns + 1; column++) {
-                    coghe = false;
-                    iddd = '';
+                html += '<div class="col-md-12 col-sm-12 col-xs-12 text-center"><strong>Tầng ' + floor + '</strong></div>';
 
-                    seatInfoReturn = data.seatMap.seatList;// lay du lieu seatMap
-                    $.each(data.seatMap.seatList, function (index, val) {
-                        var id = val['seatId'];
-                        var id1 = id.replace(',', '_');
+                //Theo hàng
+                for (var row = 1; row < data.seatMap.numberOfRows + 1; row++) {
+                    //Theo cột
+                    for (var column = 1; column < data.seatMap.numberOfColumns + 1; column++) {
+                        coghe = false;
+                        iddd = '';
 
-                        var ticketStatus = 1;
+                        seatInfoReturn = data.seatMap.seatList;// lay du lieu seatMap
+                        $.each(data.seatMap.seatList, function (index, val) {
+                            var id = val['seatId'];
+                            var id1 = id.replace(',', '_');
 
-                        if(val['listTicketId'].length > 0) {
-                            var lastTicketId =val['listTicketId'][val['listTicketCode'].length - 1];
-                        }
+                            var ticketStatus = 1;
 
-                        if(typeof lastTicketId !== 'undefined' && typeof val['ticketInfo'] !== 'undefined') {
-                            ticketStatus = val['ticketInfo'][lastTicketId]['ticketStatus'];
-                        } else {
-                            ticketStatus = val['seatStatus'];
-                        }
-
-                        iddd = floor + ' ' + row + ' ' + column;
-                        if(val['floor'] != floor || val['row'] != row || val['column'] != column) {
-                            // coghe = false;
-                        } else {
-                            coghe = true;
-                            //Type = 2 là tài
-                            if (val['seatType'] == 2) {
-                                html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe driver"></div></div>';
-                            } else if(val['seatType'] == 1 || val['seatType'] == 5 || val['seatType'] == 6) { // Lần lượt là cửa cửa, Wc, phụ
-                                html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe"></div></div>';
-                            } else if((ticketStatus == 2 && (val['overTime'] > Date.now() || val['overTime'] == 0)) || ticketStatus == 7 || ticketStatus == 3 || ticketStatus == 4 || ticketStatus == 5) {
-                                html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe ghedaban"></div></div>';
-                            } else {
-                                html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '">' +
-                                    '<div class="chonghe ghetrong" id="chongheve_' + id1 + '" onclick="chongheve(\'' + id + '\')" data-over="' + val['overTime'] + '">' +
-                                    '</div></div>';
+                            if(val['listTicketId'].length > 0) {
+                                var lastTicketId =val['listTicketId'][val['listTicketCode'].length - 1];
                             }
+
+                            if(typeof lastTicketId !== 'undefined' && typeof val['ticketInfo'] !== 'undefined') {
+                                ticketStatus = val['ticketInfo'][lastTicketId]['ticketStatus'];
+                            } else {
+                                ticketStatus = val['seatStatus'];
+                            }
+
+                            iddd = floor + ' ' + row + ' ' + column;
+                            if(val['floor'] != floor || val['row'] != row || val['column'] != column) {
+                                // coghe = false;
+                            } else {
+                                coghe = true;
+                                //Type = 2 là tài
+                                if (val['seatType'] == 2) {
+                                    html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe driver"></div></div>';
+                                } else if(val['seatType'] == 1 || val['seatType'] == 5 || val['seatType'] == 6) { // Lần lượt là cửa cửa, Wc, phụ
+                                    html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe"></div></div>';
+                                } else if((ticketStatus == 2 && (val['overTime'] > Date.now() || val['overTime'] == 0)) || ticketStatus == 7 || ticketStatus == 3 || ticketStatus == 4 || ticketStatus == 5) {
+                                    html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe ghedaban"></div></div>';
+                                } else {
+                                    html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '">' +
+                                        '<div class="chonghe ghetrong" id="chongheve_' + id1 + '" onclick="chongheve(\'' + id + '\')" data-over="' + val['overTime'] + '">' +
+                                        '</div></div>';
+                                }
+                            }
+                        });
+                        if (!coghe) {
+                            html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe"></div></div>';
                         }
-                    });
-                    if (!coghe) {
-                        html += '<div class="col-md-2 col-sm-2 col-xs-2 ghe-' + data.seatMap.numberOfColumns + '"><div class="chonghe"></div></div>';
                     }
                 }
+
+                html += '</div>';
             }
+            $('#seatMapRound').html(html);
 
-            html += '</div>';
-        }
-        $('#seatMapRound').html(html);
+        });
 
-    });
-
-    //event double click
-    $(trip).dblclick(function () {
-        $('#select-seat').click();
-    });
+        //event double click
+        $(trip).dblclick(function () {
+            $('#select-seat').click();
+        });
+    }
 }
 
 function chonghe(seat) {
@@ -1203,6 +1232,7 @@ function getSchedule(startPoint, endPoint, date, isBack) {
                         'data-intime="' + item.getInTime + '" ' +
                         'data-trip="' + item.tripId + '" ' +
                         'data-schedule="' + item.scheduleId + '" ' +
+                        'data-tripstatus="' + item.tripStatus + '" ' +
                         'data-price="' + item.ticketPrice + '">';
                 } else {
                     var schedule = '<tr onclick="selectTripOneWay(this)" ' +
@@ -1213,6 +1243,7 @@ function getSchedule(startPoint, endPoint, date, isBack) {
                         'data-intime="' + item.getInTime + '" ' +
                         'data-trip="' + item.tripId + '" ' +
                         'data-schedule="' + item.scheduleId + '" ' +
+                        'data-tripstatus="' + item.tripStatus + '" ' +
                         'data-price="' + item.ticketPrice + '">';
                 }
                 schedule += '<td>' + item.getInPointName +' đến '+ item.getOffPointName + '</td>';

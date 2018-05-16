@@ -882,6 +882,7 @@ function selectTripRoundWay(trip) {
 
         return;
     } else {
+        $('#select-seat').prop('disabled', false);
         //chon trip
         $.getJSON("http://demo.nhaxe.vn/dat-ve?tripId=" + tripIdReturn + '&scheduleId=' + scheduleIdReturn, function (data) {
 
