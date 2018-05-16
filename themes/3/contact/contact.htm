@@ -1,36 +1,30 @@
-<div class="clearfix"></div>
-   <!--{if isset($_breadcrumbs)}-->
-   <div class="productbreadcrumb">
-
-<ol class="breadcrumb">
-     <!--{loop $_breadcrumbs $k $v}-->
-        
-        <li ><a href="{$v['href']}">{$v['text']}</a></li>
-         
-        <!--{/loop}-->
-   
-</ol>
-</div>
-    <div class="clearfix"></div>
-    <!--{/if}-->
-
+<style>
+  .padding-10 {
+    padding: 10px;
+  }
+  .f-module-page {
+    text-align: center;
+  }
+  .f-module-page .title {
+    font-size: 30px;
+  }
+  .col-centered{
+    float: none;
+    margin: 0 auto;
+  }
+</style>
 <div class="clearfix"></div>
 <div class="f-module-page">
-  <div class="f-module-page-title"> <i></i><span>{lang title_heading}</span> </div>
+  <div class="f-module-page-title padding-10"> <span class="title">{lang title_heading}</span> </div>
   <div class="f-module-page-body padding-10">
     <div class="clearfix"></div>
     <div class="f-contact-page">
       <!--{if isset($_success)}-->
       <!--{temp contact/notifyAction}-->
       <!--{/if}-->
-      <div class="f-contact-page-info">
-        <h5 align="center">
-          <!--{if isset($_info)}-->{$_info}<!--{/if}--> 
-        </h5>                           
-      </div>
       <div class="f-contact-form row">
 
-       <div class="col-md-6 no-padding">
+       <div class="col-md-6 col-centered no-padding">
         <form class="form-horizontal no-padding" action="" id="form_contact"  method="POST" name="register">
 
           <fieldset >
@@ -116,14 +110,14 @@
           </fieldset>
         </form>
       </div>
-      <div class="col-md-6 ">
+      <!--<div class="col-md-6 ">
 
         <div class="video-container ">
 
           {$_maps}
 
         </div>
-      </div>
+      </div>-->
 
 
     </div>

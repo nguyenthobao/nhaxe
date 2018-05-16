@@ -831,6 +831,7 @@ function selectTripOneWay(trip) {
                     }
                 }
             }
+            html += '</div>';
         }
         $('#seatMapOneWay').html(html);
 
