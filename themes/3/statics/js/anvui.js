@@ -76,6 +76,18 @@ $(document).ready(function () {
         }
     });
 
+    /*Ẩn các điểm đã chọn ở điểm đi điểm đến*/
+    $('#startPoint').change(function(){
+        var id = $(this).val();
+        $("#endPoint option").show();
+        $("#endPoint option[value="+id+"]").hide();
+    });
+    $('#endPoint').change(function(){
+        var id = $(this).val();
+        $("#startPoint option").show();
+        $("#startPoint option[value="+id+"]").hide();
+    });
+
     //Lấy ajax thông tin chuyến
     $.ajax({
         type: "POST",
@@ -729,6 +741,8 @@ function getPoint(routeId) {
                 $('#endPoint').append('<option value="' + item.pointId + '">' + item.pointName + '</option>');
             });
             $('#endPoint').val(result.a2[0].pointId).change();
+
+            $("#endPoint option[value="+result.a1[0].pointId+"]").hide();
         }
     });
 }
