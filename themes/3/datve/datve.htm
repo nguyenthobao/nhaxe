@@ -160,13 +160,13 @@
                     <div class="transshipmentOneway">
                         <div class="col-md-6">
                             <label for="transshipmentInPointOneway">Trung chuyển đón chuyến đi</label>
-                            <select name="transshipmentInPointOneway" disabled class="form-control" id="transshipmentInPointOneway">
+                            <select name="transshipmentInPointOneway" disabled class="form-control transshipment" id="transshipmentInPointOneway">
                                 <option data-address="" data-lat="" data-long="" data-price="0" value="">Chọn điểm đón</option>
                             </select>
                         </div>
                         <div class="col-md-6">
                             <label for="transshipmentOffPointOneway">Trung chuyển trả chuyến đi</label>
-                            <select name="transshipmentOffPointOneway" disabled class="form-control" id="transshipmentOffPointOneway">
+                            <select name="transshipmentOffPointOneway" disabled class="form-control transshipment" id="transshipmentOffPointOneway">
                                 <option data-address="" data-lat="" data-long="" data-price="0" value="">Chọn điểm trả</option>
                             </select>
                         </div>
@@ -174,13 +174,13 @@
                     <div class="transshipmentReturn" style="display: none">
                         <div class="col-md-6">
                             <label for="transshipmentInPointReturn">Trung chuyển đón chuyến về</label>
-                            <select name="transshipmentInPoint" disabled class="form-control" id="transshipmentInPointReturn">
+                            <select name="transshipmentInPoint" disabled class="form-control transshipment" id="transshipmentInPointReturn">
                                 <option data-address="" data-lat="" data-long="" data-price="0" value="">Chọn điểm đón</option>
                             </select>
                         </div>
                         <div class="col-md-6">
                             <label for="transshipmentOffPointReturn">Trung chuyển trả chuyến về</label>
-                            <select name="transshipmentOffPointReturn" disabled class="form-control" id="transshipmentOffPointReturn">
+                            <select name="transshipmentOffPointReturn" disabled class="form-control transshipment" id="transshipmentOffPointReturn">
                                 <option data-address="" data-lat="" data-long="" data-price="0" value="">Chọn điểm trả</option>
                             </select>
                         </div>
@@ -254,9 +254,9 @@
                     <div class="col-md-12">
                         Giá trẻ em: <span class="price" id="babyMoneyReturn">0 VND</span> <br>
                     </div>
-                    <!--<div class="col-md-12">
+                    <div class="col-md-12">
                         Phí trung chuyển: <span class="price" id="transshipmentPriceReturn">0 VND</span> <br>
-                    </div>-->
+                    </div>
                 </div>
                 <div class="subtotal">
                     Tổng tiền lượt về<br>
