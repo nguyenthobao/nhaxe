@@ -39,6 +39,24 @@ var inPointReturn;
 var offPointOneway;
 var offPointReturn;
 
+/*Lấy thông tin chuyến và thông tin trung chuyển*/
+var scheduleOneway;
+var scheduleReturn;
+var transshipmentInPointOneway;
+var transshipmentOffPointOneway;
+var transshipmentInPointReturn;
+var transshipmentOffPointReturn;
+
+/*Giá trung chuyển*/
+var trashipmentPriceOneway = 0;
+var trashipmentPriceReturn = 0;
+var trashipmentPriceInPointOneway = 0;
+var trashipmentPriceOffPointOneway = 0;
+var trashipmentPriceInPointReturn = 0;
+var trashipmentPriceOffPointReturn = 0;
+
+var transshipment = 0;
+
 var promotionMoney = 0;
 var promotionPercent = 0;
 var isPromotion = false;
@@ -57,6 +75,72 @@ var hasScheduleReturn = false;
 $(document).ready(function () {
 
     companyId = $("base").attr("id");
+
+    /*Đưa đón*/
+    $('#transshipment').change(function () {
+        if($(this).is(':checked')) {
+            transshipment = 1;
+            $('#transshipmentInPointOneway').prop('disabled', false);
+            $('#transshipmentOffPointOneway').prop('disabled', false);
+
+            $('#transshipmentPriceOneway').text(trashipmentPriceOneway.format()+' VND');
+            totalMoneyOneway += trashipmentPriceOneway;
+        } else {
+            transshipment = 0;
+            if(totalMoneyOneway > 0) {
+                totalMoneyOneway -= trashipmentPriceOneway;
+            }
+            /*Reset tat ca tien trung chuyen ve 0*/
+            trashipmentPriceOneway = 0;
+            trashipmentPriceInPointOneway = 0;
+            trashipmentPriceOffPointOneway = 0;
+            $("#transshipmentInPointOneway").prop("selectedIndex", 0);
+            $("#transshipmentOffPointOneway").prop("selectedIndex", 0);
+
+            $('#transshipmentInPointOneway').prop('disabled', true);
+            $('#transshipmentOffPointOneway').prop('disabled', true);
+
+            $('#transshipmentPriceOneway').text('0 VND');
+        }
+
+        totalMoney = totalMoneyOneway + totalMoneyReturn;
+
+        $('#totalMoneyOneway').text(totalMoneyOneway.format()+' VND');
+        $('#totalMoney').text(totalMoney.format()+' VND');
+    });
+
+    /*Lấy thông tin tiền đưa đón*/
+    $('#transshipmentInPointOneway').change(function () {
+        totalMoneyOneway -= trashipmentPriceOneway;
+        trashipmentPriceOneway -= trashipmentPriceInPointOneway;
+
+        trashipmentPriceInPointOneway = $(this).find(':selected').data('price');
+
+        trashipmentPriceOneway += trashipmentPriceInPointOneway;
+
+        $('#transshipmentPriceOneway').text(trashipmentPriceOneway.format()+' VND');
+
+        totalMoneyOneway += trashipmentPriceOneway;
+        totalMoney = totalMoneyOneway + totalMoneyReturn;
+
+        $('#totalMoneyOneway').text(totalMoneyOneway.format()+' VND');
+        $('#totalMoney').text(totalMoney.format()+' VND');
+    });
+    $('#transshipmentOffPointOneway').change(function () {
+        totalMoneyOneway -= trashipmentPriceOneway;
+        trashipmentPriceOneway -= trashipmentPriceOffPointOneway;
+
+        trashipmentPriceOffPointOneway = $(this).find(':selected').data('price');
+
+        trashipmentPriceOneway += trashipmentPriceOffPointOneway;
+
+        $('#transshipmentPriceOneway').text(trashipmentPriceOneway.format()+' VND');
+        totalMoneyOneway += trashipmentPriceOneway;
+        totalMoney = totalMoneyOneway + totalMoneyReturn;
+
+        $('#totalMoneyOneway').text(totalMoneyOneway.format()+' VND');
+        $('#totalMoney').text(totalMoney.format()+' VND');
+    });
 
     $('#next-step').removeClass('scrollDown');
 
@@ -320,9 +404,11 @@ $(document).ready(function () {
 
             $('#select-seat-round').show();
             $('#chooseRound').show();
+            // $('#transshipmentReturn').show();
         } else {
             $('#select-seat-round').hide();
             $('#chooseRound').hide();
+            // $('#transshipmentReturn').hide();
         }
 
         $('#trip-oneway').hide();
@@ -487,6 +573,15 @@ $(document).ready(function () {
                 totalMoneyAfter = totalMoney;
             }
 
+            console.log('trashipmentPriceInPointOneway', trashipmentPriceInPointOneway);
+            console.log('trashipmentPriceOffPointOneway', trashipmentPriceOffPointOneway);
+            console.log('pickUpAddress', $('#transshipmentInPointOneway').find(':selected').data('address'));
+            console.log('pickOffAddress', $('#transshipmentOffPointOneway').find(':selected').data('address'));
+            console.log('pickupLat', $('#transshipmentInPointOneway').find(':selected').data('lat'));
+            console.log('pickupLong', $('#transshipmentInPointOneway').find(':selected').data('long'));
+            console.log('pickoffLat', $('#transshipmentOffPointOneway').find(':selected').data('lat'));
+            console.log('pickoffLong', $('#transshipmentOffPointOneway').find(':selected').data('long'));
+
             $.ajax({
                 type: 'POST',
                 url: 'http://demo.nhaxe.vn/dat-ve?sub=order',
@@ -509,7 +604,15 @@ $(document).ready(function () {
                     'numberOfAdults': ghenguoilondi.length,
                     'numberOfChildren': ghetreemdi.length,
                     'promotionId': $('#promotionCode').val(),
-                    'note' : note
+                    'note' : note,
+                    'inTransshipmentPrice': trashipmentPriceInPointOneway,
+                    'offTransshipmentPrice': trashipmentPriceOffPointOneway,
+                    'pickUpAddress': $('#transshipmentInPointOneway').find(':selected').data('address'),
+                    'latitudeUp': $('#transshipmentInPointOneway').find(':selected').data('lat'),
+                    'longitudeUp': $('#transshipmentInPointOneway').find(':selected').data('long'),
+                    'dropOffAddress': $('#transshipmentOffPointOneway').find(':selected').data('address'),
+                    'latitudeDown': $('#transshipmentOffPointOneway').find(':selected').data('lat'),
+                    'longitudeDown': $('#transshipmentOffPointOneway').find(':selected').data('long')
                 },
                 success: function (data) {
                     if(data.code != 200) {
@@ -756,8 +859,6 @@ function searchScroll() {
     var heightScroll = $(document).height() - $(window).height() - 400;
 
     var scrollTop = jQuery(window).scrollTop();
-    console.log('scrollTop', scrollTop);
-    console.log('heightScroll', heightScroll);
     if (scrollTop >= heightScroll) {
         $('#next-step').removeClass('scrollDown');
     }
@@ -782,6 +883,30 @@ function selectTripOneWay(trip) {
     startDateOneway = $(trip).data('startdate');
     tripStatus = $(trip).data('tripstatus');
     $('.intime').html(getFormattedDate(intimeOneway, 'time'));
+
+    scheduleSelect = $.grep(scheduleOneway, function (v, k) {
+        return v.scheduleId === scheduleIdOneway;
+    });
+
+    transshipmentInPointOneway = scheduleSelect[0].transshipmentInPoint;
+    transshipmentOffPointOneway = scheduleSelect[0].transshipmentOffPoint;
+
+
+    $.each(transshipmentInPointOneway, function (k, v) {
+        $('#transshipmentInPointOneway').append('<option data-address="' + v.address + '" ' +
+            'data-price="' + v.transshipmentPrice + '" ' +
+            'data-lat="' + v.latitude + '" ' +
+            'data-long="' + v.longitude + '" ' +
+            'value="' + v.pointId + '">' + v.pointName + '</option>');
+    });
+
+    $.each(transshipmentOffPointOneway, function (k, v) {
+        $('#transshipmentOffPointOneway').append('<option data-address="' + v.address + '" ' +
+            'data-price="' + v.transshipmentPrice + '" ' +
+            'data-lat="' + v.latitude + '" ' +
+            'data-long="' + v.longitude + '" ' +
+            'value="' + v.pointId + '">' + v.pointName + '</option>');
+    });
 
     if(tripStatus == 2) {
         $.alert({
@@ -1074,6 +1199,14 @@ function xacnhan(seat, isBaby, isBack) {
 
         totalMoneyOneway = babyMoney + adultMoney;
 
+        if(transshipment) {
+            totalMoneyOneway += trashipmentPriceOneway;
+        } else {
+            if(totalMoneyOneway > 0) {
+                totalMoneyOneway -= trashipmentPriceOneway;
+            }
+        }
+
         $('#babyMoneyOneWay').text(babyMoney.format()+' VND');
         $('#adultMoneyOneway').text(adultMoney.format()+' VND');
         $('#totalMoneyOneway').text(totalMoneyOneway.format()+' VND');
@@ -1167,9 +1300,10 @@ function getSchedule(startPoint, endPoint, date, routeId, isBack) {
         success: function (result) {
             if(!isBack) {
                 $('#list-oneway').html('');
+                scheduleOneway = result;
             } else {
-                // $('#list-oneway').html('');
                 $('#list-roundway').html('');
+                scheduleReturn = result;
             }
 
 

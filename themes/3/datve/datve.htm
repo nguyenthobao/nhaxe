@@ -151,6 +151,40 @@
                         <label for="phoneNumber">Ghi chú</label>
                         <textarea placeholder="Các yêu cầu đặc biệt không thể được đảm bảo nhưng nhà xe sẽ cố gắng hết sức để đáp ứng yêu cầu của bạn" name="note" class="form-control" id="note" rows="3"></textarea>
                     </div>
+                    <div class="col-md-12">
+                        <label class="container-checkbox" for="transshipment">Đưa đón tại đúng địa chỉ
+                            <input type="checkbox" id="transshipment">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="transshipmentOneway">
+                        <div class="col-md-6">
+                            <label for="transshipmentInPointOneway">Trung chuyển đón chuyến đi</label>
+                            <select name="transshipmentInPointOneway" disabled class="form-control" id="transshipmentInPointOneway">
+                                <option data-address="" data-lat="" data-long="" data-price="0" value="">Chọn điểm đón</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="transshipmentOffPointOneway">Trung chuyển trả chuyến đi</label>
+                            <select name="transshipmentOffPointOneway" disabled class="form-control" id="transshipmentOffPointOneway">
+                                <option data-address="" data-lat="" data-long="" data-price="0" value="">Chọn điểm trả</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="transshipmentReturn" style="display: none">
+                        <div class="col-md-6">
+                            <label for="transshipmentInPointReturn">Trung chuyển đón chuyến về</label>
+                            <select name="transshipmentInPoint" disabled class="form-control" id="transshipmentInPointReturn">
+                                <option data-address="" data-lat="" data-long="" data-price="0" value="">Chọn điểm đón</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="transshipmentOffPointReturn">Trung chuyển trả chuyến về</label>
+                            <select name="transshipmentOffPointReturn" disabled class="form-control" id="transshipmentOffPointReturn">
+                                <option data-address="" data-lat="" data-long="" data-price="0" value="">Chọn điểm trả</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="col-md-8">
                         <input autocomplete="off" class="col-md-5 form-control" id="promotionCode" style="width: auto;" type="text" placeholder="Mã khuyến mại">
                         <button type="button" class="btn btn-info col-md-3" id="checkPromotion">Kiểm tra</button>
@@ -199,6 +233,9 @@
                     <div class="col-md-12">
                         Giá trẻ em: <span class="price" id="babyMoneyOneWay">0 VND</span> <br>
                     </div>
+                    <div class="col-md-12">
+                        Phí trung chuyển: <span class="price" id="transshipmentPriceOneway">0 VND</span> <br>
+                    </div>
                 </div>
                 <div class="subtotal">
                     Tổng tiền lượt đi<br>
@@ -217,6 +254,9 @@
                     <div class="col-md-12">
                         Giá trẻ em: <span class="price" id="babyMoneyReturn">0 VND</span> <br>
                     </div>
+                    <!--<div class="col-md-12">
+                        Phí trung chuyển: <span class="price" id="transshipmentPriceReturn">0 VND</span> <br>
+                    </div>-->
                 </div>
                 <div class="subtotal">
                     Tổng tiền lượt về<br>
@@ -246,10 +286,18 @@
                             <span class="checkround"></span>
                         </label>
 
-                        <!--<label class="radio">Thanh toán bằng thẻ quốc tế-->
-                        <!--<input type="radio" class="paymenttype" name="paymenttype" value="2">-->
-                        <!--<span class="checkround"></span>-->
-                        <!--</label>-->
+                        <div class="test" style="display: none">
+                            <label class="radio">Thanh toán qua Megabank
+                                <input type="radio" class="paymenttype" name="paymenttype" value="2">
+                                <span class="checkround"></span>
+                            </label>
+                            <label class="radio">Thanh toán qua ví
+                                <input type="radio" class="paymenttype" name="paymenttype" value="2">
+                                <span class="checkround"></span>
+                            </label>
+                        </div>
+
+
                         <label class="radio">Thanh toán tại quầy
                             <input type="radio" class="paymenttype" name="paymenttype" value="5">
                             <span class="checkround"></span>
