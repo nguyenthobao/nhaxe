@@ -377,7 +377,7 @@ $(document).ready(function () {
     });
     
     //Kiểm tra khuyến mại
-    $('#checkPromotion').click(function () {
+    $('#checkPromotion').click(function () {console.log(routeId);
         if($('#promotionCode').val() == '') {
             $.alert({
                 title: 'Cảnh báo!',
@@ -402,6 +402,7 @@ $(document).ready(function () {
                     promotionCode: promotionCode,
                     companyId: companyId,
                     getInTimePlan: intimeOneway,
+                    routeId: routeId,
                 },
                 success: function (data) {
                     promotionPercent = data.results.result.percent;
@@ -810,6 +811,7 @@ function selectTripOneWay(trip) {
     ticketRatioOneway = $(trip).data('ratio');
     startDateOneway = $(trip).data('startdate');
     tripStatus = $(trip).data('tripstatus');
+    routeId = $(trip).data('route');
     $('.intime').html(getFormattedDate(intimeOneway, 'time'));
 
     if(tripStatus == 2) {
@@ -919,6 +921,7 @@ function selectTripRoundWay(trip) {
     offPointReturn = $(trip).data('getoffpoint');
     startDateReturn = $(trip).data('startdate');
     tripStatus = $(trip).data('tripstatus');
+    routeId = $(trip).data('route');
     $('.intimeReturn').html(getFormattedDate(intimeReturn, 'time'));
 
     if(tripStatus == 2) {
@@ -1243,6 +1246,7 @@ function getSchedule(startPoint, endPoint, date, isBack) {
                         'data-trip="' + item.tripId + '" ' +
                         'data-schedule="' + item.scheduleId + '" ' +
                         'data-tripstatus="' + item.tripStatus + '" ' +
+                        'data-route="' + item.routeId + '" ' +
                         'data-price="' + item.ticketPrice + '">';
                 } else {
                     var schedule = '<tr onclick="selectTripOneWay(this)" ' +
@@ -1254,6 +1258,7 @@ function getSchedule(startPoint, endPoint, date, isBack) {
                         'data-trip="' + item.tripId + '" ' +
                         'data-schedule="' + item.scheduleId + '" ' +
                         'data-tripstatus="' + item.tripStatus + '" ' +
+                        'data-route="' + item.routeId + '" ' +
                         'data-price="' + item.ticketPrice + '">';
                 }
                 schedule += '<td>' + item.getInPointName +' đến '+ item.getOffPointName + '</td>';
