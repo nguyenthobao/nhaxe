@@ -101,6 +101,13 @@ Class Datve extends Controller {
 		die;
 	}
 
+	function epay() {
+        $rt = $this->PostAnvui('https://dobody-anvui.appspot.com/web/ticket-order',$_POST);
+        header('Content-Type: application/json');
+        echo json_encode($rt);
+        die;
+    }
+
 	function huykhuhoi(){
 	    $routeId = $_SESSION['khuhoi']['routeId'];
         if(isset($_SESSION['khuhoi'])) {

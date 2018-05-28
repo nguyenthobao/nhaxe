@@ -106,7 +106,7 @@ $(document).ready(function () {
 
             $(".transshipment").prop("selectedIndex", 0);
 
-            $('.transshipment').prop('disabled', false);
+            $('.transshipment').prop('disabled', true);
 
             $('#transshipmentPriceOneway').text('0 VND');
             $('#transshipmentPriceReturn').text('0 VND');
@@ -722,6 +722,37 @@ $(document).ready(function () {
                             setTimeout(function () {
                                 window.location.href = url;
                             }, 3000);
+                        } else if(paymentType == 2 || paymentType == 3) {
+                            if(paymentType == 2) {
+                                payType = 1;
+                            } else {
+                                payType = 2;
+                            }
+                            $.dialog({
+                                title: 'Thông báo!',
+                                content: 'Hệ thống đang chuyển sang cổng thanh toán, vui lòng đợi trong giây lát',
+                                onClose: function (e) {
+                                    e.preventDefault();
+                                }
+                            });
+
+                            $.ajax({
+                                type: 'POST',
+                                url: 'https://dobody-anvui.appspot.com/ePay/',
+                                dataType: 'json',
+                                data: JSON.stringify({
+                                    ticketId: data.results.ticketId,
+                                    paymentType: payType,
+                                    packageName: 'web',
+                                    phoneNumber: phoneNumber,
+                                }),
+                                success: function (data) {
+                                    url = data.results.redirect;
+                                    setTimeout(function () {
+                                        window.location.href = url;
+                                    }, 3000);
+                                }
+                            });
                         } else if(paymentType == 6) {
                             $.alert({
                                 title: 'Thông báo!',
