@@ -660,125 +660,145 @@ $(document).ready(function () {
             } else {
                 totalMoneyAfter = totalMoney;
             }
-
-            $.ajax({
-                type: 'POST',
-                url: 'http://demo.nhaxe.vn/dat-ve?sub=order',
-                data: {
-                    'listSeatId': JSON.stringify(seatOneway),
-                    'fullName': fullName,
-                    'phoneNumber': phoneNumber,
-                    'email': email,
-                    'getInPointId': inPointOneway,
-                    'startDate': startDateOneway,
-                    'getOffPointId': offPointOneway,
-                    'scheduleId': scheduleIdOneway,
-                    'getInTimePlan': intimeOneway,
-                    'originalTicketPrice': totalMoney,
-                    'paymentTicketPrice': totalMoneyAfter,
-                    'agencyPrice': totalMoneyAfter,
-                    'paymentType': paymentType,
-                    'paidMoney': 0,
-                    'tripId': tripIdOneway,
-                    'numberOfAdults': ghenguoilondi.length,
-                    'numberOfChildren': ghetreemdi.length,
-                    'promotionId': $('#promotionCode').val(),
-                    'note' : note,
-                    'inTransshipmentPrice': (trashipmentPriceInPointOneway * seatOneway.length),
-                    'offTransshipmentPrice': (trashipmentPriceOffPointOneway * seatOneway.length),
-                    'pickUpAddress': $('#transshipmentInPointOneway').find(':selected').data('address'),
-                    'latitudeUp': $('#transshipmentInPointOneway').find(':selected').data('lat'),
-                    'longitudeUp': $('#transshipmentInPointOneway').find(':selected').data('long'),
-                    'dropOffAddress': $('#transshipmentOffPointOneway').find(':selected').data('address'),
-                    'latitudeDown': $('#transshipmentOffPointOneway').find(':selected').data('lat'),
-                    'longitudeDown': $('#transshipmentOffPointOneway').find(':selected').data('long')
-                },
-                success: function (data) {
-                    if(data.code != 200) {
-                        $.alert({
-                            title: 'Thông báo!',
-                            type: 'red',
-                            typeAnimated: true,
-                            content: 'Đã có lỗi xảy ra, vui lòng đặt lại!',
-                        });
-                    } else {
-                        //thanh toan truc tuyen
-                        if(paymentType == 1) {
-
-                            var url = 'https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo=' + data.results.ticketId + '&vpc_Amount=' + totalMoneyAfter * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web";
-
-                            //Fix cứng tạm thời cho pumpkinbuslines
-                            if(companyId == 'TC1OHmbCcxRS') {
-                                var url = 'https://dobody-anvui.appspot.com/pumpkin/dopay?vpc_OrderInfo=' + data.results.ticketId + '&vpc_Amount=' + totalMoneyAfter * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web";
-                            }
-
-                            $.dialog({
-                                title: 'Thông báo!',
-                                content: 'Hệ thống đang chuyển sang cổng thanh toán, vui lòng đợi trong giây lát',
-                                onClose: function (e) {
-                                    e.preventDefault();
-                                }
-                            });
-                            setTimeout(function () {
-                                window.location.href = url;
-                            }, 3000);
-                        } else if(paymentType == 2 || paymentType == 3) {
-                            if(paymentType == 2) {
-                                payType = 1;
-                            } else {
-                                payType = 2;
-                            }
-                            $.dialog({
-                                title: 'Thông báo!',
-                                content: 'Hệ thống đang chuyển sang cổng thanh toán, vui lòng đợi trong giây lát',
-                                onClose: function (e) {
-                                    e.preventDefault();
-                                }
-                            });
-
+            $.confirm({
+                title: 'Thông tin thanh toán',
+                content: '<div>Họ tên: <b>' + fullName + '</b></div>' +
+                '<div>Số điện thoại: <b>' + phoneNumber + '</b></div>' +
+                '<div>Email: <b>' + email + '</b></div>' +
+                '<div>Thông tin khác: <b>' + note + '</b></div>' +
+                '<div>Ghế: <b>' + seatOneway.toString() + '</b></div>' +
+                '<div>Tổng tiền: <b><h3 style="color: #fe5815">'+totalMoneyAfter.format()+' VNĐ</h3></b></div>',
+                buttons: {
+                    cancel: {
+                        text: 'Hủy'
+                    },
+                    ok: {
+                        text: 'Xác nhận',
+                        btnClass: 'btn-blue',
+                        action: function () {
                             $.ajax({
                                 type: 'POST',
-                                url: 'https://dobody-anvui.appspot.com/ePay/',
-                                dataType: 'json',
-                                data: JSON.stringify({
-                                    ticketId: data.results.ticketId,
-                                    paymentType: payType,
-                                    packageName: 'web',
-                                    phoneNumber: phoneNumber,
-                                }),
+                                url: 'http://demo.nhaxe.vn/dat-ve?sub=order',
+                                data: {
+                                    'listSeatId': JSON.stringify(seatOneway),
+                                    'fullName': fullName,
+                                    'phoneNumber': phoneNumber,
+                                    'email': email,
+                                    'getInPointId': inPointOneway,
+                                    'startDate': startDateOneway,
+                                    'getOffPointId': offPointOneway,
+                                    'scheduleId': scheduleIdOneway,
+                                    'getInTimePlan': intimeOneway,
+                                    'originalTicketPrice': totalMoney,
+                                    'paymentTicketPrice': totalMoneyAfter,
+                                    'agencyPrice': totalMoneyAfter,
+                                    'paymentType': paymentType,
+                                    'paidMoney': 0,
+                                    'tripId': tripIdOneway,
+                                    'numberOfAdults': ghenguoilondi.length,
+                                    'numberOfChildren': ghetreemdi.length,
+                                    'promotionId': $('#promotionCode').val(),
+                                    'note' : note,
+                                    'inTransshipmentPrice': (trashipmentPriceInPointOneway * seatOneway.length),
+                                    'offTransshipmentPrice': (trashipmentPriceOffPointOneway * seatOneway.length),
+                                    'pickUpAddress': $('#transshipmentInPointOneway').find(':selected').data('address'),
+                                    'latitudeUp': $('#transshipmentInPointOneway').find(':selected').data('lat'),
+                                    'longitudeUp': $('#transshipmentInPointOneway').find(':selected').data('long'),
+                                    'dropOffAddress': $('#transshipmentOffPointOneway').find(':selected').data('address'),
+                                    'latitudeDown': $('#transshipmentOffPointOneway').find(':selected').data('lat'),
+                                    'longitudeDown': $('#transshipmentOffPointOneway').find(':selected').data('long')
+                                },
                                 success: function (data) {
-                                    url = data.results.redirect;
-                                    setTimeout(function () {
-                                        window.location.href = url;
-                                    }, 3000);
-                                }
-                            });
-                        } else if(paymentType == 6) {
-                            $.alert({
-                                title: 'Thông báo!',
-                                type: 'green',
-                                typeAnimated: true,
-                                content: 'Đã đặt vé thành công!',
-                                onClose: function () {
-                                    $('#phone').html(phoneNumber);
-                                    $('#ticketId').html(data.results.ticketId);
-                                    $('#chuyenkhoan').modal('show');
-                                    $('#hoanthanhbtn').hide();
-                                    $('#btnchuyenkhoan').show();
-                                }
-                            });
-                        } else {
-                            $.alert({
-                                title: 'Thông báo!',
-                                content: 'Bạn đã đặt vé thành công! Vui lòng đến quầy thanh toán và nhận vé',
-                                onClose: function () {
-                                    window.location.href = '/dat-ve';
+                                    if(data.code != 200) {
+                                        $.alert({
+                                            title: 'Thông báo!',
+                                            type: 'red',
+                                            typeAnimated: true,
+                                            content: 'Đã có lỗi xảy ra, vui lòng đặt lại!',
+                                        });
+                                    } else {
+                                        //thanh toan truc tuyen
+                                        if(paymentType == 1) {
+
+                                            var url = 'https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo=' + data.results.ticketId + '&vpc_Amount=' + totalMoneyAfter * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web";
+
+                                            //Fix cứng tạm thời cho pumpkinbuslines
+                                            if(companyId == 'TC1OHmbCcxRS') {
+                                                var url = 'https://dobody-anvui.appspot.com/pumpkin/dopay?vpc_OrderInfo=' + data.results.ticketId + '&vpc_Amount=' + totalMoneyAfter * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web";
+                                            }
+
+                                            $.dialog({
+                                                title: 'Thông báo!',
+                                                content: 'Hệ thống đang chuyển sang cổng thanh toán, vui lòng đợi trong giây lát',
+                                                onClose: function (e) {
+                                                    e.preventDefault();
+                                                }
+                                            });
+                                            setTimeout(function () {
+                                                window.location.href = url;
+                                            }, 3000);
+                                        } else if(paymentType == 2 || paymentType == 3) {
+                                            if(paymentType == 2) {
+                                                payType = 1;
+                                            } else {
+                                                payType = 2;
+                                            }
+                                            $.dialog({
+                                                title: 'Thông báo!',
+                                                content: 'Hệ thống đang chuyển sang cổng thanh toán, vui lòng đợi trong giây lát',
+                                                onClose: function (e) {
+                                                    e.preventDefault();
+                                                }
+                                            });
+
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: 'https://dobody-anvui.appspot.com/ePay/',
+                                                dataType: 'json',
+                                                data: JSON.stringify({
+                                                    ticketId: data.results.ticketId,
+                                                    paymentType: payType,
+                                                    packageName: 'web',
+                                                    phoneNumber: phoneNumber,
+                                                }),
+                                                success: function (data) {
+                                                    url = data.results.redirect;
+                                                    setTimeout(function () {
+                                                        window.location.href = url;
+                                                    }, 3000);
+                                                }
+                                            });
+                                        } else if(paymentType == 6) {
+                                            $.alert({
+                                                title: 'Thông báo!',
+                                                type: 'green',
+                                                typeAnimated: true,
+                                                content: 'Đã đặt vé thành công!',
+                                                onClose: function () {
+                                                    $('#phone').html(phoneNumber);
+                                                    $('#ticketId').html(data.results.ticketId);
+                                                    $('#chuyenkhoan').modal('show');
+                                                    $('#hoanthanhbtn').hide();
+                                                    $('#btnchuyenkhoan').show();
+                                                }
+                                            });
+                                        } else {
+                                            $.alert({
+                                                title: 'Thông báo!',
+                                                content: 'Bạn đã đặt vé thành công! Vui lòng đến quầy thanh toán và nhận vé',
+                                                onClose: function () {
+                                                    window.location.href = '/dat-ve';
+                                                }
+                                            });
+                                        }
+                                    }
                                 }
                             });
                         }
                     }
                 }
             });
+
         }
         else //Thanh toan ve khu hoi
         {
@@ -816,128 +836,153 @@ $(document).ready(function () {
             }
             var paymentCode = generatePaymentCode();
 
-            $.ajax({
-                type: 'POST',
-                url: 'http://demo.nhaxe.vn/dat-ve?sub=order',
-                data: {
-                    'listSeatId': JSON.stringify(seatOneway),
-                    'fullName': fullName,
-                    'phoneNumber': phoneNumber,
-                    'email': email,
-                    'getInPointId': inPointOneway,
-                    'startDate': startDateOneway,
-                    'getOffPointId': offPointOneway,
-                    'scheduleId': scheduleIdOneway,
-                    'getInTimePlan': intimeOneway,
-                    'originalTicketPrice': totalMoneyOneway,
-                    'paymentTicketPrice': totalMoneyOneAfter,
-                    'agencyPrice': totalMoneyOneAfter,
-                    'paymentType': paymentType,
-                    'paidMoney': 0,
-                    'tripId': tripIdOneway,
-                    'numberOfAdults': ghenguoilondi.length,
-                    'numberOfChildren': ghetreemdi.length,
-                    'promotionId': $('#promotionCode').val(),
-                    'note' : note,
-                    'paymentCode': paymentCode,
-                    'inTransshipmentPrice': (trashipmentPriceInPointOneway * seatOneway.length),
-                    'offTransshipmentPrice': (trashipmentPriceOffPointOneway * seatOneway.length),
-                    'pickUpAddress': $('#transshipmentInPointOneway').find(':selected').data('address'),
-                    'latitudeUp': $('#transshipmentInPointOneway').find(':selected').data('lat'),
-                    'longitudeUp': $('#transshipmentInPointOneway').find(':selected').data('long'),
-                    'dropOffAddress': $('#transshipmentOffPointOneway').find(':selected').data('address'),
-                    'latitudeDown': $('#transshipmentOffPointOneway').find(':selected').data('lat'),
-                    'longitudeDown': $('#transshipmentOffPointOneway').find(':selected').data('long')
-                },
-                success: function (data) {
-                    if(data.code != 200) {
-                        $.alert({
-                            title: 'Thông báo!',
-                            type: 'red',
-                            typeAnimated: true,
-                            content: 'Đã có lỗi xảy ra, vui lòng đặt lại!',
-                        });
-                    } else {
-                        mave = data.results.ticketId;
-
-                        $.ajax({
-                            type: 'POST',
-                            url: 'http://demo.nhaxe.vn/dat-ve?sub=order',
-                            data: {
-                                'listSeatId': JSON.stringify(seatReturn),
-                                'fullName': fullName,
-                                'phoneNumber': phoneNumber,
-                                'email': email,
-                                'getInPointId': inPointReturn,
-                                'startDate': startDateReturn,
-                                'getOffPointId': offPointReturn,
-                                'scheduleId': scheduleIdReturn,
-                                'getInTimePlan': intimeReturn,
-                                'originalTicketPrice': totalMoneyReturn,
-                                'paymentTicketPrice': totalMoneyReturnAfter,
-                                'agencyPrice': totalMoneyReturnAfter,
-                                'paymentType': paymentType,
-                                'paidMoney': 0,
-                                'tripId': tripIdReturn,
-                                'promotionId': $('#promotionCode').val(),
-                                'note' : note,
-                                'paymentCode': paymentCode,
-                                'numberOfAdults': ghenguoilonve.length,
-                                'numberOfChildren': ghetreemve.length,
-                                'inTransshipmentPrice': (trashipmentPriceInPointReturn * seatReturn.length),
-                                'offTransshipmentPrice': (trashipmentPriceOffPointReturn * seatReturn.length),
-                                'pickUpAddress': $('#transshipmentInPointReturn').find(':selected').data('address'),
-                                'latitudeUp': $('#transshipmentInPointReturn').find(':selected').data('lat'),
-                                'longitudeUp': $('#transshipmentInPointReturn').find(':selected').data('long'),
-                                'dropOffAddress': $('#transshipmentOffPointReturn').find(':selected').data('address'),
-                                'latitudeDown': $('#transshipmentOffPointReturn').find(':selected').data('lat'),
-                                'longitudeDown': $('#transshipmentOffPointReturn').find(':selected').data('long')
-                            },
-                            success: function (data) {
-                                if(data.code != 200) {
-                                    $.alert({
-                                        title: 'Thông báo!',
-                                        type: 'red',
-                                        typeAnimated: true,
-                                        content: 'Đã có lỗi xảy ra, vui lòng đặt lại!'
-                                    });
-                                } else {
-                                    mave = mave + "-" + data.results.ticketId;
-                                    if(paymentType == 1) {
-                                        totalMoney = totalMoneyOneAfter + totalMoneyReturnAfter;
-                                        var url = 'https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo=' + mave + '&vpc_Amount=' + totalMoney * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web&paymentCode=" + paymentCode;
-
-                                        //Fix cứng tạm thời cho pumpkinbuslines
-                                        if(companyId == 'TC1OHmbCcxRS') {
-                                            url = 'https://dobody-anvui.appspot.com/pumpkin/dopay?vpc_OrderInfo=' + mave + '&vpc_Amount=' + totalMoney * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web&paymentCode=" + paymentCode;
-                                        }
-                                        $.dialog({
-                                            title: 'Thông báo!',
-                                            content: 'Hệ thống đang chuyển sang cổng thanh toán, vui lòng đợi trong giây lát',
-                                            onClose: function (e) {
-                                                e.preventDefault();
-                                            }
-                                        });
-                                        setTimeout(function () {
-                                            window.location.href = url;
-                                        }, 3000);
-                                    } else {
+            $.confirm({
+                title: 'Thông tin thanh toán',
+                content: '<div>Họ tên: <b>' + fullName + '</b></div>' +
+                '<div>Số điện thoại: <b>' + phoneNumber + '</b></div>' +
+                '<div>Email: <b>' + email + '</b></div>' +
+                '<div>Thông tin khác: <b>' + note + '</b></div>' +
+                '<div>Ghế đi: <b>' + seatOneway.toString() + '</b></div>' +
+                '<div>Tổng tiền đi: <b><h3 style="color: #fe5815">'+totalMoneyOneAfter.format()+' VNĐ</h3></b></div>' +
+                '<div>Ghế về: <b>' + seatReturn.toString() + '</b></div>' +
+                '<div>Tổng tiền về: <b><h3 style="color: #fe5815">'+totalMoneyReturnAfter.format()+' VNĐ</h3></b></div>' +
+                '<div>Tổng tiền: <b><h2 style="color: #fe5815">'+(totalMoneyOneAfter + totalMoneyReturnAfter).format()+' VNĐ</h2></b></div>',
+                buttons: {
+                    cancel: {
+                        text: 'Hủy'
+                    },
+                    ok: {
+                        text: 'Xác nhận',
+                        btnClass: 'btn-blue',
+                        action: function () {
+                            $.ajax({
+                                type: 'POST',
+                                url: 'http://demo.nhaxe.vn/dat-ve?sub=order',
+                                data: {
+                                    'listSeatId': JSON.stringify(seatOneway),
+                                    'fullName': fullName,
+                                    'phoneNumber': phoneNumber,
+                                    'email': email,
+                                    'getInPointId': inPointOneway,
+                                    'startDate': startDateOneway,
+                                    'getOffPointId': offPointOneway,
+                                    'scheduleId': scheduleIdOneway,
+                                    'getInTimePlan': intimeOneway,
+                                    'originalTicketPrice': totalMoneyOneway,
+                                    'paymentTicketPrice': totalMoneyOneAfter,
+                                    'agencyPrice': totalMoneyOneAfter,
+                                    'paymentType': paymentType,
+                                    'paidMoney': 0,
+                                    'tripId': tripIdOneway,
+                                    'numberOfAdults': ghenguoilondi.length,
+                                    'numberOfChildren': ghetreemdi.length,
+                                    'promotionId': $('#promotionCode').val(),
+                                    'note' : note,
+                                    'paymentCode': paymentCode,
+                                    'inTransshipmentPrice': (trashipmentPriceInPointOneway * seatOneway.length),
+                                    'offTransshipmentPrice': (trashipmentPriceOffPointOneway * seatOneway.length),
+                                    'pickUpAddress': $('#transshipmentInPointOneway').find(':selected').data('address'),
+                                    'latitudeUp': $('#transshipmentInPointOneway').find(':selected').data('lat'),
+                                    'longitudeUp': $('#transshipmentInPointOneway').find(':selected').data('long'),
+                                    'dropOffAddress': $('#transshipmentOffPointOneway').find(':selected').data('address'),
+                                    'latitudeDown': $('#transshipmentOffPointOneway').find(':selected').data('lat'),
+                                    'longitudeDown': $('#transshipmentOffPointOneway').find(':selected').data('long')
+                                },
+                                success: function (data) {
+                                    if(data.code != 200) {
                                         $.alert({
                                             title: 'Thông báo!',
-                                            content: 'Bạn đã đặt vé thành công! Vui lòng đến quầy thanh toán và nhận vé',
-                                            onClose: function () {
-                                                window.location.href = '/dat-ve';
+                                            type: 'red',
+                                            typeAnimated: true,
+                                            content: 'Đã có lỗi xảy ra, vui lòng đặt lại!',
+                                        });
+                                    } else {
+                                        mave = data.results.ticketId;
+
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: 'http://demo.nhaxe.vn/dat-ve?sub=order',
+                                            data: {
+                                                'listSeatId': JSON.stringify(seatReturn),
+                                                'fullName': fullName,
+                                                'phoneNumber': phoneNumber,
+                                                'email': email,
+                                                'getInPointId': inPointReturn,
+                                                'startDate': startDateReturn,
+                                                'getOffPointId': offPointReturn,
+                                                'scheduleId': scheduleIdReturn,
+                                                'getInTimePlan': intimeReturn,
+                                                'originalTicketPrice': totalMoneyReturn,
+                                                'paymentTicketPrice': totalMoneyReturnAfter,
+                                                'agencyPrice': totalMoneyReturnAfter,
+                                                'paymentType': paymentType,
+                                                'paidMoney': 0,
+                                                'tripId': tripIdReturn,
+                                                'promotionId': $('#promotionCode').val(),
+                                                'note' : note,
+                                                'paymentCode': paymentCode,
+                                                'numberOfAdults': ghenguoilonve.length,
+                                                'numberOfChildren': ghetreemve.length,
+                                                'inTransshipmentPrice': (trashipmentPriceInPointReturn * seatReturn.length),
+                                                'offTransshipmentPrice': (trashipmentPriceOffPointReturn * seatReturn.length),
+                                                'pickUpAddress': $('#transshipmentInPointReturn').find(':selected').data('address'),
+                                                'latitudeUp': $('#transshipmentInPointReturn').find(':selected').data('lat'),
+                                                'longitudeUp': $('#transshipmentInPointReturn').find(':selected').data('long'),
+                                                'dropOffAddress': $('#transshipmentOffPointReturn').find(':selected').data('address'),
+                                                'latitudeDown': $('#transshipmentOffPointReturn').find(':selected').data('lat'),
+                                                'longitudeDown': $('#transshipmentOffPointReturn').find(':selected').data('long')
+                                            },
+                                            success: function (data) {
+                                                if(data.code != 200) {
+                                                    $.alert({
+                                                        title: 'Thông báo!',
+                                                        type: 'red',
+                                                        typeAnimated: true,
+                                                        content: 'Đã có lỗi xảy ra, vui lòng đặt lại!'
+                                                    });
+                                                } else {
+                                                    mave = mave + "-" + data.results.ticketId;
+                                                    if(paymentType == 1) {
+                                                        totalMoney = totalMoneyOneAfter + totalMoneyReturnAfter;
+                                                        var url = 'https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo=' + mave + '&vpc_Amount=' + totalMoney * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web&paymentCode=" + paymentCode;
+
+                                                        //Fix cứng tạm thời cho pumpkinbuslines
+                                                        if(companyId == 'TC1OHmbCcxRS') {
+                                                            url = 'https://dobody-anvui.appspot.com/pumpkin/dopay?vpc_OrderInfo=' + mave + '&vpc_Amount=' + totalMoney * 100 + '&phoneNumber=' + phoneNumber + "&packageName=web&paymentCode=" + paymentCode;
+                                                        }
+                                                        $.dialog({
+                                                            title: 'Thông báo!',
+                                                            content: 'Hệ thống đang chuyển sang cổng thanh toán, vui lòng đợi trong giây lát',
+                                                            onClose: function (e) {
+                                                                e.preventDefault();
+                                                            }
+                                                        });
+                                                        setTimeout(function () {
+                                                            window.location.href = url;
+                                                        }, 3000);
+                                                    } else {
+                                                        $.alert({
+                                                            title: 'Thông báo!',
+                                                            content: 'Bạn đã đặt vé thành công! Vui lòng đến quầy thanh toán và nhận vé',
+                                                            onClose: function () {
+                                                                window.location.href = '/dat-ve';
+                                                            }
+                                                        });
+                                                    }
+
+                                                }
                                             }
                                         });
+
                                     }
-
                                 }
-                            }
-                        });
-
+                            });
+                        }
                     }
                 }
             });
+
+
         }
 
 
