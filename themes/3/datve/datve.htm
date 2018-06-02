@@ -148,7 +148,11 @@
                         <input type="email" placeholder="Email" class="form-control" name="email" id="email">
                     </div>
                     <div class="col-md-12">
+                        {if $web['anvui_id'] === 'TC04r1lru1vOk3c'}
+                        <label for="phoneNumber">Số điện thoại khác</label>
+                        {else}
                         <label for="phoneNumber">Ghi chú</label>
+                        {/if}
                         <textarea placeholder="Các yêu cầu đặc biệt không thể được đảm bảo nhưng nhà xe sẽ cố gắng hết sức để đáp ứng yêu cầu của bạn" name="note" class="form-control" id="note" rows="3"></textarea>
                     </div>
                     <div class="col-md-12">
